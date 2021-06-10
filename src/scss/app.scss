@@ -1,0 +1,31 @@
+
+/* Importo la base del proyecto */
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/globales';
+@import 'base/utilidades';
+@import 'base/buttons';
+
+/** UI **/
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/main';
+@import 'layout/start';
+@import 'layout/opinion';
+@import 'layout/slider';
+@import 'layout/us';
+@import 'layout/contact';
+@import 'layout/footer';
+
+
+/* Internas */
+@import 'internal/form';
+@import 'internal/welcome';
+
+/* Admin */
+@import '../../Administrador/sass/header';
+@import '../../Administrador/sass/option';
+@import '../../Administrador/sass/asignatura';
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../build/img/AURUM_color.svg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../build/css/app.css"">
+    <title>AURUM: Inicia sesión</title>
+</head>
+
+<body>
+
+  <main class="form bg-main">
+        <div class="text-center">
+            <a href="../../index.html">
+                <img class="form__logo" src="../../build/img/AURUM.svg" alt="">
+            </a>
+        </div>
+  </main>
+
+  <div class="form__form-container--signup">
+    <form action="" method="POST" class="width100">
+
+     <div class="text-center">
+         <h2 class="form__heading">Registro docente</h2>
+     </div>
+
+        <!-- Contenedor icono + input -->
+        <div class="input-tablet">
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-user"></i>
+                </div>
+
+                <input name="nombre" type="text" class="form__input" placeholder="Nombre" required>
+
+            </div>
+
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-user"></i>
+                </div>
+
+                <input name="apellido" type="text" class="form__input" placeholder="Apellido" required>
+
+            </div>
+        </div>
+
+        
+        <!-- Contenedor icono + input -->
+        <div class="input-tablet">
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="fas fa-unlock-alt"></i>
+                </div>
+
+                <input name="password" type="text" class="form__input" placeholder="Contraseña" required>
+
+            </div>
+
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="fas fa-unlock-alt"></i>
+                </div>
+
+                <input name="validatePassword" type="text" class="form__input" placeholder="Contraseña de nuevo" required>
+
+            </div>
+        </div>
+
+        <div class="input-tablet">
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-address-card"></i>
+                </div>
+
+                <input name="ci" type="text" class="form__input" placeholder="Cédula" required>
+
+            </div>
+
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+
+                <input name="asignatura" type="text" class="form__input" placeholder="Asignatura" required>
+
+            </div>
+        </div>
+
+        <div class="form__container-input marginTop">
+            <div class="form__icon form__icon--profile">
+                <i class="fas fa-image"></i>
+            </div>
+
+
+    
+            <label for="imagen" class="label-img">Foto de perfil</label>
+
+            <input 
+                id="imagen"
+                name="imagen" 
+                type="file" 
+                accept="image/*"
+                class="form__input form__input--file" 
+                required
+             >
+
+        </div>
+
+        <div class="button-center">
+            <button class="btn-submit" type="submit">Registrar docente</button>
+        </div>
+
+       
+    </form>
+ </div>
+  
+</body>
+
+</html>

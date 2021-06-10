@@ -1,0 +1,29 @@
+.text-center {
+    text-align: center;
+}
+
+.width100 {
+    width: 100%;
+}
+.bg-main {
+    background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+}
+
+.flexRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.flexColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+

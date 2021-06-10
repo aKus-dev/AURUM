@@ -1,0 +1,229 @@
+/* Para que la animacion hamburguer funcione: 
+1- El gap y la altura deben de tener el mismo valor
+2- El translateY debe de ser del doble del gap/altura 
+*/
+
+.header {
+    position: relative;
+    min-height: 70rem;
+
+    /*  MENU  */
+    &__menu {
+        margin: auto;
+        width: 90%;
+        height: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    &__menuDesktop {
+        display: none;
+
+        @include desktop {
+            display: block;
+        }
+    }
+
+    &__mockup {
+        min-height: 70rem;
+
+        @include desktop {
+            background-image: url(../img/Mockup_phone.png);
+            background-repeat: no-repeat;
+            background-size: 450px;
+            background-position: 100% 100%;
+        }
+    }
+
+    &__menu-mobile {
+        clip-path: circle(0% at 50% 100%);
+        overflow: hidden;
+        transition: .4s;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: linear-gradient(180deg, $white, $lightGray);
+        left: 0;
+        top: 0;
+
+        @include desktop {
+            display: none;
+        }
+    }
+
+    &__menu-align {
+        padding-top: 10rem;
+        transition: .5rem;
+        height: 100%;
+        @include flexColumn(3.5rem);
+
+    }
+
+     /*  ENLACES  */
+    &__link {
+        font-size: 2.5rem;
+        color: $lightBlack;
+        text-transform: uppercase;
+        opacity: 0;
+    }
+
+    &__link--active {
+        color: $ligthViolet;
+        font-weight: bold;
+    }
+
+    &__link::after {
+        content: '';
+        transition: .3s;
+        display: block;
+        width: 0;
+        height: .4rem;
+        background-color: $ligthViolet;
+    } 
+
+    &__link:hover::after {
+        width: 100%;
+    } 
+
+    &__aurum {
+        transition: .5s;
+        height: 4rem;
+        cursor: pointer;
+    }
+
+    &__aurum:hover {
+        transform: scale(1.2);
+    }
+
+    /*  INFO  */
+    &__info {
+        color: $white;
+        padding: 3rem;
+        /* Altura total del contenedor - altura del header */
+        min-height: calc(70rem - 8rem);
+        @include flexColumn(0);
+
+
+        @include desktop {
+            width: 60%;
+        }
+    }
+
+    &__heading {
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+    }
+    &__text {
+        font-size: 1.6rem;
+        font-family: $openSans;
+        font-weight: 300;
+        line-height: 1.5;
+        text-align: center;
+        margin: 2.5rem 0 3.5rem 0;
+    }
+}
+
+.hamburguer {
+    transition: .35s;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: .5rem;
+
+    @include desktop {
+        display: none;
+    }
+}
+
+.button-flex {
+    max-width: 95%;
+
+    @include desktop {
+        display: flex;
+        gap: 4rem;
+        width: 70%;
+    }
+
+    .btn {
+        padding: 1.2rem;
+    }
+}
+
+.menu-desktop {
+
+    display: none;
+
+    @include desktop {
+        display: flex;
+        align-items: center;
+        gap: 3.5rem;
+    }
+
+    .link {
+        color: $white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .link--active {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .link::after {
+        content: '';
+        transition: .3s;
+        display: block;
+        width: 0;
+        height: .4rem;
+        background-color: $ligthViolet;
+    }
+
+    .link:hover::after {
+        width: 100%;
+    }
+}
+
+.menu-flex:hover {
+    transform: scale(1.05);
+}
+
+/*     <----------- ANIMACION ----------->   */
+
+.span {
+    transition: .4s;
+    width: 3.5rem;
+    height: .5rem;
+    background-color: $white;
+    display: inline-block;
+}
+
+.openSpan1 {
+    transform: translateY(1rem) rotate(45deg);
+}
+.hideSpan2 {
+    transition: .2s;
+    opacity: 0;
+}
+.openSpan3 {
+    transform: translateY(-1rem) rotate(-45deg);
+}
+
+.showMenu {
+    clip-path: circle(85% at 50% 100%);
+}
+
+.filterHeader {
+    filter: brightness(.5);
+}
+/*     <----------- EFECTOS LINK ----------->   */
+.showLink {
+    transition: .3s;
+    opacity: 1;
+}

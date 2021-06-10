@@ -1,0 +1,91 @@
+.opinion {
+
+    min-height: 40rem;
+    padding: 2.5rem 0 4.5rem 0;
+    position: relative;
+
+    &__flex {
+        @include flexColumn(2.5rem);
+
+        @include desktop {
+            flex-direction: row;
+            padding: 4.5rem;
+        }
+    }
+    
+    &__heading {
+        color: $white;
+    }
+
+    &__heading-container {
+        margin-bottom: 5rem;
+
+        
+        @include desktop {
+            margin-bottom: 0;
+        }
+
+
+    }
+
+   &__article {
+    transition: .4s;
+    width: 80%;
+    height: 35rem;
+    border-radius: 1rem;
+    background-color: $white;
+
+    display: grid;
+    grid-template-rows: 10% 60% 30%;
+    align-items: center;
+
+    box-shadow: -3px -3px 15px $ligthViolet, 8px 8px 10px $darkViolet;; 
+
+   }
+
+   &__article:hover {
+       transform: scale(1.05);
+   }
+
+   &__quote {
+        display: flex;
+        justify-content: flex-end;
+        width: 85%;
+        margin: 1.5rem auto 0 auto;
+        height: 4.5rem;
+   }
+
+   &__text {
+       text-align: center;
+       padding: 1.5rem 2.5rem 0 2.5rem;
+       font-size: 1.6rem;
+       line-height: 1.5;
+       opacity: 0.8;
+   }
+
+   &__photo {
+       height: 5rem;
+       border-radius: 50%;
+   }
+
+   &__photo-container {
+
+       display: flex;
+       gap: 1rem;
+       justify-content: center;
+   }
+
+   &__name {
+       color: $darkViolet;
+   }
+
+   &__work {
+        font-size: 1.4rem;
+        color: $lightBlack;
+   }
+
+}
+
+.quote {
+    opacity: 0.6;
+}

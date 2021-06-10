@@ -1,0 +1,13 @@
+.footer {
+    height: 5rem;
+    border-top: 1px solid lighten($lightBlack, 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    &__text {
+        font-size: 1.6rem;
+        color: lighten($lightBlack, 25%)
+    }
+}

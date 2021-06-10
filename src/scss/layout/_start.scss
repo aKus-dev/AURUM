@@ -1,0 +1,36 @@
+.start {
+    padding: 3rem 0;
+    background-color:  darken($white, 5%);;
+
+    &__text {
+        margin: 2.5rem;
+        line-height: 1.8;
+        font-size: 1.5rem;
+    }
+
+    &__phone {
+        display: none;
+
+        @include tablet {
+            display: block;
+        }
+    }
+
+    &__img {
+        filter: drop-shadow(.1rem .1rem .5rem $lightBlack);
+    }
+
+    &__container {
+       
+        @include tablet {
+            max-width: 120rem;
+            width: 80%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 40% 60%;
+            align-items: center;
+        }
+    }
+
+}

@@ -1,0 +1,174 @@
+.form {
+
+    position: relative;
+    padding-top: 2rem;
+    height: 30rem;
+
+    &__choose {
+        width: 100%;
+        @include flexColumn(2.5rem);
+    }
+
+    &__heading {
+        color: $lightBlack;
+    }
+
+    &__logo {
+        transition: .5s;
+        height: 12rem;
+    }
+
+    &__logo:hover {
+        transform: scale(1.1);
+    }
+
+    &__form-container {
+        transform: translateY(-10rem);
+        margin: 0 auto;
+
+        /* Height & Width */
+        height: 40rem;
+        width: 85%;
+
+        /* Styles */
+        border-radius: 4rem;
+        background-color: $white;
+        box-shadow: 0 0 1rem #c829e4;
+        padding: 2.5rem 2rem;
+
+        @include flexColumn(0);
+
+        /* Media queries */
+        @include tablet {
+            width: 80%;
+        }
+
+        @include desktop {
+            max-width: 120rem;
+            width: 45rem;
+        }
+
+    }
+
+    &__form-container--signup {
+        transform: translateY(-10rem);
+        max-width: 100rem;
+        width: 95%;
+        margin: auto;
+
+        @include tablet {
+            width: 70%;
+        }
+
+          /* Styles */
+          border-radius: 4rem;
+          background-color: $white;
+          box-shadow: 0 0 1rem #c829e4;
+          padding: 2.5rem 2rem;
+    }
+
+    &__icon {
+        transition: .5s;
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        font-size: 2rem;
+        color: $ligthViolet;
+        background-color: $white;
+        box-shadow: 0 0 15px #c829e4;
+        
+        position: absolute;
+        top: 0;
+        right: .5rem;
+        bottom: 0;
+        margin: auto;
+
+        @include flexColumn(0);
+    }
+
+    &__icon--profile {
+
+        @include tablet {
+            right: 1.5rem;
+        }
+
+    }
+    
+    &__icon:hover { 
+        transform: scale(1.1) rotate(360deg);
+    }
+
+    &__container-input {
+        width: 80%;
+        margin: 5rem auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__input {
+        width: 85%;
+        padding: 1rem;
+        color: $ligthViolet;
+        background-color: $white;
+        font-size: 1.8rem;
+
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $ligthViolet;
+    }   
+
+    &__input--file {
+        border: 2px solid $ligthViolet;
+        cursor: pointer;
+    }
+
+    &__select {
+        font-size: 1.8rem;
+        color: $ligthViolet;
+        padding: 1rem 3rem;
+        text-align: center;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $ligthViolet;
+        width: 85%;
+    }
+
+    &__rol-label {
+        display: block;
+        color: $ligthViolet;
+        font-size: 1.5rem;
+    }
+
+    &__option {
+        font-size: 1.6rem;
+        color: $lightBlack;
+    }
+}
+
+.button-center {
+    display: flex;
+    justify-content: center;
+}
+
+.form__flex {
+    margin: 2.5rem 0;
+    @include flex(3.5rem);
+}
+
+@include desktop {
+    .input-tablet {
+        display: flex;
+    }
+}
+
+.label-img {
+    position: absolute;
+    color: $ligthViolet;
+    font-size: 1.5rem;
+    top: -2.5rem;
+}
+
+.marginTop {
+    margin: 5rem auto;
+}

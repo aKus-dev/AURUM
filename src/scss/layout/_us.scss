@@ -1,0 +1,29 @@
+.us {
+    min-height: 40rem;
+    padding: 2.5rem 0;
+    @include flexColumn(0);
+
+    &__heading {
+        color: $white;
+    }
+
+    &__text-container {
+        font-family: $fuente_principal;
+        margin-top: 2.5rem;
+        font-size: 1.8rem;
+        line-height: 1.8;
+        padding: 2.5rem;
+        text-align: center;
+        color: $white;
+        font-weight: 300;
+
+        @include tablet {
+            width: 85%;
+            margin: 0 auto;
+        }
+
+        @include desktop {
+            width: 70%;
+        }
+    }
+}

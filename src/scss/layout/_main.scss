@@ -1,0 +1,72 @@
+.main {
+    padding: 3.5rem 0 0 0;
+
+    &__p {
+        font-size: 1.6rem;
+        width: 80%;
+        margin: 3.5rem auto;
+    }
+
+    &__heading {
+        max-width: 85%;
+        line-height: 1.5;
+    }
+}
+
+.article {
+    margin: 4.5rem 0;
+
+    @include tablet {
+        margin: 3rem 0;
+    }
+
+    &__icon {
+        transition: .5s;
+        height: 12rem;
+        width: 12rem;
+        border-radius: 50%;
+        background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+        margin: auto;
+
+        @include flexColumn(0);
+    }
+
+    &__icon:hover {
+        transform: scale(1.15) rotate(360deg);
+    }
+
+    &__icon i {
+        color: $white;
+        font-size: 4.5rem;
+    }
+
+    &__heading {
+        color: $lightBlack;
+        margin-top: 2rem;
+        font-size: 1.8rem;
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        line-height: 1.8;
+        width: 80%;
+        margin: 2.5rem auto;
+    }
+}
+
+.article-grid {
+    @include tablet {
+        margin: auto;
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include desktop {
+        margin: auto;
+        max-width: 120rem;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

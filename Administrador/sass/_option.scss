@@ -1,0 +1,124 @@
+.option {
+    position: relative;
+    margin: 3rem auto;
+    height: 40rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem $ligthViolet;
+
+    &--red {
+        box-shadow: 0 0 2rem #c31432e0;
+    }
+
+    &--teacher {
+        background-position: center;
+        background-image: url(../../build/img/Admin/Teacher.jpg);
+    }
+
+    &--students {
+        background-position: center;
+        background-image: url(../../build/img/Admin/Students.jpg);
+    }
+
+    &--books {
+        background-position: center;
+        background-image: url(../../build/img/Admin/Books.jpg);
+    }
+
+    &--agenda {
+        background-position: center;
+        background-image: url(../../build/img/Admin/Agenda.jpg);
+    }
+
+    &--pendiente {
+        background-position: center;
+        background-image: url(../../build/img/Admin/Pendiente.jpg);
+    }
+
+    &--grupo {
+        background-position: center;
+        background-image: url(../../build/img/Admin/Grupo.jpg);
+    }
+
+    @include desktop {
+        margin: 0;
+        width: 35rem;
+    }
+
+    &__content {
+        padding: 2rem 4rem;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+    }
+
+    &__heading {
+        margin: 1.5rem 0;
+        font-size: 3rem;
+    }
+
+    &__heading::after {
+        content: '';
+        display: block;
+        height: .5rem;
+        width: 100%;
+        background: linear-gradient(90deg, #e0c0d3, #e143fd);
+    }
+
+    
+    &__heading--red::after {
+        content: '';
+        display: block;
+        height: .5rem;
+        width: 100%;
+        background: linear-gradient(90deg, #e0c0d3, #c31432e0);
+    }
+
+    &__text {
+        font-size: 1.5rem;
+    }
+}
+
+.option-container {
+    padding: 0 5rem;
+
+    @include desktop {
+        padding: 3.5rem 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3.5rem;   
+    }
+}
+
+.filter-option {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #b1126fe0, #531A5De0);
+    border-radius: 1rem;
+}
+
+.filter-option--diff {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #c31432e0, #240b36e0);
+    border-radius: 1rem;
+}
+

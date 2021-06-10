@@ -1,0 +1,78 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: $rubik;
+    background-color: $white;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+h1,h3,h4,p {
+    margin: 0;
+}
+h2 {
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    margin: 0;
+    color: $lightBlack;
+}
+h2::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -.5rem;
+    margin: auto;
+    height: .2rem;
+    width: 100%;
+    background-color: $lightGray;
+}
+h2::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -.5rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: .3rem;
+    width: 60%;
+    background: #ce1882;
+}
+h1 {
+    font-size: 3.5rem;
+}
+h2 {
+    font-size: 2.8rem;
+}
+h3 {
+    font-size: 2.2rem;
+}
+h4 {
+    font-size: 2rem;
+}
+a {
+    text-decoration: none;
+}
+
+.icon {
+    color: $white;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.system-image {
+    border-radius: 50%;
+    height: 3.2rem;
+}
+
+.arrow-down {
+    font-size: 1.3rem;
+}

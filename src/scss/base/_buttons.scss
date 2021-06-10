@@ -1,0 +1,125 @@
+.btn {
+    display: block;
+    padding: 2rem;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    margin: 2.5rem auto;
+    border-radius: .5rem;
+    max-width: 95%;
+    width: 35rem;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Botones amarillos
+.btn-yellow {
+    transition: .5s;
+    box-shadow: inset 0 10rem 2rem rgb(255, 153, 0);
+    border: 2px solid rgb(255, 153, 0);
+    color: $lightBlack;
+    font-weight: bold;
+}
+.btn-yellow:hover {
+    box-shadow: inset 0 0rem .5rem rgb(255, 153, 0);
+    color: rgb(255, 153, 0)
+}
+
+// Botones blancos
+.btn-white {
+    transition: .5s;
+    border: .2rem solid $white;
+    color: $white;
+    font-weight: bold;
+    box-shadow: inset 0rem 0 0 $white;
+}
+.btn-white:hover {
+    color: #000000;
+    box-shadow: inset 0 10rem 5rem $white;
+}
+
+// Boton con gradient
+.btn-gradient {
+    max-width: 85%;
+    transition: .5s;
+    border-radius: 0;
+    color: $white;
+    background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+    font-weight: bold;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.15);
+}
+
+// Boton enviar
+.btn-submit {
+    transition: .45s;
+    cursor: pointer;
+    border: none;
+    width: 25rem;
+    border-radius: 5rem;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $white;
+    box-shadow: inset 0 10rem 2rem $ligthViolet;
+
+    position: relative;
+}
+
+.btn-submit:hover {
+    color: #c829e4;;
+    box-shadow: inset 0 0 .5rem #B1126F;
+}
+
+// Botones registro
+.btn-signup {
+    transition: .45s;
+    max-width: 30rem;
+    width: 85%;
+    padding: 1rem;
+    color: $ligthViolet;
+    background-color: $white;
+    font-size: 1.8rem;
+    margin: 0 auto;
+
+    outline: none;
+    border: none;
+    border: 2px solid $ligthViolet;
+    box-shadow: inset 0 0 0 $ligthViolet;
+
+    @include tablet {
+        width: 65%;
+    }
+}
+.btn-signup:hover {
+    color: $white;
+    box-shadow: inset 30rem 0 0 $ligthViolet;
+}
+
+
+// Estilos generales botones ABM
+.admin-button {
+    transition: .55s;
+    font-size: 1.8rem;
+    padding: 1rem 3rem;
+    color: $white;
+    margin: 3.5rem 0;
+    border: 2px solid $white;
+    box-shadow: inset 0 0 0 $white;
+    font-weight: bold;
+}
+
+.admin-button:hover {
+    color: $ligthViolet;
+    box-shadow: inset 0 -10rem 0 $white;
+}
+
+.admin-button--red:hover {
+    color: #c31431;
+    box-shadow: inset 0 -10rem 0 $white;
+}

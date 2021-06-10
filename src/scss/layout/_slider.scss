@@ -1,0 +1,114 @@
+.slider {
+    position: relative;
+    padding-top: 2rem;
+    height: 100vh;
+
+    @include desktop {
+            height: 90vh;
+    }
+
+    &__heading {
+        height: 5.5rem
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(3, 100vw);
+        overflow: hidden;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        height: calc(100% - 7rem);
+    }
+
+    &__section {
+        height: 100%;
+        scroll-snap-align: center;
+
+    }
+
+    &__grid {
+        height: 100%;
+        display: grid;
+        grid-template-rows: 60% 40%;
+
+        @include tablet {
+            grid-template-columns: 40% 60%;
+            grid-template-rows: none;
+            align-items: center;
+            align-content: center;
+            width: 80%;
+            margin: auto;
+        }
+    }
+
+    &__img {
+      height: 45rem;
+      filter: drop-shadow(.1rem .1rem .5rem $lightBlack);
+    }
+
+    &__text {
+      width: 85%;
+      margin: 2.5rem auto;
+      font-size: 1.6rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    &__buttons {
+        width: 10rem;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        bottom: 2.5rem;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    &__button {
+        display: block;
+        height: 1.5em;
+        width: 1.5rem;
+        border-radius: 50%;
+        border: .2rem solid $darkRed;  
+    
+    }
+
+    &__button--active {
+        border: none;
+        box-shadow: .1rem .1rem 1rem $darkRed;
+        background: linear-gradient(90deg, $pink, $darkRed);
+    }
+
+    &__arrow {
+        transition: .4s;
+        color: $lightBlack;
+        font-size: 4rem;
+        height: 10rem;
+        cursor: pointer;
+
+        filter: drop-shadow(.2rem .2rem 1.2rem $darkGray);
+    }
+
+    &__left {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: .5rem;
+        margin: auto;
+    }
+
+    &__right {
+        position: absolute;
+        right: .5rem;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+}
+
+.opacity {
+    opacity: .3;
+}

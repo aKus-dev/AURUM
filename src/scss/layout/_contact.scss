@@ -1,0 +1,52 @@
+.contact {
+    padding: 3rem;
+
+    &__heading {
+        margin: 3.5rem 0;
+    }
+
+    &__form {
+        max-width: 120rem;
+        margin: auto;
+
+        @include tablet {
+            width: 95%;
+            display: grid;
+            gap: 4.5rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include desktop {
+            width: 75%;
+        }
+    }
+
+    &__field {
+        margin: 2rem 0;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    &__submit {
+        @include tablet {
+            display: grid;
+            justify-content: flex-end;
+            
+        }
+    }
+
+    textarea {
+        resize: none;
+        height: 20rem;
+    }
+
+    textarea, input, button {
+        outline-color: $ligthViolet;
+    }
+}
+
+
