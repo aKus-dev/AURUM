@@ -1333,3 +1333,23 @@ a {
   height: 100%;
   background: linear-gradient(90deg, #c31432e0, #240b36e0);
   border-radius: 1rem; }
+
+.notification {
+  cursor: pointer;
+  position: relative; }
+  .notification__icon {
+    position: absolute;
+    right: -1rem;
+    top: -.5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #db1111;
+    font-size: 1.2rem;
+    transition: .45s;
+    visibility: visible; }
