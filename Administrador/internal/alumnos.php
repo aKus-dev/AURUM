@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
-    <title>AURUM: Asignaturas</title>
+    <title>AURUM: Alumnos</title>
 </head>
 <body>
 
@@ -93,7 +93,7 @@
             <button class="btn-submit" type="submit">Agregar alumno</button>
         </div>
 
-    </div>
+    </div> <!-- Fin contenedor crear
 
     <!-- Contenedor de modificar -->
     <div id="update-container" class="container-crud display-none">
@@ -108,13 +108,13 @@
             </div>
 
             <input name="ci" type="text" class="form__input" placeholder="Cédula" required>
-
         </div>
 
         <div class="button-center">
             <button class="btn-submit" type="submit">Modificar alumno</button>
         </div>
     </div>
+
 
     <!-- Contenedor de eliminar -->
     <div id="remove-container" class="container-crud display-none">
@@ -129,11 +129,11 @@
             </div>
 
             <input name="ci" type="text" class="form__input" placeholder="Cédula" required>
-
         </div>
 
+    
         <div class="button-center">
-            <button class="btn-submit" type="submit">Modificar alumno</button>
+            <button class="btn-submit" type="submit">Eliminar alumno</button>
         </div>
 
         <script src="../../build/js/abmButtons.js"></script>
