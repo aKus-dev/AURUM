@@ -13,33 +13,7 @@
 </head>
 <body>
 
-    <header class=" admin-header">
-    <div>
-        <a href="../index.html">
-            <img class="header__aurum" src="/build/img/AURUM.svg" alt="AURUm">
-        </a>
-    </div>
-
-    <!-- Iconos versión mobile -->
-    <div class="flex-icons-admin">
-        <!-- Icono de notificacion -->
-        <div>
-            <i class="far fa-bell icon"></i>
-        </div>
-
-        <div class="flexRow">
-            <!-- Imagen del administrador -->
-            <div>
-                <img class="system-image pointer" src="/build/img/image-colton.jpg" alt="">
-            </div>
-
-            <!-- Icono de flecha hacia abajo -->
-            <div>
-                <i class="fas fa-chevron-down icon arrow-down pointer"></i>
-            </div>
-        </div>
-    </div>
-    </header>
+    <?php include '../templates/header.html'; ?>
 
     <main class="asignatura">
         <h2>¿Que desea hacer?</h2>
@@ -50,9 +24,10 @@
             <button class="btn-crud" id="delete">Eliminar</button>
         </div>
     </main>
-
+        
+    </div>
     <!-- Contenedor de crear -->
-    <div id="create-container" class="container-crud display-none">
+    <div id="create-container" class="container-crud">
         <div class="text-center">
             <h2 class="font-size22">Crea una asignatura</h2>
         </div>
@@ -106,7 +81,7 @@
         <!-- Grupo  -->
         <div class="form__container-input">
             <select name="grupo" class="form__select">
-                <option selected disabled>Nuevo grupo</option>
+                <option selected disabled>Grupo</option>
                 <option value="3BE">3ºBE</option>
             </select>
         </div>
@@ -144,7 +119,7 @@
         <!-- Grupo  -->
         <div class="form__container-input">
             <select name="grupo" class="form__select">
-                <option selected disabled>Nuevo grupo</option>
+                <option selected disabled>Grupo</option>
                 <option value="3BE">3ºBE</option>
             </select>
         </div>

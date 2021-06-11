@@ -13,36 +13,7 @@
 </head>
 <body>
 
-    <header class=" admin-header">
-    <div>
-        <a href="index.html">
-            <img class="header__aurum" src="..//build/img/AURUM.svg" alt="AURUm">
-        </a>
-    </div>
-
-    <!-- Iconos versión mobile -->
-    <div class="flex-icons-admin">
-        <!-- Icono de notificacion -->
-        <div class="notification">
-            <div class="notification__icon">
-                <p>5</p>
-            </div>
-            <i class="far fa-bell icon"></i>
-        </div>
-
-        <div class="flexRow">
-            <!-- Imagen del administrador -->
-            <div>
-                <img class="system-image pointer" src="../build/img/image-colton.jpg" alt="">
-            </div>
-
-            <!-- Icono de flecha hacia abajo -->
-            <div>
-                <i class="fas fa-chevron-down icon arrow-down pointer"></i>
-            </div>
-        </div>
-    </div>
-    </header>
+   <?php include 'templates/header.html'; ?>
 
     <main class="option-container">
         <div class="option option--teacher">
@@ -50,7 +21,7 @@
                 <h3 class="option__heading">DOCENTES</h3>
                 <p class="option__text">Agrega, modifica y elimina docentes</p>
 
-                <a href="internal/docentes.html" class="admin-button">ADMINISTRAR</a>
+                <a href="internal/docentes.php" class="admin-button">ADMINISTRAR</a>
             </div>
 
             <div class="filter-option"></div>
@@ -61,7 +32,7 @@
                 <h3 class="option__heading">ALUMNOS</h3>
                 <p class="option__text">Agrega, modifica y elimina alumnos</p>
 
-                <a href="internal/alumnos.html" class="admin-button">ADMINISTRAR</a>
+                <a href="internal/alumnos.php" class="admin-button">ADMINISTRAR</a>
             </div>
 
             <div class="filter-option"></div>
@@ -72,7 +43,7 @@
                 <h3 class="option__heading">ASIGNATURAS</h3>
                 <p class="option__text">Agrega, modifica y elimina asginaturas</p>
 
-                <a href="internal/asignaturas.html" class="admin-button">ADMINISTRAR</a>
+                <a href="internal/asignaturas.php" class="admin-button">ADMINISTRAR</a>
             </div>
 
             <div class="filter-option"></div>
@@ -85,7 +56,7 @@
                 <h3 class="option__heading option__heading--red">AGENDA</h3>
                 <p class="option__text">Accede a la agenda de consultas realizadas</p>
 
-                <a href="internal/agenda.html" class="admin-button admin-button--red"">ACCEDER</a>
+                <a href="internal/agenda.php" class="admin-button admin-button--red"">ACCEDER</a>
             </div>
 
             <div class="filter-option--diff"></div>
@@ -96,7 +67,7 @@
                 <h3 class="option__heading option__heading--red">PENDIENTE</h3>
                 <p class="option__text">Visualiza los alumnos pendientes de aprobación</p>
 
-                <a href="internal/pendiente.html" class="admin-button admin-button--red"">ACCEDER</a>
+                <a href="internal/pendiente.php" class="admin-button admin-button--red"">ACCEDER</a>
             </div>
 
             <div class="filter-option--diff"></div>
@@ -107,7 +78,7 @@
                 <h3 class="option__heading option__heading--red">GRUPOS</h3>
                 <p class="option__text">Crea nuevos grupos para el sistema</p>
 
-                <a href="internal/grupos.html" class="admin-button admin-button--red">ACCEDER</a>
+                <a href="internal/grupos.php" class="admin-button admin-button--red">ACCEDER</a>
             </div>
 
             <div class="filter-option--diff"></div>
