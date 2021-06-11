@@ -107,7 +107,6 @@
             <h2 class="font-size22">Elimina una asignatura</h2>
         </div>
 
-
         <!-- Asignatura -->
         <div class="form__container-input">
             <select name="grupo" class="form__select">
@@ -130,7 +129,7 @@
 
     </div>
 
-    <script src="../../build/js/asignatura.js"></script>
+    <script src="../../build/js/abmButtons.js"></script>
     </body>
 
 </html>
