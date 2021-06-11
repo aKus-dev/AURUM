@@ -413,6 +413,12 @@ a {
 .pointer {
   cursor: pointer; }
 
+.display-none {
+  display: none; }
+
+.font-size22 {
+  font-size: 2.2rem; }
+
 .btn {
   display: block;
   padding: 2rem;
@@ -475,7 +481,7 @@ a {
   position: relative; }
 
 .btn-submit:hover {
-  color: #c829e4;
+  color: #B1126F;
   box-shadow: inset 0 0 .5rem #B1126F; }
 
 .btn-signup {
@@ -516,6 +522,25 @@ a {
 .admin-button--red:hover {
   color: #c31431;
   box-shadow: inset 0 -10rem 0 #FFFFFF; }
+
+.btn-crud {
+  transition: .45s;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  width: 100%;
+  font-size: 1.7rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #b1126f, #531A5D);
+  cursor: pointer; }
+
+.btn-crud:hover {
+  transform: scale(1.05); }
 
 /** UI **/
 /* Para que la animacion hamburguer funcione: 
@@ -1333,6 +1358,37 @@ a {
   height: 100%;
   background: linear-gradient(90deg, #c31432e0, #240b36e0);
   border-radius: 1rem; }
+
+.asignatura {
+  padding: 5rem 2rem 1.5rem 2rem;
+  text-align: center; }
+  @media (min-width: 768px) {
+    .asignatura {
+      width: 60%;
+      margin: auto; } }
+
+.buttons-container {
+  margin: 1.5rem auto;
+  padding: 1rem 0; }
+  @media (min-width: 768px) {
+    .buttons-container {
+      width: 85%; } }
+  @media (min-width: 968px) {
+    .buttons-container {
+      width: 50%; } }
+
+.container-crud {
+  width: 90%;
+  margin: auto;
+  padding: 1rem 2rem 4rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 1rem #c829e4; }
+  @media (min-width: 768px) {
+    .container-crud {
+      width: 50%; } }
+  @media (min-width: 968px) {
+    .container-crud {
+      width: 40%; } }
 
 .notification {
   cursor: pointer;

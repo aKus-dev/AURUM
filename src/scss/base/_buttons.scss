@@ -72,7 +72,7 @@
 }
 
 .btn-submit:hover {
-    color: #c829e4;;
+    color: #B1126F;;
     box-shadow: inset 0 0 .5rem #B1126F;
 }
 
@@ -122,4 +122,25 @@
 .admin-button--red:hover {
     color: #c31431;
     box-shadow: inset 0 -10rem 0 $white;
+}
+
+// CRUD buttons
+.btn-crud {
+    transition: .45s;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
+    font-size: 1.7rem;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 1rem;
+    background: linear-gradient(90deg, #b1126f, #531A5D);
+    cursor: pointer;
+}
+.btn-crud:hover {
+    transform: scale(1.05);
 }
