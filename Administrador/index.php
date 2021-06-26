@@ -76,7 +76,7 @@
         <div class="option option--red option--grupo">
             <div class="option__content">
                 <h3 class="option__heading option__heading--red">GRUPOS</h3>
-                <p class="option__text">Crea nuevos grupos para el sistema</p>
+                <p class="option__text">Crea nuevos grupos y orientaciones.</p>
 
                 <a href="internal/grupos.php" class="admin-button admin-button--red">ACCEDER</a>
             </div>

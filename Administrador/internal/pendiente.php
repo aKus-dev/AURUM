@@ -15,7 +15,7 @@
 
     <?php include '../templates/header.html'; ?>
 
-    <main class="asignatura">
+    <main class="admin-form">
        
     </main>
 

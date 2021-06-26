@@ -15,7 +15,7 @@
 
     <?php include '../templates/header.html'; ?>
 
-    <main class="asignatura">
+    <main class="admin-form">
         <h2>¿Que desea hacer?</h2>
 
         <div class="flexRow buttons-container">
@@ -26,107 +26,11 @@
     </main>
         
     </div>
-    <!-- Contenedor de crear -->
-    <div id="create-container" class="container-crud">
-        <div class="text-center">
-            <h2 class="font-size22">Crea una asignatura</h2>
-        </div>
-
-        <!-- Orientación -->
-        <div class="form__container-input">
-            <select name="grupo" class="form__select">
-                <option selected disabled>Orientación</option>
-                <option value="3BE">Informática</option>
-            </select>
-
-        </div>
-
-        <!-- Grupo  -->
-        <div class="form__container-input">
-            <select name="grupo" class="form__select">
-                <option selected disabled>Grupo</option>
-                <option value="3BE">3ºBE</option>
-            </select>
-        </div>
-
-              <!-- Asignatura -->
-              <div class="form__container-input">
-                <div class="form__icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-    
-                <input name="asignatura" type="text" class="form__input" placeholder="Asignatura" required>
-            </div>
-
-        <div class="button-center">
-            <button class="btn-submit" type="submit">Crear asignatura</button>
-        </div>
-    </div>
-
-    <!-- Contenedor de modificar -->
-    <div id="update-container" class="container-crud display-none">
-        <div class="text-center">
-            <h2 class="font-size22">Modifica una asignatura</h2>
-        </div>
-
-
-        <!-- Asignatura -->
-        <div class="form__container-input">
-            <select name="grupo" class="form__select">
-                <option selected disabled>Asignatura</option>
-                <option value="3BE">Programación Web</option>
-            </select>
-        </div>
-
-        <!-- Grupo  -->
-        <div class="form__container-input">
-            <select name="grupo" class="form__select">
-                <option selected disabled>Grupo</option>
-                <option value="3BE">3ºBE</option>
-            </select>
-        </div>
-
-        <!-- Nuevo nombre -->
-        <div class="form__container-input">
-            <div class="form__icon">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-
-            <input name="asignatura" type="text" class="form__input" placeholder="Nuevo nombre" required>
-        </div>
-
-        <div class="button-center">
-            <button class="btn-submit" type="submit">Modificar asignatura</button>
-        </div>
-
-    </div>
-
-     <!-- Contenedor de eliminar -->
-     <div id="remove-container" class="container-crud display-none">
-        <div class="text-center">
-            <h2 class="font-size22">Elimina una asignatura</h2>
-        </div>
-
-        <!-- Asignatura -->
-        <div class="form__container-input">
-            <select name="grupo" class="form__select">
-                <option selected disabled>Asignatura</option>
-                <option value="3BE">Programación Web</option>
-            </select>
-        </div>
-
-        <!-- Grupo  -->
-        <div class="form__container-input">
-            <select name="grupo" class="form__select">
-                <option selected disabled>Grupo</option>
-                <option value="3BE">3ºBE</option>
-            </select>
-        </div>
-
-        <div class="button-center">
-            <button class="btn-submit" type="submit">Eliminar asignatura</button>
-        </div>
-
+   
+    <div>
+        <?php include 'ABM_Asignatura/create.php';  ?> 
+        <?php include 'ABM_Asignatura/modify.php';  ?> 
+        <?php include 'ABM_Asignatura/delete.php';  ?> 
     </div>
 
     <script src="../../build/js/abmButtons.js"></script>

@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/build/img/AURUM_color.svg">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
     <title>AURUM: Asignaturas</title>
 </head>
@@ -16,9 +15,16 @@
 
     <?php include '../templates/header.html'; ?>
 
-    <main class="asignatura">
-       
+    <main class="admin-form  group-container">
+   
+    <?php include 'ABM_Grupo/grupo.php'; ?>
+
+    <h2>Además:</h2>
+    
+    <?php include 'ABM_Grupo/orientacion.php'; ?>
+
     </main>
 
     </body>
+
 </html>
