@@ -1,86 +1,81 @@
-let actualSection = 1;
+// Secciones
+const section1 = document.querySelector('#section1')
+const section2 = document.querySelector('#section2')
+const section3 = document.querySelector('#section3')
 
-// Enlaces
+// Flechas
 const leftArrow = document.querySelector(".leftParent");
 const rightArrow = document.querySelector(".rightParent");
+
+leftArrow.classList.add('opacity');
 
 // Botones
 const b1 = document.querySelector(".b1");
 const b2 = document.querySelector(".b2");
 const b3 = document.querySelector(".b3");
 
-// Actualiza el HREF de los enlaces cuando carga el HTML
-document.addEventListener('DOMContentLoaded', () => {
-    updateArrows();
-})
 
-// Evento cuando se pulse en la flecha derecha
+let actualSection = 1;
+
 rightArrow.addEventListener('click', () => {
-
-    if(actualSection != 3) {
-        actualSection++;
-    } else {
-        actualSection = 3;
-    }
-
-    updateArrows();
+    updateRightSection();
 })
 
-// Evento cuando se pulse en la flecha izquierda
-leftArrow.addEventListener('click', () => {
-
-    if(actualSection != 1) {
-        actualSection--;
-    } else {
-        actualSection = 1;
-    }
-
-    console.log(actualSection)
-
-    updateArrows();
-})
-
-// Actualiza los enlaces de las flechas
-function updateArrows() {
+function updateRightSection() {
     switch (actualSection) {
         case 1:
-            leftArrow.href = '#section1';
+            section2.scrollIntoView();
 
-             // Le pongo opacidad para simular que no hay mas a la derecha
-             leftArrow.classList.add('opacity');
+            // Estilo botones inferiores
+            b2.classList.add('slider__button--active');
+            b1.classList.remove('slider__button--active');
 
-            // Actualizo los botones inferiores
-            b1.classList.add('slider__button--active');
-            b2.classList.remove('slider__button--active');
-            b3.classList.remove('slider__button--active');
-            break;
-        case 2:
-            leftArrow.href = '#section2';
-            rightArrow.href = '#section2';
-
-            // Le quito opacidad
             leftArrow.classList.remove('opacity');
 
-            // Le quito la opacidad 
-            rightArrow.classList.remove('opacity');
-
-            // Actualizo los botones inferiores
-            b1.classList.remove('slider__button--active');
-            b2.classList.add('slider__button--active');
-            b3.classList.remove('slider__button--active');
+            actualSection = 2;
             break;
-        case 3:
-            rightArrow.href = '#section3';
+        case 2:
+            section3.scrollIntoView();
+
+             // Estilo botones inferiores
+             b3.classList.add('slider__button--active');
+             b2.classList.remove('slider__button--active');
 
             // Le pongo opacidad para simular que no hay mas a la derecha
             rightArrow.classList.add('opacity');
 
-            // Actualizo los botones inferiores
-            b1.classList.remove('slider__button--active');
-            b2.classList.remove('slider__button--active');
-            b3.classList.add('slider__button--active');
+            actualSection = 3;
             break;
     }
 }
 
+leftArrow.addEventListener('click', () => {
+    updateLeftSection();
+})
 
+function updateLeftSection() {
+    switch (actualSection) {
+        case 2:
+            section1.scrollIntoView();
+
+            // Estilo botones inferiores
+            b1.classList.add('slider__button--active');
+            b2.classList.remove('slider__button--active');
+
+            leftArrow.classList.add('opacity');
+
+            actualSection = 1;
+            break;
+        case 3:
+            section2.scrollIntoView();
+
+            // Estilo botones inferiores
+            b2.classList.add('slider__button--active');
+            b3.classList.remove('slider__button--active');
+
+            rightArrow.classList.remove('opacity');
+
+            actualSection = 2;
+            break;
+    }
+}
