@@ -1,7 +1,7 @@
 // Secciones
-const section1 = document.querySelector('#section1')
-const section2 = document.querySelector('#section2')
-const section3 = document.querySelector('#section3')
+const section1 = document.querySelector('#section1');
+const section2 = document.querySelector('#section2');
+const section3 = document.querySelector('#section3');
 
 // Flechas
 const leftArrow = document.querySelector(".leftParent");
@@ -79,3 +79,46 @@ function updateLeftSection() {
             break;
     }
 }
+
+// Codigo para los botones
+b1.addEventListener('click', () => {
+    actualSection = 1;
+    section1.scrollIntoView();
+
+    // Actualizo estilo de botones
+    b1.classList.add('slider__button--active');
+    b2.classList.remove('slider__button--active');
+    b3.classList.remove('slider__button--active');
+
+    // Actualizo estilo flechas
+    leftArrow.classList.add('opacity');
+    rightArrow.classList.remove('opacity');
+})
+
+b2.addEventListener('click', () => {
+    actualSection = 2;
+    section2.scrollIntoView();
+
+    // Actualizo estilo de botones
+    b2.classList.add('slider__button--active');
+    b1.classList.remove('slider__button--active');
+    b3.classList.remove('slider__button--active');
+
+    // Actualizo estilo flechas
+    leftArrow.classList.remove('opacity');
+    rightArrow.classList.remove('opacity');
+})
+
+b3.addEventListener('click', () => {
+    actualSection = 3;
+    section3.scrollIntoView();
+
+    // Actualizo estilo de botones
+    b3.classList.add('slider__button--active');
+    b2.classList.remove('slider__button--active');
+    b1.classList.remove('slider__button--active');
+
+    // Actualizo estilo flechas
+    leftArrow.classList.remove('opacity');
+    rightArrow.classList.add('opacity');
+})
