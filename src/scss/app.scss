@@ -24,9 +24,13 @@
 @import 'internal/welcome';
 
 /* Admin */
-@import '../../Administrador/sass/header';
-@import '../../Administrador/sass/option';
-@import '../../Administrador/sass/asignatura';
-@import '../../Administrador/sass/notificacion';
+@import 'admin/header';
+@import 'admin/option';
+@import 'admin/admin-form';
+@import 'admin/notificacion';
 
+/* Alumno */
+@import 'alumno/header';
+@import 'alumno/alumno-task';
+@import 'alumno/consulta';
 

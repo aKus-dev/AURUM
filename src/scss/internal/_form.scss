@@ -107,6 +107,7 @@
     }
 
     &__input {
+        text-align: center;
         width: 85%;
         padding: 1rem;
         color: $ligthViolet;
@@ -171,4 +172,11 @@
 
 .marginTop {
     margin: 5rem auto;
+}
+.label {
+    font-size: 1.6rem;
+    color: $ligthViolet;
+}
+.pb-50 {
+    padding-bottom: 50px;
 }

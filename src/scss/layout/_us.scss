@@ -26,4 +26,17 @@
             width: 70%;
         }
     }
+
+    &__description {
+        
+        @include tablet {
+            margin: auto;
+            width: 90%;
+        }
+
+        @include desktop {
+            margin: auto;
+            width: 70%;
+        }
+    }
 }

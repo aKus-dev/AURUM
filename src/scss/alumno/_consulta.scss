@@ -1,0 +1,47 @@
+.consulta {
+    position: relative;
+    border-radius: 1.3rem;
+    height: 25rem;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+
+
+    @include tablet {
+        width: 55%;
+    }
+}
+
+.flex-consultas {
+    @include desktop {
+        display: flex;
+        gap: 3.5rem;
+        width: 100%;
+    }
+}
+
+.consulta--consultas {
+    background-image: url(/build/img/Alumno/Consulta.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.consulta--profesores {
+    background-image: url(/build/img/Alumno/Teacher.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.consulta--compas {
+    background-image: url(/build/img/Alumno/Compas.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.consulta--horarios {
+    background-image: url(/build/img/Docente/Horarios.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+

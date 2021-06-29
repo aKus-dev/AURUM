@@ -1,0 +1,121 @@
+.crear-consulta {
+    min-height: 100vh;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 7rem;
+
+    @include desktop {
+        margin-bottom: 0;
+    }
+
+    h1 {
+        color: $lightBlack;
+        margin: 0 0 2.5rem 0;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    .todas-consultas {
+        border-radius: 5rem;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $white;
+        margin: 1rem 0;
+        width: 75%;
+        max-width: 40rem;
+
+        i {
+            transition: .4s;
+            font-size: 2rem;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.25);
+            }
+        }
+
+    }
+
+    .empezemos {
+        font-size: 2.2rem;
+        margin: 2rem 0 2rem 0;
+
+        &::after  {
+            content: '';
+            display: block;
+            width: 100%;
+            height: .3rem;
+            background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+        }
+    }
+
+    label {
+        font-size: 1.6rem;
+        margin-bottom: .5rem;
+    }
+
+    .select-profesor {
+        width: 100%;
+        padding: 1.2rem;
+        font-size: 1.6rem;
+        color: $ligthViolet;
+        border: 2px solid $ligthViolet;
+    } 
+
+    .btn-submit-consulta {
+        display: flex;
+        justify-content: flex-end;
+        margin: 2.5rem 0;
+        
+        button {
+            transition: .35s;
+            padding: 1.2rem;
+            font-size: 1.6rem;
+            cursor: pointer;
+            border: none;
+            color: $white;
+            border-radius: .5rem;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+}
+
+.form-alumno-crear {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+
+    input,textarea {
+        outline: none;
+        padding: 1.5rem;
+        font-size: 1.8rem;
+        color: $ligthViolet;
+        border: 2px solid $ligthViolet;
+    }
+
+    
+    textarea {
+        height: 15rem;
+    }
+
+}
+
+.form-consulta {
+    width: 85%;
+
+    @include tablet {
+        width: 55%;
+    }
+}

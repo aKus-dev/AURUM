@@ -1,0 +1,21 @@
+.admin-header {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 7rem;
+    background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: 0 0 1rem $white;
+}
+
+.flex-icons-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}

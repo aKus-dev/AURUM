@@ -1,0 +1,69 @@
+.admin-form {
+    padding: 5rem 2rem 1.5rem 2rem;
+    text-align: center;
+
+    @include tablet {
+        width: 60%;
+        margin: auto;
+    }
+}
+
+.buttons-container {
+    margin: 1.5rem auto;
+    padding: 1rem 0;
+    @include tablet {
+        width: 85%;
+    }
+
+    @include desktop {
+        width: 70%;
+    }
+}
+
+.container-crud {
+    width: 90%;
+    margin: auto;
+    padding: 1rem 2rem 4rem 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 1rem #c829e4;
+
+    @include tablet {
+        width: 75%;
+    }
+
+    @include desktop {
+        width: 55%;
+    }
+}
+
+.container-crud--alumno {
+    @include tablet {
+        width: 65%;
+        max-width: 80rem;
+    }
+
+    margin-bottom: 5rem;
+
+}
+
+
+.group-container {
+    width: 90%;
+    margin: 0 auto;
+    min-height: calc(100vh - 7rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    padding: 2rem;
+
+    @include desktop {
+        flex-direction: row;
+    }
+
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}

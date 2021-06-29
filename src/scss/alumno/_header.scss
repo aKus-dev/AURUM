@@ -1,0 +1,82 @@
+.alumno-header {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+    height: 7rem;
+    background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+    border-radius: 2rem 2rem 0 0;
+    box-shadow: 0 0 1rem $white;
+
+    @include desktop {
+        position: fixed;
+        width: 9.5rem;
+        height: 100vh;
+        border-radius: 0 2rem 2rem 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8rem;
+    }
+
+    i {
+        transition: .35s;
+        cursor: pointer;
+        font-size: 2rem;
+        color: $white;
+        
+        &:hover {
+            filter: drop-shadow(0 0 5px $white);
+            transform: scale(1.25);
+        }
+    }
+    
+}
+
+.alumno-grid {
+    padding: 3rem 0 6.5rem 0;
+    width: 100%;
+
+    @include desktop {
+        padding: 3rem 5rem;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.alumno-logo {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .35s;
+    height: 3rem;
+    width: 4rem;
+
+    &:hover {
+        filter: drop-shadow(0 0 5px $white);
+        transform: scale(1.25);
+    } 
+}
+
+.flex-icons-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.alumno-container {
+
+    @include desktop {
+        margin-left: 9.5rem;
+    }
+}
