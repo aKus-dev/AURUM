@@ -1,17 +1,5 @@
 <?php
 
-interface iAlumno 
-{
-    // Alta y modificacion
-    static public function crear(array $datos);
-    public function modificar(int $id);
-    static public function revisarExistencia(string $cedula, object $db) : bool; // Revisa si un alumno ya existe
-
-    // Consultas
-    public function realizarConsulta(string $titulo, string $descripcion, int $idProfesor);
-
-}
-
 class Alumno {
 
     private $id;
@@ -68,4 +56,14 @@ class Alumno {
         return false;
           
     }
+
+  /*   static public function realizarConsulta(string $titulo, string $descripcion, int $idDocente, int $idAlumno, $fecha, object $db) {
+        $sql = "INSERT INTO Consulta_alumno_realizada (idAlumno, idDocente, titulo, descripcion, fecha) VALUES
+        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha')";
+        
+        $stmt = $db->prepare($sql); 
+        if($stmt->execute()) { 
+            return true; // Si todo esta correcto, retornamos true
+        }
+    } */
 }

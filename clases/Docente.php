@@ -1,16 +1,5 @@
 <?php
 
-interface iDocente
-{
-    // Alta y modificacion
-    static public function crear(array $datos, object $db);
-    public function modificar(int $id);
-
-    // Consultas
-    public function contestarConsulta(string $descripcion, int $idAlumno);
-
-}
-
 class Docente {
     private $id;
     private $ci;
