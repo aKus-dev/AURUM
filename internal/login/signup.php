@@ -30,7 +30,7 @@
 
             <p class="form__option">¿Como desea registrarse?</p>
             <div class="width100">
-                <a href="./docente.html">
+                <a href="./docente.php">
                     <button class="btn btn-signup btn-docente" type="submit">
                         Docente
                     </button>
@@ -40,7 +40,7 @@
 
             
             <div class="width100">
-                <a href="./alumno.html">
+                <a href="./alumno.php">
                     <button class="btn btn-signup btn-alumno" type="submit">
                         Alumno
                     </button>
