@@ -14,6 +14,7 @@
             <input name="ci" type="text" class="form__input" placeholder="Cédula" required>
         </div>
 
+        <input name="accion" value="eliminar_docente" type="hidden">
 
         <div class="button-center">
             <button class="btn-submit" type="submit">Eliminar docente</button>

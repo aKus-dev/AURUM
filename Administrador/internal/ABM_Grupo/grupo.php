@@ -14,6 +14,8 @@
             <input name="grupo" type="text" class="form__input" placeholder="Grupo" required>
         </div>
 
+        <input name="accion" value="crear_grupo" type="hidden">
+
         <div class="button-center">
             <button class="btn-submit" type="submit">Agregar grupo</button>
         </div>

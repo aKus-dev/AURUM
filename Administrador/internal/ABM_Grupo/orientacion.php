@@ -14,6 +14,8 @@
             <input name="orientacion" type="text" class="form__input" placeholder="Orientación" required>
         </div>
 
+        <input name="accion" value="crear_asignatura" type="hidden">
+
         <div class="button-center">
             <button class="btn-submit" type="submit">Agregar orientación</button>
         </div>

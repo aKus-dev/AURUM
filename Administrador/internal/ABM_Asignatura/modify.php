@@ -31,6 +31,9 @@
             <input name="asignatura" type="text" class="form__input" placeholder="Nuevo nombre" required>
         </div>
 
+        <input name="accion" value="modificar_asignatura" type="hidden">
+
+
         <div class="button-center">
             <button class="btn-submit" type="submit">Modificar asignatura</button>
         </div>

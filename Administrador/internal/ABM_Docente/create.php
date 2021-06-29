@@ -63,6 +63,9 @@
             </div>
         </div>
 
+        <input name="accion" value="crear_docente" type="hidden">
+
+
         <div class="button-center">
             <button class="btn-submit" type="submit">Agregar docente</button>
         </div>

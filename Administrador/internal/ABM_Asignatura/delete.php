@@ -21,6 +21,8 @@
             </select>
         </div>
 
+        <input name="accion" value="eliminar_asignatura" type="hidden">
+
         <div class="button-center">
             <button class="btn-submit" type="submit">Eliminar asignatura</button>
         </div>

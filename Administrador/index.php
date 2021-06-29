@@ -1,3 +1,11 @@
+<?php 
+
+require '../config/app.php';
+isAuth_admin();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

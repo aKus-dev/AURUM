@@ -1,3 +1,21 @@
+<?php
+
+require '../../config/app.php';
+require '../../clases/Alumno.php';
+
+isAuth_alumno();
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titulo = $_POST['titulo'];
+    $descripcion = $_POST['descripcion'];
+    $idDocente = $_POST['profesor'];
+    $fecha = $_POST['fecha'];
+
+    /* Alumno::realizarConsulta(); */
+}
+
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +34,13 @@
     <div class="alumno-container">
         <?php include '../templates/header.html' ?>
 
-        <div class="crear-consulta">
+        <div class="crear-consulta align-center">
             <h1>Crear consulta</h1>
 
-            <p>Antes de crearla... ¡revisa si alguien ya preguntó lo mismo!</p>
+            <div class="text-center">
+                <p>Antes de crearla... ¡revisa si alguien ya preguntó lo mismo!</p>
+            </div>
+            
             <div class="todas-consultas bg-main">
                 <p>Ver todas las consultas</p>
                 <a href="#">
@@ -29,22 +50,27 @@
 
             <p class="empezemos">¡Empezemos!</p>
 
-            <form action="" class="form-consulta">
+            <form action="" class="form-consulta" method="POST">
                 <div class="form-alumno-crear">
                     <label for="titulo">Titulo</label>
-                    <input id="titulo" type="text" placeholder="Titulo de la consulta">
+                    <input required name="titulo" id="titulo" type="text" placeholder="Titulo de la consulta">
                 </div>
 
                 <div class="form-alumno-crear">
                     <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" placeholder="Descripción de la consulta"></textarea>
+                    <textarea required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"></textarea>
                 </div>
 
                 <div>
                     <select name="profesor" class="select-profesor">
                         <option selected disabled>Seleccione un profesor</option>
+                        <option value="1">Richard Pias</option>
+                        <option value="2">Elina Valles</option>
+                        <option value="3">Gonzalo Martinez</option>
                     </select>
                 </div>
+
+                <input type="date" name="fecha" required>
 
                 <div class="btn-submit-consulta">
                     <button type="submit" class="bg-main">Enviar consulta</button>

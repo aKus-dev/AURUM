@@ -1,3 +1,12 @@
+<?php
+
+require '../config/app.php';
+isAuth_alumno();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,14 +20,52 @@
     <title>AURUM: Alumno</title>
 </head>
 <body>
-    <div class="alumno-container">
+    <div class=" alumno-container">
     <?php include 'templates/header.html' ?>
 
-     
+    <div class="alumno-grid">
+        <div class="flex-consultas">
 
+            <div class="consulta consulta--consultas">
+                <div class="option__content">
+                    <h3 class="option__heading">Consultas</h3>
+                    <p class="option__text">Visualiza todas tus consultas ralizadas</p>
+
+                    <a href="#" class="admin-button">Visualizar</a>
+                </div>
+
+                <div class="filter-option"></div>
+            </div>
+
+            <div class="consulta consulta--profesores">
+                <div class="option__content">
+                    <h3 class="option__heading">Profesores</h3>
+                    <p class="option__text">Ve una lista con todos tus profesores</p>
+
+                    <a href="#" class="admin-button">Visualizar</a>
+                </div>
+
+                <div class="filter-option"></div>
+            </div>
+
+            <div class="consulta consulta--compas">
+                <div class="option__content">
+                    <h3 class="option__heading">Clase</h3>
+                    <p class="option__text">Ve una lista con todos tus compañeros</p>
+
+                    <a href="#" class="admin-button">Visualizar</a>
+                </div>
+
+                <div class="filter-option"></div>
+            </div>
+        </div>
+    </div>
+
+    
 
 
     </div>
- 
+
     </body>
+
 </html>

@@ -31,6 +31,8 @@
                 <input name="asignatura" type="text" class="form__input" placeholder="Asignatura" required>
             </div>
 
+            <input name="accion" value="crear_asignatura" type="hidden">
+
         <div class="button-center">
             <button class="btn-submit" type="submit">Crear asignatura</button>
         </div>
