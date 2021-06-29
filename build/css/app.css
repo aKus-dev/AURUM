@@ -389,6 +389,9 @@ a {
 .arrow-down {
   font-size: 1.3rem; }
 
+textarea {
+  resize: none; }
+
 .text-center {
   text-align: center; }
 
@@ -410,6 +413,12 @@ a {
   flex-direction: column;
   gap: 3rem; }
 
+.flexColumn-nocenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem; }
+
 .pointer {
   cursor: pointer; }
 
@@ -418,6 +427,34 @@ a {
 
 .font-size22 {
   font-size: 2.2rem; }
+
+.opacity0 {
+  opacity: 0; }
+
+.white {
+  color: #FFFFFF; }
+
+.alert-danger {
+  padding: 1rem;
+  background: linear-gradient(90deg, #df2b2b, #a10101);
+  width: 80%;
+  margin: 2rem auto;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  border-radius: 1rem; }
+
+.alert-success {
+  padding: 1rem;
+  background: linear-gradient(90deg, #41df41, #1a870c);
+  width: 80%;
+  margin: 2rem auto;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  border-radius: 1rem; }
+
+.disabled {
+  opacity: .5;
+  cursor: not-allowed; }
 
 .btn {
   display: block;
@@ -924,6 +961,8 @@ a {
     left: 0;
     right: 0;
     margin: auto; }
+  .slider .b1, .slider .b2, .slider .b3 {
+    cursor: pointer; }
   .slider__button {
     display: block;
     height: 1.5em;
@@ -983,6 +1022,14 @@ a {
     @media (min-width: 968px) {
       .us__text-container {
         width: 70%; } }
+  @media (min-width: 768px) {
+    .us__description {
+      margin: auto;
+      width: 90%; } }
+  @media (min-width: 968px) {
+    .us__description {
+      margin: auto;
+      width: 70%; } }
 
 .contact {
   padding: 3rem; }
@@ -1114,6 +1161,7 @@ a {
     display: flex;
     justify-content: center; }
   .form__input {
+    text-align: center;
     width: 85%;
     padding: 1rem;
     color: #B1126F;
@@ -1165,6 +1213,13 @@ a {
 
 .marginTop {
   margin: 5rem auto; }
+
+.label {
+  font-size: 1.6rem;
+  color: #B1126F; }
+
+.pb-50 {
+  padding-bottom: 50px; }
 
 .welcome {
   font-family: "Open Sans", sans-serif;
@@ -1359,11 +1414,11 @@ a {
   background: linear-gradient(90deg, #c31432e0, #240b36e0);
   border-radius: 1rem; }
 
-.asignatura {
+.admin-form {
   padding: 5rem 2rem 1.5rem 2rem;
   text-align: center; }
   @media (min-width: 768px) {
-    .asignatura {
+    .admin-form {
       width: 60%;
       margin: auto; } }
 
@@ -1375,7 +1430,7 @@ a {
       width: 85%; } }
   @media (min-width: 968px) {
     .buttons-container {
-      width: 50%; } }
+      width: 70%; } }
 
 .container-crud {
   width: 90%;
@@ -1385,10 +1440,34 @@ a {
   box-shadow: 0 0 1rem #c829e4; }
   @media (min-width: 768px) {
     .container-crud {
-      width: 50%; } }
+      width: 75%; } }
   @media (min-width: 968px) {
     .container-crud {
-      width: 40%; } }
+      width: 55%; } }
+
+.container-crud--alumno {
+  margin-bottom: 5rem; }
+  @media (min-width: 768px) {
+    .container-crud--alumno {
+      width: 65%;
+      max-width: 80rem; } }
+
+.group-container {
+  width: 90%;
+  margin: 0 auto;
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 2rem; }
+  @media (min-width: 968px) {
+    .group-container {
+      flex-direction: row; } }
+
+.mt-5 {
+  margin-top: 5rem; }
 
 .notification {
   cursor: pointer;
@@ -1409,3 +1488,191 @@ a {
     font-size: 1.2rem;
     transition: .45s;
     visibility: visible; }
+
+/* Alumno */
+.alumno-header {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3.5rem;
+  height: 7rem;
+  background: linear-gradient(90deg, #B1126F, #531A5D);
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 0 1rem #FFFFFF; }
+  @media (min-width: 968px) {
+    .alumno-header {
+      position: fixed;
+      width: 9.5rem;
+      height: 100vh;
+      border-radius: 0 2rem 2rem 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8rem; } }
+  .alumno-header i {
+    transition: .35s;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #FFFFFF; }
+    .alumno-header i:hover {
+      filter: drop-shadow(0 0 5px #FFFFFF);
+      transform: scale(1.25); }
+
+.alumno-grid {
+  padding: 3rem 0 6.5rem 0;
+  width: 100%; }
+  @media (min-width: 968px) {
+    .alumno-grid {
+      padding: 3rem 5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      align-items: center; } }
+
+.alumno-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .35s;
+  height: 3rem;
+  width: 4rem; }
+  .alumno-logo:hover {
+    filter: drop-shadow(0 0 5px #FFFFFF);
+    transform: scale(1.25); }
+
+.flex-icons-admin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; }
+
+@media (min-width: 968px) {
+  .alumno-container {
+    margin-left: 9.5rem; } }
+
+.crear-consulta {
+  min-height: 100vh;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 7rem; }
+  @media (min-width: 968px) {
+    .crear-consulta {
+      margin-bottom: 0; } }
+  .crear-consulta h1 {
+    color: #202020;
+    margin: 0 0 2.5rem 0; }
+  .crear-consulta p {
+    font-size: 1.5rem; }
+  .crear-consulta .todas-consultas {
+    border-radius: 5rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #FFFFFF;
+    margin: 1rem 0;
+    width: 75%;
+    max-width: 40rem; }
+    .crear-consulta .todas-consultas i {
+      transition: .4s;
+      font-size: 2rem;
+      cursor: pointer; }
+      .crear-consulta .todas-consultas i:hover {
+        transform: scale(1.25); }
+  .crear-consulta .empezemos {
+    font-size: 2.2rem;
+    margin: 2rem 0 2rem 0; }
+    .crear-consulta .empezemos::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: .3rem;
+      background: linear-gradient(90deg, #B1126F, #531A5D); }
+  .crear-consulta label {
+    font-size: 1.6rem;
+    margin-bottom: .5rem; }
+  .crear-consulta .select-profesor {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    color: #B1126F;
+    border: 2px solid #B1126F; }
+  .crear-consulta .btn-submit-consulta {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2.5rem 0; }
+    .crear-consulta .btn-submit-consulta button {
+      transition: .35s;
+      padding: 1.2rem;
+      font-size: 1.6rem;
+      cursor: pointer;
+      border: none;
+      color: #FFFFFF;
+      border-radius: .5rem; }
+      .crear-consulta .btn-submit-consulta button:hover {
+        transform: scale(1.05); }
+
+.form-alumno-crear {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem; }
+  .form-alumno-crear input, .form-alumno-crear textarea {
+    outline: none;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    color: #B1126F;
+    border: 2px solid #B1126F; }
+  .form-alumno-crear textarea {
+    height: 15rem; }
+
+.form-consulta {
+  width: 85%; }
+  @media (min-width: 768px) {
+    .form-consulta {
+      width: 55%; } }
+
+.consulta {
+  position: relative;
+  border-radius: 1.3rem;
+  height: 25rem;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 3rem; }
+  @media (min-width: 768px) {
+    .consulta {
+      width: 55%; } }
+
+@media (min-width: 968px) {
+  .flex-consultas {
+    display: flex;
+    gap: 3.5rem;
+    width: 100%; } }
+
+.consulta--consultas {
+  background-image: url(/build/img/Alumno/Consulta.jpg);
+  background-size: cover;
+  background-position: center; }
+
+.consulta--profesores {
+  background-image: url(/build/img/Alumno/Teacher.jpg);
+  background-size: cover;
+  background-position: center; }
+
+.consulta--compas {
+  background-image: url(/build/img/Alumno/Compas.jpg);
+  background-size: cover;
+  background-position: center; }
+
+.consulta--horarios {
+  background-image: url(/build/img/Docente/Horarios.jpg);
+  background-size: cover;
+  background-position: center; }
