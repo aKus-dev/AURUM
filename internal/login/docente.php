@@ -174,6 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
+            
+        <div class="input-tablet text-center">
+            <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
+        </div>
+
             <div class="form__container-input marginTop">
                 <div class="form__icon form__icon--profile">
                     <i class="fas fa-image"></i>

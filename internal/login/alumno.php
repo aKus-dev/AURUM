@@ -208,7 +208,7 @@
         </div>
 
         <div class="input-tablet text-center">
-            <p class="alert-danger display-none" id="alert-cedula">La cédula solo acepta numeros</p>
+            <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
         </div>
 
         <div class="button-center">
