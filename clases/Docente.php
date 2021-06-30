@@ -41,13 +41,19 @@ class Docente {
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if($stmt->execute()) { // Lo ejecutamos
+
+            // Guardo la cedula en la tabla de cedulas
+            $sql = "INSERT INTO cedulas VALUES ('$CI') ";
+
+            $db->query($sql);
+            
             return true; // Si todo esta correcto, retornamos true
         }
     }
 
     
     static public function revisarExistencia(string $cedula, object $db) : bool {
-        $sql = "SELECT (ci) FROM Docente WHERE ci = $cedula";
+        $sql = "SELECT * FROM cedulas WHERE cedula = '$cedula' ";
 
         $resultado = $db->query($sql);
 
