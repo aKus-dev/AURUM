@@ -1276,6 +1276,9 @@ textarea {
       .welcome__text {
         width: 50%; } }
   .welcome__btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
     transition: .6s;
     display: inline-block;
     margin: 2.5rem;
