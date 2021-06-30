@@ -36,8 +36,8 @@ class Docente {
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
 
         // Codigo SQL
-        $sql = "INSERT INTO Docente (CI,nombre,apellido, grupo, asignatura,contrasena,imagen) VALUES 
-        ('$CI', '$nombre', '$apellido', '$grupo', '$asignatura', '$passwordHash', '$imagen')";
+        $sql = "INSERT INTO Docente (CI,nombre,apellido, grupo, asignatura,contrasena,imagen, primer_login) VALUES 
+        ('$CI', '$nombre', '$apellido', '$grupo', '$asignatura', '$passwordHash', '$imagen', true)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if($stmt->execute()) { // Lo ejecutamos

@@ -49,7 +49,16 @@ class Sistema {
                 $_SESSION['asignatura'] = $row['asignatura'];
                 $_SESSION['imagen'] = $row['imagen'];
 
-                header('Location: /Docente/index.php');
+                // Id para pasar vía GET
+                $id = $row['id'];
+                $name = $row['nombre'];
+
+                if($row['primer_login'] === '1') {
+                    header("Location: ../welcome/docente.php?id=$id&name=$name");
+                } else {
+                    header('Location: /Docente/index.php');
+                }
+
                 return true;
             } 
         }
@@ -76,7 +85,16 @@ class Sistema {
                 $_SESSION['grupo'] = $row['grupo'];
                 $_SESSION['imagen'] = $row['imagen'];
 
-                header('Location: /Alumno/index.php');
+                 // Id para pasar vía GET
+                 $id = $row['id'];
+                 $name = $row['nombre'];
+ 
+                 if($row['primer_login'] === '1') {
+                     header("Location: ../welcome/alumno.php?id=$id&name=$name");
+                 } else {
+                     header('Location: /Alumno/index.php');
+                 }
+
                 return true;
             }
         }
