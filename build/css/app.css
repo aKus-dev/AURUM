@@ -443,6 +443,15 @@ textarea {
   font-size: 1.5rem;
   border-radius: 1rem; }
 
+.alert-warning {
+  padding: 1rem;
+  background: linear-gradient(90deg, #e4a32b, #f37b0a);
+  width: 80%;
+  margin: 2rem auto;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  border-radius: 1rem; }
+
 .alert-success {
   padding: 1rem;
   background: linear-gradient(90deg, #41df41, #1a870c);
