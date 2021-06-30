@@ -1,3 +1,21 @@
+<?php
+
+require '../../config/app.php';
+isAuth_alumno();
+
+$id = $_GET['id'];
+$name = $_GET['name'];
+
+$sql = 
+"UPDATE Alumno
+ SET primer_login = false
+ WHERE id = $id;
+";
+
+$db->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +37,7 @@
         <section id="section1" class="welcome__grid">
 
             <div class="text-center welcome__hi">
-                <h3 class="welcome__heading">¡Bienvenido, Agustín!</h3>
+                <h3 class="welcome__heading">¡Bienvenido, <?php echo $name ?>!</h3>
                 <p class="welcome__subtitle">Te enseñaremos lo básico</p>
             </div>
 
@@ -31,17 +49,16 @@
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates aperiam nulla, possimus
                     explicabo, quod vel earum quis deserunt, harum molestiae maxime! Unde, nisi ab minima aperiam
                     voluptatum molestias sunt.</p>
-             
 
-                <a class="welcome__btn" href="#section2">Siguiente</a>
 
+                <button id="btn-siguiente1" class="welcome__btn">Siguiente</button>
             </div>
         </section>
 
         <section id="section2" class="welcome__grid">
 
             <div class="text-center welcome__hi">
-                <h3 class="welcome__heading">Tu rol como docente</h3>
+                <h3 class="welcome__heading">Tu rol como alumno</h3>
                 <p class="welcome__subtitle">Un vistazo rápido</p>
             </div>
 
@@ -53,10 +70,10 @@
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates aperiam nulla, possimus
                     explicabo, quod vel earum quis deserunt, harum molestiae maxime! Unde, nisi ab minima aperiam
                     voluptatum molestias sunt.</p>
-                    <div class="btn-flex">
-                        <a class="welcome__btn welcome__btn--back" href="#section1">Atrás</a>
-                        <a class="welcome__btn" href="#section3">Siguiente</a>
-                    </div>
+                <div class="btn-flex">
+                    <button id="btn-atras2" class="welcome__btn welcome__btn--back">Atras</button>
+                    <button id="btn-siguiente2" class="welcome__btn">Siguiente</button>
+                </div>
             </div>
         </section>
 
@@ -75,17 +92,20 @@
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates aperiam nulla, possimus
                     explicabo, quod vel earum quis deserunt, harum molestiae maxime! Unde, nisi ab minima aperiam
                     voluptatum molestias sunt.</p>
-                    <div class="btn-flex">
-                        <a class="welcome__btn welcome__btn--back" href="#section2">Atrás</a>
-                        <a class="welcome__btn" href="#">Entendido</a>
-                    </div>
+                <div class="btn-flex">
+                    <button id="btn-atras3" class="welcome__btn welcome__btn--back">Atras</button>
+                    <a href="/Alumno/index.php">
+                        <button id="btn-entendido" class="welcome__btn">Entendido</button>
+                    </a> 
+                </div>
             </div>
         </section>
-        
-        
+
+
 
     </main>
 
+    <script src="/build/js/sliderWelcome.js"></script>
 </body>
 
 </html>
