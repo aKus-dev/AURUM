@@ -1,9 +1,12 @@
 <?php
 
-
 function conectarDb(): PDO
 {
-    $db = new PDO('mysql:host=localhost; dbname=aurum', 'root', 'root');
+    $dbName = 'mysql:host=localhost; dbname=aurum';
+    $dbUser = 'root';
+    $dbPassword = 'root';
+
+    $db = new PDO($dbName, $dbUser, $dbPassword);
 
     if (!$db) {
         echo "Error: No se pudo conectar a MySQL.";
