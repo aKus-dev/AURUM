@@ -3,15 +3,15 @@
 require '../../config/app.php';
 require '../../clases/Alumno.php';
 
-isAuth_alumno();
+isAuth_alumno(); 
+$idAlumno = $_SESSION['id'];
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
     $descripcion = $_POST['descripcion'];
     $idDocente = $_POST['profesor'];
-    $fecha = $_POST['fecha'];
 
-    /* Alumno::realizarConsulta(); */
+    $success = Alumno::realizarConsulta($idAlumno, $idDocente, $titulo, $descripcion, $db); 
 }
 
 ?> 
@@ -35,6 +35,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php include '../templates/header.html' ?>
 
         <div class="crear-consulta align-center">
+         <!-- Se registro correctamente-->
+         <?php if($success) : ?>
+            <div class="text-center width100">
+                <p id="success" class="alert-success">Consulta enviada correctamente</p>
+            </div>
+         <?php endif; ?>
+
             <h1>Crear consulta</h1>
 
             <div class="text-center">
@@ -70,14 +77,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </select>
                 </div>
 
-                <input type="date" name="fecha" required>
-
                 <div class="btn-submit-consulta">
                     <button type="submit" class="bg-main">Enviar consulta</button>
                 </div>
             </form>
         </div>
     </div>
-    </body>
 
+        <script src="/build/js/removeAlert.js"></script>
+    </body>
 </html>
