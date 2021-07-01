@@ -166,28 +166,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
                <select id="asignaturas" name="asignaturas[]" class="form__select" multiple required>
-                 <option value="ada">ADA</option>
-                 <option value="fisica1">Física I</option>
-                 <option value="fisica2">Física II</option>
-                 <option value="historia">Historia</option>
-                 <option value="economia">Economía</option>
-                 <option value="sociologia">Sociología</option>
-                 <option value="proyecto">Proyecto</option>
-                 <option value="filosofia">Filosofía</option>
-                 <option value="matematicas1">Matemáticas I</option>
-                 <option value="matematicas2">Matemáticas II</option>
-                 <option value="matematicas3">Matemáticas III</option>
-                 <option value="geometria1">Geometría I</option>
-                 <option value="geometria2">Geometría I</option>
-                 <option value="programacion1">Programación I</option>
-                 <option value="programacion2">Programación II</option>
-                 <option value="programacion_web">Programación Web</option>
-                 <option value="diseno_web1">Diseño web I</option>
-                 <option value="diseno_web2">Diseño web II</option>
-                 <option value="formacion_empresarial">Formación Empresarial</option>
-                 <option value="so1">Sistemas Operativos I</option>
-                 <option value="so2">Sistemas Operativos II</option>
-                 <option value="so3">Sistemas Operativos III</option>
+                 <option value="A.D.A">ADA</option>
+                 <option value="Física I">Física I</option>
+                 <option value="Física II">Física II</option>
+                 <option value="Historia">Historia</option>
+                 <option value="Economia">Economía</option>
+                 <option value="Sociologia">Sociología</option>
+                 <option value="Proyecto">Proyecto</option>
+                 <option value="Filosofía">Filosofía</option>
+                 <option value="Matemáticas I">Matemáticas I</option>
+                 <option value="Matemáticas II">Matemáticas II</option>
+                 <option value="Matemáticas III">Matemáticas III</option>
+                 <option value="Geometría I">Geometría I</option>
+                 <option value="Geometría II">Geometría II</option>
+                 <option value="Programación I">Programación I</option>
+                 <option value="Programación II">Programación II</option>
+                 <option value="Programación III">Programación III</option>
+                 <option value="Programación III">Programación Web</option>
+                 <option value="Diseño Web I">Diseño web I</option>
+                 <option value="Diseño Web II">Diseño web II</option>
+                 <option value="Formación Empresarial">Formación Empresarial</option>
+                 <option value="Sistemas Operativos I">Sistemas Operativos I</option>
+                 <option value="Sistemas Operativos II">Sistemas Operativos II</option>
+                 <option value="Sistemas Operativos III">Sistemas Operativos III</option>
                 </select>
             </div>
 
