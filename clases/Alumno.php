@@ -93,12 +93,12 @@ class Alumno
         $fecha = date('Y-m-d');
 
         // Envio los datos a las consultas realizadas por el alumno
-        $sqlAlumno = "INSERT INTO consulta_alumno_realizada (idAlumno, idDocente, titulo, descripcion, fecha) VALUES
-        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha')";
+        $sqlAlumno = "INSERT INTO consultas_alumno (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
+        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'realizada')";
 
         // Envio los datos a las consultas recibidas del profesor
-        $sqlDocente = "INSERT INTO consulta_docente_recibida (idAlumno, idDocente, titulo, descripcion, fecha) VALUES
-        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha')";
+        $sqlDocente = "INSERT INTO consultas_docente (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
+        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'recibida')";
 
         $stmt = $db->prepare($sqlAlumno);
         $stmt->execute();
@@ -137,11 +137,21 @@ class Alumno
                     $id = $row['id'];
                     $nombre = $row['nombre'];
                     $apellido = $row['apellido'];
+                    $asignatura = '';
+
+                    // Selecciono sus materias
+                    $sql = "SELECT asignatura FROM asignaturas_docente WHERE idDocente = $id";
+                    $result2 = $db->query($sql);
+
+                    // Almaceno en la variable asignatura todas sus materias
+                    while ($row = $result2->fetch(PDO::FETCH_ASSOC)) {
+                        $asignatura .= $row['asignatura'] . " ";
+                    }
         
                     // Si el id NO esta en el array, quiere decir que lo puedo poner
                     if(!in_array($id, $existentes)) {
                         array_push($existentes, $id);
-                        echo "<option value='$id'>$nombre $apellido</option>";
+                        echo "<option value='$id'>$nombre $apellido ($asignatura)</option>";
                     }
         
                 } 
