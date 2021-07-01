@@ -5,19 +5,11 @@
     $yaExiste = false; // Pasa  true cuando el usuario ya exista
     $success = false; // Pasa a true cuando todo haya salido correcto
     $rellenar = false; // Pasa a true cuando haya que volver a rellenar el formulario (caso de error)
-    $grupoInvalido = false; // Pasa a true cuando el grupo no es valido
 
     // Comprobar que los datos hayan sido enviado en POST
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // Caso de que no haya seleccionado un grupo
-        if($_POST['grupo'] === 'null') {
-            $grupoInvalido = true;
-            $rellenar = true;
-            $nombre = $_POST['nombre']; 
-            $cedula = $_POST['ci']; 
-            $apellido = $_POST['apellido'];
-        } else  {
+         
             // Comprobar si ya existe en la base de datos
             $yaExiste = Alumno::revisarExistencia($_POST['ci'], $db);
 
@@ -31,7 +23,7 @@
                 $cedula = $_POST['ci']; 
                 $apellido = $_POST['apellido'];
             }
-        }    
+         
     }
 
 ?>
@@ -69,11 +61,6 @@
             <p id="danger" class="alert-danger">El usuario ya existe</p>
          <?php endif; ?>
 
-         <!-- En casso de que no haya ingresado un grupo --->
-         <?php if($grupoInvalido) : ?>
-            <p id="danger" class="alert-danger">El grupo ingresado no es válido</p>
-         <?php endif; ?>
-
          <!-- Se registro correctamente-->
          <?php if($success) : ?>
             <p id="success" class="alert-success">Registrado correctamente</p>
@@ -96,7 +83,7 @@
                 placeholder="Nombre" 
                 required
                 <?php if($rellenar) : ?>
-                    value=" <?php if($rellenar) echo "$nombre"; ?>"
+                    value="<?php if($rellenar) echo "$nombre"; ?>"
                 <?php endif; ?>
                
                 >
@@ -115,7 +102,7 @@
                  placeholder="Apellido" 
                  required
                  <?php if($rellenar) : ?>
-                    value=" <?php if($rellenar) echo "$apellido"; ?>"
+                    value="<?php if($rellenar) echo "$apellido"; ?>"
                  <?php endif; ?>
                
                  >
@@ -164,18 +151,19 @@
                 required
                 id="cedula"
                 <?php if($rellenar) : ?>
-                    value=" <?php if($rellenar) echo "$cedula"; ?>"
+                    value="<?php if($rellenar) echo "$cedula"; ?>"
                  <?php endif; ?>
                 >
 
             </div>
+        </div>
 
-            <div class="form__container-input flexColumn-nocenter">
-               <label for="grupo" class="label">Grupo</label>
+        <div class="form__container-input flexColumn-nocenter m3">
+               <div class="text-center">
+                <label for="grupos" class="label"> <span class="bold">Grupos</span>  (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
+               </div>
 
-               <select id="grupo" name="grupo" class="form__select" required>
-                 <option value="null" selected>Seleccione</option>
-
+               <select id="grupos" name="grupos[]" class="form__select" multiple required> 
                  <option value="1BA">1ºBA</option>
                  <option value="1BB">1ºBB</option>
                  <option value="1BC">1ºBC</option>
@@ -184,7 +172,6 @@
                  <option value="1BF">1ºBF</option>
                  <option value="1BG">1ºBG</option>
                  <option value="1BH">1ºBH</option>
-
                  <option value="2BA">2ºBA</option>
                  <option value="2BB">2ºBB</option>
                  <option value="2BC">2ºBC</option>
@@ -193,7 +180,6 @@
                  <option value="2BF">2ºBF</option>
                  <option value="2BG">2ºBG</option>
                  <option value="2BH">2ºBH</option>
-
                  <option value="3BA">3ºBA</option>
                  <option value="3BB">3ºBB</option>
                  <option value="3BC">3ºBC</option>
@@ -201,11 +187,10 @@
                  <option value="3BE">3ºBE</option>
                  <option value="3BF">3ºBF</option>
                  <option value="3BG">3ºBG</option>
-                 <option value="3BH">3ºBH</option>
-         
+
                 </select>
             </div>
-        </div>
+
 
         <div class="input-tablet text-center">
             <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
