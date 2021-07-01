@@ -83,13 +83,26 @@ class Alumno {
           
     }
 
-  /*   static public function realizarConsulta(string $titulo, string $descripcion, int $idDocente, int $idAlumno, $fecha, object $db) {
-        $sql = "INSERT INTO Consulta_alumno_realizada (idAlumno, idDocente, titulo, descripcion, fecha) VALUES
+  static public function realizarConsulta(int $idAlumno, int $idDocente, string $titulo, string $descripcion, object $db) {
+
+        date_default_timezone_set("America/Montevideo");
+        $fecha = date('Y-m-d');
+
+        // Envio los datos a las consultas realizadas por el alumno
+        $sqlAlumno = "INSERT INTO consulta_alumno_realizada (idAlumno, idDocente, titulo, descripcion, fecha) VALUES
         ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha')";
+
+        // Envio los datos a las consultas recibidas del profesor
+        $sqlDocente = "INSERT INTO consulta_docente_recibida (idAlumno, idDocente, titulo, descripcion, fecha) VALUES
+        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha')";
+
+        $stmt = $db->prepare($sqlAlumno); 
+        $stmt->execute();
+
+        $stmt = $db->prepare($sqlDocente); 
+        $stmt->execute();
+
+        return true; // Si todo esta correcto, retornamos true
         
-        $stmt = $db->prepare($sql); 
-        if($stmt->execute()) { 
-            return true; // Si todo esta correcto, retornamos true
-        }
-    } */
+    } 
 }
