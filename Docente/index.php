@@ -30,7 +30,7 @@ isAuth_docente();
                     <h3 class="option__heading">Consultas</h3>
                     <p class="option__text">Visualiza todas las consultas de tus alumnos</p>
 
-                    <a href="#" class="admin-button">Visualizar</a>
+                    <a href="internal/consultas.php" class="admin-button">Visualizar</a>
                 </div>
 
                 <div class="filter-option"></div>
