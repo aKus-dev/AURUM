@@ -23,23 +23,10 @@ isAuth_docente();
     <?php include '../templates/header.html' ?>
 
     <main class=" consulta-container">
-        <h2>Consultas</h2>
+        <h2>Responde la consulta</h2>
 
-        <div class="flexRow buttons-container">
-            <div class="consulta-buttons">
-                <button class="btn-pendientes btn-pendientes--active" id="pendiente">Pendientes</button>
-                <button class="btn-contestadas" id="contestada">Contestadas</button>
-            </div>
+      
 
-        </div>
-
-        <div id="pendiente-container">
-            <?php require 'estados/pendiente.php' ?> 
-        </div>
-
-        <div id="contestada-container" class="display-none"> 
-        <?php require 'estados/contestada.php' ?> 
-        </div>
     </main>
 
     <script src="/build/js/consultas.js"></script>
