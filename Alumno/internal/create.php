@@ -6,6 +6,8 @@ require '../../clases/Alumno.php';
 isAuth_alumno(); 
 $idAlumno = $_SESSION['id'];
 
+$success = false;
+
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
     $descripcion = $_POST['descripcion'];
@@ -71,9 +73,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div>
                     <select name="profesor" class="select-profesor">
                         <option selected disabled>Seleccione un profesor</option>
-                        <option value="1">Richard Pias</option>
-                        <option value="2">Elina Valles</option>
-                        <option value="3">Gonzalo Martinez</option>
+                        <?php  Alumno::cargarProfesores($db); ?>
                     </select>
                 </div>
 
