@@ -98,7 +98,7 @@ class Alumno
 
         // Envio los datos a las consultas recibidas del profesor
         $sqlDocente = "INSERT INTO consultas_docente (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
-        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'recibida')";
+        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'pendiente')";
 
         $stmt = $db->prepare($sqlAlumno);
         $stmt->execute();
