@@ -3,6 +3,10 @@
 require '../../config/app.php';
 isAuth_docente();
 
+if(empty($_GET)) {
+    header('Location: ../../index.html');
+}
+
 $id = $_GET['id'];
 $name = $_GET['name'];
 
@@ -46,11 +50,7 @@ $db->query($sql);
             </div>
 
             <div class="welcome__text">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates aperiam nulla, possimus
-                    explicabo, quod vel earum quis deserunt, harum molestiae maxime! Unde, nisi ab minima aperiam
-                    voluptatum molestias sunt.</p>
-
-
+                <p>¡Te damos la bienvenida! Nos alegra mucho saber que nos hayas elegido, haremos todo lo posible para que tu experiencia aquí sea la mejor.</p>
                 <button id="btn-siguiente1" class="welcome__btn">Siguiente</button>
             </div>
         </section>
@@ -67,9 +67,7 @@ $db->query($sql);
             </div>
 
             <div class="welcome__text">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates aperiam nulla, possimus
-                    explicabo, quod vel earum quis deserunt, harum molestiae maxime! Unde, nisi ab minima aperiam
-                    voluptatum molestias sunt.</p>
+                <p>Aquí podrás comunicarte con tus alumnos de una forma fácil e intuitiva según tus horarios. Además dispondrás de un chat que te permitirá comunicarte en tiempo real con tus alumnos.</p>
                 <div class="btn-flex">
                     <button id="btn-atras2" class="welcome__btn welcome__btn--back">Atras</button>
                     <button id="btn-siguiente2" class="welcome__btn">Siguiente</button>
@@ -89,9 +87,7 @@ $db->query($sql);
             </div>
 
             <div class="welcome__text">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates aperiam nulla, possimus
-                    explicabo, quod vel earum quis deserunt, harum molestiae maxime! Unde, nisi ab minima aperiam
-                    voluptatum molestias sunt.</p>
+                <p>Ante cualquier problema o incidencia podrás ponerte en contacto con nosotros para brindarte una ayuda lo más pronto posible.</p>
                 <div class="btn-flex">
                     <button id="btn-atras3" class="welcome__btn welcome__btn--back">Atras</button>
                     <a href="/Docente/index.php">
