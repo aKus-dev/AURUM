@@ -96,6 +96,7 @@
         width: 65%;
     }
 }
+
 .btn-signup:hover {
     color: $white;
     box-shadow: inset 30rem 0 0 $ligthViolet;
@@ -143,4 +144,9 @@
 }
 .btn-crud:hover {
     transform: scale(1.05);
+}
+
+.disabled {
+    opacity: .5;
+    cursor: not-allowed;
 }

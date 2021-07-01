@@ -16,7 +16,7 @@
 
     @include desktop {
         position: fixed;
-        width: 9.5rem;
+        width: 8rem;
         height: 100vh;
         border-radius: 0 2rem 2rem 0;
         flex-direction: column;
@@ -77,6 +77,6 @@
 .alumno-container {
 
     @include desktop {
-        margin-left: 9.5rem;
+        margin-left: 8rem;
     }
 }

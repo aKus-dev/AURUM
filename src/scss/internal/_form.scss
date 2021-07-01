@@ -180,3 +180,15 @@
 .pb-50 {
     padding-bottom: 50px;
 }
+.m3 {
+    margin-top: 3rem;
+    margin-bottom: 8rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select[multiple] {
+    height: 15rem;
+    border: 2px solid $ligthViolet;
+}
+
