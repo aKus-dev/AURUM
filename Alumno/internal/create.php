@@ -3,20 +3,31 @@
 require '../../config/app.php';
 require '../../clases/Alumno.php';
 
-isAuth_alumno(); 
+isAuth_alumno();
 $idAlumno = $_SESSION['id'];
 
 $success = false;
+$error = false;
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titulo = $_POST['titulo'];
-    $descripcion = $_POST['descripcion'];
-    $idDocente = $_POST['profesor'];
+$titulo = '';
+$descripcion = '';
 
-    $success = Alumno::realizarConsulta($idAlumno, $idDocente, $titulo, $descripcion, $db); 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if ($_POST['profesor'] === "null") {
+        $error = true;
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+    } else {
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+        $idDocente = $_POST['profesor'];
+
+        $success = Alumno::realizarConsulta($idAlumno, $idDocente, $titulo, $descripcion, $db);
+    }
 }
 
-?> 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,57 +44,74 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 
-    <div class="alumno-container">
-        <?php include '../templates/header.html' ?>
+    <div class=" alumno-container">
+    <?php include '../templates/header.html' ?>
 
-        <div class="crear-consulta align-center">
-         <!-- Se registro correctamente-->
-         <?php if($success) : ?>
+    <div class="crear-consulta align-center">
+        <!-- Se falto ingresar docente-->
+        <?php if ($error) : ?>
+            <div class="text-center width100">
+                <p id="danger" class="alert-danger">Debes seleccionar un docente</p>
+            </div>
+        <?php endif; ?>
+
+        <!-- Se registro correctamente-->
+        <?php if ($success) : ?>
             <div class="text-center width100">
                 <p id="success" class="alert-success">Consulta enviada correctamente</p>
             </div>
-         <?php endif; ?>
+        <?php endif; ?>
 
-            <h1>Crear consulta</h1>
+        <h1>Crear consulta</h1>
 
-            <div class="text-center">
-                <p>Antes de crearla... ¡revisa si alguien ya preguntó lo mismo!</p>
-            </div>
-            
-            <div class="todas-consultas bg-main">
-                <p>Ver todas las consultas</p>
-                <a href="#">
-                    <i class="fas fa-arrow-circle-right white"></i>
-                </a>
-            </div>
-
-            <p class="empezemos">¡Empezemos!</p>
-
-            <form action="" class="form-consulta" method="POST">
-                <div class="form-alumno-crear">
-                    <label for="titulo">Titulo</label>
-                    <input required name="titulo" id="titulo" type="text" placeholder="Titulo de la consulta">
-                </div>
-
-                <div class="form-alumno-crear">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"></textarea>
-                </div>
-
-                <div>
-                    <select name="profesor" class="select-profesor">
-                        <option selected disabled>Seleccione un profesor</option>
-                        <?php  Alumno::cargarProfesores($db); ?>
-                    </select>
-                </div>
-
-                <div class="btn-submit-consulta">
-                    <button type="submit" class="bg-main">Enviar consulta</button>
-                </div>
-            </form>
+        <div class="text-center">
+            <p>Antes de crearla... ¡revisa si alguien ya preguntó lo mismo!</p>
         </div>
+
+        <div class="todas-consultas bg-main">
+            <p>Ver todas las consultas</p>
+            <a href="#">
+                <i class="fas fa-arrow-circle-right white"></i>
+            </a>
+        </div>
+
+        <p class="empezemos">¡Empezemos!</p>
+
+        <form action="" class="form-consulta" method="POST">
+            <div class="form-alumno-crear">
+                <label for="titulo">Titulo</label>
+                <input 
+                required 
+                name="titulo" 
+                id="titulo" 
+                type="text"
+                placeholder="Titulo de la consulta"
+                <?php if($error) : ?>
+                        value="<?php if($error) echo "$titulo"; ?>"
+                <?php endif; ?>
+                >
+            </div>
+
+            <div class="form-alumno-crear">
+                <label for="mensaje">Mensaje</label>
+                <textarea  required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"><?php if($error) {echo "$descripcion";  }; ?></textarea>
+            </div>
+
+            <div>
+                <select name="profesor" class="select-profesor" required>
+                    <option selected value="null">Seleccione un profesor</option>
+                    <?php Alumno::cargarProfesores($db); ?>
+                </select>
+            </div>
+
+            <div class="btn-submit-consulta">
+                <button type="submit" class="bg-main">Enviar consulta</button>
+            </div>
+        </form>
+    </div>
     </div>
 
-        <script src="/build/js/removeAlert.js"></script>
+    <script src="/build/js/removeAlert.js"></script>
     </body>
+
 </html>
