@@ -1,6 +1,5 @@
 <?php
 
-
 $id = $_SESSION['id'];
 $nombre = $_SESSION['nombre'];
 $apellido = $_SESSION['apellido'];

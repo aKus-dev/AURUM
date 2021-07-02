@@ -1,14 +1,14 @@
 .consulta-container {
     padding: 5rem 2rem 1.5rem 2rem;
     text-align: center;
+    padding-bottom: 8rem;
 
-    @include tablet {
+    @include desktop {
         width: 80%;
         margin: auto;
         padding-bottom: 0;
     }
 
-    padding-bottom: 7.5rem;
 }
 
 .consulta-buttons {
@@ -89,4 +89,87 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
+}
+
+.no-consultas {
+    font-size: 2.5rem;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 85%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    border-radius: 1rem;
+
+    @include tablet {
+        width: 70%;
+    }
+}
+
+.text-violet {
+    color: $ligthViolet;
+}
+
+
+/* ESTILOS CONTESTAR CONSULTA PROFESOR */
+.cargar-datos-consulta {
+
+    h3 {
+        color: $lightBlack;
+        display: inline-block;
+    }
+    
+    .datos-alumno {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        font-size: 1.5rem;
+
+        span {
+            font-weight: bold;
+        }
+    }
+
+    .d-alumno {
+        display: blocK;
+        border: none;
+        border-color: $ligthViolet;
+        outline: none;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        margin: 2.5rem 0 5rem 0;
+        padding: 1.5rem 0;
+        border-top: 1px solid $ligthViolet;
+        border-bottom: 1px solid $ligthViolet;
+    }
+}
+
+.respuesta-profe {
+    textarea {
+        width: 90%;
+        margin: 2rem 0 1rem 0;
+        height: 15rem;
+        border-color: $ligthViolet;
+        outline: none;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        border-radius: .5rem;
+    }
+    .contenedor-responder {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    button {
+        cursor: pointer;
+        transition: .4s;
+        border: none;
+        color: $white;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
 }

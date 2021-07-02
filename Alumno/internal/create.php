@@ -2,8 +2,8 @@
 
 require '../../config/app.php';
 require '../../clases/Alumno.php';
-
 isAuth_alumno();
+
 $idAlumno = $_SESSION['id'];
 
 $success = false;

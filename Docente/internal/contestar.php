@@ -62,7 +62,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Fecha: <span class="text-violet"> <?php echo $fecha ?> </span> </p>
                 </div>
 
-                <textarea readonly> <?php echo $descripcion ?>  </textarea>
+              <div class="text-center">
+                 <p class="d-alumno"> <?php echo $descripcion ?>  </p>
+              </div>
             </div>
 
             <div>
