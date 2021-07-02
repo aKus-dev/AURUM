@@ -48,7 +48,7 @@ $resultado = $db->query($sql);
 
         <div class="flex-consultas-datos">
             <div id="btn-consulta">
-                <a <?php echo "href=./contestar.php?id=${row['id']}" ?> class="btn-consulta bg-main">
+                <a <?php echo "href=./contestar.php?id=${row['id']}&n=$nombre&a=$apellido" ?> class="btn-consulta bg-main">
                     <p>Contestar</p>
                     <i class="fas fa-arrow-circle-right white"></i>
                 </a>

@@ -1,7 +1,37 @@
 <?php
 
 require '../../config/app.php';
+require '../../clases/Docente.php';
+
 isAuth_docente();
+
+if (empty($_GET)) {
+    header('Location: /Docente/index.php');
+}
+
+$idConsulta = $_GET['id'];
+$nombre = $_GET['n'];
+$apellido = $_GET['a'];
+
+$titulo = '';
+$fecha = '';
+$descripcion = '';
+
+
+$sql = "SELECT titulo,descripcion,fecha from consultas_docente WHERE id = $idConsulta";
+$result = $db->query($sql);
+
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    $titulo = $row['titulo'];
+    $fecha = $row['fecha'];
+    $descripcion = $row['descripcion'];
+}
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+   /*  Docente::responderConsulta($idConsulta, $_POST['respuesta'], $db); */
+}
+
+
 
 ?>
 
@@ -23,10 +53,28 @@ isAuth_docente();
     <?php include '../templates/header.html' ?>
 
     <main class=" consulta-container">
-        <h2>Responde la consulta</h2>
+        <div>
+            <div class="cargar-datos-consulta">
+                <h3 class="option__heading"> <?php echo $titulo ?> </h3>
 
-      
+                <div class="datos-alumno">
+                    <p>Enviado por: <span class="text-violet"> <?php echo $nombre . " " . $apellido  ?> </span> </p>
+                    <p>Fecha: <span class="text-violet"> <?php echo $fecha ?> </span> </p>
+                </div>
 
+                <textarea readonly> <?php echo $descripcion ?>  </textarea>
+            </div>
+
+            <div>
+                <h2>Escribe tu respuesta</h2>
+            </div> 
+
+            <form method="POST" class="respuesta-profe">
+                <textarea name="respuesta" required placeholder="Escribe tu respuesta"></textarea>
+                <div class="align-right contenedor-responder">
+                    <button class="bg-main">Responder</button>
+                </div>
+            </form>
     </main>
 
     <script src="/build/js/consultas.js"></script>
