@@ -1877,16 +1877,17 @@ select[multiple] {
   .cargar-datos-consulta .datos-alumno span {
     font-weight: bold; }
 
-.cargar-datos-consulta textarea {
-  width: 90%;
-  margin: 2rem 0 3.5rem 0;
-  height: 20rem;
+.cargar-datos-consulta .d-alumno {
+  display: blocK;
+  border: none;
   border-color: #B1126F;
   outline: none;
   font-size: 1.6rem;
   line-height: 1.5;
-  box-shadow: 0 0 1rem #B1126F;
-  border-radius: .5rem; }
+  margin: 2.5rem 0 5rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid #B1126F;
+  border-bottom: 1px solid #B1126F; }
 
 .respuesta-profe textarea {
   width: 90%;
