@@ -195,3 +195,25 @@
     box-shadow: inset 25rem 0 0 #71c017;
     color: $white;
 }
+
+.btn-realizadas {
+    background: transparent;
+    transition: .4s;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    max-width: 25rem;
+    padding: 1.2rem;
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: #1790c0;
+    box-shadow: inset 0 0 0 #1790c0;
+    border: 1px solid #1790c0;
+    border-radius: 1rem;
+}
+
+.btn-realizadas--active {
+    box-shadow: inset 25rem 0 0 #1790c0;
+    color: $white;
+}
