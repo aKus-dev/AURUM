@@ -18,7 +18,6 @@ class Sistema {
                 $_SESSION['sesion_admin'] = true;
                 $_SESSION['usuario'] = $row['usuario'];
                 $_SESSION['imagen'] = $row['imagen'];
-
                 header('Location: /Administrador/index.php');
                 return true;
             } 
@@ -45,8 +44,7 @@ class Sistema {
                 $_SESSION['sesion_docente'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
-                $_SESSION['grupo'] = $row['grupo'];
-                $_SESSION['asignatura'] = $row['asignatura'];
+                /* $_SESSION['grupos'] = $row['grupos']; */
                 $_SESSION['imagen'] = $row['imagen'];
 
                 // Id para pasar vía GET
@@ -82,7 +80,6 @@ class Sistema {
                 $_SESSION['sesion_alumno'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
-                $_SESSION['grupo'] = $row['grupo'];
                 $_SESSION['imagen'] = $row['imagen'];
 
                  // Id para pasar vía GET

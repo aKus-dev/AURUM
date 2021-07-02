@@ -106,4 +106,11 @@ class Docente {
           
     }
 
+    static public function responderConsulta($idConsulta, $idDocente, $idAlumno, $titulo, $descripcion, $fecha, object $db) {
+        date_default_timezone_set("America/Montevideo");
+        $fecha = date('Y-m-d');
+
+        return true; // Si todo esta correcto, retornamos true
+    }
+
 }
