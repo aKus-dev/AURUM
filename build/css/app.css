@@ -464,6 +464,16 @@ textarea {
 .bold {
   font-weight: bold; }
 
+.pt-5 {
+  padding-top: 5rem; }
+
+.text-left {
+  text-align: left; }
+
+.align-right {
+  display: flex;
+  justify-content: flex-end; }
+
 .btn {
   display: block;
   padding: 2rem;
@@ -630,6 +640,26 @@ textarea {
 
 .btn-contestadas--active {
   box-shadow: inset 25rem 0 0 #71c017;
+  color: #FFFFFF; }
+
+.btn-realizadas {
+  background: transparent;
+  transition: .4s;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  max-width: 25rem;
+  padding: 1.2rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: #1790c0;
+  box-shadow: inset 0 0 0 #1790c0;
+  border: 1px solid #1790c0;
+  border-radius: 1rem; }
+
+.btn-realizadas--active {
+  box-shadow: inset 25rem 0 0 #1790c0;
   color: #FFFFFF; }
 
 /** UI **/
@@ -1747,8 +1777,8 @@ select[multiple] {
 .consulta-container {
   padding: 5rem 2rem 1.5rem 2rem;
   text-align: center;
-  padding-bottom: 7.5rem; }
-  @media (min-width: 768px) {
+  padding-bottom: 8rem; }
+  @media (min-width: 968px) {
     .consulta-container {
       width: 80%;
       margin: auto;
@@ -1817,3 +1847,67 @@ select[multiple] {
   display: flex;
   flex-direction: column;
   gap: .5rem; }
+
+.no-consultas {
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 85%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  border-radius: 1rem; }
+  @media (min-width: 768px) {
+    .no-consultas {
+      width: 70%; } }
+
+.text-violet {
+  color: #B1126F; }
+
+/* ESTILOS CONTESTAR CONSULTA PROFESOR */
+.cargar-datos-consulta h3 {
+  color: #202020;
+  display: inline-block; }
+
+.cargar-datos-consulta .datos-alumno {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  font-size: 1.5rem; }
+  .cargar-datos-consulta .datos-alumno span {
+    font-weight: bold; }
+
+.cargar-datos-consulta textarea {
+  width: 90%;
+  margin: 2rem 0 3.5rem 0;
+  height: 20rem;
+  border-color: #B1126F;
+  outline: none;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  box-shadow: 0 0 1rem #B1126F;
+  border-radius: .5rem; }
+
+.respuesta-profe textarea {
+  width: 90%;
+  margin: 2rem 0 1rem 0;
+  height: 15rem;
+  border-color: #B1126F;
+  outline: none;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  border-radius: .5rem; }
+
+.respuesta-profe .contenedor-responder {
+  width: 90%;
+  margin: 0 auto; }
+
+.respuesta-profe button {
+  cursor: pointer;
+  transition: .4s;
+  border: none;
+  color: #FFFFFF;
+  padding: 1rem 2rem;
+  font-size: 1.5rem; }
+  .respuesta-profe button:hover {
+    transform: scale(1.1); }
