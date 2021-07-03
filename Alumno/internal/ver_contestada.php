@@ -3,7 +3,7 @@
 require '../../config/app.php';
 require '../../clases/Docente.php';
 
-isAuth_docente();
+isAuth_alumno();
 
 if (empty($_GET)) {
     header('Location: /Docente/index.php');
@@ -16,10 +16,23 @@ $apellido = $_GET['a'];
 $titulo = '';
 $fecha = '';
 $descripcion = '';
-$success = false;
+$respuesta = '';
+
+// Pasar la consulta recibida
+$sqlActualizar =  "UPDATE consultas_alumno SET estado = 'recibida' WHERE id=$idConsulta;";
+$db -> query($sqlActualizar);
 
 
-$sql = "SELECT titulo,descripcion,fecha from consultas_docente WHERE id = $idConsulta";
+// Obtener la respuesta del profesores
+$sqlProfesor = "SELECT respuesta from consultas_alumno WHERE id = $idConsulta";
+$resultado = $db->query($sqlProfesor);
+
+while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+    $respuesta = $row['respuesta'];
+}
+
+
+$sql = "SELECT titulo,descripcion,fecha from consultas_alumno WHERE id = $idConsulta";
 $result = $db->query($sql);
 
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -52,10 +65,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class=" alumno-container">
     <?php include '../templates/header.html' ?>
 
-    <main class=" consulta-container">
+    <main class="consulta-container">
         <div>
             <div class="cargar-datos-consulta">
-
                 <h3 class="option__heading"> <?php echo $titulo ?> </h3>
 
                 <div class="datos-alumno">
@@ -69,18 +81,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div>
-                <h2>Escribe tu respuesta</h2>
+                <h2>Respuesta del profesor</h2>
             </div> 
 
-            <form method="POST" class="respuesta-profe">
-                <textarea name="respuesta" required placeholder="Escribe tu respuesta"></textarea>
-                <div class="align-right contenedor-responder">
-                    <button class="bg-main">Responder</button>
-                </div>
-            </form>
+            <div class="text-center">
+                 <p class="r-profesor"><?php echo $respuesta ?></p>
+            </div>
+            
     </main>
 
-    <script src="/build/js/removeAlert.js"></script>
+    <script src="/build/js/consultas.js"></script>
     </body>
 
 </html>

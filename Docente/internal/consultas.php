@@ -27,7 +27,7 @@ isAuth_docente();
 
         <div class="flexRow buttons-container">
             <div class="consulta-buttons">
-                <button class="btn-pendientes btn-pendientes--active" id="pendiente">Pendientes</button>
+                <button class="btn-pendientes btn-pendientes--active" id="pendiente">Recibidas</button>
                 <button class="btn-contestadas" id="contestada">Contestadas</button>
             </div>
 

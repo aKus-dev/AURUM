@@ -3,6 +3,14 @@
 require '../config/app.php';
 isAuth_docente();
 
+$success = false;
+$type = '';
+
+if(!empty($_GET)) {
+    $success = $_GET['success'];
+    $type = $_GET['type'];
+} 
+
 ?>
 
 
@@ -21,6 +29,13 @@ isAuth_docente();
 <body>
     <div class=" alumno-container">
     <?php include 'templates/header.html' ?>
+
+             <!-- Se registro correctamente-->
+             <?php if ($success && $type="enviada") : ?>
+               <div class="text-center">
+                 <p id="success" class="alert-success">Respuesta enviada correctamente</p>
+               </div>
+            <?php endif; ?>
 
     <div class="alumno-grid">
         <div class="flex-consultas">
@@ -59,21 +74,21 @@ isAuth_docente();
             </div>
         </div>
 
-          <div class="consulta consulta--horarios">
-                <div class="option__content">
-                    <h3 class="option__heading option__heading--red">Registra tus horarios</h3>
-                    <p class="option__text">Registra cuando te pueden hacer consultas</p>
+        <div class="consulta consulta--horarios">
+            <div class="option__content">
+                <h3 class="option__heading option__heading--red">Registra tus horarios</h3>
+                <p class="option__text">Registra cuando te pueden hacer consultas</p>
 
-                    <a href="#" class="admin-button admin-button--red">Registrar</a>
-                </div>
-
-                <div class="filter-option--diff"></div>
+                <a href="#" class="admin-button admin-button--red">Registrar</a>
             </div>
 
-    </div>
+            <div class="filter-option--diff"></div>
+        </div>
 
     </div>
 
+    </div>
+
+    <script src="/build/js/removeAlert.js"></script>
     </body>
-
 </html>
