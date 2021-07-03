@@ -1,0 +1,71 @@
+.user-profile {
+    text-align: center;
+    padding: 1.5rem;
+    width: 85%;
+    margin: 3rem auto 0 auto;
+    border-radius: 1rem;
+
+    @include desktop {
+        width: 55%;
+    }
+
+
+    .photo_user {
+        height: 10rem;
+        border-radius: 50%;
+    }
+
+    .user_data {
+        margin-top: 1.5rem;
+        font-size: 2rem;
+        color: $ligthViolet;
+    }
+}
+
+.profile-form {
+    input {
+        outline: none;
+        padding: .5rem 0;
+        font-size: 1.6rem;
+        display: block;
+        width: 100%;
+        margin: 2rem 0 4rem 0;
+        border: none;
+        border: none;
+        border-bottom: 2px solid $ligthViolet;
+        color: $ligthViolet;
+    }
+
+    &-container {
+        position: relative;
+
+        i {
+            transition: .35s;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: -.5rem;
+            font-size: 2.5rem;
+            color: $ligthViolet;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+
+    button {
+        cursor: pointer;
+        transition: .4s;
+        border: none;
+        width: 100%;
+        padding: 1.5rem 2rem;
+        font-size: 1.8rem;
+        color: $white;
+        text-transform: uppercase;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}

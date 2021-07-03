@@ -86,10 +86,18 @@
     padding-top: 5rem;
 }
 
+.pt-3 {
+    padding-top: 3rem;
+}
+
 .text-left {
     text-align: left;
 }
 .align-right {
     display: flex;
     justify-content: flex-end;
+}
+
+.not-allowed {
+    cursor: not-allowed;
 }
