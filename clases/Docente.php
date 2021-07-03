@@ -106,11 +106,86 @@ class Docente {
           
     }
 
-    static public function responderConsulta($idConsulta, $idDocente, $idAlumno, $titulo, $descripcion, $fecha, object $db) {
+    static public function responderConsulta($idConsulta, $respuesta, object $db) {
         date_default_timezone_set("America/Montevideo");
         $fecha = date('Y-m-d');
 
-        return true; // Si todo esta correcto, retornamos true
+        // Actualiza la consulta en los docentes
+        $sql =  "UPDATE consultas_docente SET respuesta = '$respuesta' WHERE id=$idConsulta;";
+        $db -> query($sql);
+
+        $sql = "UPDATE consultas_docente SET estado = 'contestada' WHERE id=$idConsulta;";
+        $db -> query($sql);
+
+        // Actualiza la consulta en la tabla de alumnos
+        $sql = "UPDATE consultas_alumno SET estado = 'contestada' WHERE id=$idConsulta;";
+        $db -> query($sql);
+
+        $sql = "UPDATE consultas_alumno SET respuesta = '$respuesta' WHERE id=$idConsulta;";
+        $db -> query($sql);
+
+        header("Location: /Docente/index.php?success=true&type=enviada");
     }
 
+    static public function modificar($db, $nombre, $apellido, $password, $passwordValidate)
+    {
+        $error = false;
+        $success = false;
+
+        // Obtengo sus datos actuales
+        $nombreActual = $_SESSION['nombre'];
+        $apellidoActual = $_SESSION['apellido'];
+        $id = $_SESSION['id'];
+
+        // Actualizo el nombre
+        if ($nombreActual !== $nombre) {
+            $sql = "UPDATE docente SET nombre = '$nombre' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $_SESSION['nombre'] = $nombre;
+        }
+
+        // Actualizo el apellido
+        if ($apellidoActual !== $apellido) {
+            $sql = "UPDATE docente SET apellido = '$apellido' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $_SESSION['apellido'] = $apellido;
+        }
+
+        // Actualizo la contraseña
+        if($password === $passwordValidate && strlen($password) >= 6) {
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+            $sql = "UPDATE docente SET contrasena = '$passwordHash' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $success = true; 
+        }
+
+        // Las contraseñas no coinciden
+        if($password !== $passwordValidate) {
+            $error = true;
+        }
+
+        // Si los datos no coinciden
+        if($error) {
+            header('Location: /Docente/internal/perfil.php?error=true');
+            return;
+        } 
+
+        // Si se cambio bien la contraseña
+        if($success) {
+            header('Location: /Docente/internal/perfil.php?success=true');
+            return;
+        }
+
+        // Llega aca si solo queria cambiar nombre o apellido
+        header('Location: /Docente/internal/perfil.php');
+     
+    }
 }
+

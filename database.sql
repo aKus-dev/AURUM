@@ -74,30 +74,13 @@ CREATE TABLE grupos_alumno (
     REFERENCES alumno(id)
 ); 
 
-/* Seleccionamos los grupos de 'X' docente */
-SELECT idDocente from grupos_docente where grupo = '1BA';
-SELECT nombre FROM docente WHERE id = 2;
-
-/* Registrar el administrador */
-INSERT INTO Administrador (usuario,contrasena) VALUES (
-'Admin','Admin'
-);
-
-/* Obtener los docentes de determinado grupo */
-SELECT DISTINCT id, nombre, apellido
-FROM docente
-INNER JOIN grupos_docente as grupo
-ON grupo = "1BB" 
-AND docente.id = grupo.idDocente;
-
-SELECT id, titulo, descripcion, fecha FROM consulta_docente_recibida Where idDocente = 2;
-
 CREATE TABLE consultas_docente (
 	id INT AUTO_INCREMENT NOT NULL,
     idAlumno INT NOT NULL,
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(2000) NOT NULL,
+    respuesta VARCHAR (1000),
     fecha DATE NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
@@ -107,12 +90,15 @@ CREATE TABLE consultas_docente (
     REFERENCES Docente(id)
 );
 
+
+/*Respuesta */
 CREATE TABLE consultas_alumno (
 	id INT AUTO_INCREMENT NOT NULL,
     idAlumno INT NOT NULL,
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(2000) NOT NULL,
+	respuesta VARCHAR (1000),
     fecha DATE NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
@@ -122,11 +108,25 @@ CREATE TABLE consultas_alumno (
     REFERENCES Docente(id)
 );
 
-SELECT id titulo, fecha FROM consultas_docente WHERE estado = 'pendiente' AND idDocente = 1;
+/* Registrar el administrador */
+INSERT INTO Administrador (usuario,contrasena) VALUES (
+'Admin','Admin'
+);
 
-SELECT titulo,descripcion,fecha from consultas_docente WHERE id = 1;
+SELECT DISTINCT nombre, apellido
+FROM alumno
+INNER JOIN consultas_docente as consulta
+ON consulta.estado = 'pendiente' AND alumno.id = 1;
+
+SELECT respuesta from consultas_docente WHERE id = 1;
+
+UPDATE consultas_alumno SET estado = 'recibida' WHERE id = 1;
+
+/* Seleccionar x campo que tenga  'Matematica' ESTO SIRVE PARA HACER UN BUSCADOR */
+SELECT titulo, idAlumno FROM consultas_docente WHERE titulo LIKE '%Matematica%';
 
 use aurum;
+SELECT * FROM consultas_docente;
 SELECT * FROM consultas_alumno;
 SELECT * FROM consultas_docente;
 SELECT * FROM asignaturas_docente;
@@ -137,5 +137,3 @@ SELECT * FROM Docente;
 SELECT * FROM administrador;
 SELECT * FROM Pendientes;
 SELECT * FROM Cedulas;
-
-

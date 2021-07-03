@@ -115,7 +115,7 @@ class Alumno
         // Primero selecciono su grupo
         $id = $_SESSION['id'];
         // Almacena los id de los docentes para que no se repitan si el alumno los tiene en dos grupos distintos
-        $existentes = []; 
+        $existentes = [];
 
         $sql = "SELECT grupo FROM grupos_alumno WHERE idAlumno = $id";
         $resultado = $db->query($sql);
@@ -147,15 +147,75 @@ class Alumno
                     while ($row = $result2->fetch(PDO::FETCH_ASSOC)) {
                         $asignatura .= $row['asignatura'] . " ";
                     }
-        
+
                     // Si el id NO esta en el array, quiere decir que lo puedo poner
-                    if(!in_array($id, $existentes)) {
+                    if (!in_array($id, $existentes)) {
                         array_push($existentes, $id);
                         echo "<option value='$id'>$nombre $apellido ($asignatura)</option>";
                     }
-        
-                } 
+                }
             }
         }
+    }
+
+    static public function modificar($db, $nombre, $apellido, $password, $passwordValidate)
+    {
+        $error = false;
+        $success = false;
+
+        // Obtengo sus datos actuales
+        $nombreActual = $_SESSION['nombre'];
+        $apellidoActual = $_SESSION['apellido'];
+        $id = $_SESSION['id'];
+
+        // Actualizo el nombre
+        if ($nombreActual !== $nombre) {
+            $sql = "UPDATE alumno SET nombre = '$nombre' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $_SESSION['nombre'] = $nombre;
+        }
+
+        // Actualizo el apellido
+        if ($apellidoActual !== $apellido) {
+            $sql = "UPDATE alumno SET apellido = '$apellido' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $_SESSION['apellido'] = $apellido;
+        }
+
+        // Actualizo la contraseña
+        if($password === $passwordValidate && strlen($password) >= 6) {
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+            $sql = "UPDATE alumno SET contrasena = '$passwordHash' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $success = true; 
+        }
+
+        // Las contraseñas no coinciden
+        if($password !== $passwordValidate) {
+            $error = true;
+        }
+
+        // Si los datos no coinciden
+        if($error) {
+            header('Location: /Alumno/internal/perfil.php?error=true');
+            return;
+        } 
+
+        // Si se cambio bien la contraseña
+        if($success) {
+            header('Location: /Alumno/internal/perfil.php?success=true');
+            return;
+        }
+
+        // Llega aca si solo queria cambiar nombre o apellido
+        header('Location: /Alumno/internal/perfil.php');
+     
     }
 }
