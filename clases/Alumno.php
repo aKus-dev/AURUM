@@ -30,7 +30,7 @@ class Alumno
         $apellido = $datos['apellido'];
         $contrasena = $datos['contrasena'];
         $grupos = $datos['grupos'];
-        $imagen = '/build/public/Alumno_1.PNG';
+        $imagen = '/build/public/Alumno_1.svg';
 
         // Hashear password
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
@@ -185,15 +185,26 @@ class Alumno
         }
     }
 
-    static public function modificar($db, $nombre, $apellido, $password, $passwordValidate)
+    static public function modificar($db, $nombre, $apellido, $password, $passwordValidate,$imagen)
     {
         $error = false;
         $success = false;
+
 
         // Obtengo sus datos actuales
         $nombreActual = $_SESSION['nombre'];
         $apellidoActual = $_SESSION['apellido'];
         $id = $_SESSION['id'];
+
+        // Actualizo la imagen
+        if($imagen !== '') {
+            $sql = "UPDATE alumno SET imagen = '$imagen' WHERE id = $id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            $_SESSION['imagen'] = $imagen;
+        }
+
 
         // Actualizo el nombre
         if ($nombreActual !== $nombre) {

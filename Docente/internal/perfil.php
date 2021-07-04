@@ -36,9 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passwordValidate = $_POST['passwordValidate'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
+    $imagen = $_POST['imagen'];
 
     // Invoco el metodo de modificar
-    docente::modificar($db,$nombre, $apellido, $password, $passwordValidate);
+    docente::modificar($db,$nombre, $apellido, $password, $passwordValidate, $imagen);
 }
 
 ?>
@@ -58,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 
-    <div class=" docente-container">
+    <div class="alumno-container">
     <?php include '../templates/header.html' ?>
 
-    <div class="pt-3">
+    <div class="pt-3 profile-container">
         <!-- Se registro correctamente-->
         <?php if ($success) : ?>
             <div class="text-center">
@@ -109,6 +110,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 <?php endif; ?>
 
+                <div class="text-center">
+                    <p class="text-violet p-profile">Cambia tu foto</p>
+                </div>
+
+
+                <div class="profile-images">
+                    <div>
+                        <img id="perfil1" src="/build/public/Profesor_1.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil2" src="/build/public/Profesor_2.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil3" src="/build/public/Profesor_3.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil4" src="/build/public/Profesor_4.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil5" src="/build/public/Profesor_5.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil6" src="/build/public/Profesor_6.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil7" src="/build/public/Profesor_7.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil8" src="/build/public/Profesor_8.svg" alt="">
+                    </div>
+
+                    <div>
+                        <img id="perfil9" src="/build/public/Profesor_9.svg" alt="">
+                    </div>
+                    
+   
+                </div>
+
+                <input name="imagen" id="src-image" type="hidden">
+
                 <button id="submit" class="bg-main">Guardar cambios</button>
             </form>
         </div>
@@ -117,6 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/build/js/perfil.js"></script>
     </body>
 
 </html>

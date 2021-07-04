@@ -69,3 +69,37 @@
         }
     }
 }
+
+.p-profile {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-images {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 2.5rem;
+
+    @include tablet {
+        grid-template-columns: repeat(9, 1fr);
+    }
+
+    img {
+        transition: .35s;
+        cursor: pointer;
+
+    }
+}
+
+.profile-active {
+    transform: scale(1.2);
+}
+
+.profile-container {
+    padding-bottom: 12rem;
+
+    @include desktop {
+        padding-bottom: 0;
+    }
+}

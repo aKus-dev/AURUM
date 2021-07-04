@@ -2002,6 +2002,31 @@ select[multiple] {
   .profile-form button:hover {
     transform: scale(1.05); }
 
+.p-profile {
+  font-size: 2rem;
+  margin-bottom: 1.5rem; }
+
+.profile-images {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 2.5rem; }
+  @media (min-width: 768px) {
+    .profile-images {
+      grid-template-columns: repeat(9, 1fr); } }
+  .profile-images img {
+    transition: .35s;
+    cursor: pointer; }
+
+.profile-active {
+  transform: scale(1.2); }
+
+.profile-container {
+  padding-bottom: 12rem; }
+  @media (min-width: 968px) {
+    .profile-container {
+      padding-bottom: 0; } }
+
 .horarios-container {
   text-align: center;
   display: flex;
