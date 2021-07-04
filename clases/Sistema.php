@@ -104,4 +104,81 @@ class Sistema {
         $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.PNG')";
         $db->query($sql);
     }
+
+    static public function errorHorario($idDocente, $db)
+    {
+        // Obtengo los datos del horario del profe
+        $diaMinimo = '';
+        $diaMaximo = '';
+        $horaMinima = '';
+        $horaMaxima = '';
+
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $resultadoHorarios = $db->query($sqlHorarios);
+
+        // Iterar resultados;
+        while ($datos = $resultadoHorarios->fetch(PDO::FETCH_ASSOC)) {
+            $diaMinimo = $datos['dia_minimo'];
+            $diaMaximo = $datos['dia_maximo'];
+            $horaMinima = $datos['hora_minima'];
+            $horaMaxima = $datos['hora_maxima'];
+        }
+
+        switch ($diaMinimo) {
+            case 1:
+                $diaMinimo = "Lunes";
+                break;
+            case 2:
+                $diaMinimo = "Martes";
+                break;
+            case 3:
+                $diaMinimo = "Miercoles";
+                break;
+            case 4:
+                $diaMinimo = "Jueves";
+                break;
+            case 5:
+                $diaMinimo = "Viernes";
+                break;
+            case 6:
+                $diaMinimo = "Sabado";
+                break;
+            case 7:
+                $diaMinimo = "Domingo";
+                break;
+        }
+
+        
+        switch ($diaMaximo) {
+            case 1:
+                $diaMaximo = "Lunes";
+                break;
+            case 2:
+                $diaMaximo = "Martes";
+                break;
+            case 3:
+                $diaMaximo = "Miercoles";
+                break;
+            case 4:
+                $diaMaximo = "Jueves";
+                break;
+            case 5:
+                $diaMaximo = "Viernes";
+                break;
+            case 6:
+                $diaMaximo = "Sabado";
+                break;
+            case 7:
+                $diaMaximo = "Domingo";
+                break;
+        }
+
+        return $datos = [
+            "diaMinimo" => $diaMinimo,
+            "diaMaximo" => $diaMaximo,
+            "horaMinima" => $horaMinima,
+            "horaMaxima" => $horaMaxima,
+        ];
+    }
+
 }

@@ -2,15 +2,24 @@
 
 require '../../config/app.php';
 require '../../clases/Alumno.php';
+require '../../clases/Sistema.php';
+
 isAuth_alumno();
 
 $idAlumno = $_SESSION['id'];
 
 $success = false;
+$errorHorario = false;
 $error = false;
+$datos  = [];
 
 $titulo = '';
 $descripcion = '';
+$diaMinimo = '';
+$diaMaximo = '';
+$horaMinima = '';
+$horaMaxima = '';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -24,8 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idDocente = $_POST['profesor'];
 
         $success = Alumno::realizarConsulta($idAlumno, $idDocente, $titulo, $descripcion, $db);
+
+        if(!$success) {
+           $errorHorario = true;
+           $datos = Sistema::errorHorario($idDocente, $db);
+        }
     }
 }
+
+
 
 ?>
 
@@ -56,6 +72,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <!-- Se registro correctamente-->
+        <?php if ($errorHorario) : ?>
+        
+        <?php 
+            $diaMinimo = $datos['diaMinimo'];
+            $diaMaximo = $datos['diaMaximo'];
+            $horaMinima = $datos['horaMinima'];
+            $horaMaxima = $datos['horaMaxima'];
+        ?>
+            <div class="text-center width100">
+                <p id="danger" class="alert-danger">El docente solo acepta consultas de 
+                    <?php echo $diaMinimo ?> a   <?php echo $diaMaximo ?> entre  <?php echo $horaMinima ?> y
+                    <?php echo $horaMaxima ?> horas
+                </p>
+            </div>
+        <?php endif; ?>
+
+        <!-- Se registro correctamente-->
         <?php if ($success) : ?>
             <div class="text-center width100">
                 <p id="success" class="alert-success">Consulta enviada correctamente</p>
@@ -80,21 +113,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="" class="form-consulta" method="POST">
             <div class="form-alumno-crear">
                 <label for="titulo">Titulo</label>
-                <input 
-                required 
-                name="titulo" 
-                id="titulo" 
-                type="text"
-                placeholder="Titulo de la consulta"
-                <?php if($error) : ?>
-                        value="<?php if($error) echo "$titulo"; ?>"
-                <?php endif; ?>
-                >
+                <input required name="titulo" id="titulo" type="text" placeholder="Titulo de la consulta" <?php if ($error) : ?> value="<?php if ($error) echo "$titulo"; ?>" <?php endif; ?>>
             </div>
 
             <div class="form-alumno-crear">
                 <label for="mensaje">Mensaje</label>
-                <textarea  required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"><?php if($error) {echo "$descripcion";  }; ?></textarea>
+                <textarea required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"><?php if ($error) {
+                                                                                                                echo "$descripcion";
+                                                                                                            }; ?></textarea>
             </div>
 
             <div>

@@ -92,22 +92,49 @@ class Alumno
         date_default_timezone_set("America/Montevideo");
         $fecha = date('Y-m-d');
 
-        // Envio los datos a las consultas realizadas por el alumno
-        $sqlAlumno = "INSERT INTO consultas_alumno (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
-        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'realizada')";
+        $diaMinimo = '';
+        $diaMaximo = '';
+        $horaMinima = '';
+        $horaMaxima = '';
 
-        // Envio los datos a las consultas recibidas del profesor
-        $sqlDocente = "INSERT INTO consultas_docente (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
-        ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'pendiente')";
+        // Obtengo los datos del horario del profe
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $resultadoHorarios = $db->query($sqlHorarios);
 
-        $stmt = $db->prepare($sqlAlumno);
-        $stmt->execute();
+        // Iterar resultados;
+        while ($datos = $resultadoHorarios->fetch(PDO::FETCH_ASSOC)) {
+            $diaMinimo = $datos['dia_minimo'];
+            $diaMaximo = $datos['dia_maximo'];
+            $horaMinima = $datos['hora_minima'];
+            $horaMaxima = $datos['hora_maxima'];
+        }
 
-        $stmt = $db->prepare($sqlDocente);
-        $stmt->execute();
+        $diaActual = date('N'); // Días (1: lunes 7: domingo)
+        $horaActual = date('G'); // Horas (0 - 23)
 
-        return true; // Si todo esta correcto, retornamos true
 
+        if ($diaActual >= $diaMinimo && $diaActual <= $diaMaximo && $horaActual >= $horaMinima && $horaActual <= $horaMaxima) {
+            // En este caso esta dentro del rango de horas
+
+
+            // Envio los datos a las consultas realizadas por el alumno
+            $sqlAlumno = "INSERT INTO consultas_alumno (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
+            ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'realizada')";
+
+            // Envio los datos a las consultas recibidas del profesor
+            $sqlDocente = "INSERT INTO consultas_docente (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
+            ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'pendiente')";
+
+            $stmt = $db->prepare($sqlAlumno);
+            $stmt->execute();
+
+            $stmt = $db->prepare($sqlDocente);
+            $stmt->execute();
+
+            return true; // Si todo esta correcto, retornamos true
+        } else {
+            return false;
+        }
     }
 
     static public function cargarProfesores($db)
@@ -187,35 +214,34 @@ class Alumno
         }
 
         // Actualizo la contraseña
-        if($password === $passwordValidate && strlen($password) >= 6) {
+        if ($password === $passwordValidate && strlen($password) >= 6) {
             $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
             $sql = "UPDATE alumno SET contrasena = '$passwordHash' WHERE id = $id";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
-            $success = true; 
+            $success = true;
         }
 
         // Las contraseñas no coinciden
-        if($password !== $passwordValidate) {
+        if ($password !== $passwordValidate) {
             $error = true;
         }
 
         // Si los datos no coinciden
-        if($error) {
+        if ($error) {
             header('Location: /Alumno/internal/perfil.php?error=true');
             return;
-        } 
+        }
 
         // Si se cambio bien la contraseña
-        if($success) {
+        if ($success) {
             header('Location: /Alumno/internal/perfil.php?success=true');
             return;
         }
 
         // Llega aca si solo queria cambiar nombre o apellido
         header('Location: /Alumno/internal/perfil.php');
-     
     }
 }
