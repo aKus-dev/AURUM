@@ -3,14 +3,12 @@
 
 class Sistema {
     static public function revisarAdministrador(string $usuario, string $contrasena, object $db) : bool {
-        $sql = "SELECT * FROM Administrador WHERE usuario = '$usuario' LIMIT 1";
-
+        $sql = "SELECT * FROM administrador WHERE usuario = '$usuario' LIMIT 1";
         $resultado = $db->query($sql);
 
         // Si hay un resultado, compruebo la contraseña
         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             $coinciden = password_verify($contrasena, $row['contrasena']);
-        
             if($coinciden) {
                 // Inicio sesión
                 session_start();
@@ -103,7 +101,7 @@ class Sistema {
 
     static public function crearAdmin($db) {
         $passwordHash = password_hash('esibuceo', PASSWORD_BCRYPT);
-        $sql = "INSERT INTO Administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','null')";
+        $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.PNG')";
         $db->query($sql);
     }
 }

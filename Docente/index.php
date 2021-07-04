@@ -3,14 +3,6 @@
 require '../config/app.php';
 isAuth_docente();
 
-$success = false;
-$type = '';
-
-if(!empty($_GET)) {
-    $success = $_GET['success'];
-    $type = $_GET['type'];
-} 
-
 ?>
 
 
@@ -29,13 +21,6 @@ if(!empty($_GET)) {
 <body>
     <div class=" alumno-container">
     <?php include 'templates/header.html' ?>
-
-             <!-- Se registro correctamente-->
-             <?php if ($success && $type="enviada") : ?>
-               <div class="text-center">
-                 <p id="success" class="alert-success">Respuesta enviada correctamente</p>
-               </div>
-            <?php endif; ?>
 
     <div class="alumno-grid">
         <div class="flex-consultas">
@@ -79,7 +64,7 @@ if(!empty($_GET)) {
                 <h3 class="option__heading option__heading--red">Registra tus horarios</h3>
                 <p class="option__text">Registra cuando te pueden hacer consultas</p>
 
-                <a href="#" class="admin-button admin-button--red">Registrar</a>
+                <a href="internal/horarios.php" class="admin-button admin-button--red">Registrar</a>
             </div>
 
             <div class="filter-option--diff"></div>

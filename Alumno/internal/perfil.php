@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="user-profile">
-            <img class="photo_user" src="/build/img/image-irene.png" alt="">
+            <img class="photo_user" src="<?php echo $_SESSION['imagen'] ?>" alt="">
 
             <div class="user_data">
                 <p><?php echo $nombreAlumno . " " . $apellidoAlumno ?></p>

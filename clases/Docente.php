@@ -30,7 +30,7 @@ class Docente {
         $grupos = $datos['grupos'];
         $asignaturas = $datos['asignaturas']; 
         $contrasena = $datos['contrasena']; 
-        $imagen = 'null';
+        $imagen = '/build/public/Profesores.PNG';
         
         // Hashear password
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
@@ -124,7 +124,7 @@ class Docente {
         $sql = "UPDATE consultas_alumno SET respuesta = '$respuesta' WHERE id=$idConsulta;";
         $db -> query($sql);
 
-        header("Location: /Docente/index.php?success=true&type=enviada");
+        header("Location: /Docente/internal/consultas.php?success=true&type=enviada");
     }
 
     static public function modificar($db, $nombre, $apellido, $password, $passwordValidate)

@@ -21,7 +21,7 @@ isAuth_admin();
 </head>
 <body>
 
-   <?php include 'templates/header.html'; ?>
+   <?php include 'templates/header.php'; ?>
 
     <main class="option-container">
         <div class="option option--teacher">

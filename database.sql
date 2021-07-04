@@ -113,18 +113,6 @@ INSERT INTO Administrador (usuario,contrasena) VALUES (
 'Admin','Admin'
 );
 
-SELECT DISTINCT nombre, apellido
-FROM alumno
-INNER JOIN consultas_docente as consulta
-ON consulta.estado = 'pendiente' AND alumno.id = 1;
-
-SELECT respuesta from consultas_docente WHERE id = 1;
-
-UPDATE consultas_alumno SET estado = 'recibida' WHERE id = 1;
-
-/* Seleccionar x campo que tenga  'Matematica' ESTO SIRVE PARA HACER UN BUSCADOR */
-SELECT titulo, idAlumno FROM consultas_docente WHERE titulo LIKE '%Matematica%';
-
 use aurum;
 SELECT * FROM consultas_docente;
 SELECT * FROM consultas_alumno;

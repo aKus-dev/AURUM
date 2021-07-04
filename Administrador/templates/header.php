@@ -18,7 +18,7 @@
         <div class="flexRow">
             <!-- Imagen del administrador -->
             <div>
-                <img class="system-image pointer" src="/build/img/image-colton.jpg" alt="">
+                <img class="system-image pointer" src="<?php echo $_SESSION['imagen'] ?>" alt="">
             </div>
 
             <!-- Icono de flecha hacia abajo -->

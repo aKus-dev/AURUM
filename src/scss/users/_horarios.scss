@@ -1,0 +1,89 @@
+.horarios-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 7rem);
+
+    h2 {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    @include tablet {
+        padding: 0 3rem;
+    }
+
+}
+
+.form-horarios {
+    margin-top: 4rem;
+    font-size: 1.6rem;
+
+    p {
+        color: $lightBlack;
+        font-size: 1.8rem;
+        margin: 2.5rem 0 1rem 0;
+
+        @include desktop {
+            margin: 1.5rem 0;
+        }
+    }
+
+    .day-container {
+        @include desktop {
+            display: flex;
+            gap: 1.5rem;
+        }
+    }
+
+    .day {
+        border-radius: .5rem;
+        transition: .35s;
+        cursor: pointer;
+        display: block;
+        color: $ligthViolet;
+        border: 1px solid $ligthViolet;
+        padding: .5rem 2rem;
+        margin: 1.5rem auto;
+        width: 60%;
+
+        &--active {
+            background: $ligthViolet;
+            color: $white;
+        }
+    }
+
+    input[type="time"] {
+        outline: none;
+        color: $ligthViolet;
+        border: none;
+        border-bottom: 1px solid $ligthViolet;
+        border-left: 1px solid $ligthViolet;
+    }
+
+    button {
+        transition: .45s;
+        cursor: pointer;
+        margin: 3rem 0;
+        border: none;
+        padding: 1rem 2rem;
+        color: $white;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    .horas-container {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+    }
+}
+
+.button-disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}

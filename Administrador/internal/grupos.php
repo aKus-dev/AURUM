@@ -21,7 +21,7 @@
 <body>
 
 
-    <?php include '../templates/header.html'; ?>
+    <?php include '../templates/header.php'; ?>
 
     <main class="admin-form  group-container">
    

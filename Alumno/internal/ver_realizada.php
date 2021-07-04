@@ -10,6 +10,7 @@ if (empty($_GET)) {
 }
 
 $idConsulta = $_GET['id'];
+// HACER EL TEMA DE EMPTY
 $nombre = $_GET['n'];
 $apellido = $_GET['a'];
 

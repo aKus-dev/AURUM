@@ -191,7 +191,6 @@
                 </select>
             </div>
 
-
         <div class="input-tablet text-center">
             <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
         </div>

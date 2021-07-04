@@ -3,6 +3,8 @@ require '../../config/app.php';
 require '../../clases/Alumno.php';
 require '../../clases/Sistema.php';
 
+/* Sistema::crearAdmin($db); */
+
 $encontrado = true;
 // TEMPORAL
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

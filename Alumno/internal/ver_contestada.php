@@ -13,6 +13,9 @@ $idConsulta = $_GET['id'];
 $nombre = $_GET['n'];
 $apellido = $_GET['a'];
 
+$nombreDocente = $_GET['nd'];
+$apellidoDocente = $_GET['ad'];
+
 $titulo = '';
 $fecha = '';
 $descripcion = '';
@@ -79,9 +82,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                  <p class="d-alumno"> <?php echo $descripcion ?>  </p>
               </div>
             </div>
-
             <div>
-                <h2>Respuesta del profesor</h2>
+                <h2>Respuesta de <?php echo $nombreDocente . " " . $apellidoDocente ?> </h2>
             </div> 
 
             <div class="text-center">

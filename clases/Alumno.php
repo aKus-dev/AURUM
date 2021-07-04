@@ -30,7 +30,7 @@ class Alumno
         $apellido = $datos['apellido'];
         $contrasena = $datos['contrasena'];
         $grupos = $datos['grupos'];
-        $imagen = 'null';
+        $imagen = '/build/public/Alumno_1.PNG';
 
         // Hashear password
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);

@@ -3,6 +3,14 @@
 require '../../config/app.php';
 isAuth_docente();
 
+$success = false;
+$type = '';
+
+if (!empty($_GET)) {
+    $success = $_GET['success'];
+    $type = $_GET['type'];
+}
+
 ?>
 
 
@@ -22,6 +30,13 @@ isAuth_docente();
     <div class=" alumno-container">
     <?php include '../templates/header.html' ?>
 
+    <!-- Se registro correctamente-->
+    <?php if ($success && $type = "enviada") : ?>
+        <div class="text-center">
+            <p id="success" class="alert-success">Respuesta enviada correctamente</p>
+        </div>
+    <?php endif; ?>
+
     <main class=" consulta-container">
         <h2>Consultas</h2>
 
@@ -34,15 +49,16 @@ isAuth_docente();
         </div>
 
         <div id="pendiente-container">
-            <?php require 'estados/pendiente.php' ?> 
+            <?php require 'estados/pendiente.php' ?>
         </div>
 
-        <div id="contestada-container" class="display-none"> 
-        <?php require 'estados/contestada.php' ?> 
+        <div id="contestada-container" class="display-none">
+            <?php require 'estados/contestada.php' ?>
         </div>
     </main>
 
     <script src="/build/js/consultas.js"></script>
+    <script src="/build/js/removeAlert.js"></script>
     </body>
 
 </html>
