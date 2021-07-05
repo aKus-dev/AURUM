@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE docente SET hora_maxima = '$horaMaxima' WHERE id = $idDocente";
     $db->query($sql);
 
-    $success = true;
+    header('Location: /Docente/index.php?horario=true');
 }
 
 
@@ -76,13 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class=" alumno-container">
     <?php include '../templates/header.html' ?>
-
-    <!-- Se registro correctamente-->
-    <?php if ($success && $type = "enviada") : ?>
-        <div class="text-center">
-            <p id="success" class="alert-success">Horario guradado correctamente</p>
-        </div>
-    <?php endif; ?>
 
     <main class="horarios-container">
         <h2>Registra tus horarios</h2>

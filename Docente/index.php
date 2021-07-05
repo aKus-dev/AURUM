@@ -3,6 +3,15 @@
 require '../config/app.php';
 isAuth_docente();
 
+$success = false;
+$horario = false;
+
+if(!empty($_GET)) {
+    $horario = isset($_GET['horario']) ?? '';
+}
+
+
+
 ?>
 
 
@@ -21,6 +30,15 @@ isAuth_docente();
 <body>
     <div class=" alumno-container">
     <?php include 'templates/header.html' ?>
+
+    
+    <!-- Se registro correctamente-->
+    <?php if ($horario) : ?>
+        <div class="text-center">
+            <p id="success" class="alert-success">Horario guradado correctamente</p>
+        </div>
+    <?php endif; ?>
+
 
     <div class="alumno-grid">
         <div class="flex-consultas">
