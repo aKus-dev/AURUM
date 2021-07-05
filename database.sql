@@ -2,9 +2,6 @@ DROP DATABASE IF EXISTS aurum;
 CREATE DATABASE IF NOT EXISTS aurum;
 USE aurum;
 
-SELECT * FROM grupos_docente;
-SELECT idDocente FROM grupos_docente WHERE grupo = '1BA';
-
 CREATE TABLE cedulas (
 cedula CHAR(8) UNIQUE NOT NULL
 );
@@ -27,8 +24,10 @@ CREATE TABLE docente (
     apellido VARCHAR(25) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(255) NOT NULL,
-    dias_disponible DATE ,
-    horarios_Disponible TIME,
+    dia_minimo INT,
+    dia_maximo INT,
+    hora_minima CHAR(5),
+    hora_maxima CHAR(5),
     primer_login BOOl NOT NULL
 );
 
@@ -79,7 +78,7 @@ CREATE TABLE consultas_docente (
     idAlumno INT NOT NULL,
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(2000) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
     respuesta VARCHAR (1000),
     fecha DATE NOT NULL,
     estado VARCHAR (10) NOT NULL,
@@ -97,7 +96,7 @@ CREATE TABLE consultas_alumno (
     idAlumno INT NOT NULL,
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(2000) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
 	respuesta VARCHAR (1000),
     fecha DATE NOT NULL,
     estado VARCHAR (10) NOT NULL,
@@ -110,8 +109,9 @@ CREATE TABLE consultas_alumno (
 
 /* Registrar el administrador */
 INSERT INTO Administrador (usuario,contrasena) VALUES (
-'Admin','Admin'
+'Admin','esibuceo'
 );
+
 
 use aurum;
 SELECT * FROM consultas_docente;
@@ -125,3 +125,6 @@ SELECT * FROM Docente;
 SELECT * FROM administrador;
 SELECT * FROM Pendientes;
 SELECT * FROM Cedulas;
+
+SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = 1;
+
