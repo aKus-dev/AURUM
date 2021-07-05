@@ -158,6 +158,11 @@
             </div>
         </div>
 
+        <div class="input-tablet text-center">
+            <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
+        </div>
+
+
         <div class="form__container-input flexColumn-nocenter m3">
                <div class="text-center">
                 <label for="grupos" class="label"> <span class="bold">Grupos</span>  (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
@@ -190,10 +195,6 @@
 
                 </select>
             </div>
-
-        <div class="input-tablet text-center">
-            <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
-        </div>
 
         <div class="button-center">
             <button id="submit" class="btn-submit" type="submit">Solicitar unirse</button>

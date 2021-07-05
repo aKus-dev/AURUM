@@ -470,6 +470,9 @@ textarea {
 .pt-3 {
   padding-top: 3rem; }
 
+.m-5 {
+  margin: 5rem 0; }
+
 .text-left {
   text-align: left; }
 
@@ -1778,6 +1781,12 @@ select[multiple] {
   background-image: url(/build/img/Docente/Horarios.jpg);
   background-size: cover;
   background-position: center; }
+
+.materias-container {
+  font-size: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center; }
 
 /* Tablas */
 .consulta-container {

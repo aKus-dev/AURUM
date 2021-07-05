@@ -31,7 +31,7 @@ function isAuth_alumno() {
         header('Location: ../index.html');
     } 
      
-     // Si inició sesion, verificamos que haya sido como admin
+     // Si inició sesion, verificamos que haya sido como alumno
      if(!$_SESSION['sesion_alumno']) {
         header('Location: ../index.html') ?? header('Location: ../../index.html');
      } 
@@ -47,7 +47,7 @@ function isAuth_docente() {
         header('Location: ../index.html');
     } 
      
-     // Si inició sesion, verificamos que haya sido como admin
+     // Si inició sesion, verificamos que haya sido como docente
      if(!$_SESSION['sesion_docente']) {
         header('Location: ../index.html') ?? header('Location: ../../index.html');
      } 

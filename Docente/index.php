@@ -10,8 +10,6 @@ if(!empty($_GET)) {
     $horario = isset($_GET['horario']) ?? '';
 }
 
-
-
 ?>
 
 

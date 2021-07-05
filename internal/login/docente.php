@@ -225,19 +225,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             </div>
 
-            <div class="form__container-input marginTop">
-                <div class="form__icon form__icon--profile">
-                    <i class="fas fa-image"></i>
-                </div>
-
-
-
-                <label for="imagen" class="label-img">Foto de perfil</label>
-
-                <input id="imagen" name="imagen" type="file" accept="image/*" class="form__input form__input--file">
-
-            </div>
-
             <div class="button-center">
                 <button id="submit" class="btn-submit" type="submit">Registrar docente</button>
             </div>
