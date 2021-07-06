@@ -255,4 +255,28 @@ class Alumno
         // Llega aca si solo queria cambiar nombre o apellido
         header('Location: /Alumno/internal/perfil.php');
     }
+
+    public static function elliminarAlumno($idAlumno, $db) {
+
+        $sql = "SELECT CI FROM alumno WHERE id = $idAlumno";
+        $resultado = $db->query($sql);
+
+        $cedula = '';
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $cedula = $row['CI'];
+        }
+
+        $sql = "DELETE FROM cedulas WHERE cedula = $cedula";
+        $db->query($sql);
+
+        $sql = "DELETE FROM grupos_alumno WHERE idAlumno = $idAlumno";
+        $db->query($sql);
+
+        $sql = "DELETE FROM alumno WHERE id = $idAlumno";
+        $db->query($sql);
+
+        header('Location: /index.html');
+        
+    }
 }

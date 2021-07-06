@@ -200,4 +200,32 @@ class Docente
         // Llega aca si solo queria cambiar nombre o apellido
         header('Location: /Docente/internal/perfil.php');
     }
+
+    public static function eliminarDocente($idDocente, $db) {
+        $sql = "SELECT CI FROM docente WHERE id = $idDocente";
+        $resultado = $db->query($sql);
+
+        $cedula = '';
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $cedula = $row['CI'];
+        }
+
+
+        $sql = "DELETE FROM cedulas WHERE cedula = $cedula";
+        $db->query($sql);
+
+
+        $sql = "DELETE FROM grupos_docente WHERE idDocente = $idDocente";
+        $db->query($sql);
+
+        $sql = "DELETE FROM asignaturas_docente WHERE idDocente = $idDocente";
+        $db->query($sql);
+
+        $sql = "DELETE FROM docente WHERE id = $idDocente";
+        $db->query($sql);
+
+        header('Location: /index.html');
+        
+    }
 }
