@@ -39,11 +39,12 @@ class Sistema {
                 // Inicio sesión 
                 session_start();
                 $_SESSION['id'] = $row['id'];
-                $_SESSION['sesion_docente'] = true;
+                $_SESSION['sesion_docente'] = true; 
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
-                /* $_SESSION['grupos'] = $row['grupos']; */
                 $_SESSION['imagen'] = $row['imagen'];
+                $_SESSION['registro_horarios'] = 0; // Pasa a 1 cuando registra horarios
+
 
                 // Id para pasar vía GET
                 $id = $row['id'];
@@ -126,50 +127,50 @@ class Sistema {
 
         switch ($diaMinimo) {
             case 1:
-                $diaMinimo = "Lunes";
+                $diaMinimo = "lunes";
                 break;
             case 2:
-                $diaMinimo = "Martes";
+                $diaMinimo = "martes";
                 break;
             case 3:
-                $diaMinimo = "Miercoles";
+                $diaMinimo = "miércoles";
                 break;
             case 4:
-                $diaMinimo = "Jueves";
+                $diaMinimo = "jueves";
                 break;
             case 5:
-                $diaMinimo = "Viernes";
+                $diaMinimo = "viernes";
                 break;
             case 6:
-                $diaMinimo = "Sabado";
+                $diaMinimo = "sábado";
                 break;
             case 7:
-                $diaMinimo = "Domingo";
+                $diaMinimo = "domingo";
                 break;
         }
 
         
         switch ($diaMaximo) {
             case 1:
-                $diaMaximo = "Lunes";
+                $diaMaximo = "lunes";
                 break;
             case 2:
-                $diaMaximo = "Martes";
+                $diaMaximo = "martes";
                 break;
             case 3:
-                $diaMaximo = "Miercoles";
+                $diaMaximo = "miércoles";
                 break;
             case 4:
-                $diaMaximo = "Jueves";
+                $diaMaximo = "jueves";
                 break;
             case 5:
-                $diaMaximo = "Viernes";
+                $diaMaximo = "viernes";
                 break;
             case 6:
-                $diaMaximo = "Sabado";
+                $diaMaximo = "sábado";
                 break;
             case 7:
-                $diaMaximo = "Domingo";
+                $diaMaximo = "domingo";
                 break;
         }
 
