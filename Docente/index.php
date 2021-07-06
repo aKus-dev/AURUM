@@ -52,17 +52,6 @@ if(!empty($_GET)) {
                 <div class="filter-option"></div>
             </div>
 
-            <div class="consulta consulta--profesores">
-                <div class="option__content">
-                    <h3 class="option__heading">Alumno</h3>
-                    <p class="option__text">Ve una lista con todos tus alumnos</p>
-
-                    <a href="#" class="admin-button">Visualizar</a>
-                </div>
-
-                <div class="filter-option"></div>
-            </div>
-
             <div class="consulta consulta--compas">
                 <div class="option__content">
                     <h3 class="option__heading">Grupos</h3>
@@ -78,7 +67,7 @@ if(!empty($_GET)) {
         <div class="consulta consulta--horarios">
             <div class="option__content">
                 <h3 class="option__heading option__heading--red">Registra tus horarios</h3>
-                <p class="option__text">Registra cuando te pueden hacer consultas</p>
+                <p class="option__text">Registra o modifica cuando te pueden hacer consultas</p>
 
                 <a href="internal/horarios.php" class="admin-button admin-button--red">Registrar</a>
             </div>

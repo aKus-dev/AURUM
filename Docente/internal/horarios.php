@@ -54,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE docente SET hora_maxima = '$horaMaxima' WHERE id = $idDocente";
     $db->query($sql);
 
+    $_SESSION['registro_horarios'] = 1;
+
     header('Location: /Docente/index.php?horario=true');
 }
 
@@ -71,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" type="image/svg" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
-    <title>AURUM: Registra tus horarios</title>
+    <title>AURUM: Horarios</title>
 </head>
 <body>
     <div class=" alumno-container">

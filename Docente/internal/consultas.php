@@ -3,6 +3,11 @@
 require '../../config/app.php';
 isAuth_docente();
 
+if($_SESSION['registro_horarios'] === 0) {
+    header('Location: ./horarios.php');
+} 
+
+
 $success = false;
 $type = '';
 
