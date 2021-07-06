@@ -10,12 +10,12 @@ $grupos = [];
 $sql = "SELECT grupo FROM grupos_alumno WHERE idAlumno = $idAlumnno";
 $resultado = $db->query($sql);
 
+// Lleno el array con los grupos
 while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
     $grupos[] = $row['grupo'];
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +39,12 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
         <div class="consulta--container">
 
 
+            <!-- Selecciono los datos del profesor por cada grupo que tenga el alumno -->
             <?php foreach ($grupos as $grupo) {
 
                 $datosDocentes =  [];
 
+                // Selecciono los datos del profesor que sean del grupo del alumno
                 $sqlDocente = "SELECT DISTINCT id, nombre, apellido 
                 FROM docente
                 INNER JOIN grupos_docente as grupo
@@ -50,24 +52,28 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
                 $result = $db->query($sqlDocente);
 
-
+                // Lleno el array con todos los datos
                 while ($datos = $result->fetch(PDO::FETCH_ASSOC)) {
                     $datosDocentes[] = $datos;
                 }
             }
 
+            // Recorro los datos del coente
             foreach ($datosDocentes as $docente) :
                 $materias = [];
 
+                // Selecciono las materias del docente
                 $idDocente = $docente['id'];
                 $sqlAsignaturas = "SELECT asignatura FROM asignaturas_docente WHERE idDocente = $idDocente";
                 $resultadoAsignaturas = $db->query($sqlAsignaturas);
 
+                // Guardo sus materias
                 while ($rowAsignatura = $resultadoAsignaturas->fetch(PDO::FETCH_ASSOC)) {
                     $materias[] = $rowAsignatura['asignatura'];
                 }
 
             ?>
+            <!-- Muestro los datos -->
             <div class="m-5">
                 <div class="titulo-consulta bg-main">
                     <p><?php echo $docente['nombre'] . " " . $docente['apellido']; ?></p>
