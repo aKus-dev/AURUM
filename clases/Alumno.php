@@ -267,12 +267,12 @@ class Alumno
             $cedula = $row['CI'];
         }
 
+        // Elimino las cedulas
         $sql = "DELETE FROM cedulas WHERE cedula = $cedula";
         $db->query($sql);
 
-        $sql = "DELETE FROM grupos_alumno WHERE idAlumno = $idAlumno";
-        $db->query($sql);
 
+        // Elimino el alumno
         $sql = "DELETE FROM alumno WHERE id = $idAlumno";
         $db->query($sql);
 

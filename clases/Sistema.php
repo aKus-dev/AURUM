@@ -43,7 +43,6 @@ class Sistema {
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
                 $_SESSION['imagen'] = $row['imagen'];
-                $_SESSION['registro_horarios'] = 0; // Pasa a 1 cuando registra horarios
 
 
                 // Id para pasar vía GET

@@ -1,12 +1,10 @@
 <?php
 
 require '../../config/app.php';
+require '../../clases/Docente.php';
 isAuth_docente();
 
-if($_SESSION['registro_horarios'] === 0) {
-    header('Location: ./horarios.php');
-} 
-
+Docente::revisarHorarios($_SESSION['id'], $db);
 
 $success = false;
 $type = '';

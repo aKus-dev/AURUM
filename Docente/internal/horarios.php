@@ -54,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE docente SET hora_maxima = '$horaMaxima' WHERE id = $idDocente";
     $db->query($sql);
 
-    $_SESSION['registro_horarios'] = 1;
+    $sql = "UPDATE docente SET registro_horarios = true WHERE id = $idDocente";
+    $db->query($sql);
+
 
     header('Location: /Docente/index.php?horario=true');
 }

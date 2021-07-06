@@ -34,12 +34,13 @@ class Docente
         $contrasena = $datos['contrasena'];
         $imagen = '/build/public/Profesor_1.svg';
 
+
         // Hashear password
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
 
         // Codigo SQL
-        $sql = "INSERT INTO Docente (CI,nombre,apellido, contrasena, imagen, primer_login) VALUES 
-        ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen', true)";
+        $sql = "INSERT INTO Docente (CI,nombre,apellido, contrasena, imagen, primer_login, registro_horarios) VALUES 
+        ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen', true, false)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos
@@ -211,21 +212,27 @@ class Docente
             $cedula = $row['CI'];
         }
 
-
+        // Elimino de la tabla cedulas
         $sql = "DELETE FROM cedulas WHERE cedula = $cedula";
         $db->query($sql);
 
-
-        $sql = "DELETE FROM grupos_docente WHERE idDocente = $idDocente";
-        $db->query($sql);
-
-        $sql = "DELETE FROM asignaturas_docente WHERE idDocente = $idDocente";
-        $db->query($sql);
-
+        // Elimino el docente
         $sql = "DELETE FROM docente WHERE id = $idDocente";
         $db->query($sql);
 
         header('Location: /index.html');
         
+    }
+
+    static public function revisarHorarios($idDocente, $db) {
+        $sql = "SELECT registro_horarios FROM docente WHERE id = $idDocente";
+        $resultado = $db->query($sql);
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $registro_horarios = $row['registro_horarios'];
+        }
+
+        if(!$registro_horarios) {
+            header('Location: ./horarios.php');
+        }
     }
 }
