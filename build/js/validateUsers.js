@@ -24,7 +24,7 @@ function validateCI() {
     const ci = cedula.value;
 
     // Si NO Es un numero...
-    if(isNaN(ci)) {
+    if(isNaN(ci) || ci.includes('.')) {
         alertCedula.classList.remove('display-none');
 
         // Despues de 5 segundos la oculto
