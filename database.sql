@@ -13,7 +13,7 @@ CREATE TABLE alumno (
     nombre VARCHAR(25) NOT NULL,
     apellido VARCHAR(25) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
-    imagen VARCHAR(255) NOT NULL,
+    imagen VARCHAR(50) NOT NULL,
 	primer_login BOOl NOT NULL
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE docente (
     nombre VARCHAR(25) NOT NULL,
     apellido VARCHAR(25) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
-    imagen VARCHAR(255) NOT NULL,
+    imagen VARCHAR(50) NOT NULL,
     dia_minimo INT,
     dia_maximo INT,
     hora_minima CHAR(5),
@@ -35,18 +35,19 @@ CREATE TABLE administrador (
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     usuario VARCHAR(25) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
-    imagen VARCHAR(255)
+    imagen VARCHAR(50) NOT NULL
 );
 
 /*PARA EL ADMIN Tabla donde se almacenan los alumnos previos a ingresar al sistema */
 CREATE TABLE pendiente (
 	idAlumno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	CI CHAR(8) UNIQUE NOT NULL,
-    nombre VARCHAR(25) NOT NULL,
-    apellido VARCHAR(25) NOT NULL,
+    nombre VARCHAR(30) NOT NULL,
+    apellido VARCHAR(30) NOT NULL,
     grupo CHAR(3) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
-    imagen VARCHAR(255) NOT NULL
+    imagen VARCHAR(50) NOT NULL,
+    primer_login BOOL
 );
 
 /* Esta tabla almacenara los grupos de los docentes*/
@@ -109,7 +110,7 @@ CREATE TABLE consultas_alumno (
 
 /* Registrar el administrador */
 INSERT INTO Administrador (usuario,contrasena) VALUES (
-'Admin','esibuceo'
+'admin','esibuceo'
 );
 
 
