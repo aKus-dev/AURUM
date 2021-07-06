@@ -671,6 +671,34 @@ textarea {
   box-shadow: inset 25rem 0 0 #1790c0;
   color: #FFFFFF; }
 
+.btn-delete {
+  transition: .35s;
+  cursor: pointer;
+  margin: 1.5rem 0 1rem 0;
+  padding: .5rem 2rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, #df2b2b, #a10101);
+  color: #FFFFFF;
+  border-radius: .5rem; }
+  .btn-delete:hover {
+    transform: scale(1.05); }
+
+.btn-cancel {
+  transition: .35s;
+  cursor: pointer;
+  margin: 1.5rem 0 1rem 0;
+  padding: .5rem 2rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, #B1126F, #531A5D);
+  color: #FFFFFF;
+  border-radius: .5rem; }
+  .btn-cancel:hover {
+    transform: scale(1.05); }
+
 /** UI **/
 /* Para que la animacion hamburguer funcione: 
 1- El gap y la altura deben de tener el mismo valor
@@ -2034,7 +2062,59 @@ select[multiple] {
   padding-bottom: 12rem; }
   @media (min-width: 968px) {
     .profile-container {
-      padding-bottom: 0; } }
+      padding-bottom: 3rem; } }
+
+.delete-modal {
+  transition: .4s;
+  overflow: hidden; }
+  .delete-modal p {
+    font-size: 1.6rem;
+    color: #e61212;
+    font-weight: bold; }
+  .delete-modal .green {
+    cursor: pointer;
+    color: #9be612;
+    font-size: 3.5rem; }
+  .delete-modal .red {
+    cursor: pointer;
+    color: #e61212;
+    font-size: 3.5rem; }
+
+.modal-eliminar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .modal-eliminar .confirm {
+    width: 80%;
+    height: 10rem;
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem; }
+    @media (min-width: 768px) {
+      .modal-eliminar .confirm {
+        width: 60rem; } }
+    .modal-eliminar .confirm .msg {
+      text-align: center;
+      color: #9e1010;
+      font-weight: bold;
+      font-size: 1.5rem; }
+    .modal-eliminar .confirm form {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem; }
+
+.hide-modal {
+  display: none; }
 
 .horarios-container {
   text-align: center;

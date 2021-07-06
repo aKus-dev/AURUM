@@ -4,6 +4,13 @@ require '../../config/app.php';
 require '../../clases/Alumno.php';
 isAuth_alumno();
 
+// Para eliminarlo
+if(!empty($_GET)) {
+    if(isset($_GET['delete'])) {
+        Alumno::elliminarAlumno($_SESSION['id'], $db);
+    }
+}
+
 $success = false;
 $error = false;
 
@@ -151,21 +158,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <img id="perfil9" src="/build/public/Alumno_9.svg" alt="">
                     </div>
-                    
-   
+
+
                 </div>
 
                 <input name="imagen" id="src-image" type="hidden">
 
                 <button id="submit" class="bg-main">Guardar cambios</button>
             </form>
+
+            <div class="text-center">
+                <button id="btn-delete" class="btn-delete">Eliminar cuenta</button>
+            </div>
         </div>
 
     </div>
     </div>
 
+    <div id="modal" class="modal-eliminar hide-modal">
+        <div class="confirm">
+            <p class="msg">¿Estás seguro que deseas eliminar tu cuenta?</p>
+
+            <form>
+            <input name="delete" value="true" type="hidden">
+            <p id="btn-cancelar" class="btn-cancel">Cancelar</p>
+            <button id="btn-confirm" class="btn-delete">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
     <script src="/build/js/removeAlert.js"></script>
     <script src="/build/js/perfil.js"></script>
+    <script src="/build/js/modal.js"></script>
     </body>
 
 </html>

@@ -1,8 +1,8 @@
 <?php
 
 require '../../config/app.php';
+isAuth_alumno();
 
-session_start();
 $idAlumnno = $_SESSION['id'];
 $grupos = [];
 
