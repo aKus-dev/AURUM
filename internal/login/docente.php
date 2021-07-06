@@ -5,26 +5,35 @@ require '../../clases/Docente.php';
 $yaExiste = false; // Pasa  true cuando el usuario ya exista
 $success = false; // Pasa a true cuando todo haya salido correcto
 $rellenar = false; // Pasa a true cuando haya que volver a rellenar el formulario (caso de error)
+$errorCedula = false;
 
 // Comprobar que los datos hayan sido enviado en POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    $cedula = $_POST['ci'];
 
-    // Comprobar si ya existe en la base de datos
-    $yaExiste = Docente::revisarExistencia($_POST['ci'], $db);
-
-    // En caso de que NO exista, lo ingresamos al sistema
-    if (!$yaExiste) {
-        $success = Docente::crear($_POST, $db);
-    } else {
-        // En caso de que exista, relleno los campos nuevamente para que cambie algo
+    if (strlen($cedula) < 8) {
+        $errorCedula = true;
         $rellenar = true;
         $nombre = $_POST['nombre'];
         $cedula = $_POST['ci'];
         $apellido = $_POST['apellido'];
+    } else {
+        // Comprobar si ya existe en la base de datos
+        $yaExiste = Docente::revisarExistencia($_POST['ci'], $db);
+
+        // En caso de que NO exista, lo ingresamos al sistema
+        if (!$yaExiste) {
+            $success = Docente::crear($_POST, $db);
+        } else {
+            // En caso de que exista, relleno los campos nuevamente para que cambie algo
+            $rellenar = true;
+            $nombre = $_POST['nombre'];
+            $cedula = $_POST['ci'];
+            $apellido = $_POST['apellido'];
+        }
     }
 }
-
 
 
 ?>
@@ -61,6 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p id="danger" class="alert-danger">El usuario ya existe</p>
                 <?php endif; ?>
 
+                <?php if ($errorCedula) : ?>
+                    <p id="danger" class="alert-danger">La cédula debe tener 8 digitos</p>
+                <?php endif; ?>
+
                 <?php if ($success) : ?>
                     <p id="success" class="alert-success">Registrado correctamente</p>
                 <?php endif; ?>
@@ -75,16 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="far fa-user"></i>
                     </div>
 
-                    <input 
-                    name="nombre" 
-                    type="text" 
-                    class="form__input" 
-                    placeholder="Nombre" 
-                    required
-                    <?php if($rellenar) : ?>
-                        value="<?php if($rellenar) echo "$nombre"; ?>"
-                    <?php endif; ?>
-                    >
+                    <input name="nombre" minlength="3" type="text" class="form__input" placeholder="Nombre" required <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$nombre"; ?>" <?php endif; ?>>
 
                 </div>
 
@@ -93,16 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="far fa-user"></i>
                     </div>
 
-                    <input 
-                    name="apellido" 
-                    type="text" 
-                    class="form__input" 
-                    placeholder="Apellido" 
-                    required
-                    <?php if($rellenar) : ?>
-                        value="<?php if($rellenar) echo "$apellido"; ?>"
-                    <?php endif; ?>
-                    >
+                    <input name="apellido" minlength="3" type="text" class="form__input" placeholder="Apellido" required <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$apellido"; ?>" <?php endif; ?>>
 
                 </div>
             </div>
@@ -139,88 +134,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="far fa-address-card"></i>
                     </div>
 
-                    <input 
-                    name="ci" 
-                    type="text" 
-                    class="form__input" 
-                    placeholder="Cédula" 
-                    required 
-                    maxlength="8" 
-                    id="cedula"
-                    <?php if($rellenar) : ?>
-                        value="<?php if($rellenar) echo "$cedula"; ?>"
-                    <?php endif; ?>
-                    >
+                    <input name="ci" type="text" class="form__input" placeholder="Cédula" required maxlength="8" minlength="8" id="cedula" <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$cedula"; ?>" <?php endif; ?>>
 
                 </div>
             </div>
 
-            
-        <div class="input-tablet text-center">
-            <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
-        </div>
 
-        <div class="form__container-input flexColumn-nocenter m3">
-            <div class="text-center">
-                <label for="asignaturas" class="label"><span class="bold">Asignaturas</span> (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
+            <div class="input-tablet text-center">
+                <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
             </div>
 
-               <select id="asignaturas" name="asignaturas[]" class="form__select" multiple required>
-                 <option value="A.D.A">ADA</option>
-                 <option value="Física I">Física I</option>
-                 <option value="Física II">Física II</option>
-                 <option value="Historia">Historia</option>
-                 <option value="Economia">Economía</option>
-                 <option value="Sociologia">Sociología</option>
-                 <option value="Proyecto">Proyecto</option>
-                 <option value="Filosofía">Filosofía</option>
-                 <option value="Matemáticas I">Matemáticas I</option>
-                 <option value="Matemáticas II">Matemáticas II</option>
-                 <option value="Matemáticas III">Matemáticas III</option>
-                 <option value="Geometría I">Geometría I</option>
-                 <option value="Geometría II">Geometría II</option>
-                 <option value="Programación I">Programación I</option>
-                 <option value="Programación II">Programación II</option>
-                 <option value="Programación III">Programación III</option>
-                 <option value="Programación III">Programación Web</option>
-                 <option value="Diseño Web I">Diseño web I</option>
-                 <option value="Diseño Web II">Diseño web II</option>
-                 <option value="Formación Empresarial">Formación Empresarial</option>
-                 <option value="Sistemas Operativos I">Sistemas Operativos I</option>
-                 <option value="Sistemas Operativos II">Sistemas Operativos II</option>
-                 <option value="Sistemas Operativos III">Sistemas Operativos III</option>
+            <div class="form__container-input flexColumn-nocenter m3">
+                <div class="text-center">
+                    <label for="asignaturas" class="label"><span class="bold">Asignaturas</span> (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
+                </div>
+
+                <select id="asignaturas" name="asignaturas[]" class="form__select" multiple required>
+                    <option value="A.D.A">ADA</option>
+                    <option value="Física I">Física I</option>
+                    <option value="Física II">Física II</option>
+                    <option value="Historia">Historia</option>
+                    <option value="Economia">Economía</option>
+                    <option value="Sociologia">Sociología</option>
+                    <option value="Proyecto">Proyecto</option>
+                    <option value="Filosofía">Filosofía</option>
+                    <option value="Matemáticas I">Matemáticas I</option>
+                    <option value="Matemáticas II">Matemáticas II</option>
+                    <option value="Matemáticas III">Matemáticas III</option>
+                    <option value="Geometría I">Geometría I</option>
+                    <option value="Geometría II">Geometría II</option>
+                    <option value="Programación I">Programación I</option>
+                    <option value="Programación II">Programación II</option>
+                    <option value="Programación III">Programación III</option>
+                    <option value="Programación III">Programación Web</option>
+                    <option value="Diseño Web I">Diseño web I</option>
+                    <option value="Diseño Web II">Diseño web II</option>
+                    <option value="Formación Empresarial">Formación Empresarial</option>
+                    <option value="Sistemas Operativos I">Sistemas Operativos I</option>
+                    <option value="Sistemas Operativos II">Sistemas Operativos II</option>
+                    <option value="Sistemas Operativos III">Sistemas Operativos III</option>
                 </select>
             </div>
 
             <div class="form__container-input flexColumn-nocenter m3">
-               <div class="text-center">
-                <label for="grupos" class="label"> <span class="bold">Grupos</span>  (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
-               </div>
+                <div class="text-center">
+                    <label for="grupos" class="label"> <span class="bold">Grupos</span> (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
+                </div>
 
-               <select id="grupos" name="grupos[]" class="form__select" multiple required> 
-                 <option value="1BA">1ºBA</option>
-                 <option value="1BB">1ºBB</option>
-                 <option value="1BC">1ºBC</option>
-                 <option value="1BD">1ºBD</option>
-                 <option value="1BE">1ºBE</option>
-                 <option value="1BF">1ºBF</option>
-                 <option value="1BG">1ºBG</option>
-                 <option value="1BH">1ºBH</option>
-                 <option value="2BA">2ºBA</option>
-                 <option value="2BB">2ºBB</option>
-                 <option value="2BC">2ºBC</option>
-                 <option value="2BD">2ºBD</option>
-                 <option value="2BE">2ºBE</option>
-                 <option value="2BF">2ºBF</option>
-                 <option value="2BG">2ºBG</option>
-                 <option value="2BH">2ºBH</option>
-                 <option value="3BA">3ºBA</option>
-                 <option value="3BB">3ºBB</option>
-                 <option value="3BC">3ºBC</option>
-                 <option value="3BD">3ºBD</option>
-                 <option value="3BE">3ºBE</option>
-                 <option value="3BF">3ºBF</option>
-                 <option value="3BG">3ºBG</option>
+                <select id="grupos" name="grupos[]" class="form__select" multiple required>
+                    <option value="1BA">1ºBA</option>
+                    <option value="1BB">1ºBB</option>
+                    <option value="1BC">1ºBC</option>
+                    <option value="1BD">1ºBD</option>
+                    <option value="1BE">1ºBE</option>
+                    <option value="1BF">1ºBF</option>
+                    <option value="1BG">1ºBG</option>
+                    <option value="1BH">1ºBH</option>
+                    <option value="2BA">2ºBA</option>
+                    <option value="2BB">2ºBB</option>
+                    <option value="2BC">2ºBC</option>
+                    <option value="2BD">2ºBD</option>
+                    <option value="2BE">2ºBE</option>
+                    <option value="2BF">2ºBF</option>
+                    <option value="2BG">2ºBG</option>
+                    <option value="2BH">2ºBH</option>
+                    <option value="3BA">3ºBA</option>
+                    <option value="3BB">3ºBB</option>
+                    <option value="3BC">3ºBC</option>
+                    <option value="3BD">3ºBD</option>
+                    <option value="3BE">3ºBE</option>
+                    <option value="3BF">3ºBF</option>
+                    <option value="3BG">3ºBG</option>
 
                 </select>
             </div>
