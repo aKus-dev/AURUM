@@ -28,11 +28,12 @@ perfil9.addEventListener('click', active);
 
 function active(e) {
     e.target.classList.toggle('profile-active')
-    input.value = e.target.src;
+    input.value = e.target.classList[0];
     uniqueImagesSelected(e.target.id);
 }
 
 function uniqueImagesSelected(id) {
+
     images.forEach(image => {
         if(image.id !== id) {
             image.classList.remove('profile-active');

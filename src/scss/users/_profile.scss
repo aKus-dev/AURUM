@@ -143,9 +143,10 @@
 
 
     .confirm {
+        box-shadow: 0 0 1.5rem $ligthViolet;
         width: 80%;
         height: 10rem;
-        background: white;
+        background: linear-gradient(90deg, $ligthViolet, $darkViolet);
         border-radius: 1rem;;
         padding: 1.5rem;
 
@@ -156,8 +157,7 @@
 
         .msg {
             text-align: center;
-            color: #9e1010;
-            font-weight: bold;
+            color: $white;
             font-size: 1.5rem;
         }
 

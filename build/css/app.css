@@ -691,10 +691,10 @@ textarea {
   margin: 1.5rem 0 1rem 0;
   padding: .5rem 2rem;
   background: none;
+  background: linear-gradient(90deg, white, #f0f0f0);
   border: none;
   font-size: 1.5rem;
-  background: linear-gradient(90deg, #B1126F, #531A5D);
-  color: #FFFFFF;
+  color: #000;
   border-radius: .5rem; }
   .btn-cancel:hover {
     transform: scale(1.05); }
@@ -1816,6 +1816,27 @@ select[multiple] {
   gap: 1.5rem;
   justify-content: center; }
 
+.datos-compas {
+  margin: 1.5rem 0;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 768px) {
+    .datos-compas {
+      grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 768px) {
+    .datos-compas {
+      grid-template-columns: repeat(5, 1fr); } }
+  .datos-compas span {
+    display: inline-block;
+    margin: 1.5rem 0 1rem 0;
+    padding: .5rem 2rem;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    border-radius: 1rem; }
+  .datos-compas img {
+    height: 50px; }
+
 /* Tablas */
 .consulta-container {
   padding: 5rem 2rem 1.5rem 2rem;
@@ -2093,9 +2114,10 @@ select[multiple] {
   align-items: center;
   justify-content: center; }
   .modal-eliminar .confirm {
+    box-shadow: 0 0 1.5rem #B1126F;
     width: 80%;
     height: 10rem;
-    background: white;
+    background: linear-gradient(90deg, #B1126F, #531A5D);
     border-radius: 1rem;
     padding: 1.5rem; }
     @media (min-width: 768px) {
@@ -2103,8 +2125,7 @@ select[multiple] {
         width: 60rem; } }
     .modal-eliminar .confirm .msg {
       text-align: center;
-      color: #9e1010;
-      font-weight: bold;
+      color: #FFFFFF;
       font-size: 1.5rem; }
     .modal-eliminar .confirm form {
       height: 100%;

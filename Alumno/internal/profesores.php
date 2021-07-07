@@ -3,6 +3,8 @@
 require '../../config/app.php';
 isAuth_alumno();
 
+$entro = false;
+
 $idAlumnno = $_SESSION['id'];
 $grupos = [];
 
@@ -61,6 +63,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             // Recorro los datos del coente
             foreach ($datosDocentes as $docente) :
                 $materias = [];
+                $entro = true;
 
                 // Selecciono las materias del docente
                 $idDocente = $docente['id'];
@@ -73,37 +76,45 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                 }
 
             ?>
-            <!-- Muestro los datos -->
-            <div class="m-5">
-                <div class="titulo-consulta bg-main">
-                    <p><?php echo $docente['nombre'] . " " . $docente['apellido']; ?></p>
-                </div>
-
-                <div class="datos-consulta-flex">
-                    <div class="flex-consultas-datos">
-                        <h5>Materias</h5>
-                        <div class="materias-container">
-                            <?php
-                            foreach ($materias as $materia) {
-                                echo "<p>$materia</p>";
-                            }
-                            ?>
-                        </div>
-
-                        <p></p>
+                <!-- Muestro los datos -->
+                <div class="m-5">
+                    <div class="titulo-consulta bg-main">
+                        <p><?php echo $docente['nombre'] . " " . $docente['apellido']; ?></p>
                     </div>
 
-                    
-                </div>
-            <?php
+                    <div class="datos-consulta-flex">
+                        <div class="flex-consultas-datos">
+                            <h5>Materias</h5>
+                            <div class="materias-container">
+                                <?php
+                                foreach ($materias as $materia) {
+                                    echo "<p>$materia</p>";
+                                }
+                                ?>
+                            </div>
+
+                            <p></p>
+                        </div>
+
+
+                    </div>
+                <?php
                 $materias = [];
             endforeach;
-            ?>
-        </div>
+                ?>
+
+                <?php if (!$entro) :  ?>
+                    <div class="no-consultas bg-main">
+                        <p>Aún no tienes profesores en tu grupo</p>
+                    </div>
+                <?php endif ?>
+                </div>
         </div>
     </main>
 
     </div>
+
+
 
     <script src="/build/js/consultas.js"></script>
     </body>
