@@ -25,6 +25,7 @@ isAuth_alumno();
     <main class=" consulta-container">
         <h2>Tus compañeros</h2>
 
+
         <div class="consulta--container">
             <div class="alumno-clase">
                 <div class="datos-contaner">
@@ -44,12 +45,8 @@ isAuth_alumno();
 
                     ?>
 
-
-
-
-                    <?php foreach ($grupos as $grupo) : ?>
-
-                        <div class="datos-compas">
+                    <div class="datos-compas">
+                        <?php foreach ($grupos as $grupo) : ?>
 
                             <?php
 
@@ -67,31 +64,29 @@ isAuth_alumno();
                                 $imagen = $row['imagen'];
 
                                 echo "<div>";
-                                    echo "<span class='bg-main'>$nombre $apellido</span>";
-                                    echo "<div>";
-                                    echo "<img src='$imagen'>";
-                                    echo "</div>"; 
+                                echo "<span class='bg-main'>$nombre $apellido</span>";
+                                echo "<div>";
+                                echo "<img src='$imagen'>";
                                 echo "</div>";
-
+                                echo "</div>";
                             }
 
                             ?>
 
-                <?php endforeach; ?>
+                        <?php endforeach; ?>
 
-
-                <?php if (!$entro) :  ?>
-                    <div class="no-consultas bg-main">
-                        <p>Aún no tienes compañeros en tu mismo grupo</p>
                     </div>
-                <?php endif ?>
-
                 </div>
             </div>
-        </div>
+            <?php if (!$entro) :  ?>
+            <div class="no-consultas bg-main">
+                <p>Aún no tienes compañeros en tu mismo grupo</p>
+            </div>
+        <?php endif ?>
     </main>
 
     </div>
+
 
     <script src="/build/js/consultas.js"></script>
     </body>

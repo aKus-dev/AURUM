@@ -1351,6 +1351,43 @@ select[multiple] {
   height: 15rem;
   border: 2px solid #B1126F; }
 
+.buscar-container {
+  position: relative;
+  width: 80%;
+  margin: 1.5rem auto; }
+  @media (min-width: 768px) {
+    .buscar-container {
+      max-width: 60rem; } }
+  .buscar-container button {
+    cursor: pointer;
+    border: none;
+    background: transparent; }
+  .buscar-container .icon-container {
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 2rem;
+    height: 100%; }
+    .buscar-container .icon-container i {
+      transition: .35s;
+      font-size: 2rem;
+      color: #B1126F; }
+      .buscar-container .icon-container i:hover {
+        transform: scale(1.15); }
+  .buscar-container #buscar_consulta {
+    outline: none;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #B1126F;
+    border-radius: 5rem;
+    font-size: 1.5rem; }
+
+.guia-buscar {
+  margin: 2rem 0 0 0;
+  font-size: 1.5rem; }
+
 .welcome {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
@@ -1820,11 +1857,11 @@ select[multiple] {
   margin: 1.5rem 0;
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(2, 1fr); }
   @media (min-width: 768px) {
     .datos-compas {
-      grid-template-columns: repeat(4, 1fr); } }
-  @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 968px) {
     .datos-compas {
       grid-template-columns: repeat(5, 1fr); } }
   .datos-compas span {

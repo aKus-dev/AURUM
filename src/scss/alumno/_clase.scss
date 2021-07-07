@@ -3,13 +3,13 @@
     margin: 1.5rem 0;
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     @include tablet {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    @include tablet {
+    @include desktop {
         grid-template-columns: repeat(5, 1fr);
     }
 

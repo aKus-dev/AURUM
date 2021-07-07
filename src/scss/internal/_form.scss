@@ -192,6 +192,58 @@ select[multiple] {
     border: 2px solid $ligthViolet;
 }
 
+.buscar-container {
+
+    position: relative;
+    width: 80%;
+    margin: 1.5rem auto;
+
+    @include tablet {
+        max-width: 60rem;
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        background: transparent;
+    }
+
+    .icon-container {
+        position: absolute;
+        right: 2rem;
+        top: 0;
+        display: flex;
+        align-items: center;
+        width: 2rem;
+        height: 100%;
+
+        i {
+            transition: .35s;
+            font-size: 2rem;
+            color: $ligthViolet;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+    }
+
+
+    #buscar_consulta {
+        outline: none;
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid $ligthViolet;
+        border-radius: 5rem;
+        font-size: 1.5rem;
+    }
+}
+
+.guia-buscar {
+    margin: 2rem 0 0 0;
+    font-size: 1.5rem;
+}
+
 
 
    

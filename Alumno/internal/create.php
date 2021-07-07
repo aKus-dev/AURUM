@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="todas-consultas bg-main">
             <p>Ver todas las consultas</p>
-            <a href="#">
+            <a href="./buscar.php">
                 <i class="fas fa-arrow-circle-right white"></i>
             </a>
         </div>
