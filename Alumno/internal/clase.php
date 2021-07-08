@@ -79,10 +79,10 @@ isAuth_alumno();
                 </div>
             </div>
             <?php if (!$entro) :  ?>
-            <div class="no-consultas bg-main">
-                <p>Aún no tienes compañeros en tu mismo grupo</p>
-            </div>
-        <?php endif ?>
+                <div class="no-consultas bg-main">
+                    <p>Aún no tienes compañeros en tu mismo grupo</p>
+                </div>
+            <?php endif ?>
     </main>
 
     </div>

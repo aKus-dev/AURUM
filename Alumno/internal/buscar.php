@@ -6,12 +6,17 @@ require '../../clases/Sistema.php';
 isAuth_alumno();
 $encontro = null;
 $resultados = false;
+$mostrarAlerta = false;
 
 if (!empty($_GET)) {
     $consulta = $_GET['consulta'];
 
     if ($consulta) {
         $resultados = Sistema::buscarConsulta($consulta, $db);
+
+        if(!$resultados) {
+            $mostrarAlerta = true;
+        }
     }
 }
 
@@ -37,7 +42,7 @@ if (!empty($_GET)) {
 
     <main class=" consulta-container">
         <h2>Busca por titulo</h2>
-        <p class="guia-buscar">Te recomendamos buscar por palabras clave (Ejemplo: JavaScript, Matemática, Docker, etc)</p>
+        <p class="guia-buscar">Te recomendamos buscar por palabras clave</p>
 
         <div>
             <form>
@@ -112,7 +117,7 @@ if (!empty($_GET)) {
             <?php endif; ?>
 
 
-            <?php if (empty($resultados)) :  ?>
+            <?php if ($mostrarAlerta) :  ?>
                     <div class="no-consultas bg-main">
                         <p>No se han encontrado resultados</p>
                     </div>

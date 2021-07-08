@@ -123,39 +123,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="profile-images">
                     <div>
-                        <img id="perfil1" src="/build/public/Profesor_1.svg" alt="">
+                        <img class="/build/public/Profesor_1.svg" id="perfil1" src="/build/public/Profesor_1.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil2" src="/build/public/Profesor_2.svg" alt="">
+                        <img class="/build/public/Profesor_2.svg" id="perfil2" src="/build/public/Profesor_2.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil3" src="/build/public/Profesor_3.svg" alt="">
+                        <img class=/build/public/Profesor_3.svg" id="perfil3" src="/build/public/Profesor_3.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil4" src="/build/public/Profesor_4.svg" alt="">
+                        <img class="/build/public/Profesor_4.svg" id="perfil4" src="/build/public/Profesor_4.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil5" src="/build/public/Profesor_5.svg" alt="">
+                        <img class=/build/public/Profesor_5.svg" id="perfil5" src="/build/public/Profesor_5.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil6" src="/build/public/Profesor_6.svg" alt="">
+                        <img class="/build/public/Profesor_6.svg" id="perfil6" src="/build/public/Profesor_6.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil7" src="/build/public/Profesor_7.svg" alt="">
+                        <img class="/build/public/Profesor_7.svg" id="perfil7" src="/build/public/Profesor_7.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil8" src="/build/public/Profesor_8.svg" alt="">
+                        <img class="/build/public/Profesor_8.svg" id="perfil8" src="/build/public/Profesor_8.svg" alt="">
                     </div>
 
                     <div>
-                        <img id="perfil9" src="/build/public/Profesor_9.svg" alt="">
+                        <img class="/build/public/Profesor_9.svg" id="perfil9" src="/build/public/Profesor_9.svg" alt="">
                     </div>
                     
    
