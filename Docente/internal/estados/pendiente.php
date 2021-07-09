@@ -111,6 +111,6 @@ endwhile;
 
 <?php if (!$hayResultado_contestada) : ?>
     <div class="no-consultas bg-main">
-        <p>No tienes consultas pendientes</p>
+        <p>No tienes consultas recibidas</p>
     </div>
 <?php endif; ?>

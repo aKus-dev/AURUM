@@ -20,8 +20,6 @@ if (!empty($_GET)) {
     }
 }
 
-
-
 ?>
 
 <!DOCTYPE html>

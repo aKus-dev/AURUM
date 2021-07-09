@@ -113,22 +113,29 @@ class Docente
 
     static public function responderConsulta($idConsulta, $respuesta, object $db)
     {
-        date_default_timezone_set("America/Montevideo");
-        $fecha = date('Y-m-d');
+        /* date_default_timezone_set("America/Montevideo");
+        $fecha = date('Y-m-d'); */
+
+        // Escapo las comillas para que no tire error
+        $respuesta = $db->quote($respuesta);   
 
         // Actualiza la consulta en los docentes
-        $sql =  "UPDATE consultas_docente SET respuesta = '$respuesta' WHERE id=$idConsulta;";
-        $db->query($sql);
+        $sql =  "UPDATE consultas_docente SET respuesta = $respuesta WHERE id=$idConsulta;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
 
         $sql = "UPDATE consultas_docente SET estado = 'contestada' WHERE id=$idConsulta;";
-        $db->query($sql);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
 
         // Actualiza la consulta en la tabla de alumnos
         $sql = "UPDATE consultas_alumno SET estado = 'contestada' WHERE id=$idConsulta;";
-        $db->query($sql);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
 
-        $sql = "UPDATE consultas_alumno SET respuesta = '$respuesta' WHERE id=$idConsulta;";
-        $db->query($sql);
+        $sql = "UPDATE consultas_alumno SET respuesta = $respuesta WHERE id=$idConsulta;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
 
         header("Location: /Docente/internal/consultas.php?success=true&type=enviada");
     }

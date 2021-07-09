@@ -1388,6 +1388,13 @@ select[multiple] {
   margin: 2rem 0 0 0;
   font-size: 1.5rem; }
 
+.grupos-docente-list {
+  margin: 3rem 0;
+  font-size: 2rem;
+  color: #FFFFFF;
+  border-radius: .5rem;
+  padding: .5rem 0; }
+
 .welcome {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
@@ -1855,15 +1862,11 @@ select[multiple] {
 
 .datos-compas {
   margin: 1.5rem 0;
-  display: grid;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 768px) {
-    .datos-compas {
-      grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 968px) {
-    .datos-compas {
-      grid-template-columns: repeat(5, 1fr); } }
   .datos-compas span {
     display: inline-block;
     margin: 1.5rem 0 1rem 0;

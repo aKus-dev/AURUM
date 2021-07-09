@@ -1,7 +1,7 @@
 <?php
 
 require '../../config/app.php';
-isAuth_alumno();
+isAuth_docente();
 
 
 ?>
@@ -16,14 +16,14 @@ isAuth_alumno();
     <link rel="icon" type="image/png" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
-    <title>AURUM: Clase</title>
+    <title>AURUM: Grupos</title>
 </head>
 <body>
     <div class=" alumno-container">
     <?php include '../templates/header.html' ?>
 
     <main class=" consulta-container">
-        <h2>Tus compañeros</h2>
+        <h2>Tus grupos</h2>
 
 
         <div class="consulta--container">
@@ -36,7 +36,7 @@ isAuth_alumno();
                     $id = $_SESSION['id'];
 
                     // Selecciono sus grupos
-                    $sql = "SELECT grupo FROM grupos_alumno WHERE idAlumno = $id";
+                    $sql = "SELECT grupo FROM grupos_docente WHERE idDocente = $id";
                     $resultadoGrupos = $db->query($sql);
 
                     while ($grupo = $resultadoGrupos->fetch(PDO::FETCH_ASSOC)) {
@@ -44,17 +44,24 @@ isAuth_alumno();
                     }
 
                     ?>
+                    
 
-                    <div class="datos-compas">
+
+           
                         <?php foreach ($grupos as $grupo) : ?>
 
-                            <?php
+                            <p class="grupos-docente-list bg-main"><?php echo $grupo ?></p>
 
+                            <div class="datos-compas">
+                            <?php
+                            
                             // En base a los grupos que está, selecciono sus compañeros
-                            $sql = "SELECT DISTINCT nombre, apellido, imagen FROM
-                            alumno 
-                            INNER JOIN grupos_alumno as alumnoGrupos
-                            ON alumno.id != $id AND alumno.id = alumnoGrupos.idAlumno AND alumnoGrupos.grupo = '$grupo'";
+                            $sql = "SELECT DISTINCT nombre, apellido, imagen 
+                            FROM alumno 
+                            INNER JOIN grupos_docente as docenteGrupos 
+                            ON docenteGrupos.grupo = '$grupo'
+                            INNER JOIN grupos_alumno as alumnoGrupo
+                            ON alumno.id = alumnoGrupo.idAlumno AND alumnoGrupo.grupo = '$grupo'";
 
                             $resultado = $db->query($sql);
                             while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
@@ -72,15 +79,19 @@ isAuth_alumno();
                             }
 
                             ?>
+                         </div>
 
                         <?php endforeach; ?>
+                        
 
-                    </div>
+                
+
+            
                 </div>
             </div>
             <?php if (!$entro) :  ?>
                 <div class="no-consultas bg-main">
-                    <p>Aún no tienes compañeros en tu mismo grupo</p>
+                    <p>Aún no tienes alumnos en tus grupos</p>
                 </div>
             <?php endif ?>
     </main>

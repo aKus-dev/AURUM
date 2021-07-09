@@ -57,7 +57,7 @@ if(!empty($_GET)) {
                     <h3 class="option__heading">Grupos</h3>
                     <p class="option__text">Ve una lista con todos tus grupos</p>
 
-                    <a href="#" class="admin-button">Visualizar</a>
+                    <a href="internal/grupos.php" class="admin-button">Visualizar</a>
                 </div>
 
                 <div class="filter-option"></div>
