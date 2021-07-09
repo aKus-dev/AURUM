@@ -17,6 +17,15 @@ CREATE TABLE alumno (
 	primer_login BOOl NOT NULL
 );
 
+/* Esta tabla almacenara los grupos de los Alumnos*/
+CREATE TABLE grupos_alumno (
+	idAlumno INT NOT NULL,
+    Grupo CHAR (3) NOT NULL,
+	CONSTRAINT FK_idAlumno_grupo FOREIGN KEY (idAlumno) 
+    REFERENCES alumno(id) ON DELETE CASCADE
+); 
+
+
 CREATE TABLE docente (
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     CI CHAR(8) UNIQUE NOT NULL,
@@ -30,6 +39,22 @@ CREATE TABLE docente (
     hora_maxima CHAR(5),
     primer_login BOOl NOT NULL
 );
+
+/* Esta tabla almacenara los grupos de los docentes*/
+CREATE TABLE grupos_docente(
+	idDocente INT NOT NULL,
+    grupo CHAR (3) NOT NULL,
+	CONSTRAINT FK_idDocente_grupo FOREIGN KEY (idDocente) 
+    REFERENCES Docente(id) ON DELETE CASCADE
+); 
+
+/* Esta tabla almacenara los Asignaturas de los docentes*/
+CREATE TABLE asignaturas_docente (
+	idDocente INT NOT NULL,
+    asignatura VARCHAR (30) NOT NULL,
+	CONSTRAINT FK_idDocente_asignatura FOREIGN KEY (idDocente) 
+    REFERENCES Docente(id) ON DELETE CASCADE
+); 
 
 CREATE TABLE administrador (
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -50,29 +75,13 @@ CREATE TABLE pendiente (
     primer_login BOOL
 );
 
-/* Esta tabla almacenara los grupos de los docentes*/
-CREATE TABLE grupos_docente(
-	idDocente INT NOT NULL,
-    grupo CHAR (3) NOT NULL,
-	CONSTRAINT FK_idDocente_grupo FOREIGN KEY (idDocente) 
-    REFERENCES Docente(id) ON DELETE CASCADE
-); 
-
-/* Esta tabla almacenara los Asignaturas de los docentes*/
-CREATE TABLE asignaturas_docente (
-	idDocente INT NOT NULL,
-    asignatura VARCHAR (30) NOT NULL,
-	CONSTRAINT FK_idDocente_asignatura FOREIGN KEY (idDocente) 
-    REFERENCES Docente(id) ON DELETE CASCADE
-); 
-
-/* Esta tabla almacenara los grupos de los Alumnos*/
-CREATE TABLE grupos_alumno (
+CREATE TABLE grupos_pendiente (
 	idAlumno INT NOT NULL,
     Grupo CHAR (3) NOT NULL,
-	CONSTRAINT FK_idAlumno_grupo FOREIGN KEY (idAlumno) 
-    REFERENCES alumno(id) ON DELETE CASCADE
+	CONSTRAINT FK_idAlumno_grupo2 FOREIGN KEY (idAlumno) 
+    REFERENCES pendiente(id) ON DELETE CASCADE
 ); 
+
 
 CREATE TABLE consultas_docente (
 	id INT AUTO_INCREMENT NOT NULL,
@@ -80,7 +89,7 @@ CREATE TABLE consultas_docente (
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
-    respuesta VARCHAR (1000),
+    respuesta VARCHAR (5000),
     fecha DATE NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
@@ -98,7 +107,7 @@ CREATE TABLE consultas_alumno (
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
-	respuesta VARCHAR (1000),
+	respuesta VARCHAR (5000),
     fecha DATE NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
