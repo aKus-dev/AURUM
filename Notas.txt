@@ -7,6 +7,3 @@ Color secundario: #0E0F12
 ***** Violetas oscuros *****
 Principal: #531A5D
 
-***** Como implementarlo *****
-
-Cuando se cambie al dark mode, cambiaremos el valor de las variables a tonos oscuros.
