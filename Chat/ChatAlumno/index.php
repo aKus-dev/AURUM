@@ -29,7 +29,7 @@ isAuth_alumno();
                     <h3 class="option__heading">Crea un chat</h3>
                     <p>Entra aquí para crear un chat de alguna materia</p>
 
-                    <a href="#">Crear</a>
+                    <a href="./crear.php">Crear</a>
                 </div>
                 <div class="filter-option"></div>
             </div>

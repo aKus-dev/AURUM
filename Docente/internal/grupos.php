@@ -31,7 +31,6 @@ isAuth_docente();
                 <div class="datos-contaner">
 
                     <?php
-                    $entro = false;
                     $grupos =  [];
                     $id = $_SESSION['id'];
 
@@ -43,6 +42,8 @@ isAuth_docente();
                         $grupos[] = $grupo['grupo'];
                     }
 
+
+
                     ?>
                     
 
@@ -51,6 +52,7 @@ isAuth_docente();
                         <?php foreach ($grupos as $grupo) : ?>
 
                             <p class="grupos-docente-list bg-main"><?php echo $grupo ?></p>
+      
 
                             <div class="datos-compas">
                             <?php
@@ -65,7 +67,6 @@ isAuth_docente();
 
                             $resultado = $db->query($sql);
                             while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-                                $entro = true;
                                 $nombre = $row['nombre'];
                                 $apellido = $row['apellido'];
                                 $imagen = $row['imagen'];
@@ -82,18 +83,10 @@ isAuth_docente();
                          </div>
 
                         <?php endforeach; ?>
-                        
-
-                
-
-            
+                    
                 </div>
             </div>
-            <?php if (!$entro) :  ?>
-                <div class="no-consultas bg-main">
-                    <p>Aún no tienes alumnos en tus grupos</p>
-                </div>
-            <?php endif ?>
+      
     </main>
 
     </div>

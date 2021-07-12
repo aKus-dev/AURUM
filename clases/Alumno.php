@@ -178,6 +178,7 @@ class Alumno
                     // Si el id NO esta en el array, quiere decir que lo puedo poner
                     if (!in_array($id, $existentes)) {
                         array_push($existentes, $id);
+                        $asignatura = utf8_encode($asignatura);
                         echo "<option value='$id'>$nombre $apellido ($asignatura)</option>";
                     }
                 }

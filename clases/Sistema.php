@@ -239,4 +239,16 @@ class Sistema
 
         return false;
     }
+
+    public static function cargarAsignaturas($db) {
+        $sql = "SELECT nombre FROM asignaturas";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $asignatura = utf8_encode($row['nombre']); 
+            echo "<option value='$asignatura'>$asignatura</option>";
+        }
+   
+    }
+
 }

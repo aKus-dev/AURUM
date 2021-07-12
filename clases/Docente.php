@@ -40,7 +40,7 @@ class Docente
 
         // Codigo SQL
         $sql = "INSERT INTO Docente (CI,nombre,apellido, contrasena, imagen, primer_login, registro_horarios) VALUES 
-        ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen', true, false)";
+        ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen',  true, false)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos
@@ -69,8 +69,10 @@ class Docente
         // Iterar resultados;
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             foreach ($asignaturas as $asignatura) {
+                $asignaturaDecode = utf8_decode($asignatura); // Para que guarde con tildes y Ñ en la base de datos
+
                 $idDocente = $row['id'];
-                $sql = "INSERT INTO asignaturas_docente VALUES ($idDocente, '$asignatura')";
+                $sql = "INSERT INTO asignaturas_docente VALUES ($idDocente, '$asignaturaDecode')";
 
                 $stmt = $db->prepare($sql);
                 $stmt->execute();

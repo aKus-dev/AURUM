@@ -2039,7 +2039,7 @@ select[multiple] {
   text-align: center;
   padding: 1.5rem;
   width: 85%;
-  margin: 3rem auto 0 auto;
+  margin: 0 auto;
   border-radius: 1rem; }
   @media (min-width: 968px) {
     .user-profile {
@@ -2285,3 +2285,70 @@ select[multiple] {
       background-image: url(/build/img/Chat/Join.jpg);
       background-position: center;
       background-size: cover; }
+
+.materias-container-chat {
+  padding: 2.5rem 0;
+  margin-bottom: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF; }
+  @media (min-width: 968px) {
+    .materias-container-chat {
+      margin-bottom: 0;
+      padding: 3rem 5rem;
+      min-height: 100vh;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      flex-wrap: wrap;
+      gap: 2rem; } }
+  .materias-container-chat .materia {
+    position: relative;
+    z-index: 9;
+    padding: 2rem 0;
+    width: 85%;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    max-width: 85%;
+    max-height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    @media (min-width: 968px) {
+      .materias-container-chat .materia {
+        max-width: 35rem;
+        margin: 0; } }
+    .materias-container-chat .materia h3 {
+      font-size: 2.2rem;
+      margin: 1.5rem 0; }
+    .materias-container-chat .materia a {
+      transition: .35s;
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 1.6rem;
+      border: 2px solid #FFFFFF;
+      width: 15rem;
+      padding: .5rem 0; }
+      .materias-container-chat .materia a:hover {
+        transform: scale(1.1); }
+    .materias-container-chat .materia .filter-violet {
+      z-index: -1;
+      border-radius: 1rem;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #b1126fda, #531A5Dda); }
+    .materias-container-chat .materia .filter-darkviolet {
+      z-index: -1;
+      border-radius: 1rem;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #b1126fda, #7E0A2Cee); }
+
+.sky {
+  background-image: url(/build/img/Chat/Sky.jpg); }
+
+.wave {
+  background-image: url(/build/img/Chat/Waves.jpg); }

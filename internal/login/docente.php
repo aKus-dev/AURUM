@@ -1,5 +1,6 @@
 <?php
 require '../../config/app.php';
+require '../../clases/Sistema.php';
 require '../../clases/Docente.php';
 
 $yaExiste = false; // Pasa  true cuando el usuario ya exista
@@ -150,29 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <select id="asignaturas" name="asignaturas[]" class="form__select" multiple required>
-                    <option value="A.D.A">ADA</option>
-                    <option value="Física I">Física I</option>
-                    <option value="Física II">Física II</option>
-                    <option value="Historia">Historia</option>
-                    <option value="Economia">Economía</option>
-                    <option value="Sociologia">Sociología</option>
-                    <option value="Proyecto">Proyecto</option>
-                    <option value="Filosofía">Filosofía</option>
-                    <option value="Matemáticas I">Matemáticas I</option>
-                    <option value="Matemáticas II">Matemáticas II</option>
-                    <option value="Matemáticas III">Matemáticas III</option>
-                    <option value="Geometría I">Geometría I</option>
-                    <option value="Geometría II">Geometría II</option>
-                    <option value="Programación I">Programación I</option>
-                    <option value="Programación II">Programación II</option>
-                    <option value="Programación III">Programación III</option>
-                    <option value="Programación III">Programación Web</option>
-                    <option value="Diseño Web I">Diseño web I</option>
-                    <option value="Diseño Web II">Diseño web II</option>
-                    <option value="Formación Empresarial">Formación Empresarial</option>
-                    <option value="Sistemas Operativos I">Sistemas Operativos I</option>
-                    <option value="Sistemas Operativos II">Sistemas Operativos II</option>
-                    <option value="Sistemas Operativos III">Sistemas Operativos III</option>
+                   <?php Sistema::cargarAsignaturas($db) ?>
                 </select>
             </div>
 

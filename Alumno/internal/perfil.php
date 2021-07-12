@@ -77,11 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-
-        <div class="text-center">
-            <h2>Tu perfil</h2>
-        </div>
-
         <div class="user-profile">
             <img class="photo_user" src="<?php echo $_SESSION['imagen'] ?>" alt="">
 

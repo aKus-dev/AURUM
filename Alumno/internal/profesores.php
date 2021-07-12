@@ -17,6 +17,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
     $grupos[] = $row['grupo'];
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +76,8 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                     $materias[] = $rowAsignatura['asignatura'];
                 }
 
+                
+
             ?>
                 <!-- Muestro los datos -->
                 <div class="m-5">
@@ -88,6 +91,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                             <div class="materias-container">
                                 <?php
                                 foreach ($materias as $materia) {
+                                    $materia = utf8_encode($materia);
                                     echo "<p>$materia</p>";
                                 }
                                 ?>
