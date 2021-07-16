@@ -2287,11 +2287,19 @@ select[multiple] {
       background-size: cover; }
 
 .materias-container-chat {
-  padding: 2.5rem 0;
+  padding: 2.5rem 2rem;
   margin-bottom: 7.5rem;
   display: flex;
   flex-direction: column;
   color: #FFFFFF; }
+  .materias-container-chat form {
+    display: inline;
+    margin: 0 auto;
+    width: 100%; }
+    @media (min-width: 968px) {
+      .materias-container-chat form {
+        max-width: 35rem;
+        margin: 0; } }
   @media (min-width: 968px) {
     .materias-container-chat {
       margin-bottom: 0;
@@ -2306,7 +2314,7 @@ select[multiple] {
     position: relative;
     z-index: 9;
     padding: 2rem 0;
-    width: 85%;
+    width: 100%;
     margin: 1rem auto;
     border-radius: 1rem;
     max-width: 85%;
@@ -2322,7 +2330,9 @@ select[multiple] {
     .materias-container-chat .materia h3 {
       font-size: 2.2rem;
       margin: 1.5rem 0; }
-    .materias-container-chat .materia a {
+    .materias-container-chat .materia button {
+      cursor: pointer;
+      background-color: transparent;
       transition: .35s;
       text-align: center;
       color: #FFFFFF;
@@ -2330,7 +2340,7 @@ select[multiple] {
       border: 2px solid #FFFFFF;
       width: 15rem;
       padding: .5rem 0; }
-      .materias-container-chat .materia a:hover {
+      .materias-container-chat .materia button:hover {
         transform: scale(1.1); }
     .materias-container-chat .materia .filter-violet {
       z-index: -1;
@@ -2345,10 +2355,192 @@ select[multiple] {
       position: absolute;
       height: 100%;
       width: 100%;
-      background: linear-gradient(90deg, #b1126fda, #7E0A2Cee); }
+      background: linear-gradient(90deg, #b1126fce, #7e0a2dea); }
 
 .sky {
-  background-image: url(/build/img/Chat/Sky.jpg); }
+  background-image: url(/build/img/Chat/Sky.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 .wave {
-  background-image: url(/build/img/Chat/Waves.jpg); }
+  background-image: url(/build/img/Chat/Sky2.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.title-grupo-chat {
+  text-align: center;
+  width: 85%;
+  margin: 2rem auto; }
+
+.chat-header {
+  height: 7rem;
+  padding: 2rem 5rem 2rem 2rem;
+  border-radius: 0 0 5rem 0;
+  box-shadow: 0 0 1rem #696969;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  @media (min-width: 1200px) {
+    .chat-header {
+      justify-content: center; } }
+  .chat-header i {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #FFFFFF; }
+    @media (min-width: 1200px) {
+      .chat-header i {
+        display: none; } }
+  .chat-header .title {
+    font-size: 2.4rem;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-transform: uppercase; }
+
+@media (min-width: 1200px) {
+  .chat-container {
+    display: grid;
+    grid-template-columns: 25% auto 25%; } }
+
+.chat-container .chat {
+  height: calc(100vh - 7rem);
+  display: grid;
+  grid-template-rows: 90% 10%; }
+  @media (min-width: 968px) {
+    .chat-container .chat {
+      border-left: 1px solid #d6d6d6;
+      border-right: 1px solid #d6d6d6; } }
+  .chat-container .chat #sendMsg {
+    margin-bottom: 2rem;
+    height: 5rem;
+    padding: 0 2rem;
+    display: flex;
+    gap: 1rem; }
+    .chat-container .chat #sendMsg input {
+      transition: .35s;
+      outline: none;
+      flex-grow: 1;
+      padding: 0 2rem;
+      font-size: 1.6rem;
+      border-radius: 5rem;
+      border: none;
+      box-shadow: 0 0 1rem #696969; }
+      .chat-container .chat #sendMsg input:focus {
+        box-shadow: 0 0 1rem #B1126F;
+        color: #B1126F; }
+    .chat-container .chat #sendMsg button {
+      transition: .35s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.5rem;
+      height: 4.5rem;
+      border: none;
+      border-radius: 50%;
+      font-size: 2rem;
+      color: #FFFFFF; }
+      .chat-container .chat #sendMsg button:hover {
+        transform: scale(1.1); }
+
+.chat-container .users {
+  overflow: auto;
+  height: calc(100vh - 7rem); }
+  @media (min-width: 1200px) {
+    .chat-container .users {
+      display: block; } }
+  .chat-container .users h3 {
+    padding-top: 1.5rem;
+    color: #2d2f33;
+    font-weight: bold;
+    font-size: 2.5rem; }
+  .chat-container .users .user {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 2rem 0;
+    padding: 0 3rem;
+    font-size: 1.6rem; }
+    .chat-container .users .user #crown {
+      font-size: 2rem;
+      color: gold; }
+    .chat-container .users .user #student {
+      font-size: 2rem;
+      color: #B1126F; }
+    .chat-container .users .user #status-online {
+      font-size: 1rem;
+      color: #4bcc10; }
+  .chat-container .users .chat-active {
+    margin: 2.5rem auto;
+    width: 85%;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem #b8b8b8; }
+    .chat-container .users .chat-active .materia {
+      font-weight: bold;
+      margin: .5rem 0; }
+    .chat-container .users .chat-active p {
+      font-size: 1.5rem; }
+      .chat-container .users .chat-active p span {
+        color: #B1126F; }
+    .chat-container .users .chat-active a {
+      display: block;
+      width: 85%;
+      margin: 1.5rem auto;
+      padding: .5rem 0;
+      font-size: 1.8rem;
+      border-radius: 1rem; }
+      .chat-container .users .chat-active a i {
+        color: #FFFFFF; }
+
+.messages {
+  padding: 4rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; }
+
+.you {
+  margin: .5rem 0;
+  max-width: 85%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column; }
+  .you span {
+    align-self: flex-end;
+    margin: .5rem 0;
+    font-size: 1.2rem;
+    color: #B1126F;
+    font-weight: bold; }
+  .you p {
+    border-radius: 5rem 5rem 0 5rem;
+    background: linear-gradient(90deg, #B1126F, #531A5D);
+    padding: 2rem 2rem 2rem 3rem;
+    font-size: 1.6rem;
+    color: #FFFFFF; }
+  @media (min-width: 968px) {
+    .you {
+      max-width: 70%; } }
+
+.they {
+  margin: .5rem 0;
+  max-width: 85%;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column; }
+  .they span {
+    padding-left: 2rem;
+    align-self: flex-start;
+    margin: .8rem 0;
+    font-size: 1.2rem;
+    color: #444851;
+    font-weight: bold; }
+  .they p {
+    border-radius: 5rem 5rem 0 5rem;
+    background: #E9EFF4;
+    padding: 2rem 2rem 2rem 3rem;
+    font-size: 1.6rem;
+    color: #444851; }
+  @media (min-width: 968px) {
+    .they {
+      max-width: 70%; } }

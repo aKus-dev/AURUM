@@ -43,12 +43,7 @@ isAuth_docente();
                     }
 
 
-
                     ?>
-                    
-
-
-           
                         <?php foreach ($grupos as $grupo) : ?>
 
                             <p class="grupos-docente-list bg-main"><?php echo $grupo ?></p>

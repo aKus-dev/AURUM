@@ -15,6 +15,7 @@ $gruposN = false;
 $sql = "SELECT id, idAlumno, titulo, fecha FROM consultas_docente WHERE estado = 'contestada' AND idDocente = $idDocente ORDER BY id DESC";
 $resultado = $db->query($sql);
 
+
 ?>
 
 <?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) :
@@ -40,6 +41,8 @@ $resultado = $db->query($sql);
     while ($grupo = $resultadoGrupos->fetch(PDO::FETCH_ASSOC)) {
         $grupos[] = $grupo['grupo'];
     }
+
+    $grupos = Sistema::formatearGrupos($grupos, $db);
 
     // Me fijo si tiene más de un grupo
     if (sizeof($grupos) === 1) {

@@ -1,9 +1,20 @@
 .materias-container-chat {
-    padding: 2.5rem 0;
+    padding: 2.5rem 2rem;
     margin-bottom: 7.5rem;
     display: flex;
     flex-direction: column;
     color: $white;
+
+    form {
+       display: inline;
+       margin: 0 auto;
+       width: 100%;
+
+       @include desktop {
+        max-width: 35rem;
+        margin: 0;
+    }
+    }
 
     @include desktop {
         margin-bottom: 0;
@@ -23,7 +34,7 @@
         position: relative;
         z-index: 9;
         padding: 2rem 0;
-        width: 85%;
+        width: 100%;
         margin: 1rem auto;
         border-radius: 1rem;
         max-width: 85%;
@@ -46,7 +57,9 @@
         }
 
 
-        a {
+        button {
+            cursor: pointer;
+            background-color: transparent;
             transition: .35s;
             text-align: center;
             color: $white;
@@ -75,17 +88,27 @@
             position: absolute;
             height: 100%;
             width: 100%;
-            background: linear-gradient(90deg, #b1126fda, #7E0A2Cee);
+            background: linear-gradient(90deg, #b1126fce, #7e0a2dea);
         }
-        
     }
-    
 }
 
-.sky{
+.sky {
     background-image: url(/build/img/Chat/Sky.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .wave {
-    background-image: url(/build/img/Chat/Waves.jpg);
+    background-image: url(/build/img/Chat/Sky2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.title-grupo-chat {
+    text-align: center;
+    width: 85%;
+    margin: 2rem auto;
 }

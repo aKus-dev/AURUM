@@ -101,13 +101,6 @@ class Sistema
         return false;
     }
 
-    static public function crearAdmin($db)
-    {
-        $passwordHash = password_hash('esibuceo', PASSWORD_BCRYPT);
-        $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.svg')";
-        $db->query($sql);
-    }
-
     static public function errorHorario($idDocente, $db)
     {
         // Obtengo los datos del horario del profe
@@ -230,25 +223,50 @@ class Sistema
 
 
             ];
-
         }
 
-        if(!empty($resultados)) {
+        if (!empty($resultados)) {
             return $resultados;
         }
 
         return false;
     }
 
-    public static function cargarAsignaturas($db) {
+    public static function cargarAsignaturas($db)
+    {
         $sql = "SELECT nombre FROM asignaturas";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $asignatura = utf8_encode($row['nombre']); 
+            $asignatura = $row['nombre'];
             echo "<option value='$asignatura'>$asignatura</option>";
         }
-   
     }
 
+    public static function formatearGrupos($grupos, $db): array
+    {
+        // Le agrego un caracter de grupos
+        foreach ($grupos as $grupo) {
+
+            $numero = $grupo[0];
+            $letra1 = $grupo[1];
+            $letra2 = $grupo[2];
+
+            $format = $numero . "º" . $letra1 . $letra2;
+            $gruposFormateados[] = $format;
+        }
+
+        return $gruposFormateados;
+    }
+
+       // TEMPORAL
+       static public function crearAdmin($db)
+       {
+           $passwordHash = password_hash('esibuceo', PASSWORD_BCRYPT);
+           $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.svg')";
+           $db->query($sql);
+       }
+
+      // FIN TEMPORAL
+   
 }

@@ -91,7 +91,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                             <div class="materias-container">
                                 <?php
                                 foreach ($materias as $materia) {
-                                    $materia = utf8_encode($materia);
+                                    $materia = $materia;
                                     echo "<p>$materia</p>";
                                 }
                                 ?>

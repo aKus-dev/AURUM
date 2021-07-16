@@ -2,6 +2,8 @@
 
 require '../../config/app.php';
 require '../../clases/Docente.php';
+require '../../clases/Sistema.php';
+
 isAuth_docente();
 
 Docente::revisarHorarios($_SESSION['id'], $db);

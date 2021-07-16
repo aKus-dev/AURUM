@@ -69,7 +69,7 @@ class Docente
         // Iterar resultados;
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             foreach ($asignaturas as $asignatura) {
-                $asignaturaDecode = utf8_decode($asignatura); // Para que guarde con tildes y Ñ en la base de datos
+                $asignaturaDecode = $asignatura; // Para que guarde con tildes y Ñ en la base de datos
 
                 $idDocente = $row['id'];
                 $sql = "INSERT INTO asignaturas_docente VALUES ($idDocente, '$asignaturaDecode')";
