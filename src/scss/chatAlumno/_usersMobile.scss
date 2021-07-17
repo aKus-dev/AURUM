@@ -1,0 +1,122 @@
+.chat-mobile-menu {
+    transition-property: opacity;
+    transition-duration: .45s;
+
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000b2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+        overflow: auto;
+        width: 80%;
+        height: 80%;
+        max-width: 60rem;
+        background: $white;
+        border-radius: 1rem;
+        padding: 2rem;
+
+        .container-btn {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+
+            button {
+                transition: .1s;
+                cursor: pointer;
+                flex-grow: 1;
+                border: none;
+                border-radius: 1rem;
+                padding: 1rem;
+                font-size: 1.6rem;
+                background: linear-gradient(45deg, $darkViolet, $ligthViolet);
+                color: $white;
+                text-transform: uppercase;
+
+                &:active {
+                    transform: scale(0.9);
+                }
+            }
+        }
+
+        .user {
+            padding: 0 3rem;
+            font-size: 1.6rem;
+
+            
+
+            #crown {
+                font-size: 2rem;
+                color: gold;
+            }
+
+            #student {
+                font-size: 2rem;
+                color: $ligthViolet;
+            }
+
+            #status-online {
+                font-size: 1rem;
+                color: #4bcc10;
+            }
+        }
+
+        .chat-active {
+            transition: .35s;
+            background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+            color: $white;
+            margin: 2.5rem auto;
+            width: 85%;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 1rem #eee4e4;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            .materia {
+                font-weight: bold;
+                margin: .5rem 0;
+            }
+            
+            p {
+                font-size: 1.5rem;
+            }
+
+            a {
+                display: block;
+                width: 85%;
+                margin: 1.5rem auto;
+                padding: .5rem 0;
+                font-size: 1.8rem;
+                border-radius: 1rem;
+                background: $white;
+
+                i {
+                    color: $ligthViolet;
+                }
+            }
+        }
+
+    }
+}
+
+.flex-alumnos-chat {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin: 1.5rem 0;
+}
+
+
+
+.hiddeMenuMobileChat {
+    display: none;
+}
+

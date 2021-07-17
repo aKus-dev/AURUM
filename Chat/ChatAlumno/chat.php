@@ -41,11 +41,10 @@ require '../../config/app.php';
 <body>
     <header class=" chat-header bg-main">
     <p class="title">Programación Web</p>
-    <i class="fas fa-users"></i>
+    <i id="showMenu" class="fas fa-users"></i>
     </header>
 
     <main class="chat-container">
-
         <div class="users display-none">
             <div class="text-center">
                 <h3>Otros chats activos</h3>
@@ -54,29 +53,26 @@ require '../../config/app.php';
                     <p class="materia">Matemática</p>
                     <p>Creado por: <span>Manuel Ugarte</span> </p>
 
-                    <a href="#" class="bg-main">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="#">
+                        <i class=" fas fa-arrow-right"></i>
                     </a>
                 </div>
-
             </div>
         </div>
 
         <div class="chat">
             <div class="messages">
+                <div class="messages-container">
+                    <div class="you">
+                        <p>Hola!! Tengo una duda profavor contestame HDP! poruqe no se como resolver una duda que tneog rsta muy difico la verdad no se que ams hacer</p>
+                        <span>Enviado por: Agustin Vega</span>
+                    </div>
 
-                <div  class="you">
-                 <p>Hola!! Tengo una duda profavor contestame HDP! poruqe no se como resolver una duda que tneog rsta muy difico la verdad no se que ams hacer</p>
-                  <span>Enviado por: Agustin Vega</span>
+                    <div class="they">
+                        <p>Sos flor de boludo</p>
+                        <span>Enviado por: Leonardo López</span>
+                    </div>
                 </div>
-           
-         
-                <div  class="they">
-                 <p>Sos flor de boludo</p>
-                  <span>Enviado por: Leonardo López</span>
-                </div>
-
-
             </div>
 
             <form method="GET">
@@ -113,17 +109,12 @@ require '../../config/app.php';
                         <i id="status-online" class="fas fa-circle"></i>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
-
-
-
-
+        <?php include './internal/menuMobile.php' ?>
     </main>
 
-    </body>
 
+        <script src="/build/js/chatMenuMobile.js"></script>
+      </body>
 </html>

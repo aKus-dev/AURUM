@@ -1,7 +1,6 @@
 .chat-header {
     height: 7rem;
     padding: 2rem 5rem 2rem 2rem;
-    border-radius: 0 0 5rem 0;
     box-shadow: 0 0 1rem #696969;
     display: flex;
     justify-content: space-between;
@@ -31,6 +30,7 @@
 }
 
 .chat-container {
+    position: relative;
 
     @media(min-width: 1200px){
         display: grid;
@@ -135,11 +135,18 @@
         }
 
         .chat-active {
+            transition: .35s;
+            background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+            color: $white;
             margin: 2.5rem auto;
             width: 85%;
             padding: 1rem 2rem;
             border-radius: 1rem;
-            box-shadow: 0 0 1rem #b8b8b8;
+            box-shadow: 0 0 1rem #eee4e4;
+
+            &:hover {
+                transform: scale(1.05);
+            }
 
             .materia {
                 font-weight: bold;
@@ -148,10 +155,6 @@
             
             p {
                 font-size: 1.5rem;
-
-                span {
-                    color: $ligthViolet;
-                }
             }
 
             a {
@@ -161,9 +164,10 @@
                 padding: .5rem 0;
                 font-size: 1.8rem;
                 border-radius: 1rem;
+                background: $white;
 
                 i {
-                    color: $white;
+                    color: $ligthViolet;
                 }
             }
         }
@@ -171,70 +175,4 @@
     }
 }
 
-
-.messages {
-    padding: 4rem 2rem 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-}
-
-.you {
-    margin: .5rem 0;
-    max-width: 85%;
-    align-self: flex-end;
-
-    display: flex;
-    flex-direction: column;
-
-    span {
-        align-self: flex-end;
-        margin: .5rem 0;
-        font-size: 1.2rem;
-        color: $ligthViolet;
-        font-weight: bold;
-    }
-
-    p {
-        border-radius: 5rem 5rem 0 5rem;
-        background: linear-gradient(90deg, $ligthViolet, $darkViolet);
-        padding: 2rem 2rem 2rem 3rem;
-        font-size: 1.6rem;
-        color: $white;
-    }
-
-    @include desktop {
-        max-width: 70%;
-    }
-}
-
-.they {
-    margin: .5rem 0;
-    max-width: 85%;
-    align-self: flex-start;
-
-    display: flex;
-    flex-direction: column;
-
-    span {
-        padding-left: 2rem;
-        align-self: flex-start;
-        margin: .8rem 0;
-        font-size: 1.2rem;
-        color: #444851;
-        font-weight: bold;
-    }
-
-    p {
-        border-radius: 5rem 5rem 0 5rem;
-        background: #E9EFF4;
-        padding: 2rem 2rem 2rem 3rem;
-        font-size: 1.6rem;
-        color: #444851;
-    }
-
-    @include desktop {
-        max-width: 70%;
-    }
-}
 

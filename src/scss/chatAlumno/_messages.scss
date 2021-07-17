@@ -1,0 +1,73 @@
+.messages {
+    padding: 4rem 2rem 2rem 2rem;
+    display: grid;
+    overflow: auto;
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+}
+
+.you {
+    margin: .5rem 0;
+    max-width: 85%;
+    align-self: flex-end;
+
+
+    display: flex;
+    flex-direction: column;
+
+    span {
+        align-self: flex-end;
+        margin: .5rem 0;
+        font-size: 1.2rem;
+        color: $ligthViolet;
+        font-weight: bold;
+    }
+
+    p {
+        border-radius: 5rem 5rem 0 5rem;
+        background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+        padding: 2rem 2rem 2rem 3rem;
+        font-size: 1.6rem;
+        color: $white;
+    }
+
+    @include desktop {
+        max-width: 70%;
+    }
+}
+
+.they {
+    margin: .5rem 0;
+    max-width: 85%;
+    align-self: flex-start;
+
+
+    display: flex;
+    flex-direction: column;
+
+    span {
+        padding-left: 2rem;
+        align-self: flex-start;
+        margin: .8rem 0;
+        font-size: 1.2rem;
+        color: #444851;
+        font-weight: bold;
+    }
+
+    p {
+        border-radius: 5rem 5rem 5rem 0;
+        background: #E9EFF4;
+        padding: 2rem 2rem 2rem 3rem;
+        font-size: 1.6rem;
+        color: #444851;
+    }
+
+    @include desktop {
+        max-width: 70%;
+    }
+}
+
