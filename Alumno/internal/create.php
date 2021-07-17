@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $success = Alumno::realizarConsulta($idAlumno, $idDocente, $titulo, $descripcion, $db);
 
-        if(!$success) {
-           $errorHorario = true;
-           $datos = Sistema::errorHorario($idDocente, $db);
+        if (!$success) {
+            $errorHorario = true;
+            $datos = Sistema::errorHorario($idDocente, $db);
         }
     }
 }
@@ -73,19 +73,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- Se registro correctamente-->
         <?php if ($errorHorario) : ?>
-        
-        <?php 
+
+            <?php
             $diaMinimo = $datos['diaMinimo'];
             $diaMaximo = $datos['diaMaximo'];
             $horaMinima = $datos['horaMinima'];
             $horaMaxima = $datos['horaMaxima'];
-        ?>
-            <div class="text-center width100">
-                <p id="danger" class="alert-danger">El docente solo acepta consultas de 
-                    <?php echo $diaMinimo ?> a   <?php echo $diaMaximo ?> entre  <?php echo $horaMinima ?> y
-                    <?php echo $horaMaxima ?> horas
-                </p>
-            </div>
+            ?>
+
+
+            <!-- NO ha registrado horarios -->
+            <?php if (empty($diaMinimo) || empty($diaMaximo) ||  empty($horaMinima) ||  empty($horaMaxima)) : ?>
+                <div class="text-center width100">
+                    <p id="danger" class="alert-danger">El docente aún no ha registrado sus horarios, intentalo más tarde</p>
+                </div>
+            <?php endif; ?>
+
+            <!-- Caso que haya registrado horarios, pero no se encuentra en el horario valido del docente -->
+            <?php if (!empty($diaMinimo) && !empty($diaMaximo) &&  !empty($horaMinima) &&  !empty($horaMaxima)) : ?>
+                <div class="text-center width100">
+                    <p id="danger" class="alert-danger">El docente solo acepta consultas de
+                        <?php echo $diaMinimo ?> a <?php echo $diaMaximo ?> entre <?php echo $horaMinima ?> y
+                        <?php echo $horaMaxima ?> horas
+                    </p>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
 
         <!-- Se registro correctamente-->
