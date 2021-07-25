@@ -16,20 +16,20 @@ $resultado = $db->query($sql);
 
 <?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) :  $hayResultado_contestada = true ?>
 
-<?php
+    <?php
 
-$idDocente = $row['idDocente'];
+    $idDocente = $row['idDocente'];
 
-// Selecciono el nombre del profesores
-$sqlDocente = "SELECT nombre,apellido FROM docente WHERE id = $idDocente";
-$resultadoDocente = $db->query($sqlDocente); 
+    // Selecciono el nombre del profesores
+    $sqlDocente = "SELECT nombre,apellido FROM docente WHERE id = $idDocente";
+    $resultadoDocente = $db->query($sqlDocente);
 
-while ($datosDocente = $resultadoDocente->fetch(PDO::FETCH_ASSOC)) {
-    $nombreDocente = $datosDocente['nombre'];
-    $apellidoDocente = $datosDocente['apellido'];
-}
+    while ($datosDocente = $resultadoDocente->fetch(PDO::FETCH_ASSOC)) {
+        $nombreDocente = $datosDocente['nombre'];
+        $apellidoDocente = $datosDocente['apellido'];
+    }
 
-?>
+    ?>
     <div class="consulta--container">
         <div class="date-style">
             <div class="line"></div>
@@ -54,15 +54,20 @@ while ($datosDocente = $resultadoDocente->fetch(PDO::FETCH_ASSOC)) {
 
             <div class="flex-consultas-datos">
                 <h5>De</h5>
-                <p><?php  echo $nombre . " " . $apellido ?></p>
+                <p><?php echo $nombre . " " . $apellido ?></p>
             </div>
 
             <div class="flex-consultas-datos">
                 <div id="btn-consulta">
-                    <a <?php echo "href=./ver_contestada.php?id=${row['id']}&n=$nombre&a=$apellido&nd=$nombreDocente&ad=$apellidoDocente" ?> class="btn-consulta bg-main">
-                        <p>Ver</p>
-                        <i class="fas fa-arrow-circle-right white"></i>
-                    </a>
+                    <form action="./ver_contestada.php" method="POST">
+                        <input type="hidden" value="<?php echo  $row['id'] ?>" name="id">
+                        <input type="hidden" value="<?php echo $nombre ?>" name="nombre_alumno">
+                        <input type="hidden" value="<?php echo $apellido ?>" name="apellido_alumno">
+                        <input type="hidden" value="<?php echo $nombreDocente ?>" name="nombre_docente">
+                        <input type="hidden" value="<?php echo $apellidoDocente ?>" name="apellido_docente">
+
+                        <button type="submit" class="btn-consulta bg-main">Ver <i class="fas fa-arrow-circle-right white"></i></button>
+                    </form>
                 </div>
 
             </div>

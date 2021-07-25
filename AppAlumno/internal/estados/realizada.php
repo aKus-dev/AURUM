@@ -80,12 +80,14 @@ if (sizeof($grupos) === 1) {
 
             <div class="flex-consultas-datos">
                 <div id="btn-consulta">
-                    <a <?php echo "href=./ver_realizada.php?id=${row['id']}&n=$nombre&a=$apellido" ?> class="btn-consulta bg-main">
-                        <p>Ver</p>
-                        <i class="fas fa-arrow-circle-right white"></i>
-                    </a>
-                </div>
+                    <form action="./ver_realizada.php" method="POST">
+                        <input type="hidden" value="<?php echo  $row['id'] ?>" name="id">
+                        <input type="hidden" value="<?php echo $nombre ?>" name="nombre_alumno">
+                        <input type="hidden" value="<?php echo $apellido ?>" name="apellido_alumno">
 
+                        <button type="submit" class="btn-consulta bg-main">Ver <i class="fas fa-arrow-circle-right white"></i></button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

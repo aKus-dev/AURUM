@@ -14,7 +14,7 @@ if (!empty($_GET)) {
     if ($consulta) {
         $resultados = Sistema::buscarConsulta($consulta, $db);
 
-        if(!$resultados) {
+        if (!$resultados) {
             $mostrarAlerta = true;
         }
     }
@@ -98,13 +98,18 @@ if (!empty($_GET)) {
                                 <p><?php echo $nombreDocente . " " . $apellidoDocente ?></p>
                             </div>
 
-       
+
                             <div class="flex-consultas-datos">
                                 <div id="btn-consulta">
-                                    <a <?php echo "href=./ver_buscada.php?id=$id&n=$nombreAlumno&a=$apellidoAlumno&nd=$nombreDocente&ad=$apellidoDocente" ?> class="btn-consulta bg-main">
-                                        <p>Ver</p>
-                                        <i class="fas fa-arrow-circle-right white"></i>
-                                    </a>
+                                    <form action="./ver_buscada.php" method="POST">
+                                        <input type="hidden" value="<?php echo $id ?>" name="id">
+                                        <input type="hidden" value="<?php echo $nombreAlumno ?>" name="nombre_alumno">
+                                        <input type="hidden" value="<?php echo $apellidoAlumno ?>" name="apellido_alumno">
+                                        <input type="hidden" value="<?php echo $nombreDocente ?>" name="nombre_docente">
+                                        <input type="hidden" value="<?php echo $apellidoDocente ?>" name="apellido_docente">
+
+                                        <button type="submit" class="btn-consulta bg-main">Ver <i class="fas fa-arrow-circle-right white"></i></button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -116,10 +121,10 @@ if (!empty($_GET)) {
 
 
             <?php if ($mostrarAlerta) :  ?>
-                    <div class="no-consultas bg-main">
-                        <p>No se han encontrado resultados</p>
-                    </div>
-            <?php endif ?> 
+                <div class="no-consultas bg-main">
+                    <p>No se han encontrado resultados</p>
+                </div>
+            <?php endif ?>
         </div>
     </main>
 

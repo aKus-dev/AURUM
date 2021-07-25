@@ -1,18 +1,23 @@
 <?php
 
 require '../../config/app.php';
-require '../../clases/Docente.php';
+require '../../clases/Alumno.php';
 
 isAuth_alumno();
 
-if (empty($_GET)) {
-    header('Location: /Docente/index.php');
+if (empty($_POST)) {
+    header('Location: /AppAlumno/index.php');
 }
 
-$idConsulta = $_GET['id'];
-// HACER EL TEMA DE EMPTY
-$nombre = $_GET['n'];
-$apellido = $_GET['a'];
+$idConsulta = $_POST['id'];
+$nombre = $_POST['nombre_alumno'];
+$apellido = $_POST['apellido_alumno'];
+
+$titulo = '';
+$fecha = '';
+$descripcion = '';
+$respuesta = '';
+
 
 $titulo = '';
 $fecha = '';
@@ -28,11 +33,6 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $fecha = $row['fecha'];
     $descripcion = $row['descripcion'];
 }
-
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-   Docente::responderConsulta($idConsulta, $_POST['respuesta'], $db);
-}
-
 
 ?>
 
