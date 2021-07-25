@@ -90,7 +90,7 @@ $db->query($sql);
                 <p>Ante cualquier problema o incidencia podrás ponerte en contacto con nosotros para brindarte una ayuda lo más pronto posible.</p>
                 <div class="btn-flex">
                     <button id="btn-atras3" class="welcome__btn welcome__btn--back">Atras</button>
-                    <a href="/Docente/internal/horarios.php">
+                    <a href="/AppDocente/internal/horarios.php">
                         <button id="btn-entendido" class="welcome__btn">Entendido</button>
                     </a> 
                 </div>

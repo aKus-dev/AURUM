@@ -139,7 +139,7 @@ class Docente
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-        header("Location: /Docente/internal/consultas.php?success=true&type=enviada");
+        header("Location: /AppDocente/internal/consultas.php?success=true&type=enviada");
     }
 
     static public function modificar($db, $nombre, $apellido, $password, $passwordValidate, $imagen)
@@ -197,18 +197,18 @@ class Docente
 
         // Si los datos no coinciden
         if ($error) {
-            header('Location: /Docente/internal/perfil.php?error=true');
+            header('Location: /AppDocente/internal/perfil.php?error=true');
             return;
         }
 
         // Si se cambio bien la contraseña
         if ($success) {
-            header('Location: /Docente/internal/perfil.php?success=true');
+            header('Location: /AppDocente/internal/perfil.php?success=true');
             return;
         }
 
         // Llega aca si solo queria cambiar nombre o apellido
-        header('Location: /Docente/internal/perfil.php');
+        header('Location: /AppDocente/internal/perfil.php');
     }
 
     public static function eliminarDocente($idDocente, $db) {

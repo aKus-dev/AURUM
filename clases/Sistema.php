@@ -18,7 +18,7 @@ class Sistema
                 $_SESSION['sesion_admin'] = true;
                 $_SESSION['usuario'] = $row['usuario'];
                 $_SESSION['imagen'] = $row['imagen'];
-                header('Location: /Administrador/index.php');
+                header('Location: /AppAdmin/index.php');
                 return true;
             }
         }
@@ -54,7 +54,7 @@ class Sistema
                 if ($row['primer_login'] === '1') {
                     header("Location: ../welcome/docente.php?id=$id&name=$name");
                 } else {
-                    header('Location: /Docente/index.php');
+                    header('Location: /AppDocente/index.php');
                 }
 
                 return true;
@@ -90,7 +90,7 @@ class Sistema
                 if ($row['primer_login'] === '1') {
                     header("Location: ../welcome/alumno.php?id=$id&name=$name");
                 } else {
-                    header('Location: /Alumno/index.php');
+                    header('Location: /AppAlumno/index.php');
                 }
 
                 return true;

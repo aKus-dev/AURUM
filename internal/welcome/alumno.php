@@ -91,7 +91,7 @@ $db->query($sql);
 
                 <div class="btn-flex">
                     <button id="btn-atras3" class="welcome__btn welcome__btn--back">Atras</button>
-                    <a href="/Alumno/index.php">
+                    <a href="/AppAlumno/index.php">
                         <button id="btn-entendido" class="welcome__btn">Entendido</button>
                     </a> 
                 </div>
