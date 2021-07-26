@@ -2,6 +2,10 @@
     transition-property: opacity;
     transition-duration: .45s;
 
+    @media (min-width: 1200px) {
+        display: none;
+    }
+
     position: absolute;
     top: 0;
     width: 100%;

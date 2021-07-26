@@ -2565,6 +2565,9 @@ select[multiple] {
   display: flex;
   align-items: center;
   justify-content: center; }
+  @media (min-width: 1200px) {
+    .chat-mobile-menu {
+      display: none; } }
   .chat-mobile-menu .content {
     overflow: auto;
     width: 80%;
