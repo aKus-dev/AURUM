@@ -1,9 +1,0 @@
-Dark mode:
-
-***** Colores negros *****
-Color principal: #0F1014
-Color secundario: #0E0F12
-
-***** Violetas oscuros *****
-Principal: #531A5D
-

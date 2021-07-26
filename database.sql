@@ -117,6 +117,29 @@ CREATE TABLE consultas_alumno (
     REFERENCES Docente(id) ON DELETE CASCADE
 );
 
+/* TEMPORAL (esto va a estar hasta que este el app del admin) */
+INSERT INTO asignaturas (nombre, grado)  VALUES 
+('A.D.A', 3),
+('Fisica I', 1),
+('Fisica II', 2),
+('Historia', 1),
+('Economia', 2),
+('Sociologia', 3),
+('Proyecto', 3),
+('Filosofia', 3),
+('Matematicas I', 1),
+('Matematicas II', 2),
+('Matematicas III', 3),
+('Base de datos I', 2),
+('Programacion I', 1),
+('Programacion II', 2),
+('Programacion III', 3),
+('Programacion Web', 3),
+('Sistemas Operativos I', 1),
+('Sistemas Operativos II', 2),
+('Sistemas Operativos III', 3);
+
+
 /* Registrar el administrador */
 INSERT INTO Administrador (usuario,contrasena) VALUES (
 'admin','esibuceo'
