@@ -36,7 +36,7 @@
             <!--  Usuario que se unió -->
             <div class="user flex-alumnos-chat">
                 <i id="student" class="fas fa-graduation-cap"></i>
-                <p>Nahuel Morales</p>
+                <p>Roberto Cagaleri</p>
 
                 <div class="online">
                     <i id="status-online" class="fas fa-circle"></i>

@@ -2,8 +2,10 @@
 
 require '../../config/app.php';
 
+$asignatura = '';
+$grupo = '';
 
-/* if (!empty($_POST)) {
+if (!empty($_POST)) {
     $asignatura = $_POST['asignatura'];
     $grupo = $_POST['grupo'];
 
@@ -19,10 +21,8 @@ require '../../config/app.php';
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         // Obtener datos del docente
     }
+
 }
- */
-
-
 
 ?>
 
@@ -40,7 +40,7 @@ require '../../config/app.php';
 </head>
 <body>
     <header class=" chat-header bg-main">
-    <p class="title">Programación Web</p>
+    <p class="title"><?php echo $asignatura ?></p>
     <i id="showMenu" class="fas fa-users"></i>
     </header>
 
@@ -64,12 +64,12 @@ require '../../config/app.php';
             <div class="messages">
                 <div class="messages-container">
                     <div class="you">
-                        <p>Hola!! Tengo una duda profavor contestame HDP! poruqe no se como resolver una duda que tneog rsta muy difico la verdad no se que ams hacer</p>
+                        <p>Hola!! Tengo una duda sobre javascript </p>
                         <span>Enviado por: Agustin Vega</span>
                     </div>
 
                     <div class="they">
-                        <p>Sos flor de boludo</p>
+                        <p>Hola! Si, decime </p>
                         <span>Enviado por: Leonardo López</span>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ require '../../config/app.php';
                 <!--  Usuario que se unió -->
                 <div class="user">
                     <i id="student" class="fas fa-graduation-cap"></i>
-                    <p>Nahuel Morales</p>
+                    <p>Roberto Cagaleri</p>
 
                     <div class="online">
                         <i id="status-online" class="fas fa-circle"></i>

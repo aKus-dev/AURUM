@@ -68,7 +68,7 @@ $i = 0;
                     <?php $nombre = $row['nombre']; ?>
                     <?php $actual === 'filter-violet sky' ? $actual = 'filter-darkviolet wave' : $actual = 'filter-violet sky' ?>
 
-                    <form method="POST">
+                    <form action="./chat.php" method="POST">
                         <div class="materia <?php echo $actual ?>">
                             <h3><?php echo $nombre ?></h3>
                             <button>Crear</button>
