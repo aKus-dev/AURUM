@@ -37,7 +37,8 @@ CREATE TABLE docente (
     dia_maximo INT,
     hora_minima CHAR(5),
     hora_maxima CHAR(5),
-    primer_login BOOl NOT NULL
+    primer_login BOOl NOT NULL,
+    registro_horarios BOOL NOT NULL
 );
 
 /* Esta tabla almacenara los grupos de los docentes*/
@@ -115,6 +116,11 @@ CREATE TABLE consultas_alumno (
     REFERENCES Alumno(id) ON DELETE CASCADE,
     CONSTRAINT FK_Alumno_idDocente_consulta2 FOREIGN KEY (idDocente) 
     REFERENCES Docente(id) ON DELETE CASCADE
+);
+
+CREATE TABLE asignaturas (
+    nombre VARCHAR(35) NOT NULL,
+    grado INT NOT NULL
 );
 
 /* TEMPORAL (esto va a estar hasta que este el app del admin) */
