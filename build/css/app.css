@@ -483,6 +483,9 @@ textarea {
 .not-allowed {
   cursor: not-allowed; }
 
+.absolute {
+  position: absolute; }
+
 .btn {
   display: block;
   padding: 2rem;
