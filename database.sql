@@ -37,7 +37,8 @@ CREATE TABLE docente (
     dia_maximo INT,
     hora_minima CHAR(5),
     hora_maxima CHAR(5),
-    primer_login BOOl NOT NULL
+    primer_login BOOl NOT NULL,
+    registro_horarios BOOL NOT NULL
 );
 
 /* Esta tabla almacenara los grupos de los docentes*/
@@ -117,6 +118,11 @@ CREATE TABLE consultas_alumno (
     REFERENCES Docente(id) ON DELETE CASCADE
 );
 
+CREATE TABLE asignaturas (
+    nombre VARCHAR(35) NOT NULL,
+    grado INT NOT NULL
+);
+
 /* TEMPORAL (esto va a estar hasta que este el app del admin) */
 INSERT INTO asignaturas (nombre, grado)  VALUES 
 ('A.D.A', 3),
@@ -139,11 +145,67 @@ INSERT INTO asignaturas (nombre, grado)  VALUES
 ('Sistemas Operativos II', 2),
 ('Sistemas Operativos III', 3);
 
-
 /* Registrar el administrador */
 INSERT INTO Administrador (usuario,contrasena) VALUES (
 'admin','esibuceo'
 );
+
+/* ======================= CHAT ======================= */
+DROP TABLE usuarios;
+
+/* Tabla que almacena todos los usuarios del sistema (útil para el chat, no se mezclan los id's) */
+CREATE TABLE usuarios (
+		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        CI CHAR(8)
+);
+
+DROP TABLE chat;
+CREATE TABLE chat (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	idHost INT UNIQUE NOT NULL,
+    nombreHost VARCHAR(30),
+	apellidoHost VARCHAR(30),
+    idDocente INT NOT NULL,
+    nombreDocente VARCHAR(25),
+    apellidoDocente VARCHAR(25),
+    materia VARCHAR(30),
+    CONSTRAINT FK_anfitrion FOREIGN KEY (idHost) 
+    REFERENCES alumno(id) ON DELETE CASCADE,
+	CONSTRAINT FK_docente_chat FOREIGN KEY (idDocente) 
+    REFERENCES docente(id) ON DELETE CASCADE
+);
+
+INSERT INTO chat (idHost, nombreHost, apellidoHost, idDocente, nombreDocente, apellidoDocente) VALUES (
+	1, 'Juan', 'Vives', 1, 'Richard', 'Pias'
+);
+
+DROP TABLE mensajes_chat;
+CREATE TABLE mensajes_chat (
+	idChat INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    idUsuario INT,
+    nombreUsuario VARCHAR(30),
+    apellidoUsuario VARCHAR(30),
+    mensaje VARCHAR(500),
+	CONSTRAINT FK_idChat FOREIGN KEY (idChat) 
+    REFERENCES chat(id) ON DELETE CASCADE
+);
+
+DROP TABLE usuarios_chat;
+CREATE TABLE usuarios_chat (
+	idChat INT NOT NULL,
+	idUsuario INT,
+	nombreUsuario VARCHAR(30),
+    apellidoUsuario VARCHAR(30),
+    CONSTRAINT FK_idChat2 FOREIGN KEY (idChat) 
+    REFERENCES chat(id) ON DELETE CASCADE
+);
+
+
+/* CHAT */
+SELECT * FROM chat;
+SELECT * FROM usuarios_chat;
+SELECT * FROM mensajes_chat;
+
 
 
 use aurum;
@@ -159,5 +221,8 @@ SELECT * FROM administrador;
 SELECT * FROM Pendientes;
 SELECT * FROM Cedulas;
 
-SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = 1;
 
+
+
+
+SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = 1;
