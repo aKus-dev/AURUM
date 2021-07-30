@@ -245,6 +245,7 @@ class Sistema
 
     public static function formatearGrupos($grupos, $db): array
     {
+        $gruposFormateados = [];
         // Le agrego un caracter de grupos
         foreach ($grupos as $grupo) {
 

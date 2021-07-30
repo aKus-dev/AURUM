@@ -35,6 +35,9 @@ class Alumno
         // Hashear password
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
 
+        $sqlUsuarios = "INSERT INTO usuarios (ci) VALUES ($CI)";
+        $db->query($sqlUsuarios);
+
         // Codigo SQL
         $sql = "INSERT INTO Alumno (CI,nombre,apellido,contrasena,imagen, primer_login) VALUES 
         ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen', true)";
