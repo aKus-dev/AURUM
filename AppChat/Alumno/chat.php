@@ -1,28 +1,22 @@
 <?php
 
 require '../../config/app.php';
+require '../../clases/Chat.php';
 
-$asignatura = '';
-$grupo = '';
+isAuth_alumno();
 
-if (!empty($_POST)) {
-    $asignatura = $_POST['asignatura'];
-    $grupo = $_POST['grupo'];
+$idChat = '';
+$datosChat = [];
 
-    // Obtengo los datos del profesor de esa asignatura en el grupo
-    $sql  = "SELECT DISTINCT id, nombre, apellido
-             FROM docente
-             INNER JOIN grupos_docente
-             ON grupos_docente.idDocente = docente.id AND grupo = '$grupo'
-             INNER JOIN asignaturas_docente as asignaturas
-             ON docente.id = asignaturas.idDocente AND asignatura = '$asignatura'";
-
-    $result = $db->query($sql);
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        // Obtener datos del docente
-    }
-
+// Si está el id, lo obtengo
+if(isset($_POST['idChat'])) {
+    $idChat = $_POST['idChat'];
+    $datosChat = Chat::getDatos($idChat, $db);
 }
+
+$idHost = $datosChat['idHost'];
+
+
 
 ?>
 
@@ -40,7 +34,7 @@ if (!empty($_POST)) {
 </head>
 <body>
     <header class=" chat-header bg-main">
-    <p class="title"><?php echo $asignatura ?></p>
+    <p class="title"><?php echo $datosChat['asignatura'] ?></p>
     <i id="showMenu" class="fas fa-users"></i>
     </header>
 
@@ -63,21 +57,39 @@ if (!empty($_POST)) {
         <div class="chat">
             <div class="messages">
                 <div class="messages-container">
-                    <div class="you">
-                        <p>Hola!! Tengo una duda sobre javascript </p>
-                        <span>Enviado por: Agustin Vega</span>
-                    </div>
+                    <?php
+                    // Obtengo todos los mensajes de este chat
+                    $sql = "SELECT idUsuario, mensaje, nombreUsuario, apellidoUsuario FROM mensajes_chat WHERE idChat = $idChat";
+                    $result = $db->query($sql);
 
-                    <div class="they">
-                        <p>Hola! Si, decime </p>
-                        <span>Enviado por: Leonardo López</span>
-                    </div>
+                    // Recorro los resultados y los almaceno en variables
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) :
+                        $idUsuario = $row['idUsuario'];
+                        $mensaje = $row['mensaje'];
+                        $nombreUsuario = $row['nombreUsuario'];
+                        $apellidoUsuario = $row['apellidoUsuario'];
+
+                        // Dependiendo de si el mensaje es del alumno o de otros los muestro
+                        if ($idUsuario === $idHost) :  ?>
+                            <div class="you">
+                                <p> <?php echo $mensaje ?> </p>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($idUsuario !== $idHost) :  ?>
+                            <div class="they">
+                                <p> <?php echo $mensaje ?> </p>
+                                <span>Enviado por: <?php echo $nombreUsuario . " " . $apellidoUsuario ?> </span>
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
                 </div>
             </div>
 
-            <form method="GET">
+            <form method="POST">
                 <div id="sendMsg">
                     <input name="mensaje" type="text" placeholder="Mensaje...">
+                    <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
 
                     <button class="bg-main">
                         <i class="fas fa-paper-plane"></i>
@@ -115,6 +127,7 @@ if (!empty($_POST)) {
     </main>
 
 
-        <script src="/build/js/chatMenuMobile.js"></script>
-      </body>
+    <script src="/build/js/chatMenuMobile.js"></script>
+    </body>
+
 </html>

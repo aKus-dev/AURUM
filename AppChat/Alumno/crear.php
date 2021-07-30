@@ -3,12 +3,13 @@
 require '../../config/app.php';
 require '../../clases/Sistema.php';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos, crear el chat y pasar el id del chat
     header("Location: ./chat.php");
 }
 
 isAuth_alumno();
+
 
 $id = $_SESSION['id'];
 $grupos = [];
@@ -22,10 +23,12 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $grupos[] = $row['grupo'];
 }
 
+
 $gruposCopia = $grupos;
 $gruposFormateados = Sistema::formatearGrupos($gruposCopia, $db);
 
 $i = 0;
+
 ?>
 
 
@@ -41,18 +44,32 @@ $i = 0;
     <link rel="stylesheet" href="/build/css/app.css"">
     <title>AURUM: Empezemos</title>
 </head>
-<body>
+<body style="overflow: hidden">
     <div class=" alumno-container">
     <?php include '../../AppAlumno/templates/header.html' ?>
 
+    <!-- Caso de que el chat NO tenga docente -->
+    <?php if (!empty($_GET['empty'])) : ?>
+        <div class="text-center width100 absolute">
+            <p id="danger" class="alert-danger">La materia seleccionada aún no tiene un docente asignado</p>
+        </div>
+    <?php endif; ?>
+
+     <!-- Caso de que ya este creado -->
+     <?php if (!empty($_GET['created'])) : ?>
+        <div class="text-center width100 absolute">
+            <p id="danger" class="alert-danger">El chat ya está creado. Puedes unirte yendo a la sección anterior</p>
+        </div>
+    <?php endif; ?>
+
     <div class="chat-materia">
         <div class="materias-container-chat">
-
             <?php foreach ($grupos as $grupo) :
                 // Me quedo solo con la parte entera del grupo
                 $grado = substr($grupo, 0, -2);
 
-                $sql = "SELECT id, nombre, grado FROM asignaturas WHERE grado = $grado ORDER BY nombre ASC";
+
+                $sql = "SELECT nombre, grado FROM asignaturas WHERE grado = $grado ORDER BY nombre ASC";
                 $result = $db->query($sql);
 
             ?>
@@ -68,13 +85,22 @@ $i = 0;
                     <?php $nombre = $row['nombre']; ?>
                     <?php $actual === 'filter-violet sky' ? $actual = 'filter-darkviolet wave' : $actual = 'filter-violet sky' ?>
 
-                    <form action="./chat.php" method="POST">
+                    <form action="./internal/gestionar.php" method="POST">
                         <div class="materia <?php echo $actual ?>">
                             <h3><?php echo $nombre ?></h3>
                             <button>Crear</button>
 
+                            <?php
+                            $idAlumno = $_SESSION['id'];
+                            $nombreAlumno = $_SESSION['nombre'];
+                            $apellidoAlumno = $_SESSION['apellido'];
+                            ?>
+
                             <input type="hidden" name="asignatura" value="<?php echo $row['nombre'] ?>">
                             <input type="hidden" name="grupo" value="<?php echo $grupo ?>">
+                            <input type="hidden" name="idAlumno" value="<?php echo $idAlumno ?>">
+                            <input type="hidden" name="nombreAlumno" value="<?php echo  $nombreAlumno  ?>">
+                            <input type="hidden" name="apellidoAlumno" value="<?php echo  $apellidoAlumno ?>">
 
                             <div class="<?php echo $actual ?>"></div>
                         </div>
@@ -89,4 +115,5 @@ $i = 0;
 
         </body>
 
+        <script src="/build/js/removeAlert.js"></script>
 </html>
