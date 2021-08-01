@@ -39,7 +39,7 @@ isAuth_alumno();
                 <h3 class="option__heading">Unete a un chat</h3>
                     <p>Entra aquí para unirte a un chat ya existente</p>
 
-                    <a href="#">Unirse</a>
+                    <a href="/AppChat/Alumno/unirse.php">Unirse</a>
                 </div>
                 <div class="filter-option"></div>
             </div>

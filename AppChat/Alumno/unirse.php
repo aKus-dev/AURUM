@@ -69,7 +69,7 @@ $i = 0;
                 $grado = substr($grupo, 0, -2);
 
 
-                $sql = "SELECT nombre, grado FROM asignaturas WHERE grado = $grado ORDER BY nombre ASC";
+                $sql = "SELECT id, asignatura FROM chat";
                 $result = $db->query($sql);
 
             ?>
@@ -82,13 +82,14 @@ $i = 0;
                 </p>
 
                 <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
-                    <?php $nombre = $row['nombre']; ?>
+                    <?php $asignatura = $row['asignatura']; ?>
                     <?php $actual === 'filter-violet sky' ? $actual = 'filter-darkviolet wave' : $actual = 'filter-violet sky' ?>
 
-                    <form action="./internal/gestionar.php" method="POST">
+                    <form action="./internal/gestionar_unirse.php" method="POST">
                         <div class="materia <?php echo $actual ?>">
-                            <h3><?php echo $nombre ?></h3>
-                            <button>Crear</button>
+                            <h3><?php echo $asignatura ?></h3>
+                            <button>Unirse</button>
+
 
                             <?php
                             $idAlumno = $_SESSION['id'];
@@ -96,11 +97,10 @@ $i = 0;
                             $apellidoAlumno = $_SESSION['apellido'];
                             ?>
 
-                            <input type="hidden" name="asignatura" value="<?php echo $row['nombre'] ?>">
-                            <input type="hidden" name="grupo" value="<?php echo $grupo ?>">
-                            <input type="hidden" name="idAlumno" value="<?php echo $idAlumno ?>">
-                            <input type="hidden" name="nombreAlumno" value="<?php echo  $nombreAlumno  ?>">
-                            <input type="hidden" name="apellidoAlumno" value="<?php echo  $apellidoAlumno ?>">
+                            <input type="hidden" name="idChat" value="<?php echo $row['id'] ?>">
+                            <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id'] ?>">
+                            <input type="hidden" name="nombre" value="<?php echo $_SESSION['nombre'] ?>">
+                            <input type="hidden" name="apellido" value="<?php echo  $_SESSION['apellido']?>">
 
                             <div class="<?php echo $actual ?>"></div>
                         </div>

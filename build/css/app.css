@@ -2430,7 +2430,7 @@ select[multiple] {
         padding: 0 2rem;
         font-size: 1.6rem;
         border-radius: 5rem;
-        border: none;
+        border: 1px solid #696969;
         box-shadow: 0 0 1rem #696969; }
         .chat-container .chat #sendMsg input:focus {
           box-shadow: 0 0 1rem #B1126F;

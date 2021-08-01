@@ -6,17 +6,24 @@ require '../../clases/Chat.php';
 isAuth_alumno();
 
 $idChat = '';
+$idUsuario = $_POST['idUsuario'];
+$asignatura = '';
 $datosChat = [];
 
 // Si está el id, lo obtengo
-if(isset($_POST['idChat'])) {
+if (isset($_POST['idChat'])) {
     $idChat = $_POST['idChat'];
     $datosChat = Chat::getDatos($idChat, $db);
+
+    // Obtengo los datos que quiero de la tabla chat
+    $idHost = $datosChat['idHost'];
+    $asignatura = $datosChat['asignatura'];
 }
 
-$idHost = $datosChat['idHost'];
-
-
+if (isset($_POST['mensaje'])) {
+    $mensaje = $_POST['mensaje'];
+    $datosChat = Chat::enviarMensaje($idChat, $idUsuario,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
+}
 
 ?>
 
@@ -29,13 +36,14 @@ $idHost = $datosChat['idHost'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/build/css/app.css"">
+    <link rel="stylesheet" href="/build/css/app.css">
     <title>AURUM: Chat</title>
 </head>
+
 <body>
     <header class=" chat-header bg-main">
-    <p class="title"><?php echo $datosChat['asignatura'] ?></p>
-    <i id="showMenu" class="fas fa-users"></i>
+        <p class="title"><?php echo $asignatura ?></p>
+        <i id="showMenu" class="fas fa-users"></i>
     </header>
 
     <main class="chat-container">
@@ -62,21 +70,22 @@ $idHost = $datosChat['idHost'];
                     $sql = "SELECT idUsuario, mensaje, nombreUsuario, apellidoUsuario FROM mensajes_chat WHERE idChat = $idChat";
                     $result = $db->query($sql);
 
+
                     // Recorro los resultados y los almaceno en variables
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) :
-                        $idUsuario = $row['idUsuario'];
+                        $idUsuarioConsulta = $row['idUsuario'];
                         $mensaje = $row['mensaje'];
                         $nombreUsuario = $row['nombreUsuario'];
                         $apellidoUsuario = $row['apellidoUsuario'];
 
                         // Dependiendo de si el mensaje es del alumno o de otros los muestro
-                        if ($idUsuario === $idHost) :  ?>
+                        if ($idUsuario === $idUsuarioConsulta) :  ?>
                             <div class="you">
                                 <p> <?php echo $mensaje ?> </p>
                             </div>
                         <?php endif; ?>
 
-                        <?php if ($idUsuario !== $idHost) :  ?>
+                        <?php if ($idUsuario !== $idUsuarioConsulta) :  ?>
                             <div class="they">
                                 <p> <?php echo $mensaje ?> </p>
                                 <span>Enviado por: <?php echo $nombreUsuario . " " . $apellidoUsuario ?> </span>
@@ -88,8 +97,9 @@ $idHost = $datosChat['idHost'];
 
             <form method="POST">
                 <div id="sendMsg">
-                    <input name="mensaje" type="text" placeholder="Mensaje...">
+                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje...">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
+                    <input name="idUsuario" type="hidden" value="<?php echo $idUsuario ?>">
 
                     <button class="bg-main">
                         <i class="fas fa-paper-plane"></i>
@@ -128,6 +138,7 @@ $idHost = $datosChat['idHost'];
 
 
     <script src="/build/js/chatMenuMobile.js"></script>
-    </body>
+    <script src="/build/js/chatScroll.js"></script>
+</body>
 
 </html>

@@ -47,7 +47,7 @@ class Chat
 
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             header('Location: ../crear.php?created=true');
-            return;
+            return true;
         }
 
         return false;
@@ -127,6 +127,7 @@ class Chat
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $idChat = $row['id'];
             $idHost = $row['idHost'];
             $nombreHost = $row['nombreHost'];
             $apellidoHost = $row['apellidoHost'];
@@ -137,6 +138,7 @@ class Chat
         }
 
         return [
+            "idChat" => $idChat,
             "idHost" => $idHost,
             "nombreHost" => $nombreHost,
             "apellidoHost" => $apellidoHost,
@@ -145,5 +147,15 @@ class Chat
             "apellidoDocente" => $apellidoDocente,
             "asignatura" => $asignatura
         ];
+    }
+
+    public static function enviarMensaje($idChat, $idUsuario, $nombre, $apellido,  $mensaje, $db) {
+        if(!empty($mensaje)) {
+            $sql = "INSERT INTO mensajes_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario, mensaje) VALUES ($idChat, $idUsuario, '$nombre', '$apellido', '$mensaje')";
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+        }
+
     }
 }

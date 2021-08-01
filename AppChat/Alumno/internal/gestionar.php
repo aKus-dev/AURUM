@@ -35,7 +35,7 @@ if (!$existe) {
 
 if (!empty($datosChat)) : $sendForm = true; ?>
 
-    <form action="../chat.php" method="POST">
+    <form action="../host.php" method="POST">
         <input name="idChat" type="hidden" value="<?php echo $datosChat['idChat'] ?>">
     </form>
 
