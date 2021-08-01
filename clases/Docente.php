@@ -23,7 +23,7 @@ class Docente
         $this->imagen = $imagen;
     }
 
-    static public function crear(array $datos, object $db): bool
+    static public function crear(array $datos, PDO $db): bool
     {
 
         $CI = $datos['ci'];
@@ -42,7 +42,7 @@ class Docente
         $db->query($sqlUsuarios);
 
         // Codigo SQL
-        $sql = "INSERT INTO Docente (CI,nombre,apellido, contrasena, imagen, primer_login, registro_horarios) VALUES 
+        $sql = "INSERT INTO docente (CI,nombre,apellido, contrasena, imagen, primer_login, registro_horarios) VALUES 
         ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen',  true, false)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
@@ -102,7 +102,7 @@ class Docente
     }
 
 
-    static public function revisarExistencia(string $cedula, object $db): bool
+    static public function revisarExistencia(string $cedula, PDO $db): bool
     {
         $sql = "SELECT * FROM cedulas WHERE cedula = '$cedula' ";
 
@@ -116,7 +116,7 @@ class Docente
         return false;
     }
 
-    static public function responderConsulta($idConsulta, $respuesta, object $db)
+    static public function responderConsulta($idConsulta, $respuesta, PDO $db)
     {
         /* date_default_timezone_set("America/Montevideo");
         $fecha = date('Y-m-d'); */

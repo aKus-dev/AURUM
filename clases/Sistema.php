@@ -3,7 +3,7 @@
 
 class Sistema
 {
-    static public function revisarAdministrador(string $usuario, string $contrasena, object $db): bool
+    static public function revisarAdministrador(string $usuario, string $contrasena, PDO $db): bool
     {
         $sql = "SELECT * FROM administrador WHERE usuario = '$usuario' LIMIT 1";
         $resultado = $db->query($sql);
@@ -27,7 +27,7 @@ class Sistema
         return false;
     }
 
-    static public function revisarDocente(string $cedula, string $contrasena, object $db): bool
+    static public function revisarDocente(string $cedula, string $contrasena, PDO $db): bool
     {
         $sql = "SELECT * FROM Docente WHERE CI = '$cedula' LIMIT 1";
 
@@ -65,7 +65,7 @@ class Sistema
         return false;
     }
 
-    static public function revisarAlumno(string $cedula, string $contrasena, object $db): bool
+    static public function revisarAlumno(string $cedula, string $contrasena, PDO $db): bool
     {
         $sql = "SELECT * FROM Alumno WHERE CI = '$cedula' LIMIT 1";
 
