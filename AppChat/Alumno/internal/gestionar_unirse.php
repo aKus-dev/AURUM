@@ -7,27 +7,48 @@ $idUsuario = Chat::getIdAlumno($_POST['idUsuario'], $db);
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 
-// VALIDAR QUE NO ESTE INGRESADO ANTES DE INGRESARLO
 
-$sql = "SELECT * FROM usuarios_chat WHERE idChat = $idChat";
+$sql = "SELECT idUsuario FROM usuarios_chat where idChat = $idChat";
 $result = $db->query($sql);
 
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+$existe = false;
 
-    if($idUsuario ==  $row['idUSuario']) {
-        
-    }
-}
+?>
 
-$sql = "INSERT INTO usuarios_chat VALUES ($idChat, $idUsuario, '$nombre', '$apellido')";;
-$stmt = $db->prepare($sql);
+<?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
 
+    <?php if ($idUsuario == $row['idUsuario']) : ?>
+        <?php $existe = true; ?>
 
-if ($stmt->execute()) :  ?>
-    <form action="../chats/usuario.php" method="POST">
-        <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
-        <input name="idUsuario" type="hidden" value="<?php echo $idUsuario ?>">
-    </form>
-<?php endif; ?>
+        <!-- Envio los datos SIN VOLVER A INGRESARLO -->
+        <form action="../chats/usuario.php" method="POST">
+            <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
+            <input name="idUsuario" type="hidden" value="<?php echo $idUsuario ?>">
+        </form>
+
+    <?php endif; ?>
+
+    <!-- Si ya existe me salgo del while -->
+    <?php if ($existe) : ?>
+        <?php break; ?>
+    <?php endif; ?>
+
+<?php endwhile; ?>
+
+<?php if (!$existe) { ?>
+    <?php
+    $sql = "INSERT INTO usuarios_chat VALUES ($idChat, $idUsuario, '$nombre', '$apellido')";;
+    $stmt = $db->prepare($sql);
+    ?>
+
+    <?php if ($stmt->execute()) :  ?>
+        <form action="../chats/usuario.php" method="POST">
+            <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
+            <input name="idUsuario" type="hidden" value="<?php echo $idUsuario ?>">
+        </form>
+    <?php endif; ?>
+
+<?php } ?>
+
 
 <script src="/build/js/sendForm.js"></script>

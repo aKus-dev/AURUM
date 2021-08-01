@@ -162,7 +162,7 @@ class Chat
 
     public static function cargarUsuarios($idChat, $db)
     {
-        $sql = "SELECT DISTINCT nombreUsuario, apellidoUsuario FROM usuarios_chat WHERE idChat = $idChat";
+        $sql = "SELECT nombreUsuario, apellidoUsuario FROM usuarios_chat WHERE idChat = $idChat";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
