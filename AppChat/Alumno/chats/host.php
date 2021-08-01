@@ -1,7 +1,7 @@
 <?php
 
-require '../../config/app.php';
-require '../../clases/Chat.php';
+require '../../../config/app.php';
+require '../../../clases/Chat.php';
 
 isAuth_alumno();
 
@@ -40,20 +40,27 @@ if(isset($_POST['mensaje'])) {
     <link rel="stylesheet" href="/build/css/app.css"">
     <title>AURUM: Chat</title>
 
-    <script>
-        function ajax() {
-            let req = new XMLHttpRequest();
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-            req.onreadystatechange = () => {
-                if(req.readyState == 5 && req.status == 200) {
-                    document.querySelector('.messages').innerHTML = req.responseText;
-                }
-            }
+    <script type="text/javascript">
+ 
 
-            req.open('GET', 'chat.php', true);
-            req.send();
-        }
-    </script>
+		function tiempoReal()
+		{
+            idChat = <?php echo $idChat ?>;
+            idHost = <?php echo $idHost ?>;
+
+			var tabla = $.ajax({
+				url:`../sql/sqlHost.php?idChat=${idChat}&idHost=${idHost}`,
+				dataType:'text',
+				async:false
+			}).responseText;
+
+
+			document.querySelector(".messages-container").innerHTML = tabla;
+		}
+		setInterval(tiempoReal, 300);
+		</script>
 </head>
 <body>
     <header class=" chat-header bg-main">
@@ -80,38 +87,13 @@ if(isset($_POST['mensaje'])) {
         <div class="chat">
             <div class="messages">
                 <div class="messages-container">
-                    <?php
-                    // Obtengo todos los mensajes de este chat
-                    $sql = "SELECT idUsuario, mensaje, nombreUsuario, apellidoUsuario FROM mensajes_chat WHERE idChat = $idChat";
-                    $result = $db->query($sql);
-
-                    // Recorro los resultados y los almaceno en variables
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) :
-                        $idUsuario = $row['idUsuario'];
-                        $mensaje = $row['mensaje'];
-                        $nombreUsuario = $row['nombreUsuario'];
-                        $apellidoUsuario = $row['apellidoUsuario'];
-
-                        // Dependiendo de si el mensaje es del alumno o de otros los muestro
-                        if ($idUsuario === $idHost) :  ?>
-                            <div class="you">
-                                <p> <?php echo $mensaje ?> </p>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ($idUsuario !== $idHost) :  ?>
-                            <div class="they">
-                                <p> <?php echo $mensaje ?> </p>
-                                <span>Enviado por: <?php echo $nombreUsuario . " " . $apellidoUsuario ?> </span>
-                            </div>
-                        <?php endif; ?>
-                    <?php endwhile; ?>
+                
                 </div>
             </div>
 
             <form method="POST">
                 <div id="sendMsg">
-                    <input name="mensaje" type="text" placeholder="Mensaje...">
+                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje...">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
 
                     <button class="bg-main">
@@ -128,7 +110,7 @@ if(isset($_POST['mensaje'])) {
                 <!--  Host -->
                 <div class="user">
                     <i id="crown" class="fas fa-crown"></i>
-                    <p>Agustín Vega</p>
+                    <p><?php echo $_SESSION['nombre'] . " " . $_SESSION['apellido'] ?></p>
 
                     <div class="online">
                         <i id="status-online" class="fas fa-circle"></i>
@@ -136,17 +118,13 @@ if(isset($_POST['mensaje'])) {
                 </div>
 
                 <!--  Usuario que se unió -->
-                <div class="user">
-                    <i id="student" class="fas fa-graduation-cap"></i>
-                    <p>Roberto Cagaleri</p>
+                <?php Chat::cargarUsuarios($idChat, $db); ?>
 
-                    <div class="online">
-                        <i id="status-online" class="fas fa-circle"></i>
-                    </div>
-                </div>
+
+
             </div>
         </div>
-        <?php include './internal/menuMobile.php' ?>
+        <?php include '../internal/menuMobile.php' ?>
     </main>
 
 

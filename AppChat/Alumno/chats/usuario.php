@@ -1,7 +1,7 @@
 <?php
 
-require '../../config/app.php';
-require '../../clases/Chat.php';
+require '../../../config/app.php';
+require '../../../clases/Chat.php';
 
 isAuth_alumno();
 
@@ -9,6 +9,8 @@ $idChat = '';
 $idUsuario = $_POST['idUsuario'];
 $asignatura = '';
 $datosChat = [];
+
+
 
 // Si está el id, lo obtengo
 if (isset($_POST['idChat'])) {
@@ -38,6 +40,28 @@ if (isset($_POST['mensaje'])) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css">
     <title>AURUM: Chat</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+ 
+
+		function tiempoReal()
+		{
+            idChat = <?php echo $idChat ?>;
+            idUsuario = <?php echo $idUsuario ?>;
+
+			var tabla = $.ajax({
+				url:`../sql/sqlUsuario.php?idChat=${idChat}&idUsuario=${idUsuario}`,
+				dataType:'text',
+				async:false
+			}).responseText;
+
+
+			document.querySelector(".messages-container").innerHTML = tabla;
+		}
+		setInterval(tiempoReal, 300);
+		</script>
 </head>
 
 <body>
@@ -65,33 +89,7 @@ if (isset($_POST['mensaje'])) {
         <div class="chat">
             <div class="messages">
                 <div class="messages-container">
-                    <?php
-                    // Obtengo todos los mensajes de este chat
-                    $sql = "SELECT idUsuario, mensaje, nombreUsuario, apellidoUsuario FROM mensajes_chat WHERE idChat = $idChat";
-                    $result = $db->query($sql);
-
-
-                    // Recorro los resultados y los almaceno en variables
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) :
-                        $idUsuarioConsulta = $row['idUsuario'];
-                        $mensaje = $row['mensaje'];
-                        $nombreUsuario = $row['nombreUsuario'];
-                        $apellidoUsuario = $row['apellidoUsuario'];
-
-                        // Dependiendo de si el mensaje es del alumno o de otros los muestro
-                        if ($idUsuario === $idUsuarioConsulta) :  ?>
-                            <div class="you">
-                                <p> <?php echo $mensaje ?> </p>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ($idUsuario !== $idUsuarioConsulta) :  ?>
-                            <div class="they">
-                                <p> <?php echo $mensaje ?> </p>
-                                <span>Enviado por: <?php echo $nombreUsuario . " " . $apellidoUsuario ?> </span>
-                            </div>
-                        <?php endif; ?>
-                    <?php endwhile; ?>
+                   
                 </div>
             </div>
 
@@ -113,27 +111,14 @@ if (isset($_POST['mensaje'])) {
                 <h3>Usuarios</h3>
 
                 <!--  Host -->
-                <div class="user">
-                    <i id="crown" class="fas fa-crown"></i>
-                    <p>Agustín Vega</p>
+                 <?php Chat::cargarHost($idChat, $db); ?>
 
-                    <div class="online">
-                        <i id="status-online" class="fas fa-circle"></i>
-                    </div>
-                </div>
+                <!--  Usuarios que se unieron -->
+                <?php Chat::cargarUsuarios($idChat, $db); ?>
 
-                <!--  Usuario que se unió -->
-                <div class="user">
-                    <i id="student" class="fas fa-graduation-cap"></i>
-                    <p>Roberto Cagaleri</p>
-
-                    <div class="online">
-                        <i id="status-online" class="fas fa-circle"></i>
-                    </div>
-                </div>
             </div>
         </div>
-        <?php include './internal/menuMobile.php' ?>
+        <?php include '../internal/menuMobile.php' ?>
     </main>
 
 
