@@ -29,7 +29,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 	if ($idHost != $idUsuario) {
 		echo "<div class='they'> ";
 			echo "<p> $mensaje </p>";
-			echo "<span>Enviado por: $nombreUsuario $apellidoUsuario </span>";
+			echo "<span>$nombreUsuario $apellidoUsuario </span>";
 		echo '</div>';
 	}
 }

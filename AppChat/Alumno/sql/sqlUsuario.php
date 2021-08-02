@@ -30,7 +30,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 	if ($idUsuario != $idUsuarioConsulta) {
 		echo "<div class='they' data-id=$idMensaje>";
 			echo "<p> $mensaje </p>";
-			echo "<span>Enviado por: $nombreUsuario $apellidoUsuario </span>";
+			echo "<span>$nombreUsuario $apellidoUsuario </span>";
 		echo '</div>';
 	}
 }

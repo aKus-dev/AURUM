@@ -275,6 +275,9 @@ class Alumno
         $sql = "DELETE FROM cedulas WHERE cedula = $cedula";
         $db->query($sql);
 
+        // Elimino el registro en la tabla usuario
+        $sql = "DELETE FROM usuarios WHERE ci = $cedula";
+        $db->query($sql);
 
         // Elimino el alumno
         $sql = "DELETE FROM alumno WHERE id = $idAlumno";
