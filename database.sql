@@ -158,7 +158,8 @@ CREATE TABLE chat (
     idDocente INT NOT NULL,
     nombreDocente VARCHAR(25),
     apellidoDocente VARCHAR(25),
-    asignatura VARCHAR(30)
+    asignatura VARCHAR(30),
+    grupo CHAR(3)
 );
 
 CREATE TABLE mensajes_chat (
@@ -182,6 +183,10 @@ CREATE TABLE usuarios_chat (
 );
 
 use aurum;
+DELETE FROM chat WHERE id = 4;
+SELECT * FROM chat;
+SELECT * FROM usuarios_chat;
+SELECT * FROM usuarios;
 SELECT * FROM consultas_docente;
 SELECT * FROM consultas_alumno;
 SELECT * FROM consultas_docente;
@@ -189,9 +194,11 @@ SELECT * FROM asignaturas_docente;
 SELECT * FROM grupos_alumno;
 SELECT * FROM grupos_docente;
 SELECT * FROM usuarios;
-SELECT * FROM Alumno;
-SELECT * FROM Docente;
+SELECT * FROM alumno;
+SELECT * FROM docente;
+
+INSERT INTO grupos_alumno (idAlumno, Grupo) VALUES (5 , '1BA');
 SELECT * FROM administrador;
 SELECT * FROM Pendientes;
-SELECT * FROM Cedulas;
+SELECT * FROM cedulas;
 
