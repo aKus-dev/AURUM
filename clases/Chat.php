@@ -53,7 +53,7 @@ class Chat
         return false;
     }
 
-    public static function crearChat($datosAlumno, $datosDocente, $db)
+    public static function crearChat($datosAlumno, $datosDocente, $grupo, $db)
     {
         $asignatura = $_POST['asignatura'];
         $idHost = Chat::getIdAlumno($datosAlumno['idAlumno'], $db);
@@ -64,9 +64,9 @@ class Chat
         $nombreDocente = $datosDocente['nombreDocente'];
         $apellidoDocente = $datosDocente['apellidoDocente'];
 
-        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost, idDocente, nombreDocente, apellidoDocente, asignatura) 
+        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost, idDocente, nombreDocente, apellidoDocente, asignatura, grupo) 
                 VALUES
-                 ($idHost, '$nombreHost', '$apellidoHost', $idDocente, '$nombreDocente', '$apellidoDocente', '$asignatura')";
+                 ($idHost, '$nombreHost', '$apellidoHost', $idDocente, '$nombreDocente', '$apellidoDocente', '$asignatura', '$grupo')";
 
         $stmt = $db->prepare($sql);
 

@@ -45,13 +45,27 @@ $i = 0;
     <link rel="stylesheet" href="/build/css/app.css"">
     <title>AURUM: Empezemos</title>
 </head>
-<body style="overflow-x: hidden">
+<body style=" overflow: auto">
     <div class=" alumno-container">
         <?php include '../../AppAlumno/templates/header.html' ?>
 
+        <!-- Caso de que el chat NO tenga docente -->
+        <?php if (!empty($_GET['empty'])) : ?>
+            <div class="text-center width100 absolute">
+                <p id="danger" class="alert-danger">La materia seleccionada aún no tiene un docente asignado</p>
+            </div>
+        <?php endif; ?>
+
+        <!-- Caso de que ya este creado -->
+        <?php if (!empty($_GET['created'])) : ?>
+            <div class="text-center width100 absolute">
+                <p id="danger" class="alert-danger">El chat ya está creado. Puedes unirte yendo a la sección anterior</p>
+            </div>
+        <?php endif; ?>
+
         <div class="chat-materia">
             <div class="materias-container-chat">
-                <?php foreach ($grupos as $grupo) :
+                <?php
                     // Me quedo solo con la parte entera del grupo
                     $grado = substr($grupo, 0, -2);
 
@@ -59,7 +73,7 @@ $i = 0;
                     $entroChat = false; // Verifica si hay chats creados
                     $mensajeMostrado = false;  // Pasa a true cuando ya se haya mostrado
 
-                    $sql = "SELECT id, asignatura FROM chat WHERE idHost != $idUsuarioChat AND grupo = '$grupo'";
+                    $sql = "SELECT id, asignatura FROM chat WHERE idHost = $idUsuarioChat";
                     $result = $db->query($sql);
 
                 ?>
@@ -67,9 +81,8 @@ $i = 0;
                     <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
 
                         <?php if (!$mensajeMostrado) : ?>
-                            <p  class="grupos-docente-list bg-main title-grupo-chat" style="text-transform: uppercase; font-weight: bold;">
-                                Chats de <?php echo $gruposFormateados[$i]; ?>
-                                <?php $i++ ?>
+                            <p class="grupos-docente-list bg-main title-grupo-chat" style="text-transform: uppercase; font-weight: bold;">
+                                Tus chats creados
                             </p>
                         <?php
                             $mensajeMostrado = true;
@@ -80,7 +93,7 @@ $i = 0;
                         <?php $asignatura = $row['asignatura']; ?>
                         <?php $actual === 'filter-violet sky' ? $actual = 'filter-darkviolet wave' : $actual = 'filter-violet sky' ?>
 
-                        <form action="./internal/gestionar_unirse.php" method="POST">
+                        <form action="./internal/gestionar_host.php" method="POST">
                             <div class="materia <?php echo $actual ?>">
                                 <h3><?php echo $asignatura ?></h3>
                                 <button>Unirse</button>
@@ -102,11 +115,9 @@ $i = 0;
                         </form>
 
                     <?php endwhile; ?>
-                <?php endforeach; ?>
-
                 <?php if (!$entroChat) : ?>
                     <div class="no-consultas bg-main text-center">
-                        <p>Aún no hay chats creados por otros usuarios</p>
+                        <p>Aún no has creado un chat</p>
                     </div>
                 <?php endif; ?>
 

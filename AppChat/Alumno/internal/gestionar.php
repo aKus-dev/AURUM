@@ -6,6 +6,8 @@ require '../../../config/app.php';
 $datosChat = '';
 $idChat = '';
 
+$grupo = $_POST['grupo'];
+
 $datosAlumno = [
     "idAlumno" => $_POST['idAlumno'],
     "nombreAlumno" => $_POST['nombreAlumno'],
@@ -20,7 +22,7 @@ $existe = Chat::revisarExistencia($datosDocente['idDocente'], $_POST['asignatura
 
 if (!$existe) {
     // Creo el chat
-    $datosChat = Chat::crearChat($datosAlumno, $datosDocente, $db);
+    $datosChat = Chat::crearChat($datosAlumno, $datosDocente, $grupo, $db);
 
     $sql = "SELECT id FROM chat ORDER BY id DESC LIMIT 1";
     $result = $db->query($sql);

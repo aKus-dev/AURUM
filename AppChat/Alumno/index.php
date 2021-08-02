@@ -22,27 +22,41 @@ isAuth_alumno();
     <div class=" alumno-container">
     <?php include '../../AppAlumno/templates/header.html' ?>
 
-    <div class="chat-grid">
-        <div class="chat-select-container">
-            <div class="chat-select chat-select--create">
-                <div class="content">
+    <div class="alumno-grid">
+        <div class="flex-consultas">
+
+            <div class="consulta chat-select--create">
+                <div class="option__content">
                     <h3 class="option__heading">Crea un chat</h3>
-                    <p>Entra aquí para crear un chat de alguna materia</p>
+                    <p class="option__text">Entra aquí para crear el chat de alguna materia</p>
 
-                    <a href="/AppChat/Alumno/crear.php">Crear</a>
+                    <a href="Alumno/crear.php" class="admin-button">Visualizar</a>
                 </div>
+
                 <div class="filter-option"></div>
             </div>
 
-            <div class="chat-select chat-select--join">
-                <div class="content">
-                <h3 class="option__heading">Unete a un chat</h3>
-                    <p>Entra aquí para unirte a un chat ya existente</p>
+            <div class="consulta chat-select--join">
+                <div class="option__content">
+                    <h3 class="option__heading">Unete a un chat</h3>
+                    <p class="option__text">Entra aquí para unirte a un chat ya existente</p>
 
-                    <a href="/AppChat/Alumno/unirse.php">Unirse</a>
+                    <a href="Alumno/unirse.php" class="admin-button">Visualizar</a>
                 </div>
+
                 <div class="filter-option"></div>
             </div>
+        </div>
+
+        <div class="consulta chat-select--chats">
+            <div class="option__content">
+                <h3 class="option__heading option__heading--red">Mis chats</h3>
+                <p class="option__text">Aquí podrás acceder a todos tus chats creados</p>
+
+                <a href="Alumno/hostchats.php" class="admin-button admin-button--red">Visualizar</a>
+            </div>
+
+            <div class="filter-option--diff"></div>
         </div>
 
     </div>

@@ -2244,53 +2244,59 @@ select[multiple] {
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  height: calc(100vh - 7rem); }
+  min-height: calc(100vh - 7rem);
+  padding-bottom: 7.5rem; }
   @media (min-width: 968px) {
     .chat-select-container {
       flex-direction: row;
       padding: 0 5rem; } }
-  .chat-select-container .chat-select {
+
+.chat-select {
+  position: relative;
+  text-align: center;
+  height: 25rem;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .chat-select .content {
     position: relative;
-    text-align: center;
-    height: 25rem;
-    width: 80%;
-    margin: 0 auto;
-    border-radius: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    .chat-select-container .chat-select .content {
-      position: relative;
-      z-index: 9999;
-      color: #FFFFFF; }
-      .chat-select-container .chat-select .content h3 {
-        display: inline-block;
-        font-size: 3.5rem; }
-      .chat-select-container .chat-select .content p {
-        font-size: 1.5rem; }
-      .chat-select-container .chat-select .content a {
-        width: 60%;
-        transition: .45s;
-        display: inline-block;
-        margin: 1.5rem 0;
-        padding: 1rem 2.5rem;
-        font-size: 1.6rem;
-        color: #FFFFFF;
-        border: 2px solid #FFFFFF;
-        box-shadow: inset 0 0 0 #FFFFFF;
-        font-weight: bold;
-        text-transform: uppercase; }
-        .chat-select-container .chat-select .content a:hover {
-          color: #B1126F;
-          box-shadow: inset 0 10rem 0 #FFFFFF; }
-    .chat-select-container .chat-select--create {
-      background-image: url(/build/img/Chat/Create.jpg);
-      background-position: center;
-      background-size: cover; }
-    .chat-select-container .chat-select--join {
-      background-image: url(/build/img/Chat/Join.jpg);
-      background-position: center;
-      background-size: cover; }
+    z-index: 9999;
+    color: #FFFFFF; }
+    .chat-select .content h3 {
+      display: inline-block;
+      font-size: 3.5rem; }
+    .chat-select .content p {
+      font-size: 1.5rem; }
+    .chat-select .content a {
+      width: 60%;
+      transition: .45s;
+      display: inline-block;
+      margin: 1.5rem 0;
+      padding: 1rem 2.5rem;
+      font-size: 1.6rem;
+      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      box-shadow: inset 0 0 0 #FFFFFF;
+      font-weight: bold;
+      text-transform: uppercase; }
+      .chat-select .content a:hover {
+        color: #B1126F;
+        box-shadow: inset 0 10rem 0 #FFFFFF; }
+  .chat-select--create {
+    background-image: url(/build/img/Chat/Create.jpg);
+    background-position: center;
+    background-size: cover; }
+  .chat-select--join {
+    background-image: url(/build/img/Chat/Join.jpg);
+    background-position: center;
+    background-size: cover; }
+  .chat-select--chats {
+    background-image: url(/build/img/Chat/Chats.jpg);
+    background-position: center;
+    background-size: cover; }
 
 .materias-container-chat {
   padding: 2.5rem 2rem;

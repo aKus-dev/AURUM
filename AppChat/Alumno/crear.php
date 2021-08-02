@@ -44,20 +44,20 @@ $i = 0;
     <link rel="stylesheet" href="/build/css/app.css"">
     <title>AURUM: Empezemos</title>
 </head>
-<body style="overflow: auto">
+<body style="overflow-x: hidden">
     <div class=" alumno-container">
     <?php include '../../AppAlumno/templates/header.html' ?>
 
     <!-- Caso de que el chat NO tenga docente -->
     <?php if (!empty($_GET['empty'])) : ?>
-        <div class="text-center width100 absolute">
+        <div class="text-center width100">
             <p id="danger" class="alert-danger">La materia seleccionada aún no tiene un docente asignado</p>
         </div>
     <?php endif; ?>
 
      <!-- Caso de que ya este creado -->
      <?php if (!empty($_GET['created'])) : ?>
-        <div class="text-center width100 absolute">
+        <div class="text-center width100">
             <p id="danger" class="alert-danger">El chat ya está creado. Puedes unirte a los chats creados haciendo <a style="color: #FFF; font-weight: bold;" href="./unirse.php">click aquí</a>
             </p>
         </div>

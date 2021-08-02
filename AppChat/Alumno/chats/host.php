@@ -10,6 +10,7 @@ $idHost = '';
 $asignatura = '';
 $datosChat = [];
 
+
 // Si está el id, lo obtengo
 if(isset($_POST['idChat'])) {
     $idChat = $_POST['idChat'];
