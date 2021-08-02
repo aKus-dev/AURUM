@@ -46,7 +46,7 @@ CREATE TABLE grupos_docente(
 	idDocente INT NOT NULL,
     grupo CHAR (3) NOT NULL,
 	CONSTRAINT FK_idDocente_grupo FOREIGN KEY (idDocente) 
-    REFERENCES Docente(id) ON DELETE CASCADE
+    REFERENCES docente(id) ON DELETE CASCADE
 ); 
 
 /* Esta tabla almacenara los Asignaturas de los docentes*/
@@ -54,7 +54,7 @@ CREATE TABLE asignaturas_docente (
 	idDocente INT NOT NULL,
     asignatura VARCHAR (30) NOT NULL,
 	CONSTRAINT FK_idDocente_asignatura FOREIGN KEY (idDocente) 
-    REFERENCES Docente(id) ON DELETE CASCADE
+    REFERENCES docente(id) ON DELETE CASCADE
 ); 
 
 CREATE TABLE administrador (
@@ -95,9 +95,9 @@ CREATE TABLE consultas_docente (
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
     CONSTRAINT FK_Alumno_idAlumno_consulta FOREIGN KEY (idAlumno) 
-    REFERENCES Alumno(id) ON DELETE CASCADE,
+    REFERENCES alumno(id) ON DELETE CASCADE,
     CONSTRAINT FK_Alumno_idDocente_consulta FOREIGN KEY (idDocente) 
-    REFERENCES Docente(id) ON DELETE CASCADE
+    REFERENCES docente(id) ON DELETE CASCADE
 );
 
 
@@ -113,9 +113,9 @@ CREATE TABLE consultas_alumno (
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
     CONSTRAINT FK_Alumno_idAlumno_consulta2 FOREIGN KEY (idAlumno) 
-    REFERENCES Alumno(id) ON DELETE CASCADE,
+    REFERENCES alumno(id) ON DELETE CASCADE,
     CONSTRAINT FK_Alumno_idDocente_consulta2 FOREIGN KEY (idDocente) 
-    REFERENCES Docente(id) ON DELETE CASCADE
+    REFERENCES docente(id) ON DELETE CASCADE
 );
 
 CREATE TABLE asignaturas (
