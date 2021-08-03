@@ -44,24 +44,38 @@ if (isset($_POST['mensaje'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script type="text/javascript">
- 
-
-		function tiempoReal()
-		{
+        function tiempoReal() {
             idChat = <?php echo $idChat ?>;
             idUsuario = <?php echo $idUsuario ?>;
 
-			var tabla = $.ajax({
-				url:`../sql/sqlUsuario.php?idChat=${idChat}&idUsuario=${idUsuario}`,
-				dataType:'text',
-				async:false
-			}).responseText;
+            // Obtiene los mensajes del usuario
+            var mensajes = $.ajax({
+                url: `../sql/sqlUsuario.php?idChat=${idChat}&idUsuario=${idUsuario}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
+
+            // Obtiene los usuarios del chat
+            var usuarios = $.ajax({
+                url: `../sql/sqlOnline.php?idChat=${idChat}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
+
+              // Obtiene los usuarios del chat para la version mobile
+            var usuariosMobile = $.ajax({
+                url: `../sql/sqlOnlineMobile.php?idChat=${idChat}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
 
 
-			document.querySelector(".messages-container").innerHTML = tabla;
-		}
-		setInterval(tiempoReal, 300);
-		</script>
+            document.querySelector(".messages-container").innerHTML = mensajes;
+            document.querySelector("#usuarios").innerHTML = usuarios;
+            document.querySelector("#usuarios_mobile").innerHTML = usuariosMobile;
+        }
+        setInterval(tiempoReal, 300);
+    </script>
 </head>
 
 <body>
@@ -89,7 +103,7 @@ if (isset($_POST['mensaje'])) {
         <div class="chat">
             <div class="messages">
                 <div class="messages-container">
-                   
+
                 </div>
             </div>
 
@@ -110,15 +124,13 @@ if (isset($_POST['mensaje'])) {
             <div class="text-center">
                 <h3>Usuarios</h3>
 
-                <!--  Host -->
-                 <?php Chat::cargarHost($idChat, $db); ?>
+                <div id="usuarios">
 
-                <!--  Usuarios que se unieron -->
-                <?php Chat::cargarUsuarios($idChat, $db); ?>
+                </div>
 
             </div>
         </div>
-        
+
         <?php include '../internal/menuMobile.php' ?>
     </main>
 

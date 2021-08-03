@@ -51,14 +51,30 @@ if(isset($_POST['mensaje'])) {
             idChat = <?php echo $idChat ?>;
             idHost = <?php echo $idHost ?>;
 
-			var tabla = $.ajax({
+			var mensajes = $.ajax({
 				url:`../sql/sqlHost.php?idChat=${idChat}&idHost=${idHost}`,
 				dataType:'text',
 				async:false
 			}).responseText;
 
+            // Obtiene los usuarios del chat
+            var usuarios = $.ajax({
+                url: `../sql/sqlOnline.php?idChat=${idChat}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
 
-			document.querySelector(".messages-container").innerHTML = tabla;
+              // Obtiene los usuarios del chat para la version mobile
+            var usuariosMobile = $.ajax({
+                url: `../sql/sqlOnlineMobile.php?idChat=${idChat}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
+
+
+            document.querySelector(".messages-container").innerHTML = mensajes;
+            document.querySelector("#usuarios").innerHTML = usuarios;
+            document.querySelector("#usuarios_mobile").innerHTML = usuariosMobile;
 		}
 		setInterval(tiempoReal, 300);
 		</script>
@@ -108,19 +124,9 @@ if(isset($_POST['mensaje'])) {
             <div class="text-center">
                 <h3>Usuarios</h3>
 
-                <!--  Host -->
-                <div class="user">
-                    <i id="crown" class="fas fa-crown"></i>
-                    <p><?php echo $_SESSION['nombre'] . " " . $_SESSION['apellido'] ?></p>
+                <div id="usuarios">
 
-                    <div class="online">
-                        <i id="status-online" class="fas fa-circle"></i>
-                    </div>
                 </div>
-
-                <!--  Usuario que se unió -->
-                <?php Chat::cargarUsuarios($idChat, $db); ?>
-
 
 
             </div>

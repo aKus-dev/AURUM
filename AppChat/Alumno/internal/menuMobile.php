@@ -24,10 +24,9 @@
         </div>
 
         <div id="usuarios-mobile" class="display-none">
-            <?php Chat::cargarHostMobile($idChat, $db); ?>
+            <div id="usuarios_mobile">
 
-            <!--  Usuario que se unió -->
-           <?php Chat::cargarUsuariosMobile($idChat, $db); ?>
+            </div>
         </div>
 
     </div>

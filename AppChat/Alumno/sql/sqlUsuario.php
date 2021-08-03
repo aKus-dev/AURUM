@@ -1,15 +1,12 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS ////////////////////////////////////
-$dbName = 'mysql:host=localhost; dbname=aurum';
-$dbUser = 'root';
-$dbPassword = 'root';
-$conexion = new PDO($dbName, $dbUser, $dbPassword);
+require "../../../config/app.php";
 
 $idChat = $_GET['idChat'];
 $idUsuario = $_GET['idUsuario'];
 
 $sql = "SELECT id, idUsuario, mensaje, nombreUsuario, apellidoUsuario FROM mensajes_chat WHERE idChat = $idChat";
-$resultado = $conexion->query($sql);
+$resultado = $db->query($sql);
 
 
 ///TABLA DONDE SE DESPLIEGAN LOS REGISTROS //////////////////////////////
