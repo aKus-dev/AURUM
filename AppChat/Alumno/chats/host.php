@@ -12,7 +12,7 @@ $datosChat = [];
 
 
 // Si está el id, lo obtengo
-if(isset($_POST['idChat'])) {
+if (isset($_POST['idChat'])) {
     $idChat = $_POST['idChat'];
     $datosChat = Chat::getDatos($idChat, $db);
 
@@ -21,9 +21,9 @@ if(isset($_POST['idChat'])) {
     $asignatura = $datosChat['asignatura'];
 }
 
-if(isset($_POST['mensaje'])) {
+if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
-    $datosChat = Chat::enviarMensaje($idChat, $idHost,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje , $db);
+    $datosChat = Chat::enviarMensaje($idChat, $idHost,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
 
 
@@ -41,21 +41,19 @@ if(isset($_POST['mensaje'])) {
     <link rel="stylesheet" href="/build/css/app.css"">
     <title>AURUM: Chat</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
 
     <script type="text/javascript">
- 
-
-		function tiempoReal()
-		{
+        function tiempoReal() {
             idChat = <?php echo $idChat ?>;
             idHost = <?php echo $idHost ?>;
 
-			var mensajes = $.ajax({
-				url:`../sql/sqlMensajes.php?idChat=${idChat}&idHost=${idHost}`,
-				dataType:'text',
-				async:false
-			}).responseText;
+            var mensajes = $.ajax({
+                url: `../sql/sqlMensajes.php?idChat=${idChat}&idHost=${idHost}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
 
             // Obtiene los usuarios del chat
             var usuarios = $.ajax({
@@ -64,7 +62,7 @@ if(isset($_POST['mensaje'])) {
                 async: false
             }).responseText;
 
-              // Obtiene los usuarios del chat para la version mobile
+            // Obtiene los usuarios del chat para la version mobile
             var usuariosMobile = $.ajax({
                 url: `../sql/sqlOnlineMobile.php?idChat=${idChat}`,
                 dataType: 'text',
@@ -75,14 +73,15 @@ if(isset($_POST['mensaje'])) {
             document.querySelector(".messages-container").innerHTML = mensajes;
             document.querySelector("#usuarios").innerHTML = usuarios;
             document.querySelector("#usuarios_mobile").innerHTML = usuariosMobile;
-		}
-		setInterval(tiempoReal, 300);
-		</script>
+        }
+        setInterval(tiempoReal, 300);
+    </script>
 </head>
+
 <body>
     <header class=" chat-header bg-main">
-    <p class="title"><?php echo $asignatura ?></p>
-    <i id="showMenu" class="fas fa-users"></i>
+        <p class="title"><?php echo $asignatura ?></p>
+        <i id="showMenu" class="fas fa-users"></i>
     </header>
 
     <main class="chat-container">
@@ -104,13 +103,13 @@ if(isset($_POST['mensaje'])) {
         <div class="chat">
             <div class="messages">
                 <div class="messages-container">
-                
+
                 </div>
             </div>
 
             <form method="POST">
                 <div id="sendMsg">
-                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje...">
+                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje..." maxlength="500">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
 
                     <button class="bg-main">
@@ -137,6 +136,6 @@ if(isset($_POST['mensaje'])) {
 
     <script src="/build/js/chatMenuMobile.js"></script>
     <script src="/build/js/chatScroll.js"></script>
-    </body>
+</body>
 
 </html>

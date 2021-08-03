@@ -46,7 +46,6 @@ class Sistema
                 $_SESSION['apellido'] = $row['apellido'];
                 $_SESSION['imagen'] = $row['imagen'];
 
-
                 // Id para pasar vía GET
                 $id = $row['id'];
                 $name = $row['nombre'];
@@ -260,14 +259,14 @@ class Sistema
         return $gruposFormateados;
     }
 
-       // TEMPORAL
-       static public function crearAdmin($db)
-       {
-           $passwordHash = password_hash('esibuceo', PASSWORD_BCRYPT);
-           $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.svg')";
-           $db->query($sql);
-       }
+    // TEMPORAL
+    static public function crearAdmin($db)
+    {
+        $passwordHash = password_hash('esibuceo', PASSWORD_BCRYPT);
+        $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.svg')";
+        $db->query($sql);
+    }
 
-      // FIN TEMPORAL
-   
+    // FIN TEMPORAL
+
 }

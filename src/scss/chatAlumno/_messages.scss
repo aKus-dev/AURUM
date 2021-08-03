@@ -1,7 +1,7 @@
 .messages {
     padding: 4rem 2rem 2rem 2rem;
     display: grid;
-    overflow: auto;
+    overflow-x: hidden;
 
     &-container {
         display: flex;
@@ -12,12 +12,30 @@
 
 .you {
     margin: .5rem 0;
-    max-width: 85%;
-    align-self: flex-end;
-
-
     display: flex;
     flex-direction: column;
+    align-self: flex-end;
+
+    @media (max-width: 300px) {
+        max-width: 20rem;
+    }
+
+    @media (max-width: 400px) {
+        max-width: 30rem;
+    }
+
+    @media (max-width: 500px) {
+        max-width: 40rem;
+    }
+
+    @media (min-width: 500px) {
+        max-width: 45rem;
+    }
+
+    @media (min-width: 600px) {
+        max-width: 50rem;
+    }
+
 
     span {
         align-self: flex-end;
@@ -35,19 +53,36 @@
         color: $white;
     }
 
-    @include desktop {
-        max-width: 70%;
-    }
+
 }
 
 .they {
     margin: .5rem 0;
     max-width: 85%;
     align-self: flex-start;
-
-
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+
+    @media (max-width: 300px) {
+        max-width: 20rem;
+    }
+
+    @media (max-width: 400px) {
+        max-width: 30rem;
+    }
+
+    @media (max-width: 500px) {
+        max-width: 40rem;
+    }
+
+    @media (min-width: 500px) {
+        max-width: 45rem;
+    }
+
+    @media (min-width: 600px) {
+        max-width: 50rem;
+    }
 
     span {
         padding-left: 2rem;
@@ -66,8 +101,6 @@
         color: #444851;
     }
 
-    @include desktop {
-        max-width: 70%;
-    }
+
 }
 

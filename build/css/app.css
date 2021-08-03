@@ -401,6 +401,9 @@ textarea {
 .bg-main {
   background: linear-gradient(90deg, #B1126F, #531A5D); }
 
+.bg-red {
+  background: linear-gradient(90deg, #df2b2b, #a10101); }
+
 .flexRow {
   display: flex;
   align-items: center;
@@ -2512,7 +2515,7 @@ select[multiple] {
 .messages {
   padding: 4rem 2rem 2rem 2rem;
   display: grid;
-  overflow: auto; }
+  overflow-x: hidden; }
   .messages-container {
     display: flex;
     flex-direction: column;
@@ -2520,10 +2523,24 @@ select[multiple] {
 
 .you {
   margin: .5rem 0;
-  max-width: 85%;
-  align-self: flex-end;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  align-self: flex-end; }
+  @media (max-width: 300px) {
+    .you {
+      max-width: 20rem; } }
+  @media (max-width: 400px) {
+    .you {
+      max-width: 30rem; } }
+  @media (max-width: 500px) {
+    .you {
+      max-width: 40rem; } }
+  @media (min-width: 500px) {
+    .you {
+      max-width: 45rem; } }
+  @media (min-width: 600px) {
+    .you {
+      max-width: 50rem; } }
   .you span {
     align-self: flex-end;
     margin: .5rem 0;
@@ -2536,16 +2553,29 @@ select[multiple] {
     padding: 2rem 2rem 2rem 3rem;
     font-size: 1.6rem;
     color: #FFFFFF; }
-  @media (min-width: 968px) {
-    .you {
-      max-width: 70%; } }
 
 .they {
   margin: .5rem 0;
   max-width: 85%;
   align-self: flex-start;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow-x: hidden; }
+  @media (max-width: 300px) {
+    .they {
+      max-width: 20rem; } }
+  @media (max-width: 400px) {
+    .they {
+      max-width: 30rem; } }
+  @media (max-width: 500px) {
+    .they {
+      max-width: 40rem; } }
+  @media (min-width: 500px) {
+    .they {
+      max-width: 45rem; } }
+  @media (min-width: 600px) {
+    .they {
+      max-width: 50rem; } }
   .they span {
     padding-left: 2rem;
     align-self: flex-start;
@@ -2559,9 +2589,6 @@ select[multiple] {
     padding: 2rem 2rem 2rem 3rem;
     font-size: 1.6rem;
     color: #444851; }
-  @media (min-width: 968px) {
-    .they {
-      max-width: 70%; } }
 
 .chat-mobile-menu {
   transition-property: opacity;

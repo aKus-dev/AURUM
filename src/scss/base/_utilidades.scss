@@ -8,7 +8,9 @@
 .bg-main {
     background: linear-gradient(90deg, $ligthViolet, $darkViolet);
 }
-
+.bg-red {
+    background: linear-gradient(90deg, rgb(223, 43, 43), rgb(161, 1, 1));
+}
 .flexRow {
     display: flex;
     align-items: center;
