@@ -52,7 +52,7 @@ if(isset($_POST['mensaje'])) {
             idHost = <?php echo $idHost ?>;
 
 			var mensajes = $.ajax({
-				url:`../sql/sqlHost.php?idChat=${idChat}&idHost=${idHost}`,
+				url:`../sql/sqlMensajes.php?idChat=${idChat}&idHost=${idHost}`,
 				dataType:'text',
 				async:false
 			}).responseText;

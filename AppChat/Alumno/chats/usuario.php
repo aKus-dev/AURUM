@@ -50,7 +50,7 @@ if (isset($_POST['mensaje'])) {
 
             // Obtiene los mensajes del usuario
             var mensajes = $.ajax({
-                url: `../sql/sqlUsuario.php?idChat=${idChat}&idUsuario=${idUsuario}`,
+                url: `../sql/sqlMensajes.php?idChat=${idChat}&idUsuario=${idUsuario}`,
                 dataType: 'text',
                 async: false
             }).responseText;
