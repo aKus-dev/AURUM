@@ -136,6 +136,7 @@ class Chat
             $nombreDocente = $row['nombreDocente'];
             $apellidoDocente = $row['apellidoDocente'];
             $asignatura = $row['asignatura'];
+            $grupo = $row['grupo'];
         }
 
         return [
@@ -146,7 +147,8 @@ class Chat
             "idDocente" => $idDocente,
             "nombreDocente" => $nombreDocente,
             "apellidoDocente" => $apellidoDocente,
-            "asignatura" => $asignatura
+            "asignatura" => $asignatura,
+            "grupo" => $grupo
         ];
     }
 

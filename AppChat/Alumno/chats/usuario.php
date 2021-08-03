@@ -2,6 +2,7 @@
 
 require '../../../config/app.php';
 require '../../../clases/Chat.php';
+require '../../../clases/Sistema.php';
 
 isAuth_alumno();
 
@@ -21,6 +22,8 @@ if (isset($_POST['idChat'])) {
     $idHost = $datosChat['idHost'];
     $asignatura = $datosChat['asignatura'];
 }
+
+$grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
@@ -83,7 +86,7 @@ if (isset($_POST['mensaje'])) {
         <a href="../unirse.php">
             <i id="back" class="fas fa-arrow-left"></i>
         </a>
-        <p class="title"><?php echo $asignatura ?></p>
+        <p class="title"><?php echo $asignatura . " [" . $grupo[0] . "]" ?></p>
         <i id="showMenu" class="fas fa-users"></i>
     </header>
 
