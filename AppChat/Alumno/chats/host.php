@@ -8,8 +8,10 @@ isAuth_alumno();
 
 $idChat = '';
 $idHost = '';
+$idDocente = '';
 $asignatura = '';
 $datosChat = [];
+
 
 // Si está el id, lo obtengo
 if (isset($_POST['idChat'])) {
@@ -20,6 +22,8 @@ if (isset($_POST['idChat'])) {
     $idHost = $datosChat['idHost'];
     $asignatura = $datosChat['asignatura'];
 }
+
+$idDocente = $datosChat['idDocente'];
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
@@ -50,9 +54,10 @@ if (isset($_POST['mensaje'])) {
         function tiempoReal() {
             idChat = <?php echo $idChat ?>;
             idHost = <?php echo $idHost ?>;
+            idDocente = <?php echo $idDocente ?>;
 
             var mensajes = $.ajax({
-                url: `../sql/sqlMensajes.php?idChat=${idChat}&idHost=${idHost}`,
+                url: `../sql/sqlMensajes.php?idChat=${idChat}&idHost=${idHost}&idDocente=${idDocente}`,
                 dataType: 'text',
                 async: false
             }).responseText;

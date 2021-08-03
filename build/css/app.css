@@ -2626,7 +2626,7 @@ select[multiple] {
     .they {
       max-width: 50rem; } }
   .they span {
-    padding-left: 2rem;
+    padding-left: 1rem;
     align-self: flex-start;
     margin: .8rem 0;
     font-size: 1.2rem;
@@ -2638,6 +2638,42 @@ select[multiple] {
     padding: 2rem 2rem 2rem 3rem;
     font-size: 1.6rem;
     color: #444851; }
+
+.teacher {
+  margin: .5rem 0;
+  max-width: 85%;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; }
+  @media (max-width: 300px) {
+    .teacher {
+      max-width: 20rem; } }
+  @media (max-width: 400px) {
+    .teacher {
+      max-width: 30rem; } }
+  @media (max-width: 500px) {
+    .teacher {
+      max-width: 40rem; } }
+  @media (min-width: 500px) {
+    .teacher {
+      max-width: 45rem; } }
+  @media (min-width: 600px) {
+    .teacher {
+      max-width: 50rem; } }
+  .teacher span {
+    padding-left: 1rem;
+    align-self: flex-start;
+    margin: .8rem 0;
+    font-size: 1.2rem;
+    color: #dd124d;
+    font-weight: bold; }
+  .teacher p {
+    border-radius: 5rem 5rem 5rem 0;
+    background: linear-gradient(90deg, #ed1b58, #7E0A2C);
+    padding: 2rem 2rem 2rem 3rem;
+    font-size: 1.6rem;
+    color: #ffffff; }
 
 .chat-mobile-menu {
   transition-property: opacity;

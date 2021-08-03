@@ -30,7 +30,7 @@ isAuth_alumno();
                     <h3 class="option__heading">Crea un chat</h3>
                     <p class="option__text">Entra aquí para crear el chat de alguna materia</p>
 
-                    <a href="Alumno/crear.php" class="admin-button">Visualizar</a>
+                    <a href="/AppChat/Alumno/crear.php" class="admin-button">Visualizar</a>
                 </div>
 
                 <div class="filter-option"></div>
@@ -41,7 +41,7 @@ isAuth_alumno();
                     <h3 class="option__heading">Unete a un chat</h3>
                     <p class="option__text">Entra aquí para unirte a un chat ya existente</p>
 
-                    <a href="Alumno/unirse.php" class="admin-button">Visualizar</a>
+                    <a href="/AppChat/Alumno/unirse.php"" class="admin-button">Visualizar</a>
                 </div>
 
                 <div class="filter-option"></div>
@@ -53,7 +53,7 @@ isAuth_alumno();
                 <h3 class="option__heading option__heading--red">Mis chats</h3>
                 <p class="option__text">Aquí podrás acceder a todos tus chats creados</p>
 
-                <a href="Alumno/hostchats.php" class="admin-button admin-button--red">Visualizar</a>
+                <a href="/AppChat/Alumno/hostchats.php" class="admin-button admin-button--red">Visualizar</a>
             </div>
 
             <div class="filter-option--diff"></div>
