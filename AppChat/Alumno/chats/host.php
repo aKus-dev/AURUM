@@ -69,17 +69,21 @@ if (isset($_POST['mensaje'])) {
                 async: false
             }).responseText;
 
-
             document.querySelector(".messages-container").innerHTML = mensajes;
             document.querySelector("#usuarios").innerHTML = usuarios;
             document.querySelector("#usuarios_mobile").innerHTML = usuariosMobile;
         }
+
         setInterval(tiempoReal, 300);
     </script>
 </head>
 
 <body>
     <header class=" chat-header bg-main">
+        <a href="../hostchats.php">
+         <i id="back" class="fas fa-arrow-left"></i>
+        </a>
+
         <p class="title"><?php echo $asignatura ?></p>
         <i id="showMenu" class="fas fa-users"></i>
     </header>
@@ -87,16 +91,17 @@ if (isset($_POST['mensaje'])) {
     <main class="chat-container">
         <div class="users display-none">
             <div class="text-center">
-                <h3>Otros chats activos</h3>
+                <div class="pt-3">
+                    <h3>Finaliza el chat</h3>
 
-                <div class="chat-active">
-                    <p class="materia">Matemática</p>
-                    <p>Creado por: <span>Manuel Ugarte</span> </p>
+                    <form action="sql/finalizar.php" id="finalizar-chat" method="post">
+                        <p>Al enviar este formulario, estas finalizando el chat, ¡Asegurate de que todas tus dudas se hayan aclarado!</p>
 
-                    <a href="#">
-                        <i class=" fas fa-arrow-right"></i>
-                    </a>
+                        <textarea name="resumen" placeholder="Escribe un resumen"></textarea>
+                        <button class="bg-main">Finalizar</button>
+                    </form>
                 </div>
+
             </div>
         </div>
 
@@ -130,7 +135,7 @@ if (isset($_POST['mensaje'])) {
 
             </div>
         </div>
-        <?php include '../internal/menuMobile.php' ?>
+        <?php include '../internal/menuMobileHost.php' ?>
     </main>
 
 

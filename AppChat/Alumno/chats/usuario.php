@@ -62,7 +62,7 @@ if (isset($_POST['mensaje'])) {
                 async: false
             }).responseText;
 
-              // Obtiene los usuarios del chat para la version mobile
+            // Obtiene los usuarios del chat para la version mobile
             var usuariosMobile = $.ajax({
                 url: `../sql/sqlOnlineMobile.php?idChat=${idChat}`,
                 dataType: 'text',
@@ -80,6 +80,9 @@ if (isset($_POST['mensaje'])) {
 
 <body>
     <header class=" chat-header bg-main">
+        <a href="../unirse.php">
+            <i id="back" class="fas fa-arrow-left"></i>
+        </a>
         <p class="title"><?php echo $asignatura ?></p>
         <i id="showMenu" class="fas fa-users"></i>
     </header>

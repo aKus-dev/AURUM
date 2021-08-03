@@ -7,17 +7,22 @@
     align-items: center;
 
     @media (min-width: 1200px) {
-        justify-content: center;
+        display: block;
+    }
+
+    #back {
+        font-size: 2.5;
+
+        @media (min-width: 1200px) {
+            justify-self: flex-start;
+            display: inline-block;
+        }
     }
 
     i {
         cursor: pointer;
         font-size: 2rem;
         color: $white;
-
-        @media (min-width: 1200px) {
-            display: none;
-        }
     }
     
     .title {
@@ -25,8 +30,20 @@
         color: $white;
         font-weight: bold;
         text-transform: uppercase;
+        margin-left: 2.5rem;
+
+        @media (min-width: 1200px) {
+            text-align: center;
+            display: inline-block;
+        }
     }
 
+}
+
+@media (min-width: 1200px) {
+    #showMenu {
+        display: none;
+    }
 }
 
 .chat-container {
@@ -123,6 +140,11 @@
                 color: gold;
             }
 
+            #book {
+                font-size: 2rem;
+                color: crimson;
+            }
+
             #student {
                 font-size: 2rem;
                 color: $ligthViolet;
@@ -175,4 +197,40 @@
     }
 }
 
+#finalizar-chat  {
 
+
+    textarea {
+        display: block;
+        margin: 2.5rem auto;
+        height: 15rem;
+        width: 85%;
+        font-size: 1.5rem;
+        padding: 1rem;
+        outline: none;
+        border: 1px solid $ligthViolet;
+        color: $lightBlack;
+    }
+
+    button {
+        transition: .35s;
+        cursor: pointer;
+        border: none;
+        padding: .5rem 2.5rem;
+        border-radius: .5rem;
+        font-size: 1.5rem;
+        color: $white;
+        text-transform: uppercase;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    
+    p {
+        margin: 1.5rem;
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+}

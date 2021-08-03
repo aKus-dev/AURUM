@@ -103,6 +103,12 @@
     display: flex;
     justify-content: flex-end;
 }
+.align-center {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .not-allowed {
     cursor: not-allowed;

@@ -483,6 +483,12 @@ textarea {
   display: flex;
   justify-content: flex-end; }
 
+.align-center {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
 .not-allowed {
   cursor: not-allowed; }
 
@@ -2398,19 +2404,31 @@ select[multiple] {
   align-items: center; }
   @media (min-width: 1200px) {
     .chat-header {
-      justify-content: center; } }
+      display: block; } }
+  .chat-header #back {
+    font-size: 2.5; }
+    @media (min-width: 1200px) {
+      .chat-header #back {
+        justify-self: flex-start;
+        display: inline-block; } }
   .chat-header i {
     cursor: pointer;
     font-size: 2rem;
     color: #FFFFFF; }
-    @media (min-width: 1200px) {
-      .chat-header i {
-        display: none; } }
   .chat-header .title {
     font-size: 2.4rem;
     color: #FFFFFF;
     font-weight: bold;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    margin-left: 2.5rem; }
+    @media (min-width: 1200px) {
+      .chat-header .title {
+        text-align: center;
+        display: inline-block; } }
+
+@media (min-width: 1200px) {
+  #showMenu {
+    display: none; } }
 
 .chat-container {
   position: relative; }
@@ -2479,6 +2497,9 @@ select[multiple] {
       .chat-container .users .user #crown {
         font-size: 2rem;
         color: gold; }
+      .chat-container .users .user #book {
+        font-size: 2rem;
+        color: crimson; }
       .chat-container .users .user #student {
         font-size: 2rem;
         color: #B1126F; }
@@ -2511,6 +2532,34 @@ select[multiple] {
         background: #FFFFFF; }
         .chat-container .users .chat-active a i {
           color: #B1126F; }
+
+#finalizar-chat textarea {
+  display: block;
+  margin: 2.5rem auto;
+  height: 15rem;
+  width: 85%;
+  font-size: 1.5rem;
+  padding: 1rem;
+  outline: none;
+  border: 1px solid #B1126F;
+  color: #202020; }
+
+#finalizar-chat button {
+  transition: .35s;
+  cursor: pointer;
+  border: none;
+  padding: .5rem 2.5rem;
+  border-radius: .5rem;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  text-transform: uppercase; }
+  #finalizar-chat button:hover {
+    transform: scale(1.1); }
+
+#finalizar-chat p {
+  margin: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 1.5; }
 
 .messages {
   padding: 4rem 2rem 2rem 2rem;
