@@ -24,24 +24,10 @@
         </div>
 
         <div id="usuarios-mobile" class="display-none">
-            <div class="user flex-alumnos-chat">
-                <i id="crown" class="fas fa-crown"></i>
-                <p>Agustín Vega</p>
-
-                <div class="online">
-                    <i id="status-online" class="fas fa-circle"></i>
-                </div>
-            </div>
+            <?php Chat::cargarHostMobile($idChat, $db); ?>
 
             <!--  Usuario que se unió -->
-            <div class="user flex-alumnos-chat">
-                <i id="student" class="fas fa-graduation-cap"></i>
-                <p>Roberto Cagaleri</p>
-
-                <div class="online">
-                    <i id="status-online" class="fas fa-circle"></i>
-                </div>
-            </div>
+           <?php Chat::cargarUsuariosMobile($idChat, $db); ?>
         </div>
 
     </div>

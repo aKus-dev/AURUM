@@ -118,6 +118,7 @@ if (isset($_POST['mensaje'])) {
 
             </div>
         </div>
+        
         <?php include '../internal/menuMobile.php' ?>
     </main>
 
