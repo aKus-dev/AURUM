@@ -43,10 +43,10 @@ Chat::offlineDocente($_SESSION['id'], $db);
 
             <div class="consulta chat-select--chats">
                 <div class="option__content">
-                    <h3 class="option__heading">Historial</h3>
-                    <p class="option__text">Accede a tu historial de chats</p>
+                    <h3 class="option__heading">Solicitudes</h3>
+                    <p class="option__text">Solicitudes para un nuevo chat</p>
 
-                    <a href="/AppChat/Docente/historial.php" class="admin-button">Visualizar</a>
+                    <a href="/AppChat/Docente/solicitudes.php" class="admin-button">Visualizar</a>
                 </div>
 
                 <div class="filter-option"></div>

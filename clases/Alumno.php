@@ -56,6 +56,17 @@ class Alumno
         }
     }
 
+    public static function getGrupos($id, $db) {
+        $resultado = $db->query("SELECT grupo FROM grupos_alumno WHERE idAlumno = $id");
+        $grupos = [];
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $grupos[] = $row['grupo'];
+        }
+
+        return $grupos;
+    }
+
     static public function registrarGrupos($grupos, $CI, $db)
     {
         $sql = "SELECT id FROM alumno WHERE ci = '$CI' LIMIT 1";

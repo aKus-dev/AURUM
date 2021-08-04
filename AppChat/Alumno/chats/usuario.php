@@ -3,6 +3,7 @@
 require '../../../config/app.php';
 require '../../../clases/Chat.php';
 require '../../../clases/Sistema.php';
+require '../../../clases/Alumno.php';
 
 isAuth_alumno();
 
@@ -28,12 +29,14 @@ $idDocente = $datosChat['idDocente'];
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
+
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
     $datosChat = Chat::enviarMensaje($idChat, $idUsuario,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
 
 $idUsuarioReal = $_SESSION['id'];
+$gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db); 
 
 ?>
 
@@ -57,6 +60,7 @@ $idUsuarioReal = $_SESSION['id'];
             idUsuario = <?php echo $idUsuario ?>;
             idDocente = <?php echo $idDocente ?>;
             idUsuarioReal = <?php echo $idUsuarioReal ?>;
+            grupos = <?php echo json_encode($gruposAlumno) ?>
 
             // Obtiene los mensajes del usuario
             let mensajes = $.ajax({
@@ -80,7 +84,7 @@ $idUsuarioReal = $_SESSION['id'];
             }).responseText;
 
             let chatsActivos = $.ajax({
-                url: `../sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}`,
+                url: `../sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}&grupos=${grupos}`,
                 dataType: 'text',
                 async: false
             }).responseText;

@@ -21,7 +21,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $grupos[] = $row['grupo'];
 }
 
-
+$entroChat = false; // Verifica si hay chats creados
 $gruposCopia = $grupos;
 $gruposFormateados = Sistema::formatearGrupos($gruposCopia, $db);
 
@@ -53,7 +53,6 @@ $i = 0;
                     $grado = substr($grupo, 0, -2);
 
                     $idUsuarioChat = Chat::getIdAlumno($id, $db);
-                    $entroChat = false; // Verifica si hay chats creados
                     $mensajeMostrado = false;  // Pasa a true cuando ya se haya mostrado
 
                     $sql = "SELECT id, asignatura FROM chat WHERE idHost != $idUsuarioChat AND grupo = '$grupo'";
