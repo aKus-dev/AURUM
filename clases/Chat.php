@@ -154,9 +154,13 @@ class Chat
 
     public static function enviarMensaje($idChat, $idUsuario, $nombre, $apellido,  $mensaje, $db)
     {
+        date_default_timezone_set("America/Montevideo");
+        $hora = Date('G:i');
+
         if (!empty($mensaje)) {
             $mensaje = $db->quote($mensaje); // Evito que caracteres como comillas den error en el query
-            $sql = "INSERT INTO mensajes_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario, mensaje) VALUES ($idChat, $idUsuario, '$nombre', '$apellido', $mensaje)";
+            $sql = "INSERT INTO mensajes_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario, mensaje, hora) 
+            VALUES ($idChat, $idUsuario, '$nombre', '$apellido', $mensaje, '$hora')";
 
             $stmt = $db->prepare($sql);
             $stmt->execute();

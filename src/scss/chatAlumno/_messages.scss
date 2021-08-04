@@ -42,7 +42,7 @@
         margin: .5rem 0;
         font-size: 1.2rem;
         color: $ligthViolet;
-        font-weight: bold;
+        font-size: 1.3;
     }
 
     p {
@@ -52,7 +52,6 @@
         font-size: 1.6rem;
         color: $white;
     }
-
 
 }
 
@@ -84,13 +83,18 @@
         max-width: 50rem;
     }
 
-    span {
-        padding-left: 1rem;
+    .data {
+        padding-left: .5rem;
         align-self: flex-start;
         margin: .8rem 0;
         font-size: 1.2rem;
         color: #444851;
         font-weight: bold;
+
+        span {
+            font-weight: 300;
+            font-size: 1.3;
+        }
     }
 
     p {
@@ -132,13 +136,19 @@
         max-width: 50rem;
     }
 
-    span {
-        padding-left: 1rem;
+    .data {
+        padding-left: .5rem;
         align-self: flex-start;
         margin: .8rem 0;
         font-size: 1.2rem;
         color: lighten($darkRed, 20%);
         font-weight: bold;
+
+        
+        span {
+            font-weight: 300;
+            font-size: 1.3;
+        }
     }
 
     p {

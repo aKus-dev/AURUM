@@ -2606,7 +2606,7 @@ select[multiple] {
     margin: .5rem 0;
     font-size: 1.2rem;
     color: #B1126F;
-    font-weight: bold; }
+    font-size: 1.3; }
   .you p {
     border-radius: 5rem 5rem 0 5rem;
     background: linear-gradient(90deg, #B1126F, #531A5D);
@@ -2636,13 +2636,16 @@ select[multiple] {
   @media (min-width: 600px) {
     .they {
       max-width: 50rem; } }
-  .they span {
-    padding-left: 1rem;
+  .they .data {
+    padding-left: .5rem;
     align-self: flex-start;
     margin: .8rem 0;
     font-size: 1.2rem;
     color: #444851;
     font-weight: bold; }
+    .they .data span {
+      font-weight: 300;
+      font-size: 1.3; }
   .they p {
     border-radius: 5rem 5rem 5rem 0;
     background: #E9EFF4;
@@ -2672,13 +2675,16 @@ select[multiple] {
   @media (min-width: 600px) {
     .teacher {
       max-width: 50rem; } }
-  .teacher span {
-    padding-left: 1rem;
+  .teacher .data {
+    padding-left: .5rem;
     align-self: flex-start;
     margin: .8rem 0;
     font-size: 1.2rem;
     color: #dd124d;
     font-weight: bold; }
+    .teacher .data span {
+      font-weight: 300;
+      font-size: 1.3; }
   .teacher p {
     border-radius: 5rem 5rem 5rem 0;
     background: linear-gradient(90deg, #ed1b58, #7E0A2C);

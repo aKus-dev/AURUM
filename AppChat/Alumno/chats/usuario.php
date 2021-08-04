@@ -32,7 +32,6 @@ if (isset($_POST['mensaje'])) {
 
 $idUsuarioReal = $_SESSION['id'];
 
-
 ?>
 
 <!DOCTYPE html>
@@ -55,34 +54,33 @@ $idUsuarioReal = $_SESSION['id'];
             idUsuario = <?php echo $idUsuario ?>;
             idDocente = <?php echo $idDocente ?>;
             idUsuarioReal = <?php echo $idUsuarioReal ?>;
-            
+
             // Obtiene los mensajes del usuario
-            var mensajes = $.ajax({
+            let mensajes = $.ajax({
                 url: `../sql/sqlMensajes.php?idChat=${idChat}&idUsuario=${idUsuario}&idDocente=${idDocente}`,
                 dataType: 'text',
                 async: false
             }).responseText;
 
             // Obtiene los usuarios del chat
-            var usuarios = $.ajax({
+            let usuarios = $.ajax({
                 url: `../sql/sqlOnline.php?idChat=${idChat}`,
                 dataType: 'text',
                 async: false
             }).responseText;
 
             // Obtiene los usuarios del chat para la version mobile
-            var usuariosMobile = $.ajax({
+            let usuariosMobile = $.ajax({
                 url: `../sql/sqlOnlineMobile.php?idChat=${idChat}`,
                 dataType: 'text',
                 async: false
             }).responseText;
 
-            var chatsActivos = $.ajax({
+            let chatsActivos = $.ajax({
                 url: `../sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}`,
                 dataType: 'text',
                 async: false
             }).responseText;
-
 
             document.querySelector(".messages-container").innerHTML = mensajes;
             document.querySelector("#usuarios").innerHTML = usuarios;
