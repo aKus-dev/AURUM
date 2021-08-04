@@ -2,7 +2,11 @@
 
 require '../../config/app.php';
 require '../../clases/Alumno.php';
+require '../../clases/Chat.php';
+
 isAuth_alumno();
+Chat::offlineAlumno($_SESSION['id'], $db);
+
 
 // Para eliminarlo
 if(!empty($_GET)) {

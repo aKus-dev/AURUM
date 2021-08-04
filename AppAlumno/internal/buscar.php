@@ -2,8 +2,11 @@
 
 require '../../config/app.php';
 require '../../clases/Sistema.php';
+require '../../clases/Chat.php';
 
 isAuth_alumno();
+Chat::offlineAlumno($_SESSION['id'], $db);
+
 $encontro = null;
 $resultados = false;
 $mostrarAlerta = false;

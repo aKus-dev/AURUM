@@ -3,8 +3,10 @@
 require '../../config/app.php';
 require '../../clases/Alumno.php';
 require '../../clases/Sistema.php';
+require '../../clases/Chat.php';
 
 isAuth_alumno();
+Chat::offlineAlumno($_SESSION['id'], $db);
 
 $idAlumno = $_SESSION['id'];
 

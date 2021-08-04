@@ -167,4 +167,58 @@ class Chat
         }
     }
 
+    public static function offlineAlumno ($id, $db) {
+        $id = self::getIdAlumno($id, $db);
+        $chats = [];
+
+        $result = $db->query("SELECT id FROM chat WHERE idHost = $id");
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $chats['host'][] = $row['id'];
+        }
+
+        $sql = "SELECT idChat  FROM usuarios_chat WHERE idUsuario = $id";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $chats['usuario'][] = $row['idChat'];
+        }
+
+        // Si esta en un chat de host
+        if(!empty($chats['host'])) {
+
+            // Paso a offline en los chats en los que es host
+            foreach ($chats['host'] as $chat) {
+                $sql = "UPDATE chat SET isOnlineHost = false WHERE id = $chat";
+                $db->query($sql);
+             }
+
+        }
+
+         // Si esta en un chat de usuario
+        if(!empty($chats['usuario'])) {
+
+            // Paso a offline en los chats en los que usuario normal
+            foreach ($chats['usuario'] as $chat) {
+                $sql = "UPDATE usuarios_chat SET isOnline = false WHERE idChat = $chat";
+                $db->query($sql);
+             }
+
+        }
+
+    }
+
+    public static function onlineAlumno ($id, $idChat, $type, $db) {
+        $id = self::getIdAlumno($id, $db);
+
+        if($type === 'host') {
+            $db->query("UPDATE chat SET isOnlineHost = true WHERE id = $idChat");
+        }
+
+        if($type === 'usuario') {
+            $db->query("UPDATE usuarios_chat SET isOnline = true WHERE idChat = $idChat");
+        }
+
+    }
+
 }

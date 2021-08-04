@@ -2,8 +2,11 @@
 
 require '../../config/app.php';
 require '../../clases/Alumno.php';
+require '../../clases/Chat.php';
 
 isAuth_alumno();
+Chat::offlineAlumno($_SESSION['id'], $db);
+
 
 if (empty($_POST)) {
     header('Location: /AppAlumno/index.php');

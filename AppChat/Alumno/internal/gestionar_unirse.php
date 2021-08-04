@@ -37,7 +37,7 @@ $existe = false;
 
 <?php if (!$existe) { ?>
     <?php
-    $sql = "INSERT INTO usuarios_chat VALUES ($idChat, $idUsuario, '$nombre', '$apellido')";;
+    $sql = "INSERT INTO usuarios_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario) VALUES ($idChat, $idUsuario, '$nombre', '$apellido')";;
     $stmt = $db->prepare($sql);
     ?>
 

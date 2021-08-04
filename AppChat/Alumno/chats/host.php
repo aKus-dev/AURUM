@@ -23,6 +23,9 @@ if (isset($_POST['idChat'])) {
     $asignatura = $datosChat['asignatura'];
 }
 
+// Lo paso a online
+Chat::onlineAlumno($_SESSION['id'], $idChat, 'host', $db);
+
 $idDocente = $datosChat['idDocente'];
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);

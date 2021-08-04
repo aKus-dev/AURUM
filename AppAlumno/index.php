@@ -1,8 +1,10 @@
 <?php
 
 require '../config/app.php';
-isAuth_alumno();
+require '../clases/Chat.php';
 
+isAuth_alumno();
+Chat::offlineAlumno($_SESSION['id'], $db);
 ?>
 
 

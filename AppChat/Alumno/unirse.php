@@ -4,12 +4,9 @@ require '../../config/app.php';
 require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener los datos, crear el chat y pasar el id del chat
-    header("Location: ./chat.php");
-}
-
 isAuth_alumno();
+Chat::offlineAlumno($_SESSION['id'], $db);
+
 
 
 $id = $_SESSION['id'];
