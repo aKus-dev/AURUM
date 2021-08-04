@@ -41,7 +41,7 @@ $i = 0;
 </head>
 <body style="overflow-x: hidden">
     <div class=" alumno-container">
-        <?php include '../../AppAlumno/templates/header.html' ?>
+        <?php include '../../AppDocente/templates/header.html' ?>
 
         <div class="chat-materia">
             <div class="materias-container-chat">
