@@ -11,8 +11,6 @@ $idUsuario = $_POST['idUsuario'];
 $asignatura = '';
 $datosChat = [];
 
-
-
 // Si está el id, lo obtengo
 if (isset($_POST['idChat'])) {
     $idChat = $_POST['idChat'];
@@ -23,12 +21,17 @@ if (isset($_POST['idChat'])) {
     $asignatura = $datosChat['asignatura'];
 }
 
+$idDocente = $datosChat['idDocente'];
+
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
     $datosChat = Chat::enviarMensaje($idChat, $idUsuario,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
+
+$idUsuarioReal = $_SESSION['id'];
+
 
 ?>
 
@@ -50,10 +53,12 @@ if (isset($_POST['mensaje'])) {
         function tiempoReal() {
             idChat = <?php echo $idChat ?>;
             idUsuario = <?php echo $idUsuario ?>;
-
+            idDocente = <?php echo $idDocente ?>;
+            idUsuarioReal = <?php echo $idUsuarioReal ?>;
+            
             // Obtiene los mensajes del usuario
             var mensajes = $.ajax({
-                url: `../sql/sqlMensajes.php?idChat=${idChat}&idUsuario=${idUsuario}`,
+                url: `../sql/sqlMensajes.php?idChat=${idChat}&idUsuario=${idUsuario}&idDocente=${idDocente}`,
                 dataType: 'text',
                 async: false
             }).responseText;
@@ -72,11 +77,21 @@ if (isset($_POST['mensaje'])) {
                 async: false
             }).responseText;
 
+            var chatsActivos = $.ajax({
+                url: `../sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
+
 
             document.querySelector(".messages-container").innerHTML = mensajes;
             document.querySelector("#usuarios").innerHTML = usuarios;
             document.querySelector("#usuarios_mobile").innerHTML = usuariosMobile;
+            document.querySelector("#chats-activos").innerHTML = chatsActivos;
+            document.querySelector("#chats-mobile-insert").innerHTML = chatsActivos; 
         }
+
+
         setInterval(tiempoReal, 300);
     </script>
 </head>
@@ -95,14 +110,7 @@ if (isset($_POST['mensaje'])) {
             <div class="text-center">
                 <h3>Otros chats activos</h3>
 
-                <div class="chat-active">
-                    <p class="materia">Matemática</p>
-                    <p>Creado por: <span>Manuel Ugarte</span> </p>
-
-                    <a href="#">
-                        <i class=" fas fa-arrow-right"></i>
-                    </a>
-                </div>
+                <div id="chats-activos"> </div>
             </div>
         </div>
 

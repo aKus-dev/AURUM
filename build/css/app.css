@@ -495,6 +495,18 @@ textarea {
 .absolute {
   position: absolute; }
 
+.not-found {
+  border-radius: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 85%;
+  margin: 2.5rem auto;
+  padding: .5rem 2rem;
+  font-weight: 2rem;
+  background: linear-gradient(90deg, #B1126F, #531A5D);
+  color: #FFFFFF; }
+
 .btn {
   display: block;
   padding: 2rem;
@@ -2507,7 +2519,6 @@ select[multiple] {
         font-size: 1rem;
         color: #4bcc10; }
     .chat-container .users .chat-active {
-      transition: .35s;
       background: linear-gradient(90deg, #B1126F, #531A5D);
       color: #FFFFFF;
       margin: 2.5rem auto;
@@ -2515,14 +2526,14 @@ select[multiple] {
       padding: 1rem 2rem;
       border-radius: 1rem;
       box-shadow: 0 0 1rem #eee4e4; }
-      .chat-container .users .chat-active:hover {
-        transform: scale(1.05); }
       .chat-container .users .chat-active .materia {
         font-weight: bold;
         margin: .5rem 0; }
       .chat-container .users .chat-active p {
         font-size: 1.5rem; }
-      .chat-container .users .chat-active a {
+      .chat-container .users .chat-active button {
+        cursor: pointer;
+        border: none;
         display: block;
         width: 85%;
         margin: 1.5rem auto;
@@ -2530,7 +2541,7 @@ select[multiple] {
         font-size: 1.8rem;
         border-radius: 1rem;
         background: #FFFFFF; }
-        .chat-container .users .chat-active a i {
+        .chat-container .users .chat-active button i {
           color: #B1126F; }
 
 #finalizar-chat textarea {
@@ -2727,7 +2738,6 @@ select[multiple] {
         font-size: 1rem;
         color: #4bcc10; }
     .chat-mobile-menu .content .chat-active {
-      transition: .35s;
       background: linear-gradient(90deg, #B1126F, #531A5D);
       color: #FFFFFF;
       margin: 2.5rem auto;
@@ -2735,14 +2745,14 @@ select[multiple] {
       padding: 1rem 2rem;
       border-radius: 1rem;
       box-shadow: 0 0 1rem #eee4e4; }
-      .chat-mobile-menu .content .chat-active:hover {
-        transform: scale(1.05); }
       .chat-mobile-menu .content .chat-active .materia {
         font-weight: bold;
         margin: .5rem 0; }
       .chat-mobile-menu .content .chat-active p {
         font-size: 1.5rem; }
-      .chat-mobile-menu .content .chat-active a {
+      .chat-mobile-menu .content .chat-active button {
+        cursor: pointer;
+        border: none;
         display: block;
         width: 85%;
         margin: 1.5rem auto;
@@ -2750,7 +2760,7 @@ select[multiple] {
         font-size: 1.8rem;
         border-radius: 1rem;
         background: #FFFFFF; }
-        .chat-mobile-menu .content .chat-active a i {
+        .chat-mobile-menu .content .chat-active button i {
           color: #B1126F; }
 
 .flex-alumnos-chat {

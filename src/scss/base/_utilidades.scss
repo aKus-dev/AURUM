@@ -117,3 +117,16 @@
 .absolute {
     position: absolute;
 }
+
+.not-found {
+    border-radius: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 85%;
+    margin: 2.5rem auto;
+    padding: .5rem 2rem;
+    font-weight: 2rem;
+    background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+    color: $white;
+}

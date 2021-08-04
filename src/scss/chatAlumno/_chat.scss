@@ -157,7 +157,6 @@
         }
 
         .chat-active {
-            transition: .35s;
             background: linear-gradient(90deg, $ligthViolet, $darkViolet);
             color: $white;
             margin: 2.5rem auto;
@@ -165,10 +164,6 @@
             padding: 1rem 2rem;
             border-radius: 1rem;
             box-shadow: 0 0 1rem #eee4e4;
-
-            &:hover {
-                transform: scale(1.05);
-            }
 
             .materia {
                 font-weight: bold;
@@ -179,7 +174,9 @@
                 font-size: 1.5rem;
             }
 
-            a {
+            button {
+                cursor: pointer;
+                border: none;
                 display: block;
                 width: 85%;
                 margin: 1.5rem auto;

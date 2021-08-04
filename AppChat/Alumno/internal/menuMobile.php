@@ -11,14 +11,11 @@
                 <div class="text-center">
                     <h3>Otros chats activos</h3>
 
-                    <div class="chat-active">
-                        <p class="materia">Matemática</p>
-                        <p>Creado por: <span>Manuel Ugarte</span> </p>
-
-                        <a href="#"">
-                        <i class=" fas fa-arrow-right"></i>
-                        </a>
+                    <div id="chats-mobile-insert">
+                        
                     </div>
+
+                    
                 </div>
             </div>
         </div>
