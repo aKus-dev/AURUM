@@ -1,5 +1,9 @@
 <?php
 
+if(empty($_POST)) {
+    header('Location: ../');
+}
+
 require '../../../clases/Chat.php';
 require '../../../config/app.php';
 
@@ -16,3 +20,4 @@ $apellido = $_POST['apellido'];
 
 
 <script src="/build/js/sendForm.js"></script>
+

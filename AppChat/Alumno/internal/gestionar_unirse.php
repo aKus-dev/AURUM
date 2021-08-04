@@ -1,4 +1,9 @@
 <?php
+
+if(empty($_POST)) {
+    header('Location: ../');
+}
+
 require '../../../clases/Chat.php';
 require '../../../config/app.php';
 
