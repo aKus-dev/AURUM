@@ -2,7 +2,11 @@
 
 require '../../config/app.php';
 require '../../clases/Docente.php';
+require '../../clases/Chat.php';
+
 isAuth_docente();
+Chat::offlineDocente($_SESSION['id'], $db);
+
 
 $success = false;
 

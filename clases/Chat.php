@@ -221,4 +221,26 @@ class Chat
 
     }
 
+    public static function offlineDocente ($id, $db) {
+        $id = self::getIdDocente($id, $db);
+        $chats = [];
+
+        $result = $db->query("SELECT id FROM chat WHERE idDocente = $id");
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $chats[] = $row['id'];
+        }
+
+        foreach ($chats as $chat) {
+            $db->query("UPDATE chat SET isOnlineDocente = false WHERE idDocente = $id AND id = $chat");
+        }
+
+    }
+
+    
+    public static function onlineDocente($id, $idChat , $db) {
+        $id = self::getIdDocente($id, $db);
+        $db->query("UPDATE chat SET isOnlineDocente = true WHERE id = $idChat");
+    }
+
 }

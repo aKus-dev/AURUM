@@ -3,8 +3,11 @@
 require '../../config/app.php';
 require '../../clases/Docente.php';
 require '../../clases/Sistema.php';
+require '../../clases/Chat.php';
 
 isAuth_docente();
+Chat::offlineDocente($_SESSION['id'], $db);
+
 
 Docente::revisarHorarios($_SESSION['id'], $db);
 

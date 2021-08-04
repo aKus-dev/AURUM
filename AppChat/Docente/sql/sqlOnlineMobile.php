@@ -25,21 +25,24 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
     echo "</div>";
 }
 
-$sql = "SELECT nombreDocente, apellidoDocente FROM chat WHERE id = $idChat";
+$sql = "SELECT nombreDocente, apellidoDocente, isOnlineDocente FROM chat WHERE id = $idChat";
 $resultado = $db->query($sql);
 
 ///TABLA DONDE SE DESPLIEGAN LOS REGISTROS //////////////////////////////
 while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-	$nombreDocente = $row['nombreDocente'];;
-	$apellidoDocente = $row['apellidoDocente'];;
+	$nombreDocente = $row['nombreDocente'];
+	$apellidoDocente = $row['apellidoDocente'];
+    $isOnlineDocente = $row['isOnlineDocente'];
 
     echo "<div class='user flex-alumnos-chat'>";
         echo "<i style='color: crimson' id='book'  class='fas fa-book'></i>";
         echo "<p> $nombreDocente  $apellidoDocente </p>";
         
-        echo "<div class='online'>";
-            echo " <i id='status-online' class='fas fa-circle'></i>";
-        echo "</div>";
+        if($isOnlineDocente) {
+            echo "<div class='online'>";
+                echo " <i id='status-online' class='fas fa-circle'></i>";
+            echo "</div>";
+        }
     echo "</div>";
 }
 

@@ -5,6 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_docente();
+Chat::offlineDocente($_SESSION['id'], $db);
 
 
 $id = $_SESSION['id'];
