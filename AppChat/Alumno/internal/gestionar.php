@@ -40,17 +40,15 @@ if (!$existe) {
 
 }
 
-if (!empty($datosChat)) : $sendForm = true; ?>
-
-    <form action="../chats/host.php" method="POST">
-        <input name="idChat" type="hidden" value="<?php echo $datosChat['idChat'] ?>">
-    </form>
-
+// Se creo el chat 
+if (!empty($datosChat)) {
+    header('Location: ../hostchats.php?success=true');
+}
 
 
-<?php endif; ?>
 
-<script src="/build/js/sendForm.js"></script>
 
-<?php
+
+
+
 

@@ -251,4 +251,86 @@ class Docente
             header('Location: ./horarios.php');
         }
     }
+
+    public static function getHorarios($idDocente, $db) {
+        $diaMinimo = '';
+        $diaMaximo = '';
+        $horaMinima = '';
+        $horaMaxima = '';
+
+        // Obtengo los datos del horario del profe
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $resultadoHorarios = $db->query($sqlHorarios);
+
+        // Iterar resultados;
+        while ($datos = $resultadoHorarios->fetch(PDO::FETCH_ASSOC)) {
+            $diaMinimo = $datos['dia_minimo'];
+            $diaMaximo = $datos['dia_maximo'];
+            $horaMinima = $datos['hora_minima'];
+            $horaMaxima = $datos['hora_maxima'];
+        }
+
+        if(!empty($diaMinimo) && !empty($diaMaximo) &&  !empty($horaMinima) &&  !empty($horaMaxima)) {
+            switch ($diaMinimo) {
+                case 1:
+                    $diaMinimo = "lunes";
+                    break;
+                case 2:
+                    $diaMinimo = "martes";
+                    break;
+                case 3:
+                    $diaMinimo = "miércoles";
+                    break;
+                case 4:
+                    $diaMinimo = "jueves";
+                    break;
+                case 5:
+                    $diaMinimo = "viernes";
+                    break;
+                case 6:
+                    $diaMinimo = "sábado";
+                    break;
+                case 7:
+                    $diaMinimo = "domingo";
+                    break;
+            }
+    
+    
+            switch ($diaMaximo) {
+                case 1:
+                    $diaMaximo = "lunes";
+                    break;
+                case 2:
+                    $diaMaximo = "martes";
+                    break;
+                case 3:
+                    $diaMaximo = "miércoles";
+                    break;
+                case 4:
+                    $diaMaximo = "jueves";
+                    break;
+                case 5:
+                    $diaMaximo = "viernes";
+                    break;
+                case 6:
+                    $diaMaximo = "sábado";
+                    break;
+                case 7:
+                    $diaMaximo = "domingo";
+                    break;
+            }
+    
+            return $datos = [
+                "diaMinimo" => $diaMinimo,
+                "diaMaximo" => $diaMaximo,
+                "horaMinima" => $horaMinima,
+                "horaMaxima" => $horaMaxima,
+            ];
+        }
+
+        return false;
+
+       
+
+    }
 }

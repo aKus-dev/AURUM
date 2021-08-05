@@ -2,6 +2,7 @@
 
 require '../../config/app.php';
 require '../../clases/Chat.php';
+require '../../clases/Docente.php';
 
 isAuth_alumno();
 Chat::offlineAlumno($_SESSION['id'], $db);
@@ -63,6 +64,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                 while ($datos = $result->fetch(PDO::FETCH_ASSOC)) {
                     $datosDocentes[] = $datos;
                 }
+
             }
 
             // Recorro los datos del coente
@@ -79,6 +81,8 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                 while ($rowAsignatura = $resultadoAsignaturas->fetch(PDO::FETCH_ASSOC)) {
                     $materias[] = $rowAsignatura['asignatura'];
                 }
+
+                $horariosDocente = Docente::getHorarios($idDocente, $db);
 
                 
 
@@ -100,6 +104,33 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                                 }
                                 ?>
                             </div>
+
+
+                            <h5 style="margin-top: 1.5rem">Horarios</h5>
+                            <?php
+                                if($horariosDocente) {
+                                    $diaMinimo = $horariosDocente['diaMinimo'];
+                                    $diaMaximo = $horariosDocente['diaMaximo'];
+                                    $horaMinima = $horariosDocente['horaMinima'];
+                                    $horaMaxima = $horariosDocente['horaMaxima'];
+
+                                    if($horaMinima < 12) {
+                                        $horaMinima .= 'am';
+                                    } else {
+                                        $horaMinima .= 'pm';
+                                    }
+
+                                    if($horaMaxima < 12) {
+                                        $horaMaxima .= 'am';
+                                    } else {
+                                        $horaMaxima .= 'pm';
+                                    }
+
+                                    echo "<p>De  $diaMinimo a $diaMaximo entre $horaMinima y $horaMaxima<p>";
+                                }
+                            ?>
+
+
 
                             <p></p>
                         </div>

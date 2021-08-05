@@ -8,6 +8,7 @@ class Chat
         $idDocente = '';
         $nombreDocente = '';
         $apellidoDocente = '';
+        $idRealDocente = '';
 
         // Obtengo los datos del profesor de esa asignatura en el grupo
         $sql  = "SELECT DISTINCT id, nombre, apellido
@@ -21,6 +22,7 @@ class Chat
         // Recorro los datos del docente
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $idDocente = Chat::getIdDocente($row['id'], $db);
+            $idRealDocente = $row['id'];
             $nombreDocente = $row['nombre'];
             $apellidoDocente = $row['apellido'];
         }
@@ -29,6 +31,7 @@ class Chat
             "idDocente" => $idDocente,
             "nombreDocente" => $nombreDocente,
             "apellidoDocente" => $apellidoDocente,
+            "idRealDocente" => $idRealDocente,
         ];
 
 
@@ -108,12 +111,13 @@ class Chat
         $apellidoHost = $datosAlumno['apellidoAlumno'];
 
         $idDocente = $datosDocente['idDocente'];
+        $idRealDocente = $datosDocente['idRealDocente'];
         $nombreDocente = $datosDocente['nombreDocente'];
         $apellidoDocente = $datosDocente['apellidoDocente'];
 
-        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost, idDocente, nombreDocente, apellidoDocente, asignatura, grupo) 
+        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost, idDocente, idRealDocente, nombreDocente, apellidoDocente, asignatura, grupo) 
                 VALUES
-                 ($idHost, '$nombreHost', '$apellidoHost', $idDocente, '$nombreDocente', '$apellidoDocente', '$asignatura', '$grupo')";
+                 ($idHost, '$nombreHost', '$apellidoHost', $idDocente, $idRealDocente, '$nombreDocente', '$apellidoDocente', '$asignatura', '$grupo')";
 
         $stmt = $db->prepare($sql);
 
@@ -287,5 +291,38 @@ class Chat
     {
         $id = self::getIdDocente($id, $db);
         $db->query("UPDATE chat SET isOnlineDocente = true WHERE id = $idChat");
+    }
+
+    public static function getHorarioDocente($idDocente, $db) {
+        $diaMinimo = '';
+        $diaMaximo = '';
+        $horaMinima = '';
+        $horaMaxima = '';
+
+        // Obtengo los datos del horario del profe
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $resultadoHorarios = $db->query($sqlHorarios);
+
+        // Iterar resultados;
+        while ($datos = $resultadoHorarios->fetch(PDO::FETCH_ASSOC)) {
+            $diaMinimo = $datos['dia_minimo'];
+            $diaMaximo = $datos['dia_maximo'];
+            $horaMinima = $datos['hora_minima'];
+            $horaMaxima = $datos['hora_maxima'];
+        }
+
+        if(empty($diaMinimo) && empty($diaMaximo) && empty($horaMinima) && empty($horaMaxima)) {
+            header('Location: /AppChat/Alumno/hostchats.php?sinHorarios=true');
+            return;
+        }
+
+        $diaActual = date('N'); // Días (1: lunes 7: domingo)
+        $horaActual = date('G'); // Horas (0 - 23)
+
+        if ($diaActual >= $diaMinimo && $diaActual <= $diaMaximo && $horaActual >= $horaMinima && $horaActual <= $horaMaxima){
+            return false;
+        }
+
+        return true;
     }
 }
