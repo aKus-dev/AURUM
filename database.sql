@@ -17,10 +17,11 @@ CREATE TABLE alumno (
 	primer_login BOOl NOT NULL
 );
 
+
 /* Esta tabla almacenara los grupos de los Alumnos*/
 CREATE TABLE grupos_alumno (
 	idAlumno INT NOT NULL,
-    Grupo CHAR (3) NOT NULL,
+    grupo CHAR (3) NOT NULL,
 	CONSTRAINT FK_idAlumno_grupo FOREIGN KEY (idAlumno) 
     REFERENCES alumno(id) ON DELETE CASCADE
 ); 
@@ -155,9 +156,11 @@ CREATE TABLE chat (
 	idHost INT NOT NULL,
     nombreHost VARCHAR(30),
 	apellidoHost VARCHAR(30),
+	isOnlineHost BOOL,
     idDocente INT NOT NULL,
     nombreDocente VARCHAR(25),
     apellidoDocente VARCHAR(25),
+	isOnlineDocente BOOL,
     asignatura VARCHAR(30),
     grupo CHAR(3)
 );
@@ -169,6 +172,7 @@ CREATE TABLE mensajes_chat (
     nombreUsuario VARCHAR(30),
     apellidoUsuario VARCHAR(30),
     mensaje VARCHAR(500),
+    hora CHAR(5),
 	CONSTRAINT FK_idChat FOREIGN KEY (idChat) 
     REFERENCES chat(id) ON DELETE CASCADE
 );
@@ -178,13 +182,26 @@ CREATE TABLE usuarios_chat (
 	idUsuario INT,
 	nombreUsuario VARCHAR(30),
     apellidoUsuario VARCHAR(30),
+    isOnline BOOL,
     CONSTRAINT FK_idChat2 FOREIGN KEY (idChat) 
     REFERENCES chat(id) ON DELETE CASCADE
 );
 
+CREATE TABLE solicitud_chat (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    idDocente INT,
+    idHost INT,
+    nombreHost VARCHAR(25),
+    apellidoHost VARCHAR(25),
+    asignatura VARCHAR(30),
+    grupo CHAR(3),
+    CONSTRAINT FK_solicitud FOREIGN KEY (idDocente) 
+    REFERENCES docente(id) ON DELETE CASCADE
+);
+
 use aurum;
-DELETE FROM chat WHERE id = 4;
 SELECT * FROM chat;
+SELECT * FROM solicitud_chat;
 SELECT * FROM usuarios_chat;
 SELECT * FROM usuarios;
 SELECT * FROM consultas_docente;
@@ -197,8 +214,7 @@ SELECT * FROM usuarios;
 SELECT * FROM alumno;
 SELECT * FROM docente;
 
-INSERT INTO grupos_alumno (idAlumno, Grupo) VALUES (5 , '1BA');
 SELECT * FROM administrador;
-SELECT * FROM Pendientes;
+SELECT * FROM pendiente;
 SELECT * FROM cedulas;
 
