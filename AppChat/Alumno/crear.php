@@ -60,6 +60,14 @@ $i = 0;
         </div>
     <?php endif; ?>
 
+       <!-- Caso de que ya este creado -->
+       <?php if (!empty($_GET['solicitud'])) : ?>
+        <div class="text-center width100">
+            <p id="danger" class="alert-warning">El docente ya está un chat de esta materia. Ya se le ha enviado una solicitud que está pendiente de aprobación</a>
+            </p>
+        </div>
+    <?php endif; ?>
+
     <div class="chat-materia">
         <div class="materias-container-chat">
             <?php foreach ($grupos as $grupo) :

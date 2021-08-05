@@ -35,8 +35,10 @@ class Chat
         return $datosDocente;
     }
 
-    public static function revisarExistencia($idDocente, $asignatura, $db)
+    public static function revisarExistencia($idDocente, $asignatura, $grupo, $datosAlumno, $db)
     {
+        $mismoGrupo = false;
+        $entro = false;
 
         if (empty($idDocente)) {
             header('Location: ../crear.php?empty=true');
@@ -46,11 +48,56 @@ class Chat
         $resultado = $db->query($sqlExistencia);
 
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            header('Location: ../crear.php?created=true');
-            return true;
+            $entro = true;
+            // Si el chat creado es del mismo grupo aviso
+            if ($row['grupo'] == $grupo) {
+                $mismoGrupo = true;
+            } 
         }
 
+        if($mismoGrupo) {
+            header('Location: ../crear.php?created=true');
+            return true;
+        } 
+            
+        if(!$mismoGrupo && $entro) {
+            // El chat esta creado pero NO es de este grupo
+            self::enviarSolicitud($datosAlumno, $idDocente, $asignatura, $grupo, $db);
+            return true;
+        }
+      
+        
+
         return false;
+    }
+    public static function enviarSolicitud($datosAlumno, $idDocente, $asignatura, $grupo, $db)
+    {
+        $idHost = self::getIdAlumno($datosAlumno['idAlumno'], $db);
+        $idDocente = self::getIdDocente($idDocente, $db);
+        $nombreHost = $datosAlumno['nombreAlumno'];
+        $apellidoHost = $datosAlumno['apellidoAlumno'];
+        $enviado = false;
+
+        $sql = "SELECT idDocente, asignatura, grupo FROM solicitud_chat";
+        $resultado = $db->query($sql);
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            // Si ya se le envio solicitud a ese profesor-materia-grupo
+            if ($idDocente == $row['idDocente'] && $asignatura == $row['asignatura'] && $grupo == $row['grupo']) {
+                $enviado = true;
+            }
+        }
+
+        if (!$enviado) {
+            $sql = "
+            INSERT INTO solicitud_chat (idDocente, idHost, nombreHost, apellidoHost, asignatura, grupo) 
+            VALUES ($idDocente, $idHost, '$nombreHost', '$apellidoHost', '$asignatura','$grupo');
+        ";
+
+            $db->query($sql);
+        }
+
+        header('Location: ../crear.php?solicitud=true');
     }
 
     public static function crearChat($datosAlumno, $datosDocente, $grupo, $db)
@@ -167,7 +214,8 @@ class Chat
         }
     }
 
-    public static function offlineAlumno ($id, $db) {
+    public static function offlineAlumno($id, $db)
+    {
         $id = self::getIdAlumno($id, $db);
         $chats = [];
 
@@ -185,43 +233,41 @@ class Chat
         }
 
         // Si esta en un chat de host
-        if(!empty($chats['host'])) {
+        if (!empty($chats['host'])) {
 
             // Paso a offline en los chats en los que es host
             foreach ($chats['host'] as $chat) {
                 $sql = "UPDATE chat SET isOnlineHost = false WHERE id = $chat";
                 $db->query($sql);
-             }
-
+            }
         }
 
-         // Si esta en un chat de usuario
-        if(!empty($chats['usuario'])) {
+        // Si esta en un chat de usuario
+        if (!empty($chats['usuario'])) {
 
             // Paso a offline en los chats en los que usuario normal
             foreach ($chats['usuario'] as $chat) {
                 $sql = "UPDATE usuarios_chat SET isOnline = false WHERE idChat = $chat";
                 $db->query($sql);
-             }
-
+            }
         }
-
     }
 
-    public static function onlineAlumno ($id, $idChat, $type, $db) {
+    public static function onlineAlumno($id, $idChat, $type, $db)
+    {
         $id = self::getIdAlumno($id, $db);
 
-        if($type === 'host') {
+        if ($type === 'host') {
             $db->query("UPDATE chat SET isOnlineHost = true WHERE id = $idChat");
         }
 
-        if($type === 'usuario') {
+        if ($type === 'usuario') {
             $db->query("UPDATE usuarios_chat SET isOnline = true WHERE idChat = $idChat");
         }
-
     }
 
-    public static function offlineDocente ($id, $db) {
+    public static function offlineDocente($id, $db)
+    {
         $id = self::getIdDocente($id, $db);
         $chats = [];
 
@@ -234,13 +280,12 @@ class Chat
         foreach ($chats as $chat) {
             $db->query("UPDATE chat SET isOnlineDocente = false WHERE idDocente = $id AND id = $chat");
         }
-
     }
 
-    
-    public static function onlineDocente($id, $idChat , $db) {
+
+    public static function onlineDocente($id, $idChat, $db)
+    {
         $id = self::getIdDocente($id, $db);
         $db->query("UPDATE chat SET isOnlineDocente = true WHERE id = $idChat");
     }
-
 }

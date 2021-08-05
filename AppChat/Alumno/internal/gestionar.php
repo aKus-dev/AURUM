@@ -23,7 +23,7 @@ $datosAlumno = [
 $datosDocente = Chat::datosDocente($_POST['asignatura'], $_POST['grupo'], $db);
 
 // Verifico si el chat ya existe
-$existe = Chat::revisarExistencia($datosDocente['idDocente'], $_POST['asignatura'], $db);
+$existe = Chat::revisarExistencia($datosDocente['idDocente'], $_POST['asignatura'], $grupo, $datosAlumno, $db);
 
 if (!$existe) {
     // Creo el chat
