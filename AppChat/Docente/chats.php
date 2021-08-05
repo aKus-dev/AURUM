@@ -7,7 +7,7 @@ require '../../clases/Chat.php';
 isAuth_docente();
 Chat::offlineDocente($_SESSION['id'], $db);
 
-
+$entroChat = false; // Verifica si hay chats creados
 $id = $_SESSION['id'];
 $grupos = [];
 $gruposFormateados = [];
@@ -51,7 +51,6 @@ $i = 0;
                     $grado = substr($grupo, 0, -2);
 
                     $idDocenteChat = Chat::getIdDocente($id, $db);
-                    $entroChat = false; // Verifica si hay chats creados
                     $mensajeMostrado = false;  // Pasa a true cuando ya se haya mostrado
 
                     $sql = "SELECT id, asignatura FROM chat WHERE idDocente = $idDocenteChat AND grupo = '$grupo'";

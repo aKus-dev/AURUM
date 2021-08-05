@@ -2777,3 +2777,10 @@ select[multiple] {
 
 .hiddeMenuMobileChat {
   display: none; }
+
+.data-solicitud {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem; }
+
+.solicitudes-buttons {
+  display: flex; }
