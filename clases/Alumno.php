@@ -104,7 +104,7 @@ class Alumno
     {
 
         date_default_timezone_set("America/Montevideo");
-        $fecha = date('Y-m-d');
+        $fecha = date('d/m/Y'); // Antes estaba en Y-m-d
 
         $diaMinimo = '';
         $diaMaximo = '';
