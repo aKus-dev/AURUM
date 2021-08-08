@@ -127,6 +127,8 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                                     }
 
                                     echo "<p>De  $diaMinimo a $diaMaximo entre $horaMinima y $horaMaxima<p>";
+                                } else {
+                                    echo "<p>Aún no ha registrado sus horarios</p>";
                                 }
                             ?>
 
