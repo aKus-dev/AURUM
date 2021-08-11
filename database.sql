@@ -92,7 +92,7 @@ CREATE TABLE consultas_docente (
     titulo VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     respuesta VARCHAR (5000),
-    fecha DATE NOT NULL,
+    fecha CHAR(10) NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
     CONSTRAINT FK_Alumno_idAlumno_consulta FOREIGN KEY (idAlumno) 
@@ -110,7 +110,7 @@ CREATE TABLE consultas_alumno (
     titulo VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
 	respuesta VARCHAR (5000),
-    fecha DATE NOT NULL,
+    fecha CHAR(10) NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
     CONSTRAINT FK_Alumno_idAlumno_consulta2 FOREIGN KEY (idAlumno) 
