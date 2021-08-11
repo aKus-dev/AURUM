@@ -55,7 +55,7 @@ $i = 0;
         <!-- Caso de que ya este creado -->
         <?php if (!empty($_GET['created'])) : ?>
             <div class="text-center width100">
-                <p id="danger" class="alert-danger">El chat ya está creado. Puedes unirte a los chats creados haciendo <a style="color: #FFF; font-weight: bold;" href="./unirse.php">click aquí</a>
+                <p id="danger" class="alert-warning">El chat ya está creado. Puedes ver tus chats o los de otros usuarios haciendo <a style="color: #FFF; font-weight: bold;" href="./index.php">click aquí</a>
                 </p>
             </div>
         <?php endif; ?>

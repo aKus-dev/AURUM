@@ -58,11 +58,13 @@ class Chat
             } 
         }
 
+        // Si es del mismo grupo lo re direciono y le digo que ya esta creado
         if($mismoGrupo) {
             header('Location: ../crear.php?created=true');
             return true;
         } 
             
+        // Si no es del mismo grupo y el chat existe mando una solicitud al docente
         if(!$mismoGrupo && $entro) {
             // El chat esta creado pero NO es de este grupo
             self::enviarSolicitud($datosAlumno, $idDocente, $asignatura, $grupo, $db);
