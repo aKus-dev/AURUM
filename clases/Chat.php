@@ -318,6 +318,8 @@ class Chat
             return;
         }
 
+        date_default_timezone_set("America/Montevideo");
+
         $diaActual = date('N'); // Días (1: lunes 7: domingo)
         $horaActual = date('G'); // Horas (0 - 23)
 
