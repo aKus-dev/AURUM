@@ -32,7 +32,7 @@ Chat::offlineAlumno($_SESSION['id'], $db);
      <!-- Caso de que el chat NO tenga docente -->
      <?php if (!empty($_GET['finish'])) : ?>
             <div class="text-center width100">
-                <p id="success" class="alert-success">Chat finalizado correctamente. Se ha enviado un mail a todos los integrantes con el historial del chat</p>
+                <p id="success" class="alert-success">Chat finalizado. Se ha enviado un mail a todos los integrantes con el historial del chat</p>
             </div>
         <?php endif; ?>
 
