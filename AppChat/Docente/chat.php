@@ -85,11 +85,22 @@ $idUsuarioReal = $_SESSION['id'];
                 async: false
             }).responseText;
 
+            let chatFinalizado = $.ajax({
+                url: `./sql/sqlFinalizado.php?idChat=${idChat}`,
+                dataType: 'text',
+                async: false
+            }).responseText;
+
+
             document.querySelector(".messages-container").innerHTML = mensajes;
             document.querySelector("#usuarios").innerHTML = usuarios;
             document.querySelector("#usuarios_mobile").innerHTML = usuariosMobile;
             document.querySelector("#chats-activos").innerHTML = chatsActivos;
             document.querySelector("#chats-mobile-insert").innerHTML = chatsActivos; 
+
+            if(!chatFinalizado) {
+                location.assign('./index.php?finish=true');
+            }
         }
 
 
