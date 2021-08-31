@@ -12,6 +12,7 @@ CREATE TABLE alumno (
     CI CHAR(8) UNIQUE NOT NULL,
     nombre VARCHAR(25) NOT NULL,
     apellido VARCHAR(25) NOT NULL,
+	email VARCHAR(320) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
 	primer_login BOOl NOT NULL
@@ -32,6 +33,7 @@ CREATE TABLE docente (
     CI CHAR(8) UNIQUE NOT NULL,
     nombre VARCHAR(25) NOT NULL,
     apellido VARCHAR(25) NOT NULL,
+    email VARCHAR(320) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
     dia_minimo INT,
@@ -157,6 +159,7 @@ CREATE TABLE chat (
     nombreHost VARCHAR(30),
 	apellidoHost VARCHAR(30),
 	isOnlineHost BOOL,
+    idRealDocente INT,
     idDocente INT NOT NULL,
     nombreDocente VARCHAR(25),
     apellidoDocente VARCHAR(25),
@@ -217,4 +220,5 @@ SELECT * FROM docente;
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
+
 
