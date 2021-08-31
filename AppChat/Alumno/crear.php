@@ -101,6 +101,7 @@ $i = 0;
                                 $idAlumno = $_SESSION['id'];
                                 $nombreAlumno = $_SESSION['nombre'];
                                 $apellidoAlumno = $_SESSION['apellido'];
+                                $emailAlumno = $_SESSION['email'];
                                 ?>
 
                                 <input type="hidden" name="asignatura" value="<?php echo $row['nombre'] ?>">
@@ -108,6 +109,7 @@ $i = 0;
                                 <input type="hidden" name="idAlumno" value="<?php echo $idAlumno ?>">
                                 <input type="hidden" name="nombreAlumno" value="<?php echo  $nombreAlumno  ?>">
                                 <input type="hidden" name="apellidoAlumno" value="<?php echo  $apellidoAlumno ?>">
+                                <input type="hidden" name="emailAlumno" value="<?php echo  $emailAlumno ?>">
 
                                 <div class="<?php echo $actual ?>"></div>
                             </div>

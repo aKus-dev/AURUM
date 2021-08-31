@@ -11,7 +11,7 @@ class Chat
         $idRealDocente = '';
 
         // Obtengo los datos del profesor de esa asignatura en el grupo
-        $sql  = "SELECT DISTINCT id, nombre, apellido
+        $sql  = "SELECT DISTINCT id, nombre, apellido, email
          FROM docente
          INNER JOIN grupos_docente
          ON grupos_docente.idDocente = docente.id AND grupo = '$grupo'
@@ -25,13 +25,15 @@ class Chat
             $idRealDocente = $row['id'];
             $nombreDocente = $row['nombre'];
             $apellidoDocente = $row['apellido'];
+            $emailDocente = $row['email'];
         }
 
         $datosDocente = [
             "idDocente" => $idDocente,
             "nombreDocente" => $nombreDocente,
             "apellidoDocente" => $apellidoDocente,
-            "idRealDocente" => $idRealDocente,
+            "emailDocente" => $emailDocente,
+            "idRealDocente" => $idRealDocente
         ];
 
 
@@ -55,23 +57,23 @@ class Chat
             // Si el chat creado es del mismo grupo aviso
             if ($row['grupo'] == $grupo) {
                 $mismoGrupo = true;
-            } 
+            }
         }
 
         // Si es del mismo grupo lo re direciono y le digo que ya esta creado
-        if($mismoGrupo) {
+        if ($mismoGrupo) {
             header('Location: ../crear.php?created=true');
             return true;
-        } 
-            
+        }
+
         // Si no es del mismo grupo y el chat existe mando una solicitud al docente
-        if(!$mismoGrupo && $entro) {
+        if (!$mismoGrupo && $entro) {
             // El chat esta creado pero NO es de este grupo
             self::enviarSolicitud($datosAlumno, $idDocente, $asignatura, $grupo, $db);
             return true;
         }
-      
-        
+
+
 
         return false;
     }
@@ -107,19 +109,22 @@ class Chat
 
     public static function crearChat($datosAlumno, $datosDocente, $grupo, $db)
     {
+
         $asignatura = $_POST['asignatura'];
         $idHost = Chat::getIdAlumno($datosAlumno['idAlumno'], $db);
         $nombreHost = $datosAlumno['nombreAlumno'];
         $apellidoHost = $datosAlumno['apellidoAlumno'];
+        $emailHost = $datosAlumno['emailAlumno'];
 
         $idDocente = $datosDocente['idDocente'];
         $idRealDocente = $datosDocente['idRealDocente'];
         $nombreDocente = $datosDocente['nombreDocente'];
         $apellidoDocente = $datosDocente['apellidoDocente'];
+        $emailDocente = $datosDocente['emailDocente'];
 
-        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost, idDocente, idRealDocente, nombreDocente, apellidoDocente, asignatura, grupo) 
+        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost,emailHost, idDocente, idRealDocente, nombreDocente, apellidoDocente, emailDocente, asignatura, grupo) 
                 VALUES
-                 ($idHost, '$nombreHost', '$apellidoHost', $idDocente, $idRealDocente, '$nombreDocente', '$apellidoDocente', '$asignatura', '$grupo')";
+                 ($idHost, '$nombreHost', '$apellidoHost', '$emailHost', $idDocente, $idRealDocente, '$nombreDocente', '$apellidoDocente', '$emailDocente', '$asignatura', '$grupo')";
 
         $stmt = $db->prepare($sql);
 
@@ -129,9 +134,11 @@ class Chat
                 "idHost" => $idHost,
                 "nombreHost" => $nombreHost,
                 "apellidoHost" => $apellidoHost,
+                "emailHost" => $emailHost,
                 "idDocente" => $idDocente,
                 "nombreDocente" => $nombreDocente,
-                "apellidoDocente" => $apellidoDocente
+                "apellidoDocente" => $apellidoDocente,
+                "emailDocente" => $emailDocente
 
             ];
         }
@@ -295,7 +302,8 @@ class Chat
         $db->query("UPDATE chat SET isOnlineDocente = true WHERE id = $idChat");
     }
 
-    public static function getHorarioDocente($idDocente, $db) {
+    public static function getHorarioDocente($idDocente, $db)
+    {
         $diaMinimo = '';
         $diaMaximo = '';
         $horaMinima = '';
@@ -313,7 +321,7 @@ class Chat
             $horaMaxima = $datos['hora_maxima'];
         }
 
-        if(empty($diaMinimo) && empty($diaMaximo) && empty($horaMinima) && empty($horaMaxima)) {
+        if (empty($diaMinimo) && empty($diaMaximo) && empty($horaMinima) && empty($horaMaxima)) {
             header('Location: /AppChat/Alumno/hostchats.php?sinHorarios=true');
             return;
         }
@@ -323,10 +331,110 @@ class Chat
         $diaActual = date('N'); // Días (1: lunes 7: domingo)
         $horaActual = date('G'); // Horas (0 - 23)
 
-        if ($diaActual >= $diaMinimo && $diaActual <= $diaMaximo && $horaActual >= $horaMinima && $horaActual <= $horaMaxima){
+        if ($diaActual >= $diaMinimo && $diaActual <= $diaMaximo && $horaActual >= $horaMinima && $horaActual <= $horaMaxima) {
             return false;
         }
 
         return true;
     }
+
+
+    public static function getEmails($idChat, $db)
+    {
+        $sql = "SELECT email, emailDocente, emailHost FROM chat, usuarios_chat WHERE chat.id = $idChat";
+        $resultados = $db->query($sql);
+
+        $emails = [];
+
+        // Iterar resultados;
+        while ($datos = $resultados->fetch(PDO::FETCH_ASSOC)) {
+            $emails[] = $datos['email'];
+            $emails[] = $datos['emailDocente'];
+            $emails[] = $datos['emailHost'];
+        }
+
+        return $emails;
+    }
+
+
+    public static function getMensajes($idChat, $db)
+    {
+        $mensajes = '';
+        $header = '';
+
+        $sql = "SELECT nombreHost, apellidoHost, asignatura FROM chat WHERE id = $idChat";
+        $result = $db->query($sql);
+
+        // Iterar resultados;
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $nombreHost = $row['nombreHost'];
+            $apellidoHost = $row['apellidoHost'];
+            $asignatura = $row['asignatura'];
+
+            $header = "
+                <header style='
+                border-radius: 5px;
+                background: linear-gradient(90deg, #B1126F, #531A5D);
+                color: #FFF;
+                font-size: 20px;
+                text-align: center;
+                padding: 15px;
+                margin-bottom: 25px;
+                font-family: Arial;
+                '>
+                    <b>Creado por:</b> <span style='color: #ececec; margin-right: 50px'>$nombreHost $apellidoHost</span> <b>Asignatura:</b> <span style='color: #ececec'>$asignatura</span>
+                </header>
+            ";
+
+        }
+
+
+        $sql = "SELECT nombreUsuario, apellidoUsuario, mensaje, hora FROM mensajes_chat WHERE idChat = $idChat";
+        $resultados = $db->query($sql);
+
+
+        // Iterar resultados;
+        while ($datos = $resultados->fetch(PDO::FETCH_ASSOC)) {
+            $nombre = $datos['nombreUsuario'];
+            $apellido = $datos['apellidoUsuario'];
+            $mensaje = $datos['mensaje'];
+            $hora = $datos['hora'];
+
+            $mensajes .= "
+
+            <p style='
+            display: inline-block;
+            max-width: 350px;
+            margin: 5px 0;
+            background: linear-gradient(90deg, #B1126F, #531A5D);
+            color:#FFF; 
+            font-family: Arial;
+            padding: 10px 20px;
+            border-radius: 10px 10px 10px 0;
+            '>
+            $mensaje
+            </p>
+
+            <p style='
+                margin: 5px 0;
+            '>
+            <span style='color: #2b2c2e; font-weight: bold;'>$nombre $apellido</span> $hora
+            </p> 
+    
+            
+            <br>
+
+            ";
+        }
+
+        $mensajes = $header . $mensajes;
+        
+        return $mensajes;
+    }
+
+    public static function eliminarChat($idChat, $db)
+    {
+        $db->query("DELETE FROM chat WHERE id = $idChat");
+    }
+
 }

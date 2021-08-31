@@ -106,6 +106,7 @@ if (isset($_POST['mensaje'])) {
 
                     <form action="../mail/finalizar.php" id="finalizar-chat" method="post">
                         <p>Al dar en finalizar, se enviara un resumen del chat a los correos de los usuarios, ¡Asegurate de que todas tus dudas se hayan aclarado!</p>
+                        <input type="hidden" name="idChat" value="<?php echo $idChat ?>">
 
                         <button class="bg-main">Finalizar</button>
                     </form>

@@ -86,12 +86,14 @@ $i = 0;
                                 $idAlumno = $_SESSION['id'];
                                 $nombreAlumno = $_SESSION['nombre'];
                                 $apellidoAlumno = $_SESSION['apellido'];
+                                $emailAlumno = $_SESSION['email'];
                                 ?>
 
                                 <input type="hidden" name="idChat" value="<?php echo $row['id'] ?>">
                                 <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id'] ?>">
                                 <input type="hidden" name="nombre" value="<?php echo $_SESSION['nombre'] ?>">
                                 <input type="hidden" name="apellido" value="<?php echo  $_SESSION['apellido'] ?>">
+                                <input type="hidden" name="email" value="<?php echo  $_SESSION['email'] ?>">
 
                                 <div class="<?php echo $actual ?>"></div>
                             </div>

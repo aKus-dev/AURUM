@@ -44,6 +44,7 @@ class Sistema
                 $_SESSION['sesion_docente'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
+                $_SESSION['email'] = $row['email'];
                 $_SESSION['imagen'] = $row['imagen'];
 
                 // Id para pasar vía GET
@@ -80,6 +81,7 @@ class Sistema
                 $_SESSION['sesion_alumno'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
+                $_SESSION['email'] = $row['email'];
                 $_SESSION['imagen'] = $row['imagen'];
 
                 // Id para pasar vía GET

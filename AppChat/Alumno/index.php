@@ -23,8 +23,18 @@ Chat::offlineAlumno($_SESSION['id'], $db);
     <title>AURUM: Chat</title>
 </head>
 <body>
+
+
     <div class=" alumno-container">
     <?php include '../../AppAlumno/templates/header.html' ?>
+
+    
+     <!-- Caso de que el chat NO tenga docente -->
+     <?php if (!empty($_GET['finish'])) : ?>
+            <div class="text-center width100">
+                <p id="success" class="alert-success">Chat finalizado correctamente. Se ha enviado un mail a todos los integrantes con el historial del chat</p>
+            </div>
+        <?php endif; ?>
 
     <div class="alumno-grid">
         <div class="flex-consultas">
@@ -65,6 +75,7 @@ Chat::offlineAlumno($_SESSION['id'], $db);
 
     </div>
 
+    <script src="/build/js/removeAlert.js"></script>
     </body>
 
 </html>

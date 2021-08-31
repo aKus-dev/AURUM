@@ -6,6 +6,13 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
+require '../../../clases/Chat.php';
+require '../../../config/app.php';
+
+$idChat = $_POST['idChat'];
+$emails = Chat::getEmails($idChat, $db);
+$mensajes = Chat::getMensajes($idChat, $db);
+
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
@@ -23,8 +30,6 @@ try {
     //Recipients
     $mail->setFrom('aurumproyectofinal@gmail.com', 'AURUM');
 
-    $emails = ['lamagianegrauy@gmail.com', 'agusqsy2002@gmail.com', 'nahu.morales777@gmail.com'];
-
     for($i = 0; $i < count($emails); $i++) {
         $mail->AddAddress($emails[$i]); 
     }
@@ -32,9 +37,14 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Mensajes del chat';
-    $mail->Body    = '<b>Este es un mensaje del chat</b>';
+    $mail->Body    = $mensajes;
 
-    $mail->send();
+    $seEnvio = $mail->send();
+
+    if($seEnvio) {
+        Chat::eliminarChat($idChat, $db);
+        header('Location: ../?finish=true');
+    }
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

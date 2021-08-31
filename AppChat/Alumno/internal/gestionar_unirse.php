@@ -11,6 +11,7 @@ $idChat = $_POST['idChat'];
 $idUsuario = Chat::getIdAlumno($_POST['idUsuario'], $db);
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
+$email = $_POST['email'];
 
 
 $sql = "SELECT idUsuario FROM usuarios_chat where idChat = $idChat";
@@ -42,7 +43,7 @@ $existe = false;
 
 <?php if (!$existe) { ?>
     <?php
-    $sql = "INSERT INTO usuarios_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario) VALUES ($idChat, $idUsuario, '$nombre', '$apellido')";;
+    $sql = "INSERT INTO usuarios_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario, email) VALUES ($idChat, $idUsuario, '$nombre', '$apellido', '$email')";;
     $stmt = $db->prepare($sql);
     ?>
 

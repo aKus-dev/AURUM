@@ -16,7 +16,8 @@ $grupo = $_POST['grupo'];
 $datosAlumno = [
     "idAlumno" => $_POST['idAlumno'],
     "nombreAlumno" => $_POST['nombreAlumno'],
-    "apellidoAlumno" => $_POST['apellidoAlumno']
+    "apellidoAlumno" => $_POST['apellidoAlumno'],
+    "emailAlumno" => $_POST['emailAlumno']
 ];
 
 // Obtengo los datos del docente
