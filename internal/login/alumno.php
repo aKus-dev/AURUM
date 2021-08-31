@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nombre = $_POST['nombre'];
         $cedula = $_POST['ci'];
         $apellido = $_POST['apellido'];
+        $email = $_POST['email'];
     } else {
         // Comprobar si ya existe en la base de datos
         $yaExiste = Alumno::revisarExistencia($_POST['ci'], $db);
@@ -31,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombre'];
             $cedula = $_POST['ci'];
             $apellido = $_POST['apellido'];
+            $email = $_POST['email'];
         }
     }
 }
@@ -135,6 +137,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <input minlength="8" maxlength="8" name="ci" type="text" class="form__input" placeholder="Cédula sin puntos ni guiones" required id="cedula" <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$cedula"; ?>" <?php endif; ?>>
+
+                </div>
+
+                <div class="form__container-input">
+                    <div class="form__icon">
+                        <i class="far fa-envelope"></i>
+                    </div>
+
+                    <input name="email" type="email" class="form__input" placeholder="Email" required<?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$email"; ?>" <?php endif; ?>>
 
                 </div>
             </div>

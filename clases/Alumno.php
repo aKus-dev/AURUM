@@ -30,6 +30,7 @@ class Alumno
         $apellido = $datos['apellido'];
         $contrasena = $datos['contrasena'];
         $grupos = $datos['grupos'];
+        $email = $datos['email'];
         $imagen = '/build/public/Alumno_1.svg';
 
         // Hashear password
@@ -39,8 +40,8 @@ class Alumno
         $db->query($sqlUsuarios);
 
         // Codigo SQL
-        $sql = "INSERT INTO alumno (CI,nombre,apellido,contrasena,imagen, primer_login) VALUES 
-        ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen', true)";
+        $sql = "INSERT INTO alumno (CI,nombre,apellido, email, contrasena,imagen, primer_login) VALUES 
+        ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen', true)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos

@@ -32,6 +32,7 @@ class Docente
         $grupos = $datos['grupos'];
         $asignaturas = $datos['asignaturas'];
         $contrasena = $datos['contrasena'];
+        $email = $datos['email'];
         $imagen = '/build/public/Profesor_1.svg';
 
 
@@ -42,8 +43,8 @@ class Docente
         $db->query($sqlUsuarios);
 
         // Codigo SQL
-        $sql = "INSERT INTO docente (CI,nombre,apellido, contrasena, imagen, primer_login, registro_horarios) VALUES 
-        ('$CI', '$nombre', '$apellido', '$passwordHash', '$imagen',  true, false)";
+        $sql = "INSERT INTO docente (CI,nombre,apellido, email, contrasena, imagen, primer_login, registro_horarios) VALUES 
+        ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen',  true, false)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos
