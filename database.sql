@@ -158,11 +158,13 @@ CREATE TABLE chat (
 	idHost INT NOT NULL,
     nombreHost VARCHAR(30),
 	apellidoHost VARCHAR(30),
+    emailHost VARCHAR(320) NOT NULL,
 	isOnlineHost BOOL,
     idRealDocente INT,
     idDocente INT NOT NULL,
     nombreDocente VARCHAR(25),
     apellidoDocente VARCHAR(25),
+	emailDocente VARCHAR(320) NOT NULL,
 	isOnlineDocente BOOL,
     asignatura VARCHAR(30),
     grupo CHAR(3)
@@ -185,6 +187,7 @@ CREATE TABLE usuarios_chat (
 	idUsuario INT,
 	nombreUsuario VARCHAR(30),
     apellidoUsuario VARCHAR(30),
+	email VARCHAR(320) NOT NULL,
     isOnline BOOL,
     CONSTRAINT FK_idChat2 FOREIGN KEY (idChat) 
     REFERENCES chat(id) ON DELETE CASCADE
@@ -204,7 +207,7 @@ CREATE TABLE solicitud_chat (
 
 use aurum;
 SELECT * FROM chat;
-SELECT * FROM solicitud_chat;
+SELECT * FROM mensajes_chat;
 SELECT * FROM usuarios_chat;
 SELECT * FROM usuarios;
 SELECT * FROM consultas_docente;
@@ -220,5 +223,6 @@ SELECT * FROM docente;
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
+
 
 
