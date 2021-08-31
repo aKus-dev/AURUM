@@ -1,3 +1,5 @@
+<div style='opacity: 0'>
+
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -50,6 +52,8 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 ?>
+
+</div>
 
 <script>
     let enviado = <?php echo $seEnvio ?>;
