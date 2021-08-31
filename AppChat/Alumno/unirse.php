@@ -44,6 +44,15 @@ $i = 0;
 </head>
 <body style="overflow-x: hidden">
     <div class=" alumno-container">
+
+      <!-- Caso de que no este en el rango de horarios -->
+      <?php if (!empty($_GET['errorHorario'])) : ?>
+            <div class="text-center width100">
+                <p id="danger" class="alert-warning">No te encuentras dentro del horario del docente. Para ver sus horarios haga <a style="color: white; font-weight: bold;" href="/AppAlumno/internal/profesores.php">click aquí</a> </a>
+                </p>
+            </div>
+        <?php endif; ?>
+
         <?php include '../../AppAlumno/templates/header.html' ?>
 
         <div class="chat-materia">
