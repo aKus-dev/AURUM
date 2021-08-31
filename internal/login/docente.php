@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
     } else {
         // Comprobar si ya existe en la base de datos
-        $yaExiste = Docente::revisarExistencia($_POST['ci'], $db);
+        $yaExiste = Docente::revisarExistencia($_POST['ci'], $_POST['email'], $db);
 
         // En caso de que NO exista, lo ingresamos al sistema
         if (!$yaExiste) {
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="text-center">
                 <!-- Si ya esta registrado mostramos un error -->
                 <?php if ($yaExiste) : ?>
-                    <p id="danger" class="alert-danger">El usuario ya existe</p>
+                    <p id="danger" class="alert-danger">La cedula o el correo ya están registrados</p>
                 <?php endif; ?>
 
                 <?php if ($errorCedula) : ?>
