@@ -104,10 +104,9 @@ if (isset($_POST['mensaje'])) {
                 <div class="pt-3">
                     <h3>Finaliza el chat</h3>
 
-                    <form action="sql/finalizar.php" id="finalizar-chat" method="post">
-                        <p>Al enviar este formulario, estas finalizando el chat, ¡Asegurate de que todas tus dudas se hayan aclarado!</p>
+                    <form action="../mail/finalizar.php" id="finalizar-chat" method="post">
+                        <p>Al dar en finalizar, se enviara un resumen del chat a los correos de los usuarios, ¡Asegurate de que todas tus dudas se hayan aclarado!</p>
 
-                        <textarea name="resumen" placeholder="Escribe un resumen"></textarea>
                         <button class="bg-main">Finalizar</button>
                     </form>
                 </div>
