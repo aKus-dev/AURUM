@@ -341,16 +341,23 @@ class Chat
 
     public static function getEmails($idChat, $db)
     {
-        $sql = "SELECT email, emailDocente, emailHost FROM chat, usuarios_chat WHERE chat.id = $idChat";
-        $resultados = $db->query($sql);
-
         $emails = [];
+
+        $sql = "SELECT email FROM usuarios_chat WHERE idChat = $idChat";
+        $resultados = $db->query($sql);
 
         // Iterar resultados;
         while ($datos = $resultados->fetch(PDO::FETCH_ASSOC)) {
             $emails[] = $datos['email'];
-            $emails[] = $datos['emailDocente'];
+        }
+
+        $sql = "SELECT emailHost, emailDocente FROM chat WHERE id = $idChat LIMIT 1";
+        $resultados = $db->query($sql);
+
+        // Iterar resultados;
+        while ($datos = $resultados->fetch(PDO::FETCH_ASSOC)) {
             $emails[] = $datos['emailHost'];
+            $emails[] = $datos['emailDocente'];
         }
 
         return $emails;

@@ -12,8 +12,7 @@ require '../../../config/app.php';
 $idChat = $_POST['idChat'];
 $emails = Chat::getEmails($idChat, $db);
 $mensajes = Chat::getMensajes($idChat, $db);
-
-debug($emails);
+$seEnvio = 0;
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -45,9 +44,18 @@ try {
 
     if($seEnvio) {
         Chat::eliminarChat($idChat, $db);
-        header('Location: ../?finish=true');
     }
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+?>
+
+<script>
+    let enviado = <?php echo $seEnvio ?>;
+    
+    if(enviado) {
+        location.assign('../index.php?finish=true');
+    }
+
+</script>
