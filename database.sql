@@ -199,6 +199,7 @@ CREATE TABLE solicitud_chat (
     idHost INT,
     nombreHost VARCHAR(25),
     apellidoHost VARCHAR(25),
+	emailHost VARCHAR(320) NOT NULL,
     asignatura VARCHAR(30),
     grupo CHAR(3),
     CONSTRAINT FK_solicitud FOREIGN KEY (idDocente) 
@@ -209,7 +210,7 @@ use aurum;
 SELECT * FROM chat;
 SELECT * FROM mensajes_chat;
 SELECT * FROM usuarios_chat;
-SELECT * FROM usuarios;
+SELECT * FROM solicitud_chat;
 SELECT * FROM consultas_docente;
 SELECT * FROM consultas_alumno;
 SELECT * FROM consultas_docente;
@@ -223,3 +224,5 @@ SELECT * FROM docente;
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
+
+
