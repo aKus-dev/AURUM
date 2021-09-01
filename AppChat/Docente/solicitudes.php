@@ -42,8 +42,8 @@ $i = 0;
 </head>
 <body style=" overflow-x: hidden">
 
-  <!-- Caso de que el chat NO tenga docente -->
-  <?php if (!empty($_GET['success'])) : ?>
+    <!-- Caso de que el chat NO tenga docente -->
+    <?php if (!empty($_GET['success'])) : ?>
         <div class="text-center width100">
             <p id="success" class="alert-success">El chat ha sido aceptado con éxito</p>
         </div>
@@ -61,8 +61,7 @@ $i = 0;
                     $idDocenteChat = Chat::getIdDocente($id, $db);
                     $entroChat = false; // Verifica si hay chats creados
 
-                    $sql = "SELECT id, idHost, nombreHost, apellidoHost, asignatura, grupo FROM solicitud_chat WHERE idDocente = $idDocenteChat AND grupo = '$grupo'";
-
+                    $sql = "SELECT id, idHost, nombreHost, apellidoHost, emailHost, asignatura, grupo FROM solicitud_chat WHERE idDocente = $idDocenteChat AND grupo = '$grupo'";
 
                     $result = $db->query($sql);
 
@@ -71,12 +70,15 @@ $i = 0;
                     <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
                         <?php $entro = true; ?>
 
-                        <?php $entroChat = true ?>
-                        <?php $asignatura = $row['asignatura']; ?>
-                        <?php $grupo = $row['grupo']; ?>
-                        <?php $nombreHost = $row['nombreHost']; ?>
-                        <?php $apellidoHost = $row['apellidoHost']; ?>
-                        <?php $actual === 'filter-violet sky' ? $actual = 'filter-darkviolet wave' : $actual = 'filter-violet sky' ?>
+                        <?php
+                        $entroChat = true;
+                        $asignatura = $row['asignatura'];
+                        $grupo = $row['grupo'];
+                        $nombreHost = $row['nombreHost'];
+                        $apellidoHost = $row['apellidoHost'];
+                        $emailHost = $row['emailHost'];
+                        $actual === 'filter-violet sky' ? $actual = 'filter-darkviolet wave' : $actual = 'filter-violet sky'
+                        ?>
 
 
                         <div class="materia <?php echo $actual ?>">
@@ -86,20 +88,22 @@ $i = 0;
 
                             <div class="solicitudes-buttons">
                                 <form action="internal/aceptar_solicitud.php" method="POST">
-                                     <!-- Datos del alumno -->
+                                    <!-- Datos del alumno -->
                                     <input type="hidden" name="idHost" value="<?php echo $row['idHost'] ?>">
                                     <input type="hidden" name="nombreHost" value="<?php echo $row['nombreHost'] ?>">
                                     <input type="hidden" name="apellidoHost" value="<?php echo $row['apellidoHost'] ?>">
+                                    <input type="hidden" name="emailHost" value="<?php echo $row['emailHost'] ?>">
 
                                     <!-- Datos del chat -->
                                     <input type="hidden" name="asignatura" value="<?php echo  $row['asignatura'] ?>">
                                     <input type="hidden" name="grupo" value="<?php echo  $row['grupo'] ?>">
                                     <input type="hidden" name="idSolicitud" value="<?php echo  $row['id'] ?>">
-                                    
+
                                     <!-- Datos del docente -->
                                     <input type="hidden" name="idDocente" value="<?php echo  $_SESSION['id'] ?>">
                                     <input type="hidden" name="nombreDocente" value="<?php echo  $_SESSION['nombre'] ?>">
                                     <input type="hidden" name="apellidoDocente" value="<?php echo  $_SESSION['apellido'] ?>">
+                                    <input type="hidden" name="emailDocente" value="<?php echo  $_SESSION['email'] ?>">
 
                                     <button style="border: none; width: 5rem;"><i style="font-size: 3.5rem" class="fas fa-check-square"></i></button>
                                 </form>

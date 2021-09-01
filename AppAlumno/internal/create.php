@@ -127,12 +127,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="" class="form-consulta" method="POST">
             <div class="form-alumno-crear">
                 <label for="titulo">Titulo</label>
-                <input required name="titulo" id="titulo" type="text" placeholder="Titulo de la consulta" <?php if ($error) : ?> value="<?php if ($error) echo "$titulo"; ?>" <?php endif; ?>>
+                <input required name="titulo" id="titulo" type="text" placeholder="Titulo de la consulta" <?php if ($error || $errorHorario) : ?> value="<?php if ($error || $errorHorario) echo "$titulo"; ?>" <?php endif; ?>>
             </div>
 
             <div class="form-alumno-crear">
                 <label for="mensaje">Mensaje</label>
-                <textarea required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"><?php if ($error) {
+                <textarea required name="descripcion" id="mensaje" placeholder="Descripción de la consulta"><?php if ($error || $errorHorario) {
                                                                                                                 echo "$descripcion";
                                                                                                             }; ?></textarea>
             </div>

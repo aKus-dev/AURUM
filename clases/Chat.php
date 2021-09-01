@@ -83,6 +83,8 @@ class Chat
         $idDocente = self::getIdDocente($idDocente, $db);
         $nombreHost = $datosAlumno['nombreAlumno'];
         $apellidoHost = $datosAlumno['apellidoAlumno'];
+        $emailHost = $datosAlumno['emailAlumno'];
+
         $enviado = false;
 
         $sql = "SELECT idDocente, asignatura, grupo FROM solicitud_chat";
@@ -97,8 +99,8 @@ class Chat
 
         if (!$enviado) {
             $sql = "
-            INSERT INTO solicitud_chat (idDocente, idHost, nombreHost, apellidoHost, asignatura, grupo) 
-            VALUES ($idDocente, $idHost, '$nombreHost', '$apellidoHost', '$asignatura','$grupo');
+            INSERT INTO solicitud_chat (idDocente, idHost, nombreHost, apellidoHost, emailHost, asignatura, grupo) 
+            VALUES ($idDocente, $idHost, '$nombreHost', '$apellidoHost', '$emailHost', '$asignatura','$grupo');
         ";
 
             $db->query($sql);
