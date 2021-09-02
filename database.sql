@@ -166,6 +166,7 @@ CREATE TABLE chat (
     apellidoDocente VARCHAR(25),
 	emailDocente VARCHAR(320) NOT NULL,
 	isOnlineDocente BOOL,
+	fecha CHAR(10) NOT NULL,
     asignatura VARCHAR(30),
     grupo CHAR(3)
 );
@@ -224,5 +225,4 @@ SELECT * FROM docente;
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
-
 
