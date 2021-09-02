@@ -111,6 +111,8 @@ class Chat
 
     public static function crearChat($datosAlumno, $datosDocente, $grupo, $db)
     {
+        date_default_timezone_set("America/Montevideo");
+        $fecha = date('Y-m-d'); // Antes estaba en Y-m-d
 
         $asignatura = $_POST['asignatura'];
         $idHost = Chat::getIdAlumno($datosAlumno['idAlumno'], $db);
@@ -124,9 +126,9 @@ class Chat
         $apellidoDocente = $datosDocente['apellidoDocente'];
         $emailDocente = $datosDocente['emailDocente'];
 
-        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost,emailHost, idDocente, idRealDocente, nombreDocente, apellidoDocente, emailDocente, asignatura, grupo) 
+        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost,emailHost, idDocente, idRealDocente, nombreDocente, apellidoDocente, emailDocente, fecha, asignatura, grupo) 
                 VALUES
-                 ($idHost, '$nombreHost', '$apellidoHost', '$emailHost', $idDocente, $idRealDocente, '$nombreDocente', '$apellidoDocente', '$emailDocente', '$asignatura', '$grupo')";
+                 ($idHost, '$nombreHost', '$apellidoHost', '$emailHost', $idDocente, $idRealDocente, '$nombreDocente', '$apellidoDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo')";
 
         $stmt = $db->prepare($sql);
 
