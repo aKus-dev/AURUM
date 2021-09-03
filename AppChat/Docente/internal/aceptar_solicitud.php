@@ -7,7 +7,7 @@ if(empty($_POST)) {
 require '../../../clases/Chat.php';
 require '../../../config/app.php';
 
-$idHost = $_POST['idHost'];
+$ciHost = $_POST['ciHost'];
 $nombreHost = $_POST['nombreHost'];
 $apellidoHost = $_POST['apellidoHost'];
 $emailHost = $_POST['emailHost'];
@@ -15,17 +15,19 @@ $emailHost = $_POST['emailHost'];
 $asignatura = $_POST['asignatura'];
 $grupo = $_POST['grupo'];
 $idSolicitud = $_POST['idSolicitud'];
-$idDocente = $_POST['idDocente'];
+$ciDocente = $_POST['ciDocente'];
 
 $nombreDocente = $_POST['nombreDocente'];
 $apellidoDocente = $_POST['apellidoDocente'];
 $emailDocente = $_POST['emailDocente'];
 
 
+date_default_timezone_set("America/Montevideo");
+$fecha = date('Y-m-d'); // Antes estaba en Y-m-d
 
 // Lo agrego al chat
-$sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost, emailHost, idDocente, nombreDocente, apellidoDocente,emailDocente, asignatura, grupo)
-        VALUES ($idHost, '$nombreHost', '$apellidoHost', '$emailHost', '$idDocente', '$nombreDocente', '$apellidoDocente', '$emailDocente', '$asignatura', '$grupo');
+$sql = "INSERT INTO chat (ciHost, nombreHost, apellidoHost, emailHost, ciDocente, nombreDocente, apellidoDocente,emailDocente, fecha, asignatura, grupo)
+        VALUES ('$ciHost', '$nombreHost', '$apellidoHost', '$emailHost', '$ciDocente', '$nombreDocente', '$apellidoDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo');
 ";
 
 $db->query($sql);

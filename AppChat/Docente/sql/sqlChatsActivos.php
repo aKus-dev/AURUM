@@ -3,7 +3,7 @@ require "../../../config/app.php";
 
 $idChat = $_GET['idChat'];
 $idUsuario = $_GET['idUsuario'];
-$idDocente = $_GET['idDocente'];
+$ciDocente = $_GET['ciUsuario'];
 
 $nombre = '';
 $apellido = '';
@@ -17,7 +17,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
     $apellido = $row['apellido'];
 }
 
-$sql = "SELECT id, asignatura, nombreHost, apellidoHost FROM chat WHERE id != $idChat AND idDocente = $idDocente";
+$sql = "SELECT id, asignatura, nombreHost, apellidoHost FROM chat WHERE id != $idChat AND ciDocente = '$ciDocente'";
 
 $resultado = $db->query($sql);
 

@@ -37,10 +37,7 @@ class Docente
 
 
         // Hashear password
-        $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
-
-        $sqlUsuarios = "INSERT INTO usuarios (ci) VALUES ($CI)";
-        $db->query($sqlUsuarios);
+        $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);;
 
         // Codigo SQL
         $sql = "INSERT INTO docente (CI,nombre,apellido, email, contrasena, imagen, primer_login, registro_horarios) VALUES 
@@ -50,9 +47,8 @@ class Docente
         if ($stmt->execute()) { // Lo ejecutamos
 
             // Guardo la cedula en la tabla de cedulas
-            $sql = "INSERT INTO cedulas VALUES ('$CI') ";
+            $sql = "INSERT INTO cedulas (cedula) VALUES ('$CI') ";
             $db->query($sql);
-
 
             // Registro las asignaturas
             self::registrarAsignaturas($asignaturas, $CI, $db);
@@ -61,7 +57,7 @@ class Docente
 
 
             return true; // Si todo esta correcto, retornamos true
-        }
+        } 
     }
 
     static public function registrarAsignaturas($asignaturas, $CI, $db)

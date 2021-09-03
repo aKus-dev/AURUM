@@ -6,10 +6,14 @@ require '../../clases/Sistema.php';
 
 isAuth_docente();
 
+
 $idChat = '';
-$idUsuario = $_POST['idUsuario'];
+$ciHost = '';
+$ciDocente = $_POST['ciDocente'];
 $asignatura = '';
 $datosChat = [];
+
+
 
 // Si está el id, lo obtengo
 if (isset($_POST['idChat'])) {
@@ -17,20 +21,18 @@ if (isset($_POST['idChat'])) {
     $datosChat = Chat::getDatos($idChat, $db);
 
     // Obtengo los datos que quiero de la tabla chat
-    $idHost = $datosChat['idHost'];
+    $ciHost = $datosChat['ciHost'];
     $asignatura = $datosChat['asignatura'];
 }
 
 // Pongo al docente como online
-Chat::onlineDocente($_SESSION['id'], $idChat, $db);
-
-$idDocente = $datosChat['idDocente'];
+Chat::onlineDocente($idChat, $db);
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
-    $datosChat = Chat::enviarMensaje($idChat, $idUsuario,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
+    $datosChat = Chat::enviarMensaje($idChat, $ciDocente,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
 
 $idUsuarioReal = $_SESSION['id'];
@@ -54,13 +56,13 @@ $idUsuarioReal = $_SESSION['id'];
     <script type="text/javascript">
         function tiempoReal() {
             idChat = <?php echo $idChat ?>;
-            idUsuario = <?php echo $idUsuario ?>;
-            idDocente = <?php echo $idDocente ?>;
+            ciUsuario = <?php echo $ciDocente ?>;
+            ciHost = <?php echo $ciHost ?>;
             idUsuarioReal = <?php echo $idUsuarioReal ?>;
 
             // Obtiene los mensajes del usuario
             let mensajes = $.ajax({
-                url: `./sql/sqlMensajes.php?idChat=${idChat}&idUsuario=${idUsuario}&idDocente=${idDocente}`,
+                url: `./sql/sqlMensajes.php?idChat=${idChat}&ciHost=${ciHost}&ciUsuario=${ciUsuario}`,
                 dataType: 'text',
                 async: false
             }).responseText;
@@ -80,7 +82,7 @@ $idUsuarioReal = $_SESSION['id'];
             }).responseText;
 
             let chatsActivos = $.ajax({
-                url: `./sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}&idDocente=${idDocente}`,
+                url: `./sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}&ciUsuario=${ciUsuario}`,
                 dataType: 'text',
                 async: false
             }).responseText;
@@ -137,7 +139,7 @@ $idUsuarioReal = $_SESSION['id'];
                 <div id="sendMsg">
                     <input id="msg" name="mensaje" type="text" placeholder="Mensaje...">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
-                    <input name="idUsuario" type="hidden" value="<?php echo $idUsuario ?>">
+                    <input name="ciDocente" type="hidden" value="<?php echo $ciDocente ?>">
 
                     <button class="bg-main">
                         <i class="fas fa-paper-plane"></i>

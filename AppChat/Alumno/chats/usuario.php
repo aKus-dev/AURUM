@@ -7,8 +7,8 @@ require '../../../clases/Alumno.php';
 
 isAuth_alumno();
 
+$ciUsuario = $_POST['ciUsuario'];
 $idChat = '';
-$idUsuario = $_POST['idUsuario'];
 $asignatura = '';
 $datosChat = [];
 
@@ -18,24 +18,23 @@ if (isset($_POST['idChat'])) {
     $datosChat = Chat::getDatos($idChat, $db);
 
     // Obtengo los datos que quiero de la tabla chat
-    $idHost = $datosChat['idHost'];
+    $ciHost = $datosChat['ciHost'];
     $asignatura = $datosChat['asignatura'];
 }
 
 // Lo paso a online
-Chat::onlineAlumno($_SESSION['id'], $idChat, 'usuario', $db);
+Chat::onlineAlumno($_SESSION['CI'], $idChat, 'usuario', $db);
 
-$idDocente = $datosChat['idDocente'];
+$ciDocente = $datosChat['ciDocente'];
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
 
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
-    $datosChat = Chat::enviarMensaje($idChat, $idUsuario,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
+    $datosChat = Chat::enviarMensaje($idChat, $ciUsuario,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
 
-$idUsuarioReal = $_SESSION['id'];
 $gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db); 
 
 ?>
@@ -57,14 +56,13 @@ $gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db);
     <script type="text/javascript">
         function tiempoReal() {
             idChat = <?php echo $idChat ?>;
-            idUsuario = <?php echo $idUsuario ?>;
-            idDocente = <?php echo $idDocente ?>;
-            idUsuarioReal = <?php echo $idUsuarioReal ?>;
-            grupos = <?php echo json_encode($gruposAlumno) ?>
+            ciUsuario = <?php echo $ciUsuario ?>;
+            ciDocente = <?php echo $ciDocente ?>;
+            grupos = <?php echo json_encode($gruposAlumno) ?>;
 
             // Obtiene los mensajes del usuario
             let mensajes = $.ajax({
-                url: `../sql/sqlMensajes.php?idChat=${idChat}&idUsuario=${idUsuario}&idDocente=${idDocente}`,
+                url: `../sql/sqlMensajes.php?idChat=${idChat}&ciUsuario=${ciUsuario}&ciDocente=${ciDocente}`,
                 dataType: 'text',
                 async: false
             }).responseText;
@@ -84,7 +82,7 @@ $gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db);
             }).responseText;
 
             let chatsActivos = $.ajax({
-                url: `../sql/sqlChatsActivos.php?idChat=${idChat}&idUsuario=${idUsuarioReal}&grupos=${grupos}`,
+                url: `../sql/sqlChatsActivos.php?idChat=${idChat}&ciUsuario=${ciUsuario}&grupos=${grupos}`,
                 dataType: 'text',
                 async: false
             }).responseText;
@@ -141,7 +139,7 @@ $gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db);
                 <div id="sendMsg">
                     <input id="msg" name="mensaje" type="text" placeholder="Mensaje...">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
-                    <input name="idUsuario" type="hidden" value="<?php echo $idUsuario ?>">
+                    <input name="ciUsuario" type="hidden" value="<?php echo $ciUsuario ?>">
 
                     <button class="bg-main">
                         <i class="fas fa-paper-plane"></i>

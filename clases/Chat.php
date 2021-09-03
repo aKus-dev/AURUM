@@ -11,7 +11,7 @@ class Chat
         $idRealDocente = '';
 
         // Obtengo los datos del profesor de esa asignatura en el grupo
-        $sql  = "SELECT DISTINCT id, nombre, apellido, email
+        $sql  = "SELECT DISTINCT CI, nombre, apellido, email
          FROM docente
          INNER JOIN grupos_docente
          ON grupos_docente.idDocente = docente.id AND grupo = '$grupo'
@@ -21,15 +21,14 @@ class Chat
         $result = $db->query($sql);
         // Recorro los datos del docente
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $idDocente = Chat::getIdDocente($row['id'], $db);
-            $idRealDocente = $row['id'];
+            $ciDocente = $row['CI'];
             $nombreDocente = $row['nombre'];
             $apellidoDocente = $row['apellido'];
             $emailDocente = $row['email'];
         }
 
         $datosDocente = [
-            "idDocente" => $idDocente,
+            "ciDocente" => $ciDocente,
             "nombreDocente" => $nombreDocente,
             "apellidoDocente" => $apellidoDocente,
             "emailDocente" => $emailDocente,
@@ -40,17 +39,19 @@ class Chat
         return $datosDocente;
     }
 
-    public static function revisarExistencia($idDocente, $asignatura, $grupo, $datosAlumno, $db)
+    public static function revisarExistencia($ciDocente, $asignatura, $grupo, $datosAlumno, $db)
     {
         $mismoGrupo = false;
         $entro = false;
 
-        if (empty($idDocente)) {
+
+        if (empty($ciDocente)) {
             header('Location: ../crear.php?empty=true');
         }
 
-        $sqlExistencia = "SELECT * FROM chat WHERE asignatura = '$asignatura' AND idDocente = $idDocente";
+        $sqlExistencia = "SELECT * FROM chat WHERE asignatura = '$asignatura' AND ciDocente = '$ciDocente'";
         $resultado = $db->query($sqlExistencia);
+
 
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             $entro = true;
@@ -69,7 +70,7 @@ class Chat
         // Si no es del mismo grupo y el chat existe mando una solicitud al docente
         if (!$mismoGrupo && $entro) {
             // El chat esta creado pero NO es de este grupo
-            self::enviarSolicitud($datosAlumno, $idDocente, $asignatura, $grupo, $db);
+            self::enviarSolicitud($datosAlumno, $ciDocente, $asignatura, $grupo, $db);
             return true;
         }
 
@@ -77,30 +78,29 @@ class Chat
 
         return false;
     }
-    public static function enviarSolicitud($datosAlumno, $idDocente, $asignatura, $grupo, $db)
+    public static function enviarSolicitud($datosAlumno, $ciDocente, $asignatura, $grupo, $db)
     {
-        $idHost = self::getIdAlumno($datosAlumno['idAlumno'], $db);
-        $idDocente = self::getIdDocente($idDocente, $db);
+        $ciHost = $datosAlumno['ciHost'];
         $nombreHost = $datosAlumno['nombreAlumno'];
         $apellidoHost = $datosAlumno['apellidoAlumno'];
         $emailHost = $datosAlumno['emailAlumno'];
 
         $enviado = false;
 
-        $sql = "SELECT idDocente, asignatura, grupo FROM solicitud_chat";
+        $sql = "SELECT ciDocente, asignatura, grupo FROM solicitud_chat";
         $resultado = $db->query($sql);
 
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             // Si ya se le envio solicitud a ese profesor-materia-grupo
-            if ($idDocente == $row['idDocente'] && $asignatura == $row['asignatura'] && $grupo == $row['grupo']) {
+            if ($ciDocente == $row['ciDocente'] && $asignatura == $row['asignatura'] && $grupo == $row['grupo']) {
                 $enviado = true;
             }
         }
 
         if (!$enviado) {
             $sql = "
-            INSERT INTO solicitud_chat (idDocente, idHost, nombreHost, apellidoHost, emailHost, asignatura, grupo) 
-            VALUES ($idDocente, $idHost, '$nombreHost', '$apellidoHost', '$emailHost', '$asignatura','$grupo');
+            INSERT INTO solicitud_chat (ciDocente, ciHost, nombreHost, apellidoHost, emailHost, asignatura, grupo) 
+            VALUES ('$ciDocente', '$ciHost', '$nombreHost', '$apellidoHost', '$emailHost', '$asignatura','$grupo');
         ";
 
             $db->query($sql);
@@ -115,31 +115,30 @@ class Chat
         $fecha = date('Y-m-d'); // Antes estaba en Y-m-d
 
         $asignatura = $_POST['asignatura'];
-        $idHost = Chat::getIdAlumno($datosAlumno['idAlumno'], $db);
+        $ciHost = $_POST['ciHost'];
         $nombreHost = $datosAlumno['nombreAlumno'];
         $apellidoHost = $datosAlumno['apellidoAlumno'];
         $emailHost = $datosAlumno['emailAlumno'];
 
-        $idDocente = $datosDocente['idDocente'];
-        $idRealDocente = $datosDocente['idRealDocente'];
+        $ciDocente = $datosDocente['ciDocente'];
         $nombreDocente = $datosDocente['nombreDocente'];
         $apellidoDocente = $datosDocente['apellidoDocente'];
         $emailDocente = $datosDocente['emailDocente'];
 
-        $sql = "INSERT INTO chat (idHost, nombreHost, apellidoHost,emailHost, idDocente, idRealDocente, nombreDocente, apellidoDocente, emailDocente, fecha, asignatura, grupo) 
+        $sql = "INSERT INTO chat (ciHost, nombreHost, apellidoHost,emailHost, ciDocente, nombreDocente, apellidoDocente, emailDocente, fecha, asignatura, grupo) 
                 VALUES
-                 ($idHost, '$nombreHost', '$apellidoHost', '$emailHost', $idDocente, $idRealDocente, '$nombreDocente', '$apellidoDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo')";
+                 ('$ciHost', '$nombreHost', '$apellidoHost', '$emailHost', '$ciDocente', '$nombreDocente', '$apellidoDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo')";
 
         $stmt = $db->prepare($sql);
 
         if ($stmt->execute()) {
             return $datosChat = [
                 "asignatura" => $asignatura,
-                "idHost" => $idHost,
+                "idHost" => $ciHost,
                 "nombreHost" => $nombreHost,
                 "apellidoHost" => $apellidoHost,
                 "emailHost" => $emailHost,
-                "idDocente" => $idDocente,
+                "idDocente" => $ciDocente,
                 "nombreDocente" => $nombreDocente,
                 "apellidoDocente" => $apellidoDocente,
                 "emailDocente" => $emailDocente
@@ -148,43 +147,7 @@ class Chat
         }
     }
 
-    public static function getIdAlumno($id, $db)
-    {
-        $ci = '';
 
-        $sql = "SELECT CI FROM alumno WHERE id = $id";
-        $result = $db->query($sql);
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $ci = $row['CI'];
-        }
-
-        $sql = "SELECT id FROM usuarios WHERE ci = '$ci'";
-        $result = $db->query($sql);
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return $row['id'];
-        }
-    }
-
-    public static function getIdDocente($id, $db)
-    {
-        $ci = '';
-
-        $sql = "SELECT CI FROM docente WHERE id = $id";
-        $result = $db->query($sql);
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $ci = $row['CI'];
-        }
-
-        $sql = "SELECT id FROM usuarios WHERE ci = '$ci'";
-        $result = $db->query($sql);
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return $row['id'];
-        }
-    }
 
     public static function getDatos($idChat, $db)
     {
@@ -193,10 +156,10 @@ class Chat
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $idChat = $row['id'];
-            $idHost = $row['idHost'];
+            $ciHost = $row['ciHost'];
             $nombreHost = $row['nombreHost'];
             $apellidoHost = $row['apellidoHost'];
-            $idDocente = $row['idDocente'];
+            $ciDocente = $row['ciDocente'];
             $nombreDocente = $row['nombreDocente'];
             $apellidoDocente = $row['apellidoDocente'];
             $asignatura = $row['asignatura'];
@@ -205,10 +168,10 @@ class Chat
 
         return [
             "idChat" => $idChat,
-            "idHost" => $idHost,
+            "ciHost" => $ciHost,
             "nombreHost" => $nombreHost,
             "apellidoHost" => $apellidoHost,
-            "idDocente" => $idDocente,
+            "ciDocente" => $ciDocente,
             "nombreDocente" => $nombreDocente,
             "apellidoDocente" => $apellidoDocente,
             "asignatura" => $asignatura,
@@ -216,33 +179,32 @@ class Chat
         ];
     }
 
-    public static function enviarMensaje($idChat, $idUsuario, $nombre, $apellido,  $mensaje, $db)
+    public static function enviarMensaje($idChat, $ciUsuario, $nombre, $apellido,  $mensaje, $db)
     {
         date_default_timezone_set("America/Montevideo");
         $hora = Date('G:i');
 
         if (!empty($mensaje)) {
             $mensaje = $db->quote($mensaje); // Evito que caracteres como comillas den error en el query
-            $sql = "INSERT INTO mensajes_chat (idChat, idUsuario, nombreUsuario, apellidoUsuario, mensaje, hora) 
-            VALUES ($idChat, $idUsuario, '$nombre', '$apellido', $mensaje, '$hora')";
+            $sql = "INSERT INTO mensajes_chat (idChat, ciUsuario, nombreUsuario, apellidoUsuario, mensaje, hora) 
+            VALUES ($idChat, '$ciUsuario', '$nombre', '$apellido', $mensaje, '$hora')";
 
             $stmt = $db->prepare($sql);
             $stmt->execute();
         }
     }
 
-    public static function offlineAlumno($id, $db)
+    public static function offlineAlumno($ci, $db)
     {
-        $id = self::getIdAlumno($id, $db);
         $chats = [];
 
-        $result = $db->query("SELECT id FROM chat WHERE idHost = $id");
+        $result = $db->query("SELECT id FROM chat WHERE ciHost = '$ci'");
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $chats['host'][] = $row['id'];
         }
 
-        $sql = "SELECT idChat  FROM usuarios_chat WHERE idUsuario = $id";
+        $sql = "SELECT idChat  FROM usuarios_chat WHERE ciUsuario = $ci";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -270,43 +232,39 @@ class Chat
         }
     }
 
-    public static function onlineAlumno($id, $idChat, $type, $db)
+    public static function onlineAlumno($ci, $idChat, $type, $db)
     {
-        $id = self::getIdAlumno($id, $db);
-
         if ($type === 'host') {
             $db->query("UPDATE chat SET isOnlineHost = true WHERE id = $idChat");
         }
 
         if ($type === 'usuario') {
-            $db->query("UPDATE usuarios_chat SET isOnline = true WHERE idChat = $idChat");
+            $db->query("UPDATE usuarios_chat SET isOnline = true WHERE idChat = $idChat AND ciUsuario = '$ci'");
         }
     }
 
-    public static function offlineDocente($id, $db)
+    public static function offlineDocente($ci, $db)
     {
-        $id = self::getIdDocente($id, $db);
         $chats = [];
 
-        $result = $db->query("SELECT id FROM chat WHERE idDocente = $id");
+        $result = $db->query("SELECT id FROM chat WHERE ciDocente = $ci");
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $chats[] = $row['id'];
         }
 
         foreach ($chats as $chat) {
-            $db->query("UPDATE chat SET isOnlineDocente = false WHERE idDocente = $id AND id = $chat");
+            $db->query("UPDATE chat SET isOnlineDocente = false WHERE ciDocente = $ci AND id = $chat");
         }
     }
 
 
-    public static function onlineDocente($id, $idChat, $db)
+    public static function onlineDocente($idChat, $db)
     {
-        $id = self::getIdDocente($id, $db);
         $db->query("UPDATE chat SET isOnlineDocente = true WHERE id = $idChat");
     }
 
-    public static function getHorarioDocente($idDocente, $db)
+    public static function getHorarioDocente($ciDocente, $db)
     {
         $diaMinimo = '';
         $diaMaximo = '';
@@ -314,7 +272,7 @@ class Chat
         $horaMaxima = '';
 
         // Obtengo los datos del horario del profe
-        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE ci = $ciDocente";
         $resultadoHorarios = $db->query($sqlHorarios);
 
         // Iterar resultados;

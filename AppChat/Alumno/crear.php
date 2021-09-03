@@ -5,7 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_alumno();
-Chat::offlineAlumno($_SESSION['id'], $db);
+Chat::offlineAlumno($_SESSION['CI'], $db);
 
 
 $id = $_SESSION['id'];
@@ -98,7 +98,7 @@ $i = 0;
                                 <button>Crear</button>
 
                                 <?php
-                                $idAlumno = $_SESSION['id'];
+                                $ciHost = $_SESSION['CI'];
                                 $nombreAlumno = $_SESSION['nombre'];
                                 $apellidoAlumno = $_SESSION['apellido'];
                                 $emailAlumno = $_SESSION['email'];
@@ -106,7 +106,7 @@ $i = 0;
 
                                 <input type="hidden" name="asignatura" value="<?php echo $row['nombre'] ?>">
                                 <input type="hidden" name="grupo" value="<?php echo $grupo ?>">
-                                <input type="hidden" name="idAlumno" value="<?php echo $idAlumno ?>">
+                                <input type="hidden" name="ciHost" value="<?php echo $ciHost ?>">
                                 <input type="hidden" name="nombreAlumno" value="<?php echo  $nombreAlumno  ?>">
                                 <input type="hidden" name="apellidoAlumno" value="<?php echo  $apellidoAlumno ?>">
                                 <input type="hidden" name="emailAlumno" value="<?php echo  $emailAlumno ?>">

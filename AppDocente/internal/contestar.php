@@ -5,7 +5,7 @@ require '../../clases/Docente.php';
 require '../../clases/Chat.php';
 
 isAuth_docente();
-Chat::offlineDocente($_SESSION['id'], $db);
+Chat::offlineDocente($_SESSION['CI'], $db);
 
 if (empty($_GET)) {
     header('Location: /AppDocente/index.php');

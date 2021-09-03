@@ -5,7 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_alumno();
-Chat::offlineAlumno($_SESSION['id'], $db);
+Chat::offlineAlumno($_SESSION['CI'], $db);
 
 
 
@@ -61,10 +61,10 @@ $i = 0;
                     // Me quedo solo con la parte entera del grupo
                     $grado = substr($grupo, 0, -2);
 
-                    $idUsuarioChat = Chat::getIdAlumno($id, $db);
+                    $ci = $_SESSION['CI'];
                     $mensajeMostrado = false;  // Pasa a true cuando ya se haya mostrado
 
-                    $sql = "SELECT id, asignatura FROM chat WHERE idHost != $idUsuarioChat AND grupo = '$grupo'";
+                    $sql = "SELECT id, asignatura FROM chat WHERE ciHost != '$ci' AND grupo = '$grupo'";
                     $result = $db->query($sql);
 
                 ?>
@@ -92,14 +92,14 @@ $i = 0;
 
 
                                 <?php
-                                $idAlumno = $_SESSION['id'];
+                                $ciUsuario = $_SESSION['CI'];
                                 $nombreAlumno = $_SESSION['nombre'];
                                 $apellidoAlumno = $_SESSION['apellido'];
                                 $emailAlumno = $_SESSION['email'];
                                 ?>
 
                                 <input type="hidden" name="idChat" value="<?php echo $row['id'] ?>">
-                                <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id'] ?>">
+                                <input type="hidden" name="ciUsuario" value="<?php echo $_SESSION['CI'] ?>">
                                 <input type="hidden" name="nombre" value="<?php echo $_SESSION['nombre'] ?>">
                                 <input type="hidden" name="apellido" value="<?php echo  $_SESSION['apellido'] ?>">
                                 <input type="hidden" name="email" value="<?php echo  $_SESSION['email'] ?>">

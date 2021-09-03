@@ -7,8 +7,8 @@ require '../../../clases/Sistema.php';
 isAuth_alumno();
 
 $idChat = '';
-$idHost = '';
-$idDocente = '';
+$ciHost = '';
+$ciDocente = '';
 $asignatura = '';
 $datosChat = [];
 
@@ -19,20 +19,20 @@ if (isset($_POST['idChat'])) {
     $datosChat = Chat::getDatos($idChat, $db);
 
     // Obtengo los datos que quiero de la tabla chat
-    $idHost = $datosChat['idHost'];
+    $ciHost = $datosChat['ciHost'];
     $asignatura = $datosChat['asignatura'];
 }
 
 // Lo paso a online
-Chat::onlineAlumno($_SESSION['id'], $idChat, 'host', $db);
+Chat::onlineAlumno($_SESSION['CI'], $idChat, 'host', $db);
 
-$idDocente = $datosChat['idDocente'];
+$ciDocente = $datosChat['ciDocente'];
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
-    $datosChat = Chat::enviarMensaje($idChat, $idHost,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
+    $datosChat = Chat::enviarMensaje($idChat, $ciHost,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
 
 
@@ -56,11 +56,11 @@ if (isset($_POST['mensaje'])) {
     <script type="text/javascript">
         function tiempoReal() {
             idChat = <?php echo $idChat ?>;
-            idHost = <?php echo $idHost ?>;
-            idDocente = <?php echo $idDocente ?>;
+            ciHost = <?php echo $ciHost ?>;
+            ciDocente = <?php echo $ciDocente ?>;
 
             var mensajes = $.ajax({
-                url: `../sql/sqlMensajes.php?idChat=${idChat}&idHost=${idHost}&idDocente=${idDocente}`,
+                url: `../sql/sqlMensajes.php?idChat=${idChat}&ciHost=${ciHost}&ciDocente=${ciDocente}`,
                 dataType: 'text',
                 async: false
             }).responseText;

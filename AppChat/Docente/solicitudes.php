@@ -5,7 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_docente();
-Chat::offlineDocente($_SESSION['id'], $db);
+Chat::offlineDocente($_SESSION['CI'], $db);
 
 $entro = false;
 $id = $_SESSION['id'];
@@ -58,10 +58,10 @@ $i = 0;
                     // Me quedo solo con la parte entera del grupo
                     $grado = substr($grupo, 0, -2);
 
-                    $idDocenteChat = Chat::getIdDocente($id, $db);
+                    $ciDocente = $_SESSION['CI'];;
                     $entroChat = false; // Verifica si hay chats creados
 
-                    $sql = "SELECT id, idHost, nombreHost, apellidoHost, emailHost, asignatura, grupo FROM solicitud_chat WHERE idDocente = $idDocenteChat AND grupo = '$grupo'";
+                    $sql = "SELECT id, ciHost, nombreHost, apellidoHost, emailHost, asignatura, grupo FROM solicitud_chat WHERE ciDocente = '$ciDocente' AND grupo = '$grupo'";
 
                     $result = $db->query($sql);
 
@@ -89,7 +89,7 @@ $i = 0;
                             <div class="solicitudes-buttons">
                                 <form action="internal/aceptar_solicitud.php" method="POST">
                                     <!-- Datos del alumno -->
-                                    <input type="hidden" name="idHost" value="<?php echo $row['idHost'] ?>">
+                                    <input type="hidden" name="ciHost" value="<?php echo $row['ciHost'] ?>">
                                     <input type="hidden" name="nombreHost" value="<?php echo $row['nombreHost'] ?>">
                                     <input type="hidden" name="apellidoHost" value="<?php echo $row['apellidoHost'] ?>">
                                     <input type="hidden" name="emailHost" value="<?php echo $row['emailHost'] ?>">
@@ -100,7 +100,7 @@ $i = 0;
                                     <input type="hidden" name="idSolicitud" value="<?php echo  $row['id'] ?>">
 
                                     <!-- Datos del docente -->
-                                    <input type="hidden" name="idDocente" value="<?php echo  $_SESSION['id'] ?>">
+                                    <input type="hidden" name="ciDocente" value="<?php echo  $_SESSION['CI'] ?>">
                                     <input type="hidden" name="nombreDocente" value="<?php echo  $_SESSION['nombre'] ?>">
                                     <input type="hidden" name="apellidoDocente" value="<?php echo  $_SESSION['apellido'] ?>">
                                     <input type="hidden" name="emailDocente" value="<?php echo  $_SESSION['email'] ?>">

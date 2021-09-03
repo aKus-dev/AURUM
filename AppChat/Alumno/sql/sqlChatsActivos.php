@@ -2,7 +2,7 @@
 require "../../../config/app.php";
 
 $idChat = $_GET['idChat'];
-$idUsuario = $_GET['idUsuario'];
+$ciUsuario = $_GET['ciUsuario'];
 $grupos = explode(",", $_GET['grupos']); // Obtengo uno a uno sus grupos
 
 $nombre = '';
@@ -10,7 +10,7 @@ $apellido = '';
 $entro = false;
 
 // Selecciono nombre y apellido del usuario
-$sql = "SELECT nombre, apellido FROM alumno WHERE id = $idUsuario";
+$sql = "SELECT nombre, apellido FROM alumno WHERE CI = '$ciUsuario'";
 $resultado = $db->query($sql);
 
 while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {

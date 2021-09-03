@@ -41,6 +41,7 @@ class Sistema
                 // Inicio sesión 
                 session_start();
                 $_SESSION['id'] = $row['id'];
+                $_SESSION['CI'] = $row['CI'];
                 $_SESSION['sesion_docente'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
@@ -78,6 +79,7 @@ class Sistema
             if ($coinciden) {
                 session_start();
                 $_SESSION['id'] = $row['id'];
+                $_SESSION['CI'] = $row['CI'];
                 $_SESSION['sesion_alumno'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];

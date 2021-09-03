@@ -11,10 +11,10 @@ $idChat = $_POST['idChat'];
 $errorHorario = false;
 
 // Obtengo el id real del docente para obtener sus horarios
-$resultado = $db->query("SELECT idRealDocente FROM chat WHERE id = $idChat");
+$resultado = $db->query("SELECT ciDocente FROM chat WHERE id = $idChat");
 
 while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-    $errorHorario =  Chat::getHorarioDocente($row['idRealDocente'], $db);
+    $errorHorario =  Chat::getHorarioDocente($row['ciDocente'], $db);
 }
 
 

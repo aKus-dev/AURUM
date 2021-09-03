@@ -36,9 +36,6 @@ class Alumno
         // Hashear password
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
 
-        $sqlUsuarios = "INSERT INTO usuarios (ci) VALUES ($CI)";
-        $db->query($sqlUsuarios);
-
         // Codigo SQL
         $sql = "INSERT INTO alumno (CI,nombre,apellido, email, contrasena,imagen, primer_login) VALUES 
         ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen', true)";
@@ -47,7 +44,7 @@ class Alumno
         if ($stmt->execute()) { // Lo ejecutamos
 
             // Guardo la cedula en la tabla de cedulas
-            $sql = "INSERT INTO cedulas VALUES ('$CI') ";
+            $sql = "INSERT INTO cedulas (cedula) VALUES ('$CI') ";
             $db->query($sql);
 
             // Registro los grupos

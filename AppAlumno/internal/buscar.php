@@ -5,7 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_alumno();
-Chat::offlineAlumno($_SESSION['id'], $db);
+Chat::offlineAlumno($_SESSION['CI'], $db);
 
 $encontro = null;
 $resultados = false;

@@ -148,20 +148,14 @@ INSERT INTO asignaturas (nombre, grado)  VALUES
 ('Sistemas Operativos II', 2),
 ('Sistemas Operativos III', 3);
 
-CREATE TABLE usuarios (
-		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        CI CHAR(8)
-);
-
 CREATE TABLE chat (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	idHost INT NOT NULL,
+	ciHost INT NOT NULL,
     nombreHost VARCHAR(30),
 	apellidoHost VARCHAR(30),
     emailHost VARCHAR(320) NOT NULL,
 	isOnlineHost BOOL,
-    idRealDocente INT,
-    idDocente INT NOT NULL,
+    ciDocente INT NOT NULL,
     nombreDocente VARCHAR(25),
     apellidoDocente VARCHAR(25),
 	emailDocente VARCHAR(320) NOT NULL,
@@ -174,7 +168,7 @@ CREATE TABLE chat (
 CREATE TABLE mensajes_chat (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	idChat INT NOT NULL,
-    idUsuario INT,
+    ciUsuario INT,
     nombreUsuario VARCHAR(30),
     apellidoUsuario VARCHAR(30),
     mensaje VARCHAR(500),
@@ -185,7 +179,7 @@ CREATE TABLE mensajes_chat (
 
 CREATE TABLE usuarios_chat (
 	idChat INT NOT NULL,
-	idUsuario INT,
+	ciUsuario INT,
 	nombreUsuario VARCHAR(30),
     apellidoUsuario VARCHAR(30),
 	email VARCHAR(320) NOT NULL,
@@ -196,16 +190,17 @@ CREATE TABLE usuarios_chat (
 
 CREATE TABLE solicitud_chat (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    idDocente INT,
-    idHost INT,
+    ciDocente CHAR(8),
+    ciHost INT,
     nombreHost VARCHAR(25),
     apellidoHost VARCHAR(25),
 	emailHost VARCHAR(320) NOT NULL,
     asignatura VARCHAR(30),
     grupo CHAR(3),
-    CONSTRAINT FK_solicitud FOREIGN KEY (idDocente) 
-    REFERENCES docente(id) ON DELETE CASCADE
+    CONSTRAINT FK_solicitud FOREIGN KEY (ciDocente) 
+    REFERENCES docente(CI) ON DELETE CASCADE
 );
+
 
 use aurum;
 SELECT * FROM chat;
@@ -225,4 +220,3 @@ SELECT * FROM docente;
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
-

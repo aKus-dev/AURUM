@@ -5,7 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_alumno();
-Chat::offlineAlumno($_SESSION['id'], $db);
+Chat::offlineAlumno($_SESSION['CI'], $db);
 
 
 
@@ -90,11 +90,11 @@ $i = 0;
                 // Me quedo solo con la parte entera del grupo
                 $grado = substr($grupo, 0, -2);
 
-                $idUsuarioChat = Chat::getIdAlumno($id, $db);
+                $ci = $_SESSION['CI'];
                 $entroChat = false; // Verifica si hay chats creados
                 $mensajeMostrado = false;  // Pasa a true cuando ya se haya mostrado
 
-                $sql = "SELECT id, asignatura FROM chat WHERE idHost = $idUsuarioChat";
+                $sql = "SELECT id, asignatura FROM chat WHERE ciHost = '$ci'";
                 $result = $db->query($sql);
 
                 ?>

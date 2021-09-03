@@ -5,7 +5,7 @@ require '../../clases/Sistema.php';
 require '../../clases/Chat.php';
 
 isAuth_docente();
-Chat::offlineDocente($_SESSION['id'], $db);
+Chat::offlineDocente($_SESSION['CI'], $db);
 
 $entroChat = false; // Verifica si hay chats creados
 $id = $_SESSION['id'];
@@ -50,10 +50,10 @@ $i = 0;
                     // Me quedo solo con la parte entera del grupo
                     $grado = substr($grupo, 0, -2);
 
-                    $idDocenteChat = Chat::getIdDocente($id, $db);
+                    $ciDocente = $_SESSION['CI'];;
                     $mensajeMostrado = false;  // Pasa a true cuando ya se haya mostrado
 
-                    $sql = "SELECT id, asignatura FROM chat WHERE idDocente = $idDocenteChat AND grupo = '$grupo'";
+                    $sql = "SELECT id, asignatura FROM chat WHERE ciDocente = '$ciDocente' AND grupo = '$grupo'";
 
              
                     $result = $db->query($sql);
@@ -89,7 +89,7 @@ $i = 0;
                                 ?>
 
                                 <input type="hidden" name="idChat" value="<?php echo $row['id'] ?>">
-                                <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id'] ?>">
+                                <input type="hidden" name="ciDocente" value="<?php echo $_SESSION['CI'] ?>">
                                 <input type="hidden" name="nombre" value="<?php echo $_SESSION['nombre'] ?>">
                                 <input type="hidden" name="apellido" value="<?php echo  $_SESSION['apellido'] ?>">
 
