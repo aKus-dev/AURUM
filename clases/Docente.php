@@ -233,10 +233,6 @@ class Docente
         $sql = "DELETE FROM cedulas WHERE cedula = $cedula";
         $db->query($sql);
 
-        // Elimino el registro en la tabla usuario
-        $sql = "DELETE FROM usuarios WHERE ci = $cedula";
-        $db->query($sql);
-
         // Elimino el docente
         $sql = "DELETE FROM docente WHERE id = $idDocente";
         $db->query($sql);
