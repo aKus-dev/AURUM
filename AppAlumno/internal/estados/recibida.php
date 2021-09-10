@@ -9,7 +9,7 @@ $hayResultado_contestada = false;
 $nombreDocente = '';
 $apellidoDocente = '';
 
-$sql = "SELECT id, idDocente, titulo, fecha FROM consultas_alumno WHERE estado = 'recibida' AND idAlumno = $id ORDER BY id DESC";
+$sql = "SELECT id, idDocente, titulo, fecha FROM consultas WHERE estado = 'recibida' AND idAlumno = $id ORDER BY id DESC";
 $resultado = $db->query($sql);
 
 ?>

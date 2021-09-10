@@ -183,8 +183,8 @@ class Sistema
     static public function buscarConsulta($consulta, $db)
     {
         $resultados = [];
-        $sql = "SELECT * FROM consultas_docente
-        WHERE estado = 'contestada' AND titulo LIKE '%$consulta%'";
+        $sql = "SELECT * FROM consultas
+        WHERE estado = 'contestada' OR estado = 'recibida' AND titulo LIKE '%$consulta%'";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

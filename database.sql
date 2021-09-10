@@ -3,6 +3,7 @@ CREATE DATABASE IF NOT EXISTS aurum;
 USE aurum;
 
 CREATE TABLE cedulas (
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 cedula CHAR(8) UNIQUE NOT NULL
 );
 
@@ -86,26 +87,7 @@ CREATE TABLE grupos_pendiente (
     REFERENCES pendiente(idAlumno) ON DELETE CASCADE
 ); 
 
-
-CREATE TABLE consultas_docente (
-	id INT AUTO_INCREMENT NOT NULL,
-    idAlumno INT NOT NULL,
-    idDocente INT NOT NULL,
-    titulo VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
-    respuesta VARCHAR (5000),
-    fecha CHAR(10) NOT NULL,
-    estado VARCHAR (10) NOT NULL,
-	PRIMARY KEY (id),
-    CONSTRAINT FK_Alumno_idAlumno_consulta FOREIGN KEY (idAlumno) 
-    REFERENCES alumno(id) ON DELETE CASCADE,
-    CONSTRAINT FK_Alumno_idDocente_consulta FOREIGN KEY (idDocente) 
-    REFERENCES docente(id) ON DELETE CASCADE
-);
-
-
-/*Respuesta */
-CREATE TABLE consultas_alumno (
+CREATE TABLE consultas (
 	id INT AUTO_INCREMENT NOT NULL,
     idAlumno INT NOT NULL,
     idDocente INT NOT NULL,
@@ -115,9 +97,9 @@ CREATE TABLE consultas_alumno (
     fecha CHAR(10) NOT NULL,
     estado VARCHAR (10) NOT NULL,
 	PRIMARY KEY (id),
-    CONSTRAINT FK_Alumno_idAlumno_consulta2 FOREIGN KEY (idAlumno) 
+    CONSTRAINT FK_Alumno_idAlumno_consulta3 FOREIGN KEY (idAlumno) 
     REFERENCES alumno(id) ON DELETE CASCADE,
-    CONSTRAINT FK_Alumno_idDocente_consulta2 FOREIGN KEY (idDocente) 
+    CONSTRAINT FK_Alumno_idDocente_consulta3 FOREIGN KEY (idDocente) 
     REFERENCES docente(id) ON DELETE CASCADE
 );
 
@@ -207,16 +189,16 @@ SELECT * FROM chat;
 SELECT * FROM mensajes_chat;
 SELECT * FROM usuarios_chat;
 SELECT * FROM solicitud_chat;
-SELECT * FROM consultas_docente;
-SELECT * FROM consultas_alumno;
-SELECT * FROM consultas_docente;
+SELECT * FROM consultas;
 SELECT * FROM asignaturas_docente;
 SELECT * FROM grupos_alumno;
 SELECT * FROM grupos_docente;
-SELECT * FROM usuarios;
 SELECT * FROM alumno;
 SELECT * FROM docente;
-
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
+
+
+
+

@@ -27,7 +27,7 @@ $respuesta = '';
 
 
 // Obtener la respuesta del profesores
-$sqlProfesor = "SELECT respuesta from consultas_alumno WHERE id = $idConsulta";
+$sqlProfesor = "SELECT respuesta from consultas WHERE id = $idConsulta";
 $resultado = $db->query($sqlProfesor);
 
 while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
@@ -35,7 +35,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 }
 
 
-$sql = "SELECT titulo,descripcion,fecha from consultas_alumno WHERE id = $idConsulta";
+$sql = "SELECT titulo,descripcion,fecha from consultas WHERE id = $idConsulta";
 $result = $db->query($sql);
 
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

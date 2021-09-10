@@ -130,20 +130,11 @@ class Docente
         $respuesta = $db->quote($respuesta);   
 
         // Actualiza la consulta en los docentes
-        $sql =  "UPDATE consultas_docente SET respuesta = $respuesta WHERE id=$idConsulta;";
+        $sql =  "UPDATE consultas SET respuesta = $respuesta WHERE id=$idConsulta;";
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-        $sql = "UPDATE consultas_docente SET estado = 'contestada' WHERE id=$idConsulta;";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-
-        // Actualiza la consulta en la tabla de alumnos
-        $sql = "UPDATE consultas_alumno SET estado = 'contestada' WHERE id=$idConsulta;";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-
-        $sql = "UPDATE consultas_alumno SET respuesta = $respuesta WHERE id=$idConsulta;";
+        $sql = "UPDATE consultas SET estado = 'contestada' WHERE id=$idConsulta;";
         $stmt = $db->prepare($sql);
         $stmt->execute();
 

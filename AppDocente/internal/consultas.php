@@ -57,7 +57,7 @@ if (!empty($_GET)) {
         </div>
 
         <div id="pendiente-container">
-            <?php require 'estados/pendiente.php' ?>
+            <?php require 'estados/realizadas.php' ?>
         </div>
 
         <div id="contestada-container" class="display-none">

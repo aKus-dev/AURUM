@@ -137,17 +137,10 @@ class Alumno
 
 
             // Envio los datos a las consultas realizadas por el alumno
-            $sqlAlumno = "INSERT INTO consultas_alumno (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
+            $sql = "INSERT INTO consultas (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
             ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'realizada')";
 
-            // Envio los datos a las consultas recibidas del profesor
-            $sqlDocente = "INSERT INTO consultas_docente (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES
-            ($idAlumno, $idDocente, '$titulo', '$descripcion', '$fecha', 'pendiente')";
-
-            $stmt = $db->prepare($sqlAlumno);
-            $stmt->execute();
-
-            $stmt = $db->prepare($sqlDocente);
+            $stmt = $db->prepare($sql);
             $stmt->execute();
 
             return true; // Si todo esta correcto, retornamos true

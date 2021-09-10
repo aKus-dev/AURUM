@@ -21,7 +21,7 @@ $descripcion = '';
 $success = false;
 
 
-$sql = "SELECT titulo,descripcion,fecha from consultas_docente WHERE id = $idConsulta";
+$sql = "SELECT titulo,descripcion,fecha from consultas WHERE id = $idConsulta";
 $result = $db->query($sql);
 
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

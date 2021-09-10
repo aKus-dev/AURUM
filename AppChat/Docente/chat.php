@@ -9,7 +9,7 @@ isAuth_docente();
 
 $idChat = '';
 $ciHost = '';
-$ciDocente = $_POST['ciDocente'];
+$ciDocente = $_SESSION['CI'];
 $asignatura = '';
 $datosChat = [];
 

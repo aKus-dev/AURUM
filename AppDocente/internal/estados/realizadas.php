@@ -1,40 +1,38 @@
 <?php
 
 $idDocente = $_SESSION['id'];
-$nombre = '';
-$apellido = '';
 $hayResultado_contestada = false;
 
-// Variables para los grupos del alumno
+// Datos alumnos
+$nombre = '';
+$apellido = '';
+
+
 $grupos = [];
 $grupos1 = false;
 $gruposN = false;
 
 
-// Una vez tengo los datos del alimno, selecciono las consultas pendientes
-$sql = "SELECT id, idAlumno, titulo, fecha FROM consultas WHERE estado = 'contestada' OR estado = 'recibida' AND idDocente = $idDocente ORDER BY id DESC";
+// Selecciono las consultas pendientes
+$sql = "SELECT id, idAlumno, titulo, fecha FROM consultas WHERE estado = 'realizada' AND idDocente = $idDocente ORDER BY id DESC";
 $resultado = $db->query($sql);
-
 
 ?>
 
-<?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) :
+<?php while ($consulta = $resultado->fetch(PDO::FETCH_ASSOC)) :  $hayResultado_contestada = true ?>
 
-    $idAlumno = $row['idAlumno'];
-    $hayResultado_contestada = true;
-    // Obtengo los datos del alunno que coincidan con el estado de la consulta 
-    $sqlAlumno = "SELECT DISTINCT nombre, apellido
-            FROM alumno
-            INNER JOIN consultas as consulta
-            ON consulta.estado = 'contestada' OR consulta.estado = 'recibida' AND alumno.id = $idAlumno";
+    <?php
+
+    // Obtengo los datos del alumno en base a su id sacado de la consultas al docente
+    $idAlumno = $consulta['idAlumno'];
+    $sqlAlumno = "SELECT nombre, apellido FROM alumno WHERE id = $idAlumno";
     $result = $db->query($sqlAlumno);
 
-    while ($datos = $result->fetch(PDO::FETCH_ASSOC)) {
-        $nombre = $datos['nombre'];
-        $apellido = $datos['apellido'];
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $nombre = $row['nombre'];
+        $apellido = $row['apellido'];
     }
 
-    // Obtengo los grupos del alumno
     $sqlGrupos = "SELECT grupo FROM grupos_alumno WHERE idAlumno = $idAlumno";
     $resultadoGrupos = $db->query($sqlGrupos);
 
@@ -44,32 +42,31 @@ $resultado = $db->query($sql);
 
     $grupos = Sistema::formatearGrupos($grupos, $db);
 
-    // Me fijo si tiene más de un grupo
-    if (sizeof($grupos) === 1) {
+    if(sizeof($grupos) === 1) {
         $grupos1 = true;
     } else {
         $gruposN = true;
     }
 
-
-
-?>
+    ?>
 
     <div class="consulta--container">
+
         <div class="date-style">
             <div class="line"></div>
-            <p><?php echo $row['fecha'] ?> </p>
+            <p><?php echo $consulta['fecha'] ?> </p>
             <div class="line"></div>
         </div>
 
+
         <div class="titulo-consulta bg-main">
-            <p> <?php echo $row['titulo']; ?> </p>
+            <p> <?php echo $consulta['titulo']; ?> </p>
         </div>
 
         <div class="datos-consulta-flex">
             <div class="flex-consultas-datos">
                 <h5>Id</h5>
-                <p>#<?php echo $row['id']; ?></p>
+                <p>#<?php echo $consulta['id']; ?></p>
             </div>
 
             <div class="flex-consultas-datos">
@@ -78,18 +75,16 @@ $resultado = $db->query($sql);
             </div>
 
             <div class="flex-consultas-datos">
-                <?php if ($grupos1) {
+                <?php  if($grupos1) {
                     echo "<h5>Grupo</h5>";
-                } else {
-                    echo "<h5>Grupos</h5>";
-                }
-                ?>
+                }  else {  echo "<h5>Grupos</h5>"; }
+                 ?>
                 <p>
-                    <?php
-                    if ($grupos1) {
+                   <?php
+                    if($grupos1) {
                         echo $grupos[0];
-                    } else {
-                        foreach ($grupos as $grupo) {
+                    } else {  
+                        foreach($grupos as $grupo) {
                             echo $grupo . " ";
                         }
                     }
@@ -97,12 +92,13 @@ $resultado = $db->query($sql);
                     $grupos = [];
 
                     ?>
+                </p>
             </div>
 
             <div class="flex-consultas-datos">
                 <div id="btn-consulta">
-                    <a <?php echo "href=./ver.php?id=${row['id']}&n=$nombre&a=$apellido" ?> class="btn-consulta bg-main">
-                        <p>Ver</p>
+                    <a <?php echo "href=./contestar.php?id=${consulta['id']}&n=$nombre&a=$apellido" ?> class="btn-consulta bg-main">
+                        <p>Contestar</p>
                         <i class="fas fa-arrow-circle-right white"></i>
                     </a>
                 </div>
@@ -111,10 +107,12 @@ $resultado = $db->query($sql);
         </div>
     </div>
 
-<?php endwhile; ?>
+<?php
+endwhile;
+?>
 
 <?php if (!$hayResultado_contestada) : ?>
     <div class="no-consultas bg-main">
-        <p>No tienes consultas contestadas</p>
+        <p>No tienes consultas recibidas</p>
     </div>
 <?php endif; ?>

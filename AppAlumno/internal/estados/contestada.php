@@ -14,7 +14,7 @@ $grupoN = false;
 
 
 // Selecciono los datos de la consulta
-$sql = "SELECT id, idDocente, titulo, fecha FROM consultas_alumno WHERE estado = 'contestada' AND idAlumno = $id ORDER BY id DESC";
+$sql = "SELECT id, idDocente, titulo, fecha FROM consultas WHERE estado = 'contestada' AND idAlumno = $id ORDER BY id DESC";
 $resultado = $db->query($sql);
 
 // Selecciono los grupos del alimno

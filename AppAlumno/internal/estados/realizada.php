@@ -13,7 +13,7 @@ $grupoN = false;
 $nombreDocente = '';
 $apellidoDocente = '';
 
-$sql = "SELECT id, idDocente, titulo, fecha FROM consultas_alumno WHERE estado = 'realizada' AND idAlumno = $id ORDER BY id DESC";
+$sql = "SELECT id, idDocente, titulo, fecha FROM consultas WHERE estado = 'realizada' AND idAlumno = $id ORDER BY id DESC";
 $resultado = $db->query($sql);
 
 
