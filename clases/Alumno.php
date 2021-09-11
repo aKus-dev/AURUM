@@ -99,27 +99,6 @@ class Alumno
     }
 
 
-    static public function revisarExistencia(string $cedula, string $email, PDO $db): bool
-    {
-        $sql = "SELECT * FROM cedulas WHERE cedula = '$cedula' ";
-        $resultado = $db->query($sql);
-
-        // Si entra en el while es porque encontró una cedula
-        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            return true;
-        }
-
-        $sql = "SELECT * FROM usuario WHERE email = '$email'";
-        $resultado = $db->query($sql);
-
-        // Si entra en el while es porque encontró un email
-        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            return true;
-        }
-
-        return false;
-    }
-
     static public function realizarConsulta(int $idAlumno, int $idDocente, string $titulo, string $descripcion, PDO $db)
     {
 

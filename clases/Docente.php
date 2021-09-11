@@ -102,29 +102,6 @@ class Docente
         }
     }
 
-
-    static public function revisarExistencia(string $cedula, string $email, PDO $db): bool
-    {
-        $sql = "SELECT * FROM cedulas WHERE cedula = '$cedula' ";
-        $resultado = $db->query($sql);
-
-        // Si entra en el while es porque encontró una cedula
-        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            return true;
-        }
-
-        $sql = "SELECT * FROM usuario WHERE email = '$email'";
-        $resultado = $db->query($sql);
-
-        // Si entra en el while es porque encontró un email
-        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            return true;
-        }
-
-
-        return false;
-    }
-
     static public function responderConsulta($idConsulta, $respuesta, PDO $db)
     {
         /* date_default_timezone_set("America/Montevideo");

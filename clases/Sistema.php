@@ -65,6 +65,33 @@ class Sistema
         return false;
     }
 
+    static public function revisarCedula(string $cedula, string $email, PDO $db): bool
+    {
+        $sql = "SELECT * FROM cedulas WHERE cedula = '$cedula' ";
+        $resultado = $db->query($sql);
+
+        // Si entra en el while es porque encontró una cedula
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    
+    static public function revisarMail(string $cedula, string $email, PDO $db): bool
+    {
+        $sql = "SELECT * FROM usuario WHERE email = '$email'";
+        $resultado = $db->query($sql);
+
+        // Si entra en el while es porque encontró un email
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            return true;
+        }
+
+        return false;
+    }
+
     static public function errorHorario($idDocente, $db)
     {
         // Obtengo los datos del horario del profe

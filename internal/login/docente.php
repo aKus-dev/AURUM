@@ -3,7 +3,8 @@ require '../../config/app.php';
 require '../../clases/Sistema.php';
 require '../../clases/Docente.php';
 
-$yaExiste = false; // Pasa  true cuando el usuario ya exista
+$existeCI = false;
+$existeMail = false;
 $success = false; // Pasa a true cuando todo haya salido correcto
 $rellenar = false; // Pasa a true cuando haya que volver a rellenar el formulario (caso de error)
 $errorCedula = false;
@@ -21,11 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $apellido = $_POST['apellido'];
         $email = $_POST['email'];
     } else {
-        // Comprobar si ya existe en la base de datos
-        $yaExiste = Docente::revisarExistencia($_POST['ci'], $_POST['email'], $db);
+
+        // Comprobar si la cedula y mail ya existe
+        $existeCI = Sistema::revisarCedula($_POST['ci'], $_POST['email'], $db);
+        $existeMail = Sistema::revisarMail($_POST['ci'], $_POST['email'], $db);
 
         // En caso de que NO exista, lo ingresamos al sistema
-        if (!$yaExiste) {
+        if (!$existeCI && !$existeMail) {
             $success = Docente::crear($_POST, $db);
         } else {
             // En caso de que exista, relleno los campos nuevamente para que cambie algo
@@ -68,10 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="" method="POST" class="width100">
 
             <div class="text-center">
-                <!-- Si ya esta registrado mostramos un error -->
-                <?php if ($yaExiste) : ?>
-                    <p id="danger" class="alert-danger">La cedula o el correo ya están registrados</p>
-                <?php endif; ?>
+                <?php
+
+                if ($existeCI && $existeMail) {
+                    echo '<p id="danger" class="alert-danger">La cédula y el correo ya están registrados</p>';
+                } else if ($existeCI) {
+                    echo '<p id="danger" class="alert-danger">La cédula ya está registrada</p>';
+                } else if ($existeMail) {
+                    echo '<p id="danger" class="alert-danger">El correo ya está registrado</p>';
+                }
+                ?>
 
                 <?php if ($errorCedula) : ?>
                     <p id="danger" class="alert-danger">La cédula debe tener 8 digitos</p>
@@ -162,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <select id="asignaturas" name="asignaturas[]" class="form__select" multiple required>
-                   <?php Sistema::cargarAsignaturas($db) ?>
+                    <?php Sistema::cargarAsignaturas($db) ?>
                 </select>
             </div>
 
