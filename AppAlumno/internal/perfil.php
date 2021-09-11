@@ -33,7 +33,7 @@ $id = $_SESSION['id'];
 $nombreAlumno = '';
 $apellidoAlumno = '';
 
-$sql = "SELECT nombre, apellido FROM alumno WHERE id = $id";
+$sql = "SELECT nombre, apellido FROM usuario WHERE id = $id";
 $resultado = $db->query($sql);
 
 // Recorro los datos del alumno

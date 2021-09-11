@@ -11,7 +11,7 @@ $id = $_GET['id'];
 $name = $_GET['name'];
 
 $sql = 
-"UPDATE alumno
+"UPDATE usuario
  SET primer_login = false
  WHERE id = $id;
 ";

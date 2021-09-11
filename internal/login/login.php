@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
 
-    Sistema::revisarAdministrador($usuario, $password, $db);
-    Sistema::revisarDocente($usuario, $password, $db);
-    $encontrado = Sistema::revisarAlumno($usuario, $password, $db);
+   /*  Sistema::revisarAdministrador($usuario, $password, $db);
+    Sistema::revisarDocente($usuario, $password, $db); */
+    /* $encontrado = Sistema::revisarAlumno($usuario, $password, $db); */
+    $encontrado = Sistema::revisarUsuario($usuario, $password, $db);
 }
 
 ?>

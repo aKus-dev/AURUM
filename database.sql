@@ -2,34 +2,7 @@ DROP DATABASE IF EXISTS aurum;
 CREATE DATABASE IF NOT EXISTS aurum;
 USE aurum;
 
-CREATE TABLE cedulas (
-id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-cedula CHAR(8) UNIQUE NOT NULL
-);
-
-/* Ingresa a esta tabla una vez es aceptado por el administrador */
-CREATE TABLE alumno (
-	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    CI CHAR(8) UNIQUE NOT NULL,
-    nombre VARCHAR(25) NOT NULL,
-    apellido VARCHAR(25) NOT NULL,
-	email VARCHAR(320) NOT NULL,
-    contrasena VARCHAR(150) NOT NULL,
-    imagen VARCHAR(50) NOT NULL,
-	primer_login BOOl NOT NULL
-);
-
-
-/* Esta tabla almacenara los grupos de los Alumnos*/
-CREATE TABLE grupos_alumno (
-	idAlumno INT NOT NULL,
-    grupo CHAR (3) NOT NULL,
-	CONSTRAINT FK_idAlumno_grupo FOREIGN KEY (idAlumno) 
-    REFERENCES alumno(id) ON DELETE CASCADE
-); 
-
-
-CREATE TABLE docente (
+CREATE TABLE usuario (
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     CI CHAR(8) UNIQUE NOT NULL,
     nombre VARCHAR(25) NOT NULL,
@@ -37,8 +10,22 @@ CREATE TABLE docente (
     email VARCHAR(320) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
+    tipo ENUM('alumno', 'docente', 'admin') NOT NULL,
     primer_login BOOl NOT NULL
 );
+
+CREATE TABLE cedulas (
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+cedula CHAR(8) UNIQUE NOT NULL
+);
+
+/* Esta tabla almacenara los grupos de los Alumnos*/
+CREATE TABLE grupos_alumno (
+	idAlumno INT NOT NULL,
+    grupo CHAR (3) NOT NULL,
+	CONSTRAINT FK_idAlumno_grupo FOREIGN KEY (idAlumno) 
+    REFERENCES usuario(id) ON DELETE CASCADE
+); 
 
 CREATE TABLE horarios (
     ciDocente CHAR (8) PRIMARY KEY NOT NULL,
@@ -46,9 +33,9 @@ CREATE TABLE horarios (
     dia_maximo INT,
     hora_minima CHAR(5),
     hora_maxima CHAR(5),
-    registro_horarios BOOL NOT NULL,
+	registro_horarios BOOL NOT NULL,
     CONSTRAINT FK_docente_horarios FOREIGN KEY (ciDocente)
-    REFERENCES docente(CI) ON DELETE CASCADE
+    REFERENCES usuario(CI) ON DELETE CASCADE
 );
 
 /* Esta tabla almacenara los grupos de los docentes*/
@@ -56,7 +43,7 @@ CREATE TABLE grupos_docente(
 	idDocente INT NOT NULL,
     grupo CHAR (3) NOT NULL,
 	CONSTRAINT FK_idDocente_grupo FOREIGN KEY (idDocente) 
-    REFERENCES docente(id) ON DELETE CASCADE
+    REFERENCES usuario(id) ON DELETE CASCADE
 ); 
 
 /* Esta tabla almacenara los Asignaturas de los docentes*/
@@ -64,15 +51,8 @@ CREATE TABLE asignaturas_docente (
 	idDocente INT NOT NULL,
     asignatura VARCHAR (30) NOT NULL,
 	CONSTRAINT FK_idDocente_asignatura FOREIGN KEY (idDocente) 
-    REFERENCES docente(id) ON DELETE CASCADE
+    REFERENCES usuario(id) ON DELETE CASCADE
 ); 
-
-CREATE TABLE administrador (
-	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    usuario VARCHAR(25) NOT NULL,
-    contrasena VARCHAR(150) NOT NULL,
-    imagen VARCHAR(50) NOT NULL
-);
 
 /*PARA EL ADMIN Tabla donde se almacenan los alumnos previos a ingresar al sistema */
 CREATE TABLE pendiente (
@@ -104,9 +84,9 @@ CREATE TABLE consultas (
     fecha CHAR(10) NOT NULL,
     estado VARCHAR (10) NOT NULL,
     CONSTRAINT FK_Alumno_idAlumno_consulta3 FOREIGN KEY (idAlumno) 
-    REFERENCES alumno(id) ON DELETE CASCADE,
+    REFERENCES usuario(id) ON DELETE CASCADE,
     CONSTRAINT FK_Alumno_idDocente_consulta3 FOREIGN KEY (idDocente) 
-    REFERENCES docente(id) ON DELETE CASCADE
+    REFERENCES usuario(id) ON DELETE CASCADE
 );
 
 CREATE TABLE asignaturas (
@@ -187,7 +167,7 @@ CREATE TABLE solicitud_chat (
     asignatura VARCHAR(30),
     grupo CHAR(3),
     CONSTRAINT FK_solicitud FOREIGN KEY (ciDocente) 
-    REFERENCES docente(CI) ON DELETE CASCADE
+    REFERENCES usuario(CI) ON DELETE CASCADE
 );
 
 
@@ -200,12 +180,13 @@ SELECT * FROM consultas;
 SELECT * FROM asignaturas_docente;
 SELECT * FROM grupos_alumno;
 SELECT * FROM grupos_docente;
-SELECT * FROM alumno;
-SELECT * FROM docente;
-SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
 SELECT * FROM horarios;
+select * from consultas;
+select * from usuario;
+
+
 
 
 

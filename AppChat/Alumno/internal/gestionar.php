@@ -13,6 +13,7 @@ $idChat = '';
 
 $grupo = $_POST['grupo'];
 
+
 $datosAlumno = [
     "ciHost" => $_POST['ciHost'],
     "nombreAlumno" => $_POST['nombreAlumno'],

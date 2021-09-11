@@ -2,6 +2,7 @@
 
 require '../../config/app.php';
 require '../../clases/Sistema.php';
+require '../../clases/Alumno.php';
 require '../../clases/Chat.php';
 
 isAuth_alumno();
@@ -98,10 +99,12 @@ $i = 0;
                                 <button>Crear</button>
 
                                 <?php
-                                $ciHost = $_SESSION['CI'];
-                                $nombreAlumno = $_SESSION['nombre'];
-                                $apellidoAlumno = $_SESSION['apellido'];
-                                $emailAlumno = $_SESSION['email'];
+                                $datosAlumno = Alumno::getDatos($_SESSION['id'], $db);
+
+                                $ciHost = $datosAlumno['CI'];
+                                $nombreAlumno = $datosAlumno['nombre'];
+                                $apellidoAlumno = $datosAlumno['apellido'];
+                                $emailAlumno = $datosAlumno['email'];
                                 ?>
 
                                 <input type="hidden" name="asignatura" value="<?php echo $row['nombre'] ?>">

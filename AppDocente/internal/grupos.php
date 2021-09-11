@@ -58,11 +58,12 @@ Chat::offlineDocente($_SESSION['CI'], $db);
                             
                             // En base a los grupos que está, selecciono sus compañeros
                             $sql = "SELECT DISTINCT nombre, apellido, imagen 
-                            FROM alumno 
+                            FROM usuario 
                             INNER JOIN grupos_docente as docenteGrupos 
                             ON docenteGrupos.grupo = '$grupo'
                             INNER JOIN grupos_alumno as alumnoGrupo
-                            ON alumno.id = alumnoGrupo.idAlumno AND alumnoGrupo.grupo = '$grupo'";
+                            ON usuario.id = alumnoGrupo.idAlumno AND alumnoGrupo.grupo = '$grupo'
+                            AND usuario.tipo = 'alumno'";
 
                             $resultado = $db->query($sql);
                             while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {

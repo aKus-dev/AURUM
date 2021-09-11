@@ -54,9 +54,9 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
                 // Selecciono los datos del profesor que sean del grupo del alumno
                 $sqlDocente = "SELECT DISTINCT id, CI, nombre, apellido 
-                FROM docente
+                FROM usuario
                 INNER JOIN grupos_docente as grupo
-                ON docente.id = grupo.idDocente AND grupo.Grupo = '$grupo'";
+                ON usuario.id = grupo.idDocente AND grupo.Grupo = '$grupo' AND usuario.tipo = 'docente'";
 
                 $result = $db->query($sqlDocente);
 

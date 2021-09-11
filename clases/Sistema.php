@@ -3,33 +3,10 @@
 
 class Sistema
 {
-    static public function revisarAdministrador(string $usuario, string $contrasena, PDO $db): bool
+
+    static public function revisarUsuario(string $cedula, string $contrasena, PDO $db): bool
     {
-        $sql = "SELECT * FROM administrador WHERE usuario = '$usuario' LIMIT 1";
-        $resultado = $db->query($sql);
-
-        // Si hay un resultado, compruebo la contraseña
-        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            $coinciden = password_verify($contrasena, $row['contrasena']);
-            if ($coinciden) {
-                // Inicio sesión
-                session_start();
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['sesion_admin'] = true;
-                $_SESSION['usuario'] = $row['usuario'];
-                $_SESSION['imagen'] = $row['imagen'];
-                header('Location: /AppAdmin/index.php');
-                return true;
-            }
-        }
-
-        // No encontro un administrador
-        return false;
-    }
-
-    static public function revisarDocente(string $cedula, string $contrasena, PDO $db): bool
-    {
-        $sql = "SELECT * FROM docente WHERE CI = '$cedula' LIMIT 1";
+        $sql = "SELECT * FROM usuario WHERE CI = '$cedula' LIMIT 1";
 
         $resultado = $db->query($sql);
 
@@ -42,65 +19,49 @@ class Sistema
                 session_start();
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['CI'] = $row['CI'];
-                $_SESSION['sesion_docente'] = true;
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
                 $_SESSION['email'] = $row['email'];
+                $_SESSION['tipo'] = $row['tipo'];
                 $_SESSION['imagen'] = $row['imagen'];
 
                 // Id para pasar vía GET
+                $tipo =  $row['tipo'];
                 $id = $row['id'];
                 $name = $row['nombre'];
 
-                if ($row['primer_login'] === '1') {
-                    header("Location: ../welcome/docente.php?id=$id&name=$name");
-                } else {
-                    header('Location: /AppDocente/index.php');
-                }
+                switch ($tipo) {
+                    case 'alumno':
+                        $_SESSION['sesion_alumno'] = true;
 
-                return true;
+                        if ($row['primer_login'] === '1') {
+                            header("Location: ../welcome/alumno.php?id=$id&name=$name");
+                        } else {
+                            header('Location: /AppAlumno/index.php');
+                        }
+                 
+                        return true;
+                        break;
+                    case 'docente':
+                        $_SESSION['sesion_docente'] = true;
+
+                        if ($row['primer_login'] === '1') {
+                            header("Location: ../welcome/docente.php?id=$id&name=$name");
+                        } else {
+                            header('Location: /AppDocente/index.php');
+                        }
+                        return true;
+                        break;
+                    case 'admin':
+                        $_SESSION['sesion_admin'] = true;
+                        header('Location: /AppAdmin/index.php');
+                        return true;
+                        break;
+                }
             }
         }
 
-        // No encontro el docente
-        return false;
-    }
-
-    static public function revisarAlumno(string $cedula, string $contrasena, PDO $db): bool
-    {
-        $sql = "SELECT * FROM alumno WHERE CI = '$cedula' LIMIT 1";
-
-        $resultado = $db->query($sql);
-
-        // Si hay un resultado, compruebo la contraseña
-        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            $coinciden = password_verify($contrasena, $row['contrasena']);
-
-            if ($coinciden) {
-                session_start();
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['CI'] = $row['CI'];
-                $_SESSION['sesion_alumno'] = true;
-                $_SESSION['nombre'] = $row['nombre'];
-                $_SESSION['apellido'] = $row['apellido'];
-                $_SESSION['email'] = $row['email'];
-                $_SESSION['imagen'] = $row['imagen'];
-
-                // Id para pasar vía GET
-                $id = $row['id'];
-                $name = $row['nombre'];
-
-                if ($row['primer_login'] === '1') {
-                    header("Location: ../welcome/alumno.php?id=$id&name=$name");
-                } else {
-                    header('Location: /AppAlumno/index.php');
-                }
-
-                return true;
-            }
-        }
-
-        // No encontro el alumno
+        // No encontro el usuario
         return false;
     }
 
@@ -113,7 +74,7 @@ class Sistema
         $horaMaxima = '';
         $ciDocente = '';
 
-        $sql = "SELECT CI FROM docente WHERE id = $idDocente";
+        $sql = "SELECT CI FROM usuario WHERE id = $idDocente";
         $resultado = $db->query($sql);
 
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
@@ -204,7 +165,7 @@ class Sistema
             $nombreAlumno = '';
             $apellidoAlumno = '';
 
-            $sqlDocente = "SELECT nombre, apellido FROM docente WHERE id = $idDocente";
+            $sqlDocente = "SELECT nombre, apellido FROM usuario WHERE id = $idDocente";
             $resultDocente = $db->query($sqlDocente);
 
             while ($docente = $resultDocente->fetch(PDO::FETCH_ASSOC)) {
@@ -212,7 +173,7 @@ class Sistema
                 $apellidoDocente = $docente['apellido'];
             }
 
-            $sqlAlumno = "SELECT nombre, apellido FROM alumno WHERE id = $idAlumno";
+            $sqlAlumno = "SELECT nombre, apellido FROM usuario WHERE id = $idAlumno";
             $resultAlumno = $db->query($sqlAlumno);
 
             while ($alumno = $resultAlumno->fetch(PDO::FETCH_ASSOC)) {

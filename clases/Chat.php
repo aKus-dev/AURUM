@@ -12,11 +12,11 @@ class Chat
 
         // Obtengo los datos del profesor de esa asignatura en el grupo
         $sql  = "SELECT DISTINCT CI, nombre, apellido, email
-         FROM docente
+         FROM usuario
          INNER JOIN grupos_docente
-         ON grupos_docente.idDocente = docente.id AND grupo = '$grupo'
+         ON grupos_docente.idDocente = usuario.id AND grupo = '$grupo'
          INNER JOIN asignaturas_docente as asignaturas
-         ON docente.id = asignaturas.idDocente AND asignatura = '$asignatura'";
+         ON usuario.id = asignaturas.idDocente AND asignatura = '$asignatura' AND usuario.tipo = 'docente'";
 
         $result = $db->query($sql);
         // Recorro los datos del docente

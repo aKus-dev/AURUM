@@ -37,8 +37,8 @@ class Alumno
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
 
         // Codigo SQL
-        $sql = "INSERT INTO alumno (CI,nombre,apellido, email, contrasena,imagen, primer_login) VALUES 
-        ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen', true)";
+        $sql = "INSERT INTO usuario (CI,nombre,apellido, email, contrasena,imagen, tipo, primer_login) VALUES 
+        ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen', 'alumno', true)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos
@@ -54,6 +54,21 @@ class Alumno
         }
     }
 
+    public static function getDatos($id, $db) {
+        $resultado = $db->query("SELECT * FROM usuario WHERE id = $id");
+        $datos = [];
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $datos['CI'] = $row['CI'];
+            $datos['nombre'] = $row['nombre'];
+            $datos['apellido'] = $row['apellido'];
+            $datos['email'] = $row['email'];
+            $datos['imagen'] = $row['imagen'];
+        }
+
+        return $datos;
+    }
+
     public static function getGrupos($id, $db) {
         $resultado = $db->query("SELECT grupo FROM grupos_alumno WHERE idAlumno = $id");
         $grupos = [];
@@ -67,7 +82,7 @@ class Alumno
 
     static public function registrarGrupos($grupos, $CI, $db)
     {
-        $sql = "SELECT id FROM alumno WHERE ci = '$CI' LIMIT 1";
+        $sql = "SELECT id FROM usuario WHERE ci = '$CI' LIMIT 1";
 
         $resultado = $db->query($sql);
 
@@ -94,7 +109,7 @@ class Alumno
             return true;
         }
 
-        $sql = "SELECT * FROM alumno WHERE email = '$email'";
+        $sql = "SELECT * FROM usuario WHERE email = '$email'";
         $resultado = $db->query($sql);
 
         // Si entra en el while es porque encontró un email
@@ -117,7 +132,7 @@ class Alumno
         $horaMaxima = '';
         $ciDocente = '';
 
-        $sql = "SELECT CI FROM docente WHERE id = $idDocente";
+        $sql = "SELECT CI FROM usuario WHERE id = $idDocente";
         $resultado = $db->query($sql);
 
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
@@ -172,9 +187,9 @@ class Alumno
             foreach ($grupos as $grupo) {
                 // Selecciono los profesores de su grupo
                 $sql = "SELECT DISTINCT id, nombre, apellido 
-                        FROM docente 
+                        FROM usuario 
                         INNER JOIN grupos_docente as grupo 
-                        ON grupo = '$grupo' AND docente.id = grupo.idDocente";
+                        ON grupo = '$grupo' AND usuario.id = grupo.idDocente AND usuario.tipo = 'docente'";
                 $result = $db->query($sql);
 
                 // Itera sobre los profesores obtenidos
@@ -217,7 +232,7 @@ class Alumno
 
         // Actualizo la imagen
         if($imagen !== '') {
-            $sql = "UPDATE alumno SET imagen = '$imagen' WHERE id = $id";
+            $sql = "UPDATE usuario SET imagen = '$imagen' WHERE id = $id";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -227,7 +242,7 @@ class Alumno
 
         // Actualizo el nombre
         if ($nombreActual !== $nombre) {
-            $sql = "UPDATE alumno SET nombre = '$nombre' WHERE id = $id";
+            $sql = "UPDATE usuario SET nombre = '$nombre' WHERE id = $id";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -236,7 +251,7 @@ class Alumno
 
         // Actualizo el apellido
         if ($apellidoActual !== $apellido) {
-            $sql = "UPDATE alumno SET apellido = '$apellido' WHERE id = $id";
+            $sql = "UPDATE usuario SET apellido = '$apellido' WHERE id = $id";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -247,7 +262,7 @@ class Alumno
         if ($password === $passwordValidate && strlen($password) >= 6) {
             $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
-            $sql = "UPDATE alumno SET contrasena = '$passwordHash' WHERE id = $id";
+            $sql = "UPDATE usuario SET contrasena = '$passwordHash' WHERE id = $id";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -277,7 +292,7 @@ class Alumno
 
     public static function elliminarAlumno($idAlumno, $db) {
 
-        $sql = "SELECT CI FROM alumno WHERE id = $idAlumno";
+        $sql = "SELECT CI FROM usuario WHERE id = $idAlumno";
         $resultado = $db->query($sql);
 
         $cedula = '';
@@ -291,7 +306,7 @@ class Alumno
         $db->query($sql);
 
         // Elimino el alumno
-        $sql = "DELETE FROM alumno WHERE id = $idAlumno";
+        $sql = "DELETE FROM usuario WHERE id = $idAlumno";
         $db->query($sql);
 
         header('Location: /index.html');
