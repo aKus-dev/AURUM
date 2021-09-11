@@ -37,12 +37,18 @@ CREATE TABLE docente (
     email VARCHAR(320) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
-    dia_minimo INT,
+    primer_login BOOl NOT NULL,
+    registro_horarios BOOL NOT NULL
+);
+
+CREATE TABLE horarios (
+    ciDocente CHAR (8) PRIMARY KEY NOT NULL,
+	dia_minimo INT,
     dia_maximo INT,
     hora_minima CHAR(5),
     hora_maxima CHAR(5),
-    primer_login BOOl NOT NULL,
-    registro_horarios BOOL NOT NULL
+    CONSTRAINT FK_docente_horarios FOREIGN KEY (ciDocente)
+    REFERENCES docente(CI) ON DELETE CASCADE
 );
 
 /* Esta tabla almacenara los grupos de los docentes*/
@@ -74,6 +80,7 @@ CREATE TABLE pendiente (
 	CI CHAR(8) UNIQUE NOT NULL,
     nombre VARCHAR(30) NOT NULL,
     apellido VARCHAR(30) NOT NULL,
+    email VARCHAR(320) NOT NULL,
     grupo CHAR(3) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
@@ -88,7 +95,7 @@ CREATE TABLE grupos_pendiente (
 ); 
 
 CREATE TABLE consultas (
-	id INT AUTO_INCREMENT NOT NULL,
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     idAlumno INT NOT NULL,
     idDocente INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
@@ -96,7 +103,6 @@ CREATE TABLE consultas (
 	respuesta VARCHAR (5000),
     fecha CHAR(10) NOT NULL,
     estado VARCHAR (10) NOT NULL,
-	PRIMARY KEY (id),
     CONSTRAINT FK_Alumno_idAlumno_consulta3 FOREIGN KEY (idAlumno) 
     REFERENCES alumno(id) ON DELETE CASCADE,
     CONSTRAINT FK_Alumno_idDocente_consulta3 FOREIGN KEY (idDocente) 
@@ -104,6 +110,7 @@ CREATE TABLE consultas (
 );
 
 CREATE TABLE asignaturas (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(35) NOT NULL,
     grado INT NOT NULL
 );
@@ -150,11 +157,11 @@ CREATE TABLE chat (
 CREATE TABLE mensajes_chat (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	idChat INT NOT NULL,
-    ciUsuario INT,
-    nombreUsuario VARCHAR(30),
-    apellidoUsuario VARCHAR(30),
-    mensaje VARCHAR(500),
-    hora CHAR(5),
+    ciUsuario INT NOT NULL,
+    nombreUsuario VARCHAR(30) NOT NULL,
+    apellidoUsuario VARCHAR(30) NOT NULL,
+    mensaje VARCHAR(500) NOT NULL,
+    hora CHAR(5) NOT NULL,
 	CONSTRAINT FK_idChat FOREIGN KEY (idChat) 
     REFERENCES chat(id) ON DELETE CASCADE
 );
@@ -198,7 +205,7 @@ SELECT * FROM docente;
 SELECT * FROM administrador;
 SELECT * FROM pendiente;
 SELECT * FROM cedulas;
-
+SELECT * FROM horarios;
 
 
 
