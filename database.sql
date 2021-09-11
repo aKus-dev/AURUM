@@ -37,8 +37,7 @@ CREATE TABLE docente (
     email VARCHAR(320) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
-    primer_login BOOl NOT NULL,
-    registro_horarios BOOL NOT NULL
+    primer_login BOOl NOT NULL
 );
 
 CREATE TABLE horarios (
@@ -47,6 +46,7 @@ CREATE TABLE horarios (
     dia_maximo INT,
     hora_minima CHAR(5),
     hora_maxima CHAR(5),
+    registro_horarios BOOL NOT NULL,
     CONSTRAINT FK_docente_horarios FOREIGN KEY (ciDocente)
     REFERENCES docente(CI) ON DELETE CASCADE
 );
