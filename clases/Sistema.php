@@ -111,8 +111,16 @@ class Sistema
         $diaMaximo = '';
         $horaMinima = '';
         $horaMaxima = '';
+        $ciDocente = '';
 
-        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $sql = "SELECT CI FROM docente WHERE id = $idDocente";
+        $resultado = $db->query($sql);
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $ciDocente = $row['CI'];
+        }
+
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM horarios WHERE ciDocente = '$ciDocente'";
         $resultadoHorarios = $db->query($sqlHorarios);
 
         // Iterar resultados;

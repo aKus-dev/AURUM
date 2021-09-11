@@ -115,9 +115,17 @@ class Alumno
         $diaMaximo = '';
         $horaMinima = '';
         $horaMaxima = '';
+        $ciDocente = '';
+
+        $sql = "SELECT CI FROM docente WHERE id = $idDocente";
+        $resultado = $db->query($sql);
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $ciDocente = $row['CI'];
+        }
 
         // Obtengo los datos del horario del profe
-        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM horarios WHERE ciDocente = '$ciDocente'";
         $resultadoHorarios = $db->query($sqlHorarios);
 
         // Iterar resultados;
@@ -129,12 +137,10 @@ class Alumno
         }
 
         $diaActual = date('N'); // Días (1: lunes 7: domingo)
-        $horaActual = date('G'); // Horas (0 - 23)
-
+        $horaActual = date('G:i'); // Horas (0 - 23)
 
         if ($diaActual >= $diaMinimo && $diaActual <= $diaMaximo && $horaActual >= $horaMinima && $horaActual <= $horaMaxima) {
             // En este caso esta dentro del rango de horas
-
 
             // Envio los datos a las consultas realizadas por el alumno
             $sql = "INSERT INTO consultas (idAlumno, idDocente, titulo, descripcion, fecha, estado) VALUES

@@ -53,7 +53,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                 $datosDocentes =  [];
 
                 // Selecciono los datos del profesor que sean del grupo del alumno
-                $sqlDocente = "SELECT DISTINCT id, nombre, apellido 
+                $sqlDocente = "SELECT DISTINCT id, CI, nombre, apellido 
                 FROM docente
                 INNER JOIN grupos_docente as grupo
                 ON docente.id = grupo.idDocente AND grupo.Grupo = '$grupo'";
@@ -74,6 +74,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
                 // Selecciono las materias del docente
                 $idDocente = $docente['id'];
+                $ciDocente = $docente['CI'];
                 $sqlAsignaturas = "SELECT asignatura FROM asignaturas_docente WHERE idDocente = $idDocente";
                 $resultadoAsignaturas = $db->query($sqlAsignaturas);
 
@@ -82,7 +83,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                     $materias[] = $rowAsignatura['asignatura'];
                 }
 
-                $horariosDocente = Docente::getHorarios($idDocente, $db);
+                $horariosDocente = Docente::getHorarios($ciDocente, $db);
 
                 
 
@@ -114,17 +115,8 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                                     $horaMinima = $horariosDocente['horaMinima'];
                                     $horaMaxima = $horariosDocente['horaMaxima'];
 
-                                    if($horaMinima < 12) {
-                                        $horaMinima .= 'am';
-                                    } else {
-                                        $horaMinima .= 'pm';
-                                    }
-
-                                    if($horaMaxima < 12) {
-                                        $horaMaxima .= 'am';
-                                    } else {
-                                        $horaMaxima .= 'pm';
-                                    }
+                                    $horaMinima .= 'hs';
+                                    $horaMaxima .= 'hs';
 
                                     echo "<p>De  $diaMinimo a $diaMaximo entre $horaMinima y $horaMaxima<p>";
                                 } else {

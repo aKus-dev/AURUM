@@ -46,6 +46,10 @@ class Docente
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos
 
+            // Guardo la cedula en la tabla horarios
+            $sql = "INSERT INTO horarios (ciDocente) VALUES ('$CI')";
+            $db->query($sql);
+
             // Guardo la cedula en la tabla de cedulas
             $sql = "INSERT INTO cedulas (cedula) VALUES ('$CI') ";
             $db->query($sql);
@@ -244,14 +248,14 @@ class Docente
         }
     }
 
-    public static function getHorarios($idDocente, $db) {
+    public static function getHorarios($ciDocente, $db) {
         $diaMinimo = '';
         $diaMaximo = '';
         $horaMinima = '';
         $horaMaxima = '';
 
         // Obtengo los datos del horario del profe
-        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE id = $idDocente";
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM horarios WHERE ciDocente = '$ciDocente'";
         $resultadoHorarios = $db->query($sqlHorarios);
 
         // Iterar resultados;

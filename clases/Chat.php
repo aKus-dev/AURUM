@@ -204,7 +204,7 @@ class Chat
             $chats['host'][] = $row['id'];
         }
 
-        $sql = "SELECT idChat  FROM usuarios_chat WHERE ciUsuario = $ci";
+        $sql = "SELECT idChat  FROM usuarios_chat WHERE ciUsuario = '$ci'";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -220,6 +220,7 @@ class Chat
                 $db->query($sql);
             }
         }
+
 
         // Si esta en un chat de usuario
         if (!empty($chats['usuario'])) {
@@ -272,7 +273,7 @@ class Chat
         $horaMaxima = '';
 
         // Obtengo los datos del horario del profe
-        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM docente WHERE ci = $ciDocente";
+        $sqlHorarios = "SELECT dia_minimo, dia_maximo, hora_minima, hora_maxima FROM horarios WHERE ciDocente = '$ciDocente'";
         $resultadoHorarios = $db->query($sqlHorarios);
 
         // Iterar resultados;
@@ -291,7 +292,7 @@ class Chat
         date_default_timezone_set("America/Montevideo");
 
         $diaActual = date('N'); // Días (1: lunes 7: domingo)
-        $horaActual = date('G'); // Horas (0 - 23)
+        $horaActual = date('G:i'); // Horas (0 - 23)
 
         if ($diaActual >= $diaMinimo && $diaActual <= $diaMaximo && $horaActual >= $horaMinima && $horaActual <= $horaMaxima) {
             return false;

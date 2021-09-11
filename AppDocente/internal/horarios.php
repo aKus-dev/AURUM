@@ -18,9 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $horaMinima = $_POST['desde'];
     $horaMaxima = $_POST['hasta'];
 
-    // Me quedo solo con la hora y no con los minutos
-    $horaMinima = substr($horaMinima, 0, 2);
-    $horaMaxima = substr($horaMaxima, 0, 2);
 
     // Obtengo los dias y los almaceno en un array
     $dias[] = $_POST['lunes'];
@@ -43,19 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $diaMaximo = max($diasLlenados);
 
     $idDocente = $_SESSION['id'];
+    $ciDocente = $_SESSION['CI'];
 
     // diaMinimo, diaMaximo, horaMinima, horaMaxima
 
-    $sql = "UPDATE docente SET dia_minimo = $diaMinimo WHERE id = $idDocente";
+    $sql = "UPDATE horarios SET dia_minimo = $diaMinimo WHERE ciDocente = '$ciDocente'";
     $db->query($sql);
 
-    $sql = "UPDATE docente SET dia_maximo = $diaMaximo WHERE id = $idDocente";
+    $sql = "UPDATE horarios SET dia_maximo = $diaMaximo WHERE ciDocente = '$ciDocente'";
     $db->query($sql);
 
-    $sql = "UPDATE docente SET hora_minima = '$horaMinima' WHERE id = $idDocente";
+    $sql = "UPDATE horarios SET hora_minima = '$horaMinima' WHERE ciDocente = '$ciDocente'";
     $db->query($sql);
 
-    $sql = "UPDATE docente SET hora_maxima = '$horaMaxima' WHERE id = $idDocente";
+    $sql = "UPDATE horarios SET hora_maxima = '$horaMaxima' WHERE ciDocente = '$ciDocente'";
     $db->query($sql);
 
     $sql = "UPDATE docente SET registro_horarios = true WHERE id = $idDocente";
