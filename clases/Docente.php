@@ -40,14 +40,14 @@ class Docente
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);;
 
         // Codigo SQL
-        $sql = "INSERT INTO docente (CI,nombre,apellido, email, contrasena, imagen, primer_login, registro_horarios) VALUES 
-        ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen',  true, false)";
+        $sql = "INSERT INTO docente (CI,nombre,apellido, email, contrasena, imagen, primer_login) VALUES 
+        ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen',  true)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
         if ($stmt->execute()) { // Lo ejecutamos
 
             // Guardo la cedula en la tabla horarios
-            $sql = "INSERT INTO horarios (ciDocente) VALUES ('$CI')";
+            $sql = "INSERT INTO horarios (ciDocente, registro_horarios) VALUES ('$CI', false)";
             $db->query($sql);
 
             // Guardo la cedula en la tabla de cedulas
@@ -237,7 +237,16 @@ class Docente
     }
 
     static public function revisarHorarios($idDocente, $db) {
-        $sql = "SELECT registro_horarios FROM docente WHERE id = $idDocente";
+        $sql = "SELECT CI FROM docente WHERE id = $idDocente";
+        $resultado = $db->query($sql);
+
+        $cedula = '';
+
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $cedula = $row['CI'];
+        }
+
+        $sql = "SELECT registro_horarios FROM horarios WHERE ciDocente = '$cedula'";
         $resultado = $db->query($sql);
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             $registro_horarios = $row['registro_horarios'];
