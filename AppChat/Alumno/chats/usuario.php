@@ -23,7 +23,7 @@ if (isset($_POST['idChat'])) {
 }
 
 // Lo paso a online
-Chat::onlineAlumno($_SESSION['CI'], $idChat, 'usuario', $db);
+Chat::onlineUsuario($idChat, $_SESSION['CI'], $db);
 
 $ciDocente = $datosChat['ciDocente'];
 

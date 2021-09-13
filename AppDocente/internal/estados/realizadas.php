@@ -25,7 +25,7 @@ $resultado = $db->query($sql);
 
     // Obtengo los datos del alumno en base a su id sacado de la consultas al docente
     $idAlumno = $consulta['idAlumno'];
-    $sqlAlumno = "SELECT nombre, apellido FROM alumno WHERE id = $idAlumno";
+    $sqlAlumno = "SELECT nombre, apellido FROM usuario WHERE id = $idAlumno AND usuario.tipo = 'alumno'";
     $result = $db->query($sqlAlumno);
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

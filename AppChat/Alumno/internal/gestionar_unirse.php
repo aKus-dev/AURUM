@@ -59,6 +59,10 @@ if(!$errorHorario) :
         <?php
         $sql = "INSERT INTO usuarios_chat (idChat, ciUsuario, nombreUsuario, apellidoUsuario, email) VALUES ($idChat, '$ciUsuario', '$nombre', '$apellido', '$email')";;
         $stmt = $db->prepare($sql);
+
+        $db->query("INSERT INTO usuarios_online VALUES ($idChat, $ciUsuario, true)");
+
+
         ?>
 
         <?php if ($stmt->execute()) :  ?>

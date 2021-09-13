@@ -6,7 +6,7 @@ require '../../clases/Alumno.php';
 require '../../clases/Chat.php';
 
 isAuth_alumno();
-Chat::offlineAlumno($_SESSION['CI'], $db);
+Chat::offlineUsuario($_SESSION['CI'], $db);
 
 
 $id = $_SESSION['id'];

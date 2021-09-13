@@ -14,7 +14,6 @@ $asignatura = '';
 $datosChat = [];
 
 
-
 // Si está el id, lo obtengo
 if (isset($_POST['idChat'])) {
     $idChat = $_POST['idChat'];
@@ -26,7 +25,7 @@ if (isset($_POST['idChat'])) {
 }
 
 // Pongo al docente como online
-Chat::onlineDocente($idChat, $db);
+Chat::onlineUsuario($idChat, $_SESSION['CI'], $db);
 
 $grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
 

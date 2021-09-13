@@ -4,7 +4,7 @@ require '../config/app.php';
 require '../clases/Chat.php';
 
 isAuth_docente();
-Chat::offlineDocente($_SESSION['CI'], $db);
+Chat::offlineUsuario($_SESSION['CI'], $db);
 
 $success = false;
 $horario = false;

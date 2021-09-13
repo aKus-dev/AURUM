@@ -15,7 +15,6 @@ $gruposN = false;
 $sql = "SELECT id, idAlumno, titulo, fecha FROM consultas WHERE estado = 'contestada' OR estado = 'recibida' AND idDocente = $idDocente ORDER BY id DESC";
 $resultado = $db->query($sql);
 
-
 ?>
 
 <?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) :
@@ -23,10 +22,10 @@ $resultado = $db->query($sql);
     $idAlumno = $row['idAlumno'];
     $hayResultado_contestada = true;
     // Obtengo los datos del alunno que coincidan con el estado de la consulta 
-    $sqlAlumno = "SELECT DISTINCT nombre, apellido
-            FROM alumno
-            INNER JOIN consultas as consulta
-            ON consulta.estado = 'contestada' OR consulta.estado = 'recibida' AND alumno.id = $idAlumno";
+    $sqlAlumno = "SELECT DISTINCT u.nombre, u.apellido
+            FROM usuario u
+            INNER JOIN consultas as c
+            ON c.estado = 'contestada' OR c.estado = 'recibida' AND u.id = $idAlumno AND u.tipo = 'alumno'";
     $result = $db->query($sqlAlumno);
 
     while ($datos = $result->fetch(PDO::FETCH_ASSOC)) {

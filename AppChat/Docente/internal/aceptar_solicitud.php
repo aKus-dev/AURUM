@@ -26,9 +26,23 @@ date_default_timezone_set("America/Montevideo");
 $fecha = date('Y-m-d'); // Antes estaba en Y-m-d
 
 // Lo agrego al chat
-$sql = "INSERT INTO chat (ciHost, nombreHost, apellidoHost, emailHost, ciDocente, nombreDocente, apellidoDocente,emailDocente, fecha, asignatura, grupo)
-        VALUES ('$ciHost', '$nombreHost', '$apellidoHost', '$emailHost', '$ciDocente', '$nombreDocente', '$apellidoDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo');
+$sql = "INSERT INTO chat (ciHost, emailHost, ciDocente ,emailDocente, fecha, asignatura, grupo)
+        VALUES ('$ciHost', '$emailHost', '$ciDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo');
 ";
+
+$db->query($sql);
+
+  // Obtengo el id del ultimo chat
+  $idChat = '';
+  $sql = "SELECT id FROM chat ORDER BY id DESC LIMIT 1";
+  $resultado = $db->query($sql);
+
+  while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+      $idChat  = $row['id'];
+  }
+
+  // Inserto en la tabla de usuarios online
+  $db->query("INSERT INTO usuarios_online VALUES ($idChat, '$ciHost', false), ($idChat, '$ciDocente', false)");
 
 $db->query($sql);
 

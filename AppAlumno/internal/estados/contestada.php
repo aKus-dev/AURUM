@@ -42,7 +42,7 @@ if (sizeof($grupos) === 1) {
     $idDocente = $row['idDocente'];
 
     // Selecciono el nombre del profesores
-    $sqlDocente = "SELECT nombre,apellido FROM docente WHERE id = $idDocente";
+    $sqlDocente = "SELECT nombre,apellido FROM usuario WHERE id = $idDocente";
     $resultadoDocente = $db->query($sqlDocente);
 
     while ($datosDocente = $resultadoDocente->fetch(PDO::FETCH_ASSOC)) {

@@ -120,18 +120,20 @@ INSERT INTO asignaturas (nombre, grado)  VALUES
 CREATE TABLE chat (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	ciHost INT NOT NULL,
-    nombreHost VARCHAR(30),
-	apellidoHost VARCHAR(30),
     emailHost VARCHAR(320) NOT NULL,
-	isOnlineHost BOOL,
     ciDocente INT NOT NULL,
-    nombreDocente VARCHAR(25),
-    apellidoDocente VARCHAR(25),
 	emailDocente VARCHAR(320) NOT NULL,
-	isOnlineDocente BOOL,
 	fecha CHAR(10) NOT NULL,
     asignatura VARCHAR(30),
     grupo CHAR(3)
+);
+
+CREATE TABLE usuarios_online (
+	idChat INT NOT NULL,
+    ciUsuario INT NOT NULL,
+    isOnline BOOL,
+	CONSTRAINT FK_idChat FOREIGN KEY (idChat) 
+    REFERENCES chat(id) ON DELETE CASCADE
 );
 
 CREATE TABLE mensajes_chat (
@@ -142,7 +144,7 @@ CREATE TABLE mensajes_chat (
     apellidoUsuario VARCHAR(30) NOT NULL,
     mensaje VARCHAR(500) NOT NULL,
     hora CHAR(5) NOT NULL,
-	CONSTRAINT FK_idChat FOREIGN KEY (idChat) 
+	CONSTRAINT FK_idChat2 FOREIGN KEY (idChat) 
     REFERENCES chat(id) ON DELETE CASCADE
 );
 
@@ -153,7 +155,7 @@ CREATE TABLE usuarios_chat (
     apellidoUsuario VARCHAR(30),
 	email VARCHAR(320) NOT NULL,
     isOnline BOOL,
-    CONSTRAINT FK_idChat2 FOREIGN KEY (idChat) 
+    CONSTRAINT FK_idChat3 FOREIGN KEY (idChat) 
     REFERENCES chat(id) ON DELETE CASCADE
 );
 
@@ -170,9 +172,9 @@ CREATE TABLE solicitud_chat (
     REFERENCES usuario(CI) ON DELETE CASCADE
 );
 
-
 use aurum;
 SELECT * FROM chat;
+SELECT * FROM usuarios_online;
 SELECT * FROM mensajes_chat;
 SELECT * FROM usuarios_chat;
 SELECT * FROM solicitud_chat;
@@ -185,6 +187,8 @@ SELECT * FROM cedulas;
 SELECT * FROM horarios;
 select * from consultas;
 select * from usuario;
+
+
 
 
 

@@ -24,7 +24,7 @@ if (isset($_POST['idChat'])) {
 }
 
 // Lo paso a online
-Chat::onlineAlumno($_SESSION['CI'], $idChat, 'host', $db);
+Chat::onlineUsuario($idChat, $_SESSION['CI'], $db);
 
 $ciDocente = $datosChat['ciDocente'];
 

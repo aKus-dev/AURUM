@@ -114,6 +114,7 @@ class Chat
         date_default_timezone_set("America/Montevideo");
         $fecha = date('Y-m-d'); // Antes estaba en Y-m-d
 
+
         $asignatura = $_POST['asignatura'];
         $ciHost = $_POST['ciHost'];
         $nombreHost = $datosAlumno['nombreAlumno'];
@@ -125,13 +126,25 @@ class Chat
         $apellidoDocente = $datosDocente['apellidoDocente'];
         $emailDocente = $datosDocente['emailDocente'];
 
-        $sql = "INSERT INTO chat (ciHost, nombreHost, apellidoHost,emailHost, ciDocente, nombreDocente, apellidoDocente, emailDocente, fecha, asignatura, grupo) 
+        $sql = "INSERT INTO chat (ciHost,emailHost, ciDocente, emailDocente, fecha, asignatura, grupo) 
                 VALUES
-                 ('$ciHost', '$nombreHost', '$apellidoHost', '$emailHost', '$ciDocente', '$nombreDocente', '$apellidoDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo')";
+                 ('$ciHost', '$emailHost', '$ciDocente', '$emailDocente', '$fecha', '$asignatura', '$grupo')";
 
         $stmt = $db->prepare($sql);
 
         if ($stmt->execute()) {
+            // Obtengo el id del ultimo chat
+            $idChat = '';
+            $sql = "SELECT id FROM chat ORDER BY id DESC LIMIT 1";
+            $resultado = $db->query($sql);
+
+            while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                $idChat  = $row['id'];
+            }
+
+            // Inserto en la tabla de usuarios online
+            $db->query("INSERT INTO usuarios_online VALUES ($idChat, '$ciHost', false), ($idChat, '$ciDocente', false)");
+
             return $datosChat = [
                 "asignatura" => $asignatura,
                 "idHost" => $ciHost,
@@ -157,11 +170,7 @@ class Chat
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $idChat = $row['id'];
             $ciHost = $row['ciHost'];
-            $nombreHost = $row['nombreHost'];
-            $apellidoHost = $row['apellidoHost'];
             $ciDocente = $row['ciDocente'];
-            $nombreDocente = $row['nombreDocente'];
-            $apellidoDocente = $row['apellidoDocente'];
             $asignatura = $row['asignatura'];
             $grupo = $row['grupo'];
         }
@@ -169,11 +178,7 @@ class Chat
         return [
             "idChat" => $idChat,
             "ciHost" => $ciHost,
-            "nombreHost" => $nombreHost,
-            "apellidoHost" => $apellidoHost,
             "ciDocente" => $ciDocente,
-            "nombreDocente" => $nombreDocente,
-            "apellidoDocente" => $apellidoDocente,
             "asignatura" => $asignatura,
             "grupo" => $grupo
         ];
@@ -194,75 +199,81 @@ class Chat
         }
     }
 
-    public static function offlineAlumno($ci, $db)
+    public static function onlineUsuario($idChat, $ciUsuario, $db) {
+        $db->query("UPDATE usuarios_online SET isOnline = true WHERE ciUsuario = '$ciUsuario' AND idChat = $idChat");
+    }
+
+    public static function offlineUsuario($ciUsuario, $db) {
+        $db->query("UPDATE usuarios_online SET isOnline = false WHERE ciUsuario = '$ciUsuario'");
+    }
+
+    public static function getHost($idChat, $db)
     {
-        $chats = [];
-
-        $result = $db->query("SELECT id FROM chat WHERE ciHost = '$ci'");
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $chats['host'][] = $row['id'];
-        }
-
-        $sql = "SELECT idChat  FROM usuarios_chat WHERE ciUsuario = '$ci'";
+        $ciHost = '';
+        $sql = "SELECT ciHost FROM chat WHERE id = $idChat";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $chats['usuario'][] = $row['idChat'];
+            $ciHost = $row['ciHost'];
         }
 
-        // Si esta en un chat de host
-        if (!empty($chats['host'])) {
-
-            // Paso a offline en los chats en los que es host
-            foreach ($chats['host'] as $chat) {
-                $sql = "UPDATE chat SET isOnlineHost = false WHERE id = $chat";
-                $db->query($sql);
-            }
-        }
-
-
-        // Si esta en un chat de usuario
-        if (!empty($chats['usuario'])) {
-
-            // Paso a offline en los chats en los que usuario normal
-            foreach ($chats['usuario'] as $chat) {
-                $sql = "UPDATE usuarios_chat SET isOnline = false WHERE idChat = $chat";
-                $db->query($sql);
-            }
-        }
-    }
-
-    public static function onlineAlumno($ci, $idChat, $type, $db)
-    {
-        if ($type === 'host') {
-            $db->query("UPDATE chat SET isOnlineHost = true WHERE id = $idChat");
-        }
-
-        if ($type === 'usuario') {
-            $db->query("UPDATE usuarios_chat SET isOnline = true WHERE idChat = $idChat AND ciUsuario = '$ci'");
-        }
-    }
-
-    public static function offlineDocente($ci, $db)
-    {
-        $chats = [];
-
-        $result = $db->query("SELECT id FROM chat WHERE ciDocente = $ci");
+        $sql = "SELECT nombre, apellido FROM usuario WHERE CI = '$ciHost'";
+        $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $chats[] = $row['id'];
-        }
+            $nombre = $row['nombre'];
+            $apellido = $row['apellido'];
 
-        foreach ($chats as $chat) {
-            $db->query("UPDATE chat SET isOnlineDocente = false WHERE ciDocente = $ci AND id = $chat");
+            return [
+                'ciHost' => $ciHost,
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+            ];
         }
     }
 
-
-    public static function onlineDocente($idChat, $db)
+    public static function getDocente($idChat, $db)
     {
-        $db->query("UPDATE chat SET isOnlineDocente = true WHERE id = $idChat");
+        $ciDocente = '';
+        $sql = "SELECT ciDocente FROM chat WHERE id = $idChat";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $ciDocente = $row['ciDocente'];
+        }
+
+        $sql = "SELECT nombre, apellido FROM usuario WHERE CI = '$ciDocente'";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $nombre = $row['nombre'];
+            $apellido = $row['apellido'];
+
+            return [
+                'ciDocente' => $ciDocente,
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+            ];
+        }
+    }
+
+    public static function getUsuario($ciUsuario, $db)
+    {
+
+        $sql = "SELECT id, nombre, apellido FROM usuario WHERE CI = '$ciUsuario'";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $nombre = $row['nombre'];
+            $apellido = $row['apellido'];
+            $id = $row['id'];
+
+            return [
+                'id' => $id,
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+            ];
+        }
     }
 
     public static function getHorarioDocente($ciDocente, $db)
@@ -332,14 +343,17 @@ class Chat
         $mensajes = '';
         $header = '';
 
-        $sql = "SELECT nombreHost, apellidoHost, asignatura FROM chat WHERE id = $idChat";
+        $sql = "SELECT ciHost, asignatura FROM chat WHERE id = $idChat";
         $result = $db->query($sql);
 
         // Iterar resultados;
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $nombreHost = $row['nombreHost'];
-            $apellidoHost = $row['apellidoHost'];
+            $ciHost = $row['ciHost'];
             $asignatura = $row['asignatura'];
+
+            $datosHost = self::getUsuario($ciHost, $db);
+            $nombreHost = $datosHost['nombre'];
+            $apellidoHost = $datosHost['apellido'];
 
             $header = "
                 <header style='
@@ -355,9 +369,7 @@ class Chat
                     <b>Creado por:</b> <span style='color: #ececec; margin-right: 50px'>$nombreHost $apellidoHost</span> <b>Asignatura:</b> <span style='color: #ececec'>$asignatura</span>
                 </header>
             ";
-
         }
-
 
         $sql = "SELECT nombreUsuario, apellidoUsuario, mensaje, hora FROM mensajes_chat WHERE idChat = $idChat";
         $resultados = $db->query($sql);
@@ -398,7 +410,7 @@ class Chat
         }
 
         $mensajes = $header . $mensajes;
-        
+
         return $mensajes;
     }
 
@@ -406,5 +418,4 @@ class Chat
     {
         $db->query("DELETE FROM chat WHERE id = $idChat");
     }
-
 }
