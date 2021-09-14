@@ -172,13 +172,15 @@ CREATE TABLE solicitud_chat (
     REFERENCES usuario(CI) ON DELETE CASCADE
 );
 
-use aurum;
+INSERT INTO usuario (CI,nombre,apellido, email, contrasena, imagen, tipo, primer_login) VALUES ('11111111', 'Administrador' , 'ESI', 'correo@correo.com', '$2y$10$jA5RolMZ6QfoWibr5J3PuOVXnZjxQjRJD84pR59DfKs4uScUrGfN2','/build/public/Admin.svg', 'admin', false);
+
 SELECT * FROM chat;
 SELECT * FROM usuarios_online;
 SELECT * FROM mensajes_chat;
 SELECT * FROM usuarios_chat;
 SELECT * FROM solicitud_chat;
 SELECT * FROM consultas;
+SELECT * FROM asignaturas;
 SELECT * FROM asignaturas_docente;
 SELECT * FROM grupos_alumno;
 SELECT * FROM grupos_docente;
@@ -187,7 +189,7 @@ SELECT * FROM cedulas;
 SELECT * FROM horarios;
 select * from consultas;
 select * from usuario;
-
+use aurum;
 
 
 
