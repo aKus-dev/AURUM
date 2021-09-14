@@ -25,6 +25,7 @@ isAuth_admin();
     <?php include '../templates/header.php'; ?>
 
     <main class=" admin-form">
+
     <h2>¿Que desea hacer?</h2>
 
     <div class="flexRow buttons-container">
@@ -32,6 +33,9 @@ isAuth_admin();
         <button class="btn-crud" id="update">Modificar</button>
         <button class="btn-crud" id="delete">Eliminar</button>
     </div>
+    
+        <!-- Alertas de errores -->
+        <?php include 'Alertas/alumno_create.php';  ?>
     </main>
 
     </div>
