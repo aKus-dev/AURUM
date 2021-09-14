@@ -259,14 +259,4 @@ class Sistema
         return $gruposFormateados;
     }
 
-    // TEMPORAL
-    static public function crearAdmin($db)
-    {
-        $passwordHash = password_hash('esibuceo', PASSWORD_BCRYPT);
-        $sql = "INSERT INTO administrador (usuario,contrasena,imagen) VALUES ('admin', '$passwordHash','/build/public/Admin.svg')";
-        $db->query($sql);
-    }
-
-    // FIN TEMPORAL
-
 }

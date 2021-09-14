@@ -21,10 +21,13 @@
                 <img class="system-image pointer" src="<?php echo $_SESSION['imagen'] ?>" alt="">
             </div>
 
-            <!-- Icono de flecha hacia abajo -->
-            <div>
-                <i class="fas fa-chevron-down icon arrow-down pointer"></i>
-            </div>
+            <!-- Cerrar sesión -->
+            <abbr title="Cerrar sesión">
+                <a style="font-size: 2.2rem; color: #FFF;" href="/AppAdmin/logout.php">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </abbr>
+
         </div>
     </div>
-    </header>
+</header>
