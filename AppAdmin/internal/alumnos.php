@@ -1,8 +1,10 @@
-<?php 
-    require '../../config/app.php'; 
-    require '../../clases/Administrador.php';
+<?php
+require '../../config/app.php';
+require '../../clases/Administrador.php';
+require '../../clases/Sistema.php';
 
-    isAuth_admin();
+isAuth_admin();
+
 ?>
 
 
@@ -33,9 +35,9 @@
     </main>
 
     </div>
-        <?php include 'ABM_Alumno/create.php';  ?> 
-        <?php include 'ABM_Alumno/modify.php';  ?> 
-        <?php include 'ABM_Alumno/delete.php';  ?> 
+    <?php include 'ABM_Alumno/create.php';  ?>
+    <?php include 'ABM_Alumno/modify.php';  ?>
+    <?php include 'ABM_Alumno/delete.php';  ?>
     </div>
 
     <script src="../../build/js/abmButtons.js"></script>

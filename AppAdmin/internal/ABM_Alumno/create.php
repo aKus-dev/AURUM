@@ -1,88 +1,182 @@
-<?php 
+<?php
+$existeCI = false;
+$existeMail = false;
+$success = false; // Pasa a true cuando todo haya salido correcto
+$rellenar = false; // Pasa a true cuando haya que volver a rellenar el formulario (caso de error)
+$errorCedula = false;
 
 
 // Revisar si se ha enviado en metodo POST
-if($_SERVER['REQUEST_METHOD']  === 'POST') {
-    
-    if($_POST['accion'] == 'crear_alumno') {
-        Administrador::crearAlumno($_POST, $db);
+// Comprobar que los datos hayan sido enviado en POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $cedula = $_POST['ci'];
+
+    if (strlen($cedula) < 8) {
+        $errorCedula = true;
+        $rellenar = true;
+        $nombre = $_POST['nombre'];
+        $cedula = $_POST['ci'];
+        $apellido = $_POST['apellido'];
+        $email = $_POST['email'];
+    } else {
+        // Comprobar si la cedula y mail ya existe
+        $existeCI = Sistema::revisarCedula($_POST['ci'], $_POST['email'], $db);
+        $existeMail = Sistema::revisarMail($_POST['ci'], $_POST['email'], $db);
+
+        // En caso de que NO exista, lo ingresamos al sistema
+        if (!$existeCI && !$existeMail) {
+            $success = Administrador::altaAlumno($_POST, $db);
+        } else {
+            // En caso de que exista, relleno los campos nuevamente para que cambie algo
+            $rellenar = true;
+            $nombre = $_POST['nombre'];
+            $cedula = $_POST['ci'];
+            $apellido = $_POST['apellido'];
+            $email = $_POST['email'];
+        }
     }
 }
 
-
 ?>
-
 <!-- Contenedor de crear -->
 <div id="create-container" class="container-crud container-crud--alumno ">
-        <div class="text-center">
-            <h2 class="font-size22">Agregar alumno</h2>
+
+    <div class="text-center">
+        <?php
+
+        if ($existeCI && $existeMail) {
+            echo '<p id="danger" class="alert-danger">La cédula y el correo ya están registrados</p>';
+        } else if ($existeCI) {
+            echo '<p id="danger" class="alert-danger">La cédula ya está registrada</p>';
+        } else if ($existeMail) {
+            echo '<p id="danger" class="alert-danger">El correo ya está registrado</p>';
+        }
+        ?>
+
+        <!-- Si la cedula no tiene 8 digitos  -->
+        <?php if ($errorCedula) : ?>
+            <p id="danger" class="alert-danger">La cédula debe tener 8 digitos</p>
+        <?php endif; ?>
+
+        <!-- Se registro correctamente-->
+        <?php if ($success) : ?>
+            <p id="success" class="alert-success">Registrado correctamente</p>
+        <?php endif; ?>
+
+        <h2 class="form__heading">Registro alumno</h2>
+    </div>
+
+
+    <form action="" method="POST" class="width100">
+        <!-- Contenedor icono + input -->
+        <div class="input-tablet">
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-user"></i>
+                </div>
+
+                <input name="nombre" minlength="3" type="text" class="form__input" placeholder="Nombre" required <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$nombre"; ?>" <?php endif; ?>>
+
+            </div>
+
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-user"></i>
+                </div>
+
+                <input name="apellido" minlength="3" type="text" class="form__input" placeholder="Apellido" required <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$apellido"; ?>" <?php endif; ?>>
+
+            </div>
         </div>
 
-        <form action="" method="POST">
-            <!-- Contenedor icono + input -->
-            <div class="input-tablet">
-                <div class="form__container-input">
-                    <div class="form__icon">
-                        <i class="far fa-user"></i>
-                    </div>
 
-                    <input name="nombre" type="text" class="form__input" placeholder="Nombre" required>
+        <!-- Contenedor icono + input -->
+        <div class="input-tablet">
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="fas fa-unlock-alt"></i>
                 </div>
 
-                <div class="form__container-input">
-                    <div class="form__icon">
-                        <i class="far fa-user"></i>
-                    </div>
+                <input id="password" name="contrasena" type="password" class="form__input" placeholder="Contraseña" required minlength="6">
 
-                    <input name="apellido" type="text" class="form__input" placeholder="Apellido" required>
-                </div>
             </div>
 
-            <!-- Contenedor icono + input -->
-            <div class="input-tablet">
-                <div class="form__container-input">
-                    <div class="form__icon">
-                        <i class="fas fa-unlock-alt"></i>
-                    </div>
-
-                    <input name="password" type="password" class="form__input" placeholder="Contraseña" required>
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="fas fa-unlock-alt"></i>
                 </div>
 
-                <div class="form__container-input">
-                    <div class="form__icon">
-                        <i class="fas fa-unlock-alt"></i>
-                    </div>
+                <input id="validatePassword" name="" type="password" class="form__input" placeholder="Contraseña de nuevo" required minlength="6">
+            </div>
+        </div>
 
-                    <input name="validatePassword" type="password" class="form__input" placeholder="Contraseña de nuevo" required>
+        <div class="input-tablet text-center">
+            <p class="alert-danger display-none" id="alert-password">Las contraseñas no coinciden</p>
+        </div>
+
+        <div class="input-tablet">
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-address-card"></i>
                 </div>
+
+                <input minlength="8" maxlength="8" name="ci" type="text" class="form__input" placeholder="Cédula sin puntos ni guiones" required id="cedula" <?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$cedula"; ?>" <?php endif; ?>>
+
             </div>
 
-            <div class="input-tablet">
-                <div class="form__container-input">
-                    <div class="form__icon">
-                        <i class="far fa-address-card"></i>
-                    </div>
-
-                    <input name="ci" maxlength="8" type="text" class="form__input" placeholder="Cédula" required>
-
+            <div class="form__container-input">
+                <div class="form__icon">
+                    <i class="far fa-envelope"></i>
                 </div>
 
-                <div class="form__container-input">
+                <input name="email" type="email" class="form__input" placeholder="Email" required<?php if ($rellenar) : ?> value="<?php if ($rellenar) echo "$email"; ?>" <?php endif; ?>>
 
-                    <select name="grupo" class="form__select">
-                        <option selected disabled>Grupo</option>
-                        <option value="3BE">3ºBE</option>
-                    </select>
+            </div>
+        </div>
 
-                </div>
+        <div class="input-tablet text-center">
+            <p class="alert-warning display-none" id="alert-cedula">La cédula solo debe contener números, sin puntos y sin guiones</p>
+        </div>
+
+
+        <div class="form__container-input flexColumn-nocenter m3">
+            <div class="text-center">
+                <label for="grupos" class="label"> <span class="bold">Grupos</span> (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
             </div>
 
-            <input name="accion" value="crear_alumno" type="hidden">
+            <select id="grupos" name="grupos[]" class="form__select" multiple required>
+                <option value="1BA">1ºBA</option>
+                <option value="1BB">1ºBB</option>
+                <option value="1BC">1ºBC</option>
+                <option value="1BD">1ºBD</option>
+                <option value="1BE">1ºBE</option>
+                <option value="1BF">1ºBF</option>
+                <option value="1BG">1ºBG</option>
+                <option value="1BH">1ºBH</option>
+                <option value="2BA">2ºBA</option>
+                <option value="2BB">2ºBB</option>
+                <option value="2BC">2ºBC</option>
+                <option value="2BD">2ºBD</option>
+                <option value="2BE">2ºBE</option>
+                <option value="2BF">2ºBF</option>
+                <option value="2BG">2ºBG</option>
+                <option value="2BH">2ºBH</option>
+                <option value="3BA">3ºBA</option>
+                <option value="3BB">3ºBB</option>
+                <option value="3BC">3ºBC</option>
+                <option value="3BD">3ºBD</option>
+                <option value="3BE">3ºBE</option>
+                <option value="3BF">3ºBF</option>
+                <option value="3BG">3ºBG</option>
 
-            <div class="button-center">
-                <button class="btn-submit" type="submit">Agregar alumno</button>
-            </div>
-        </form>
+            </select>
+        </div>
 
-    </div>
-    <!-- Fin contenedor crear
+        <div class="button-center">
+            <button id="submit" class="btn-submit" type="submit">Solicitar unirse</button>
+        </div>
+    </form>
+
+</div>
+<!-- Fin contenedor crear

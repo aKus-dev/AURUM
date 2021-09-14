@@ -82,15 +82,15 @@ class Alumno
 
     static public function registrarGrupos($grupos, $CI, $db)
     {
-        $sql = "SELECT id FROM usuario WHERE ci = '$CI' LIMIT 1";
+        $sql = "SELECT id FROM usuario WHERE CI = '$CI' LIMIT 1";
 
         $resultado = $db->query($sql);
 
         // Iterar resultados;
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             foreach ($grupos as $grupo) {
-                $idDocente = $row['id'];
-                $sql = "INSERT INTO grupos_alumno VALUES ($idDocente, '$grupo')";
+                $idAlumno = $row['id'];
+                $sql = "INSERT INTO grupos_alumno VALUES ($idAlumno, '$grupo')";
 
                 $stmt = $db->prepare($sql);
                 $stmt->execute();

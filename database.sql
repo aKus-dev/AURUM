@@ -173,6 +173,7 @@ CREATE TABLE solicitud_chat (
 );
 
 INSERT INTO usuario (CI,nombre,apellido, email, contrasena, imagen, tipo, primer_login) VALUES ('11111111', 'Administrador' , 'ESI', 'correo@correo.com', '$2y$10$jA5RolMZ6QfoWibr5J3PuOVXnZjxQjRJD84pR59DfKs4uScUrGfN2','/build/public/Admin.svg', 'admin', false);
+INSERT INTO cedulas (cedula) VALUES ('11111111');
 
 SELECT * FROM chat;
 SELECT * FROM usuarios_online;
