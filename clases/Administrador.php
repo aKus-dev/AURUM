@@ -16,7 +16,7 @@ class Administrador // Falta implementar la interface
         $this->imagen = $imagen;
     }
 
-    static public function altaAlumno(array $datos, PDO $db)
+    static public function altaUsuario(array $datos, PDO $db)
     {
         $CI = $datos['ci'];
         $nombre = $datos['nombre'];
@@ -55,11 +55,42 @@ class Administrador // Falta implementar la interface
     }
 
 
-    static public function eliminarAlumno(string $cedula, PDO $db)
+    static public function eliminarUsuario(string $cedula, PDO $db)
     {
-        $sql = "DELETE FROM alumno WHERE CI= '$cedula' ";
+        $encontrado = false;
+        $sql = "SELECT * FROM usuario WHERE CI= '$cedula'";
+        $resultado = $db->query($sql);
 
-        $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
-        $stmt->execute(); // Lo ejecuta
+        // Iterar resultados;
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $encontrado = true;
+        }
+
+        if($encontrado) {
+            $sql = "DELETE FROM usuario WHERE CI= '$cedula' ";
+            $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
+            $stmt->execute(); // Lo ejecuta
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    
+    static public function getDatosUsuario(string $cedula, PDO $db)
+    {
+        $encontrado = false;
+        $sql = "SELECT * FROM usuario WHERE CI= '$cedula'";
+        $resultado = $db->query($sql);
+
+        // Iterar resultados;
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            return $row; // Retorno los datos
+        }
+
+        return false;
+
     }
 }

@@ -40,7 +40,7 @@ isAuth_admin();
                 <h3 class="option__heading">ALUMNOS</h3>
                 <p class="option__text">Agrega, modifica y elimina alumnos</p>
 
-                <a href="internal/alumnos.php" class="admin-button">ADMINISTRAR</a>
+                <a href="internal/ABM_Alumno/create.php" class="admin-button">ADMINISTRAR</a>
             </div>
 
             <div class="filter-option"></div>
