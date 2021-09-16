@@ -49,11 +49,13 @@ isAuth_admin();
                 </select>
             </div>
 
-            <!-- Grupo  -->
+            <!-- Grado -->
             <div class="form__container-input">
-                <select name="grupo" class="form__select">
-                    <option selected disabled>Grupo</option>
-                    <option value="3BE">3ºBE</option>
+                <select name="grado" class="form__select" required>
+                    <option selected disabled>Grado de la asignatura</option>
+                    <option value="1">1º Año</option>
+                    <option value="2">2º Año</option>
+                    <option value="3">3º Año</option>
                 </select>
             </div>
 

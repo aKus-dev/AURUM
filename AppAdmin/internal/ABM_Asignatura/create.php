@@ -2,11 +2,12 @@
 
 require '../../../config/app.php';
 require '../../../clases/Administrador.php';
+require '../../../clases/Sistema.php';
 
 isAuth_admin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   /*  Administrador::altaAsignatura($_POST, $db); */
+    Administrador::altaAsignatura($_POST['asignatura'], $_POST['orientacion'], $_POST['grado'], $db); 
 }
 
 ?>
@@ -46,23 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2 class="font-size22">Crea una asignatura</h2>
             </div>
 
-            <!-- Orientación -->
-            <div class="form__container-input">
-                <select name="grupo" class="form__select">
-                    <option selected disabled>Orientación</option>
-                    <option value="3BE">Informática</option>
-                </select>
-
-            </div>
-
-            <!-- Grupo  -->
-            <div class="form__container-input">
-                <select name="grupo" class="form__select">
-                    <option selected disabled>Grupo</option>
-                    <option value="3BE">3ºBE</option>
-                </select>
-            </div>
-
             <!-- Asignatura -->
             <div class="form__container-input">
                 <div class="form__icon">
@@ -70,6 +54,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <input name="asignatura" type="text" class="form__input" placeholder="Asignatura" required>
+            </div>
+
+            <!-- Orientación -->
+            <div class="form__container-input">
+                <select name="orientacion" class="form__select" required>
+                    <option selected disabled>Orientación</option>
+                    <?php Sistema::cargarOrientaciones($db); ?>
+                </select>
+
+            </div>
+
+
+            <!-- Grado -->
+            <div class="form__container-input">
+                <select name="grado" class="form__select" required>
+                    <option selected disabled>Grado de la asignatura</option>
+                    <option value="1">1º Año</option>
+                    <option value="2">2º Año</option>
+                    <option value="3">3º Año</option>
+                </select>
             </div>
 
             <input name="accion" value="crear_asignatura" type="hidden">

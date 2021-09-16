@@ -128,8 +128,11 @@ class Administrador // Falta implementar la interface
     }
 
     static public function altaOrientacion(string $orientacion, PDO $db) {
-        
         $db->query("INSERT INTO orientaciones_sistema (orientacion) VALUES ('$orientacion')");
+    }
+
+    static public function altaAsignatura(string $asignatura, $orientacion, $grado, PDO $db) {
+        $db->query("INSERT INTO asignaturas (nombre,orientacion, grado) VALUES ('$asignatura', '$orientacion', $grado)");
     }
 
     

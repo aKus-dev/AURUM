@@ -242,6 +242,26 @@ class Sistema
         }
     }
 
+    public static function cargarOrientaciones($db) {
+        $sql = "SELECT orientacion FROM orientaciones_sistema";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $orientacion = $row['orientacion'];
+            echo "<option value='$orientacion'>$orientacion</option>";
+        }
+    }
+
+    public static function cargarGrupos($db) {
+        $sql = "SELECT grupo FROM grupos_sistema";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $grupo = $row['grupo'];
+            echo "<option value='$grupo'>$grupo</option>";
+        }
+    }
+
     public static function formatearGrupos($grupos, $db): array
     {
         $gruposFormateados = [];
