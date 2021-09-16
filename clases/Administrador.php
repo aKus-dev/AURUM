@@ -77,8 +77,37 @@ class Administrador // Falta implementar la interface
 
     }
 
+    static public function modificarUsuario(array $datos, PDO $db)
+    {
+        $id = $datos['id'];
+        $nombre = $datos['nombre'];
+        $apellido = $datos['apellido'];
+        $password = $datos['contrasena'];
+        $grupos = $datos['grupos'];
 
-    
+        // Actualizo el nombre
+        $db->query("UPDATE usuario SET nombre = '$nombre' WHERE id = $id");
+        // Actualizo el apellido
+        $db->query("UPDATE usuario SET apellido = '$apellido' WHERE id = $id");
+
+        // Si cambió la contraseña la actualizo
+        if(!empty($password)) {
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+            $db->query("UPDATE usuario SET contrasena = '$passwordHash' WHERE id = $id");
+        }
+
+        // Actualizo los grupos
+        if(!empty($grupos)) {
+            $db->query("DELETE FROM grupos_alumno WHERE idAlumno = $id");
+            
+            foreach($grupos as $grupo) {
+                $db->query("INSERT INTO grupos_alumno VALUES ($id, '$grupo')");
+            }
+        }
+
+    }
+
+
     static public function getDatosUsuario(string $cedula, PDO $db)
     {
         $encontrado = false;

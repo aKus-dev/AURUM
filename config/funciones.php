@@ -18,7 +18,7 @@ function isAuth_admin() {
      
      // Si inició sesion, verificamos que haya sido como admin
      if(!$_SESSION['sesion_admin']) {
-        header('Location: ../index.html') ?? header('Location: ../../index.html');
+        header('Location: ../index.html') ?? header('Location: ../../index.html')?? header('Location: ../../../index.html');
      } 
      
 } 

@@ -223,6 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     </div>
 
+    <script src="../../../build/js/validateUsers.js"></script>
     <script src="../../../build/js/removeAlert.js"></script>
     </body>
 

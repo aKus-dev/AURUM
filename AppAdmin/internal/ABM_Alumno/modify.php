@@ -17,8 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ci_modificar'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])) {
-    echo "Modificando...";
-    exit;
+    Administrador::modificarUsuario($_POST, $db);
 } 
 
 
@@ -109,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
                         <i class="far fa-user"></i>
                     </div>
 
-                    <input value="<?php echo $resultado['nombre'] ?>" name="nombre" minlength="3" type="text" class="form__input" placeholder="Nombre" required>
+                    <input value="<?php echo $resultado['nombre'] ?>" name="nombre" minlength="3" type="text" class="form__input" placeholder="Nombre">
                     
 
                 </div>
@@ -119,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
                         <i class="far fa-user"></i>
                     </div>
 
-                    <input value="<?php echo $resultado['apellido'] ?>" name="apellido" minlength="3" type="text" class="form__input" placeholder="Apellido" required>
+                    <input value="<?php echo $resultado['apellido'] ?>" name="apellido" minlength="3" type="text" class="form__input" placeholder="Apellido" >
 
                 </div>
             </div>
@@ -199,6 +198,8 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
                 </select>
             </div>
 
+
+            <input type="hidden" name="id" value="<?php echo $resultado['id']; ?>">
             <input type="hidden" name="datos_modificados" value="true">
 
             <div class="button-center">
@@ -209,6 +210,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
     </div>
 
 
+    <script src="../../../build/js/validateUsers.js"></script>
     <script src="../../../build/js/removeAlert.js"></script>
     </body>
 
