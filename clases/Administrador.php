@@ -122,4 +122,15 @@ class Administrador // Falta implementar la interface
         return false;
 
     }
+
+    static public function altaGrupo(string $grupo, PDO $db) {
+        $db->query("INSERT INTO grupos_sistema (grupo) VALUES ('$grupo')");
+    }
+
+    static public function altaOrientacion(string $orientacion, PDO $db) {
+        
+        $db->query("INSERT INTO orientaciones_sistema (orientacion) VALUES ('$orientacion')");
+    }
+
+    
 }

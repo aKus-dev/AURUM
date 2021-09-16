@@ -51,7 +51,7 @@ isAuth_admin();
                 <h3 class="option__heading">ASIGNATURAS</h3>
                 <p class="option__text">Agrega, modifica y elimina asginaturas</p>
 
-                <a href="internal/asignaturas.php" class="admin-button">ADMINISTRAR</a>
+                <a href="internal/ABM_Asignatura/create.php" class="admin-button">ADMINISTRAR</a>
             </div>
 
             <div class="filter-option"></div>
