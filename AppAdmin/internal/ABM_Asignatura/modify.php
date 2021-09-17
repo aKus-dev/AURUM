@@ -1,8 +1,14 @@
 <?php
 require '../../../config/app.php';
 require '../../../clases/Administrador.php';
+require '../../../clases/Sistema.php';
 
 isAuth_admin();
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    Administrador::modificarAsignatura($_POST['asignatura_vieja'], $_POST['asignatura_nueva'], $db);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,31 +42,21 @@ isAuth_admin();
 
     </div>
 
-    <form action="">
+    <form method="POST">
         <!-- Contenedor de modificar -->
         <div id="update-container" class="container-crud">
             <div class="text-center">
                 <h2 class="font-size22">Modifica una asignatura</h2>
             </div>
-
-
+           
             <!-- Asignatura -->
             <div class="form__container-input">
-                <select name="grupo" class="form__select">
-                    <option selected disabled>Asignatura</option>
-                    <option value="3BE">Programación Web</option>
+                <select name="asignatura_vieja" class="form__select">
+                    <option selected disabled>Seleccione la asignatura</option>
+                    <?php Sistema::cargarAsignaturas($db); ?>
                 </select>
             </div>
-
-            <!-- Grado -->
-            <div class="form__container-input">
-                <select name="grado" class="form__select" required>
-                    <option selected disabled>Grado de la asignatura</option>
-                    <option value="1">1º Año</option>
-                    <option value="2">2º Año</option>
-                    <option value="3">3º Año</option>
-                </select>
-            </div>
+     
 
             <!-- Nuevo nombre -->
             <div class="form__container-input">
@@ -68,10 +64,8 @@ isAuth_admin();
                     <i class="fas fa-graduation-cap"></i>
                 </div>
 
-                <input name="asignatura" type="text" class="form__input" placeholder="Nuevo nombre" required>
+                <input name="asignatura_nueva" type="text" class="form__input" placeholder="Nuevo nombre" required>
             </div>
-
-            <input name="accion" value="modificar_asignatura" type="hidden">
 
 
             <div class="button-center">

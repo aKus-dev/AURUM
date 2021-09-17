@@ -135,5 +135,13 @@ class Administrador // Falta implementar la interface
         $db->query("INSERT INTO asignaturas (nombre,orientacion, grado) VALUES ('$asignatura', '$orientacion', $grado)");
     }
 
+    static public function bajaAsignatura(string $asignatura, PDO $db) {
+        $db->query("DELETE FROM asignaturas WHERE nombre = '$asignatura'");
+    }
+
+    static public function modificarAsignatura(string $asignatura_vieja, $asignatura_nueva, PDO $db) {
+        $db->query("UPDATE asignaturas SET nombre = '$asignatura_nueva' WHERE nombre = '$asignatura_vieja'");
+    }
+
     
 }

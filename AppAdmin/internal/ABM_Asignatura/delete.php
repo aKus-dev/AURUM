@@ -1,6 +1,12 @@
 <?php
 require '../../../config/app.php';
 require '../../../clases/Administrador.php';
+require '../../../clases/Sistema.php';
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    Administrador::bajaAsignatura($_POST['asignatura'], $db);
+}
+
 
 isAuth_admin();
 ?>
@@ -34,7 +40,7 @@ isAuth_admin();
     </div>
 
 
-    <form action="">
+    <form method="POST">
         <!-- Contenedor de eliminar -->
         <div id="remove-container" class="container-crud">
             <div class="text-center">
@@ -43,21 +49,12 @@ isAuth_admin();
 
             <!-- Asignatura -->
             <div class="form__container-input">
-                <select name="grupo" class="form__select">
-                    <option selected disabled>Asignatura</option>
-                    <option value="3BE">Programación Web</option>
+                <select name="asignatura" class="form__select">
+                    <option selected disabled>Seleccione la asignatura</option>
+                    <?php Sistema::cargarAsignaturas($db); ?>
                 </select>
             </div>
 
-            <!-- Grado -->
-            <div class="form__container-input">
-                <select name="grado" class="form__select" required>
-                    <option selected disabled>Grado de la asignatura</option>
-                    <option value="1">1º Año</option>
-                    <option value="2">2º Año</option>
-                    <option value="3">3º Año</option>
-                </select>
-            </div>
 
             <input name="accion" value="eliminar_asignatura" type="hidden">
 
