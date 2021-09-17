@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // En caso de que NO exista, lo ingresamos al sistema
         if (!$existeCI && !$existeMail) {
-            $success = Administrador::altaUsuario($_POST, $db);
+            $success = Administrador::altaUsuario($_POST,'alumno',$db);
         } else {
             // En caso de que exista, relleno los campos nuevamente para que cambie algo
             $rellenar = true;

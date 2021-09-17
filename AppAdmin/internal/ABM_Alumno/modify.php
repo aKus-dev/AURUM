@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ci_modificar'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])) {
-    Administrador::modificarUsuario($_POST, $db);
+    Administrador::modificarUsuario($_POST, 'alumno', $db);
 } 
 
 
