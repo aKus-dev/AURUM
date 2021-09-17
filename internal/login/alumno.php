@@ -171,30 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <select id="grupos" name="grupos[]" class="form__select" multiple required>
-                    <option value="1BA">1ºBA</option>
-                    <option value="1BB">1ºBB</option>
-                    <option value="1BC">1ºBC</option>
-                    <option value="1BD">1ºBD</option>
-                    <option value="1BE">1ºBE</option>
-                    <option value="1BF">1ºBF</option>
-                    <option value="1BG">1ºBG</option>
-                    <option value="1BH">1ºBH</option>
-                    <option value="2BA">2ºBA</option>
-                    <option value="2BB">2ºBB</option>
-                    <option value="2BC">2ºBC</option>
-                    <option value="2BD">2ºBD</option>
-                    <option value="2BE">2ºBE</option>
-                    <option value="2BF">2ºBF</option>
-                    <option value="2BG">2ºBG</option>
-                    <option value="2BH">2ºBH</option>
-                    <option value="3BA">3ºBA</option>
-                    <option value="3BB">3ºBB</option>
-                    <option value="3BC">3ºBC</option>
-                    <option value="3BD">3ºBD</option>
-                    <option value="3BE">3ºBE</option>
-                    <option value="3BF">3ºBF</option>
-                    <option value="3BG">3ºBG</option>
-
+                    <?php Sistema::cargarGrupos($db); ?>
                 </select>
             </div>
 

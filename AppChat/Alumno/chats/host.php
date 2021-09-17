@@ -23,17 +23,18 @@ if (isset($_POST['idChat'])) {
     $asignatura = $datosChat['asignatura'];
 }
 
+$grupo = $datosChat['grupo'];
 // Lo paso a online
 Chat::onlineUsuario($idChat, $_SESSION['CI'], $db);
 
 $ciDocente = $datosChat['ciDocente'];
 
-$grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
-
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
-    $datosChat = Chat::enviarMensaje($idChat, $ciHost,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
+    Chat::enviarMensaje($idChat, $ciHost,  $_SESSION['nombre'],  $_SESSION['apellido'], $mensaje, $db);
 }
+
+
 
 
 ?>
@@ -94,7 +95,7 @@ if (isset($_POST['mensaje'])) {
          <i id="back" class="fas fa-arrow-left"></i>
         </a>
 
-        <p class="title"><?php echo $asignatura . " (" . $grupo[0] . ")" ?></p>
+        <p class="title"><?php echo $asignatura . " (" . $grupo . ")" ?></p>
         <i id="showMenu" class="fas fa-users"></i>
     </header>
 

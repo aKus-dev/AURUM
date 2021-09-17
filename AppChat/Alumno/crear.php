@@ -21,10 +21,6 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $grupos[] = $row['grupo'];
 }
 
-
-$gruposCopia = $grupos;
-$gruposFormateados = Sistema::formatearGrupos($gruposCopia, $db);
-
 $i = 0;
 
 ?>
@@ -74,9 +70,7 @@ $i = 0;
             <div class="materias-container-chat">
                 <?php foreach ($grupos as $grupo) :
                     // Me quedo solo con la parte entera del grupo
-                    $grado = substr($grupo, 0, -2);
-
-
+                    $grado = substr($grupo, 0, -4);
                     $sql = "SELECT nombre, grado FROM asignaturas WHERE grado = $grado ORDER BY nombre ASC";
                     $result = $db->query($sql);
 
@@ -84,8 +78,7 @@ $i = 0;
 
                     <p class="grupos-docente-list bg-main title-grupo-chat">
                         <?php
-                        echo $gruposFormateados[$i];
-                        $i++;
+                        echo $grupo;
                         ?>
                     </p>
 
