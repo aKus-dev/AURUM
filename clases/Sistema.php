@@ -65,7 +65,7 @@ class Sistema
         return false;
     }
 
-    static public function revisarCedula(string $cedula, string $email, PDO $db): bool
+    static public function revisarCedula(string $cedula, PDO $db): bool
     {
         $sql = "SELECT * FROM cedulas WHERE cedula = '$cedula' ";
         $resultado = $db->query($sql);
@@ -79,7 +79,7 @@ class Sistema
     }
 
     
-    static public function revisarMail(string $cedula, string $email, PDO $db): bool
+    static public function revisarMail(string $email, PDO $db): bool
     {
         $sql = "SELECT * FROM usuario WHERE email = '$email'";
         $resultado = $db->query($sql);
