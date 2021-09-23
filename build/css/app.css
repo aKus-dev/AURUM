@@ -2576,7 +2576,7 @@ select[multiple] {
 .messages {
   padding: 4rem 2rem 2rem 2rem;
   display: grid;
-  overflow-x: hidden; }
+  overflow-wrap: break-word; }
   .messages-container {
     display: flex;
     flex-direction: column;
