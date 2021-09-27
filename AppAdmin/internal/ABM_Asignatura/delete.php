@@ -6,7 +6,9 @@ require '../../../clases/Sistema.php';
 $success = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $success = Administrador::bajaAsignatura($_POST['asignatura'], $db);
+    if(!empty($_POST['asignatura'])) {
+        $success = Administrador::bajaAsignatura($_POST['asignatura'], $db);
+    }
 }
 
 

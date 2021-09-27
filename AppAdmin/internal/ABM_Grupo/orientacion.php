@@ -1,9 +1,13 @@
 <?php
 
-$success = false;
+
+$registrado = false;
+$yaRegistrado = false;
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orientacion'])) {
    $success = Administrador::altaOrientacion($_POST['orientacion'], $db);
+   $success ? $registrado = true : $yaRegistrado = true;
 }
 
 ?>
@@ -12,9 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orientacion']))
 <!-- Contenedor de crear -->
 <div id="create-container" class="container-crud">
 
-    <?php if ($success) : ?>
+    <?php if ($registrado) : ?>
         <p id="success" class="alert-success">Orientación registrada correctamente</p>
     <?php endif; ?>
+
+    <?php if ($yaRegistrado) : ?>
+        <p id="danger" class="alert-danger">La orientacion ya está registrado</p>
+    <?php endif; ?>
+
 
 
     <div class="text-center">

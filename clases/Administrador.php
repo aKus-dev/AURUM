@@ -180,38 +180,50 @@ class Administrador // Falta implementar la interface
 
     static public function altaGrupo(string $grupo, PDO $db)
     {
+
+        // Verifica si el grupo ya esta registrado
+        $resultado = $db->query("SELECT * FROM grupos_sistema WHERE grupo = '$grupo'");
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            return false;
+        }
+
         $sql = "INSERT INTO grupos_sistema (grupo) VALUES ('$grupo')";
-        $stmt = $db->prepare($sql); 
-        return $stmt->execute(); 
+        $stmt = $db->prepare($sql);
+        return $stmt->execute();
     }
 
     static public function altaOrientacion(string $orientacion, PDO $db)
     {
-        $sql = "INSERT INTO orientaciones_sistema (orientacion) VALUES ('$orientacion')";
-        $stmt = $db->prepare($sql); 
-        return $stmt->execute(); 
+        // Verifica si el grupo ya esta registrado
+        $resultado = $db->query("SELECT * FROM orientaciones_sistema WHERE orientacion = '$orientacion'");
+        while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            return false;
+        }
 
+        $sql = "INSERT INTO orientaciones_sistema (orientacion) VALUES ('$orientacion')";
+        $stmt = $db->prepare($sql);
+        return $stmt->execute();
     }
 
     static public function altaAsignatura(string $asignatura, $orientacion, $grado, PDO $db)
     {
         $sql = "INSERT INTO asignaturas (nombre,orientacion, grado) VALUES ('$asignatura', '$orientacion', $grado)";
-        $stmt = $db->prepare($sql); 
-        return $stmt->execute(); 
-
+        $stmt = $db->prepare($sql);
+        return $stmt->execute();
     }
 
     static public function bajaAsignatura(string $asignatura, PDO $db)
     {
+
         $sql = "DELETE FROM asignaturas WHERE nombre = '$asignatura'";
         $stmt = $db->prepare($sql);
-        return $stmt->execute(); 
+        return $stmt->execute();
     }
 
     static public function modificarAsignatura(string $asignatura_vieja, $asignatura_nueva, PDO $db)
     {
         $sql = "UPDATE asignaturas SET nombre = '$asignatura_nueva' WHERE nombre = '$asignatura_vieja'";
         $stmt = $db->prepare($sql);
-        return $stmt->execute(); 
+        return $stmt->execute();
     }
 }
