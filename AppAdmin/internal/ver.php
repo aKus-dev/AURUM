@@ -73,7 +73,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             </div>
 
             <div>
-                <h2>Tu respuesta</h2>
+                <h2>Respuesta</h2>
             </div>
 
             <div class="text-center">

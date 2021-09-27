@@ -41,7 +41,6 @@ $resultado = $db->query($sql);
         $grupos[] = $grupo['grupo'];
     }
 
-    $grupos = Sistema::formatearGrupos($grupos, $db);
 
     // Me fijo si tiene más de un grupo
     if (sizeof($grupos) === 1) {

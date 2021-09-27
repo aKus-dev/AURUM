@@ -39,9 +39,6 @@ $resultado = $db->query($sql);
     <?php include '../templates/header.php'; ?>
 
     <main class="consultas-admin">
-
-    <h2>Todas las consultas</h2>
-
     <?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) :
 
         $idAlumno = $row['idAlumno'];
@@ -53,10 +50,13 @@ $resultado = $db->query($sql);
         ON c.estado = 'contestada' OR c.estado = 'recibida' AND u.id = $idAlumno AND u.tipo = 'alumno'";
         $result = $db->query($sqlAlumno);
 
+        
         while ($datos = $result->fetch(PDO::FETCH_ASSOC)) {
             $nombre = $datos['nombre'];
             $apellido = $datos['apellido'];
         }
+
+   
 
         // Obtengo los grupos del alumno
         $sqlGrupos = "SELECT grupo FROM grupos_alumno WHERE idAlumno = $idAlumno";
@@ -136,8 +136,8 @@ $resultado = $db->query($sql);
     <?php endwhile; ?>
 
     <?php if (!$hayResultado_contestada) : ?>
-        <div class="no-consultas bg-main">
-            <p>No tienes consultas contestadas</p>
+        <div class="no-consultas bg-main text-center">
+            <p>No se han realizado consultas</p>
         </div>
     <?php endif; ?>
     </main>
