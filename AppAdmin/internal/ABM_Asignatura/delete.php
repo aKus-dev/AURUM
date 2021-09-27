@@ -3,8 +3,10 @@ require '../../../config/app.php';
 require '../../../clases/Administrador.php';
 require '../../../clases/Sistema.php';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    Administrador::bajaAsignatura($_POST['asignatura'], $db);
+$success = false;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $success = Administrador::bajaAsignatura($_POST['asignatura'], $db);
 }
 
 
@@ -43,6 +45,14 @@ isAuth_admin();
     <form method="POST">
         <!-- Contenedor de eliminar -->
         <div id="remove-container" class="container-crud">
+
+            <?php if ($success) : ?>
+                <div class="text-center width100">
+                    <p id="success" class="alert-success">Asignatura eliminada correctamente</p>
+                </div>
+            <?php endif; ?>
+
+
             <div class="text-center">
                 <h2 class="font-size22">Elimina una asignatura</h2>
             </div>
@@ -66,7 +76,7 @@ isAuth_admin();
 
     </div>
 
-    <script src="../../build/js/abmButtons.js"></script>
+    <script src="../../../build/js/removeAlert.js"></script>
     </body>
 
 </html>

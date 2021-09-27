@@ -1,7 +1,9 @@
 <?php
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orientacion'])) {
-    Administrador::altaOrientacion($_POST['orientacion'], $db);
+$success = false;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orientacion'])) {
+   $success = Administrador::altaOrientacion($_POST['orientacion'], $db);
 }
 
 ?>
@@ -9,6 +11,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orientacion'])) 
 
 <!-- Contenedor de crear -->
 <div id="create-container" class="container-crud">
+
+    <?php if ($success) : ?>
+        <p id="success" class="alert-success">Orientación registrada correctamente</p>
+    <?php endif; ?>
+
+
     <div class="text-center">
         <h2 class="font-size22">Agrega una orientación</h2>
     </div>
@@ -30,3 +38,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orientacion'])) 
         </div>
     </form>
 </div>
+

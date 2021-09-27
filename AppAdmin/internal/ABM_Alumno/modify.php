@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ci_modificar'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])) {
-    Administrador::modificarUsuario($_POST, 'alumno', $db);
+    $success = Administrador::modificarUsuario($_POST, 'alumno', $db);
 } 
 
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
 
             <!-- Se registro correctamente-->
             <?php if ($success) : ?>
-                <p id="success" class="alert-success">Eliminado correctamente</p>
+                <p id="success" class="alert-success">Modificado correctamente</p>
             <?php endif; ?>
 
         </div>
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
             <input type="hidden" name="datos_modificados" value="true">
 
             <div class="button-center">
-                <button id="submit" class="btn-submit" type="submit">Solicitar unirse</button>
+                <button id="submit" class="btn-submit" type="submit">Modificar</button>
             </div>
         </form>
 

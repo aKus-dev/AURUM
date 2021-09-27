@@ -33,6 +33,7 @@
 
     </main>
 
+    <script src="../../../build/js/removeAlert.js"></script>
     </body>
 
 </html>

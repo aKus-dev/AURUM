@@ -5,9 +5,11 @@ require '../../../clases/Administrador.php';
 require '../../../clases/Sistema.php';
 
 isAuth_admin();
+$success = false;
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    Administrador::altaAsignatura($_POST['asignatura'], $_POST['orientacion'], $_POST['grado'], $db); 
+    $success = Administrador::altaAsignatura($_POST['asignatura'], $_POST['orientacion'], $_POST['grado'], $db);
 }
 
 ?>
@@ -43,6 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <!-- Contenedor de crear -->
         <div id="create-container" class="container-crud">
+
+            <?php if ($success) : ?>
+                <div class="text-center width100">
+                    <p id="success" class="alert-success">Asignatura creada correctamente</p>
+                </div>
+            <?php endif; ?>
+
+
             <div class="text-center">
                 <h2 class="font-size22">Crea una asignatura</h2>
             </div>
@@ -86,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
 
-    <script src="../../build/js/abmButtons.js"></script>
+    <script src="../../../build/js/removeAlert.js"></script>
     </body>
 
 </html>
