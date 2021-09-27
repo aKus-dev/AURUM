@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form__container-input">
                 <select name="asignatura_vieja" class="form__select">
                     <option selected disabled>Seleccione la asignatura</option>
-                    <?php Sistema::cargarAsignaturas($db); ?>
+                    <?php Sistema::cargarAsignaturasYorientacion($db); ?>
                 </select>
             </div>
 

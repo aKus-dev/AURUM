@@ -242,6 +242,19 @@ class Sistema
         }
     }
 
+    public static function cargarAsignaturasYorientacion($db)
+    {
+        $sql = "SELECT nombre, orientacion, grado FROM asignaturas";
+        $result = $db->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $asignatura = $row['nombre'];
+            $orientacion = $row['orientacion'];
+            $grado = $row['grado'];
+            echo "<option value='$asignatura, $orientacion, $grado'>$asignatura de $grado ($orientacion)</option>";
+        }
+    }
+
     public static function cargarOrientaciones($db) {
         $sql = "SELECT orientacion FROM orientaciones_sistema";
         $result = $db->query($sql);

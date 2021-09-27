@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
 
         // Comprobar si la cedula y mail ya existe
-        $existeCI = Sistema::revisarCedula($_POST['ci'], $_POST['email'], $db);
-        $existeMail = Sistema::revisarMail($_POST['ci'], $_POST['email'], $db);
+        $existeCI = Sistema::revisarCedula($_POST['ci'], $db);
+        $existeMail = Sistema::revisarMail($_POST['email'], $db);
 
         // En caso de que NO exista, lo ingresamos al sistema
         if (!$existeCI && !$existeMail) {

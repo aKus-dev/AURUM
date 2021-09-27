@@ -5,11 +5,13 @@ require '../../../clases/Administrador.php';
 require '../../../clases/Sistema.php';
 
 isAuth_admin();
-$success = false;
 
+$registrada = false;
+$yaExiste = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $success = Administrador::altaAsignatura($_POST['asignatura'], $_POST['orientacion'], $_POST['grado'], $db);
+    $success ? $registrada = true : $yaExiste = true;
 }
 
 ?>
@@ -46,9 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Contenedor de crear -->
         <div id="create-container" class="container-crud">
 
-            <?php if ($success) : ?>
+            <?php if ($registrada) : ?>
                 <div class="text-center width100">
                     <p id="success" class="alert-success">Asignatura creada correctamente</p>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($yaExiste) : ?>
+                <div class="text-center width100">
+                    <p id="danger" class="alert-danger">La asignatura ya está registrada</p>
                 </div>
             <?php endif; ?>
 

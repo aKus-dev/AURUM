@@ -22,7 +22,7 @@ cedula CHAR(8) UNIQUE NOT NULL
 /* Esta tabla almacenara los grupos de los Alumnos*/
 CREATE TABLE grupos_alumno (
 	idAlumno INT NOT NULL,
-    grupo CHAR (3) NOT NULL,
+    grupo CHAR (4) NOT NULL,
 	CONSTRAINT FK_idAlumno_grupo FOREIGN KEY (idAlumno) 
     REFERENCES usuario(id) ON DELETE CASCADE
 ); 
@@ -41,10 +41,11 @@ CREATE TABLE horarios (
 /* Esta tabla almacenara los grupos de los docentes*/
 CREATE TABLE grupos_docente(
 	idDocente INT NOT NULL,
-    grupo CHAR (3) NOT NULL,
+    grupo CHAR (4) NOT NULL,
 	CONSTRAINT FK_idDocente_grupo FOREIGN KEY (idDocente) 
     REFERENCES usuario(id) ON DELETE CASCADE
 ); 
+
 
 /* Esta tabla almacenara los Asignaturas de los docentes*/
 CREATE TABLE asignaturas_docente (
@@ -92,10 +93,23 @@ CREATE TABLE consultas (
 CREATE TABLE asignaturas (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(35) NOT NULL,
+	orientacion VARCHAR(50),
     grado INT NOT NULL
 );
 
-/* TEMPORAL (esto va a estar hasta que este el app del admin) */
+CREATE TABLE grupos_sistema (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    grupo VARCHAR(4) NOT NULL
+);
+
+CREATE TABLE orientaciones_sistema (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    orientacion VARCHAR(100) NOT NULL
+);
+
+
+
+/* 
 INSERT INTO asignaturas (nombre, grado)  VALUES 
 ('A.D.A', 3),
 ('Fisica I', 1),
@@ -116,6 +130,7 @@ INSERT INTO asignaturas (nombre, grado)  VALUES
 ('Sistemas Operativos I', 1),
 ('Sistemas Operativos II', 2),
 ('Sistemas Operativos III', 3);
+*/
 
 CREATE TABLE chat (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -125,8 +140,10 @@ CREATE TABLE chat (
 	emailDocente VARCHAR(320) NOT NULL,
 	fecha CHAR(10) NOT NULL,
     asignatura VARCHAR(30),
-    grupo CHAR(3)
+    grupo CHAR(4)
 );
+
+alter table chat change column grupo  grupo CHAR(4);
 
 CREATE TABLE usuarios_online (
 	idChat INT NOT NULL,
@@ -172,25 +189,7 @@ CREATE TABLE solicitud_chat (
     REFERENCES usuario(CI) ON DELETE CASCADE
 );
 
-INSERT INTO usuario (CI,nombre,apellido, email, contrasena, imagen, tipo, primer_login) VALUES ('11111111', 'Administrador' , 'ESI', 'correo@correo.com', '$2y$10$jA5RolMZ6QfoWibr5J3PuOVXnZjxQjRJD84pR59DfKs4uScUrGfN2','/build/public/Admin.svg', 'admin', false);
-INSERT INTO cedulas (cedula) VALUES ('11111111');
 
-SELECT * FROM chat;
-SELECT * FROM usuarios_online;
-SELECT * FROM mensajes_chat;
-SELECT * FROM usuarios_chat;
-SELECT * FROM solicitud_chat;
-SELECT * FROM consultas;
-SELECT * FROM asignaturas;
-SELECT * FROM asignaturas_docente;
-SELECT * FROM grupos_alumno;
-SELECT * FROM grupos_docente;
-SELECT * FROM pendiente;
-SELECT * FROM cedulas;
-SELECT * FROM horarios;
-select * from consultas;
-select * from usuario;
-use aurum;
 
 
 
