@@ -74,15 +74,15 @@ $id = $_SESSION['id'];
 
 
                                 <div class="form-pendiente">
-                                    <form action="aceptar">
-                                        <input type="hidden" value="<?php echo $row['idAlumno'] ?>">
+                                    <form action="aceptar.php"  method="post">
+                                        <input name="id" type="hidden" value="<?php echo $row['idAlumno'] ?>">
                                         <button>
                                             <i class="fas fa-check-square green"></i>
                                         </button>
                                     </form>
 
-                                    <form action="rechazar">
-                                        <input type="hidden" value="<?php echo $row['idAlumno'] ?>">
+                                    <form action="rechazar.php" method="post">
+                                        <input name="id" type="hidden" value="<?php echo $row['idAlumno'] ?>">
                                         <button>
                                             <i class="fas fa-window-close red"></i>
                                         </button>
