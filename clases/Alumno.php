@@ -24,7 +24,6 @@ class Alumno
 
     static public function crear(array $datos, PDO $db): bool
     {
-
         $CI = $datos['ci'];
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
@@ -37,7 +36,7 @@ class Alumno
         $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
 
         // Codigo SQL
-        $sql = "INSERT INTO usuario (CI,nombre,apellido, email, contrasena,imagen, tipo, primer_login) VALUES 
+        $sql = "INSERT INTO pendiente (CI,nombre,apellido, email, contrasena,imagen, tipo, primer_login) VALUES 
         ('$CI', '$nombre', '$apellido', '$email', '$passwordHash', '$imagen', 'alumno', true)";
 
         $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
@@ -82,15 +81,15 @@ class Alumno
 
     static public function registrarGrupos($grupos, $CI, $db)
     {
-        $sql = "SELECT id FROM usuario WHERE CI = '$CI' LIMIT 1";
+        $sql = "SELECT idAlumno FROM pendiente WHERE CI = '$CI' LIMIT 1";
 
         $resultado = $db->query($sql);
 
         // Iterar resultados;
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             foreach ($grupos as $grupo) {
-                $idAlumno = $row['id'];
-                $sql = "INSERT INTO grupos_alumno VALUES ($idAlumno, '$grupo')";
+                $idAlumno = $row['idAlumno'];
+                $sql = "INSERT INTO grupos_pendiente VALUES ($idAlumno, '$grupo')";
 
                 $stmt = $db->prepare($sql);
                 $stmt->execute();

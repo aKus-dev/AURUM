@@ -49,7 +49,7 @@ $i = 0;
         </div>
     <?php endif; ?>
 
-    <div class=" alumno-container">
+    <div class="alumno-container">
         <?php include '../../AppDocente/templates/header.html' ?>
 
         <div class="chat-materia">
