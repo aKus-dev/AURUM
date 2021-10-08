@@ -3,16 +3,21 @@ require '../../config/app.php';
 require '../../clases/Alumno.php';
 require '../../clases/Sistema.php';
 
-$encontrado = true;
+$errorCI = false;
+$errorPass = false;
+
 // TEMPORAL
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
 
-   /*  Sistema::revisarAdministrador($usuario, $password, $db);
+    /*  Sistema::revisarAdministrador($usuario, $password, $db);
     Sistema::revisarDocente($usuario, $password, $db); */
     /* $encontrado = Sistema::revisarAlumno($usuario, $password, $db); */
-    $encontrado = Sistema::revisarUsuario($usuario, $password, $db);
+    $state = Sistema::revisarUsuario($usuario, $password, $db);
+
+    $errorCI = $state['errorCI'];
+    $errorPass = $state['errorPass'];
 }
 
 ?>
@@ -45,11 +50,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="" method="POST" class="width100">
 
             <div class="text-center">
-                <?php if (!$encontrado) : ?>
-                    <p id="danger" class="alert-danger">Usuario no encontrado</p>
+                <?php if ($errorCI) : ?>
+                    <p id="danger" class="alert-danger">Cédula no encontrada</p>
                 <?php endif; ?>
+            </div>
+
+            <div class="text-center">
+                <?php if ($errorPass) : ?>
+                    <p id="danger" class="alert-danger">Las contraseñas no coinciden</p>
+                <?php endif; ?>
+            </div>
+
+            <div class="text-center">
                 <h2 class="form__heading">Inicia sesión</h2>
             </div>
+
 
             <!-- Contenedor icono + input -->
             <div class="form__container-input">

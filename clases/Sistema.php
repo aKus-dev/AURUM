@@ -4,14 +4,20 @@
 class Sistema
 {
 
-    static public function revisarUsuario(string $cedula, string $contrasena, PDO $db): bool
+    static public function revisarUsuario(string $cedula, string $contrasena, PDO $db)
     {
+        $entroCI = false;
+        $errorPass = false;
+
         $sql = "SELECT * FROM usuario WHERE CI = '$cedula' LIMIT 1";
         $resultado = $db->query($sql);
 
         // Si hay un resultado, compruebo la contraseña
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $entroCI = true;
             $coinciden = password_verify($contrasena, $row['contrasena']);
+
+            !$coinciden ? $errorPass = true : false;
 
             if ($coinciden) {
                 // Inicio sesión 
@@ -61,7 +67,14 @@ class Sistema
         }
 
         // No encontro el usuario
-        return false;
+        $errorCI = false;
+
+        !$entroCI ? $errorCI = true : null;
+
+        return [
+            'errorCI' => $errorCI,
+            'errorPass' => $errorPass
+        ];
     }
 
     static public function revisarCedula(string $cedula, PDO $db): bool
