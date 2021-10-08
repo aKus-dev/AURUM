@@ -62,15 +62,15 @@ CREATE TABLE pendiente (
     nombre VARCHAR(30) NOT NULL,
     apellido VARCHAR(30) NOT NULL,
     email VARCHAR(320) NOT NULL,
-    grupo CHAR(3) NOT NULL,
     contrasena VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
+	tipo ENUM('alumno', 'docente', 'admin') NOT NULL,
     primer_login BOOL
 );
 
 CREATE TABLE grupos_pendiente (
 	idAlumno INT NOT NULL,
-    grupo CHAR (3) NOT NULL,
+    grupo CHAR (4) NOT NULL,
 	CONSTRAINT FK_idAlumno_grupoPendiente FOREIGN KEY (idAlumno) 
     REFERENCES pendiente(idAlumno) ON DELETE CASCADE
 ); 
@@ -189,9 +189,10 @@ CREATE TABLE solicitud_chat (
     REFERENCES usuario(CI) ON DELETE CASCADE
 );
 
+INSERT INTO usuario (CI,nombre,apellido, email, contrasena, imagen, tipo, primer_login) VALUES ('11111111', 'Administrador' , 'ESI', 'correo@correo.com', '$2y$10$jA5RolMZ6QfoWibr5J3PuOVXnZjxQjRJD84pR59DfKs4uScUrGfN2','/build/public/Admin.svg', 'admin', false);
+INSERT INTO cedulas (cedula) VALUES ('11111111');
 
-
-
+use aurum;
 
 
 
