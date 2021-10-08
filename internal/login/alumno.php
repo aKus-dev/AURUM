@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // En caso de que NO exista, lo ingresamos al sistema
         if (!$existeCI && !$existeMail) {
             $success = Alumno::crear($_POST, $db);
+
+            if($success) {
+                header('Location: ../../pendiente.html');
+            }
+
         } else {
             // En caso de que exista, relleno los campos nuevamente para que cambie algo
             $rellenar = true;

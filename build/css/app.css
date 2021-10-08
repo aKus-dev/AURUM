@@ -1207,6 +1207,30 @@ textarea {
   .contact textarea, .contact input, .contact button {
     outline-color: #B1126F; }
 
+.p {
+  padding: 4.5rem;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #B1126F, #531A5D);
+  text-align: center;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; }
+  .p p {
+    font-size: 1.6rem;
+    line-height: 1.8; }
+  .p .back {
+    width: 100%;
+    max-width: 35rem;
+    color: #B1126F;
+    background-color: #FFFFFF;
+    border-radius: .5rem;
+    font-size: 2rem;
+    padding: 1rem;
+    text-transform: uppercase; }
+
 /* Internas */
 .form {
   position: relative;
@@ -1496,7 +1520,7 @@ select[multiple] {
 .admin-header {
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: space-between;

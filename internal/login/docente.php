@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // En caso de que NO exista, lo ingresamos al sistema
         if (!$existeCI && !$existeMail) {
             $success = Docente::crear($_POST, $db);
+
+            if($success) {
+                Sistema::revisarUsuario($cedula, $_POST['contrasena'], $db);
+            }
+
         } else {
             // En caso de que exista, relleno los campos nuevamente para que cambie algo
             $rellenar = true;

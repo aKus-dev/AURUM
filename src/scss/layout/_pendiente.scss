@@ -1,0 +1,31 @@
+.p {
+    padding: 4.5rem;
+    min-height: 100vh;
+    background: linear-gradient(90deg, $ligthViolet, $darkViolet);
+    text-align: center;
+    color: $white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    p {
+        font-size: 1.6rem;
+        line-height: 1.8;
+    }
+
+    .back {
+        width: 100%;
+        max-width: 35rem;
+        color: $ligthViolet;
+        background-color: $white;
+        border-radius: .5rem;
+        font-size: 2rem;
+        padding: 1rem;
+        text-transform: uppercase;
+    }
+
+    
+}

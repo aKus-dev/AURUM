@@ -7,7 +7,6 @@ class Sistema
     static public function revisarUsuario(string $cedula, string $contrasena, PDO $db): bool
     {
         $sql = "SELECT * FROM usuario WHERE CI = '$cedula' LIMIT 1";
-
         $resultado = $db->query($sql);
 
         // Si hay un resultado, compruebo la contraseña
