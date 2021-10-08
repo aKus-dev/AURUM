@@ -1718,18 +1718,18 @@ select[multiple] {
 .pendiente-container {
   width: 100%;
   padding: 5rem 0;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  align-items: center;
-  justify-content: center; }
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3.5rem; }
   .pendiente-container .pendiente {
     position: relative;
     text-align: center;
     padding: 1.5rem;
     width: 95%;
-    max-width: 100rem;
-    border-radius: 5rem;
+    max-width: 55rem;
+    border-radius: 2rem;
     background-image: url(../../../build/img/Chat/Sky.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -1738,11 +1738,6 @@ select[multiple] {
       position: relative;
       z-index: 999;
       color: white; }
-      @media (min-width: 968px) {
-        .pendiente-container .pendiente .data {
-          display: flex;
-          flex-direction: column;
-          justify-content: center; } }
       .pendiente-container .pendiente .data span {
         font-weight: bold; }
     .pendiente-container .pendiente h3 {
@@ -1778,7 +1773,7 @@ select[multiple] {
   height: 100%;
   width: 100%;
   inset: 0;
-  border-radius: 5rem;
+  border-radius: 2rem;
   background: linear-gradient(90deg, #531A5Db4, #b1126fb4); }
 
 /* Alumno */

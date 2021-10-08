@@ -39,6 +39,11 @@ $id = $_SESSION['id'];
         <?php include '../templates/header.php' ?>
 
         <div class="chat-materia">
+     
+            <div style="margin-top: 3rem;" class="text-center">
+                <h2>Alumnos pendientes</h2>
+            </div>
+
             <div class="">
                 <?php
 
