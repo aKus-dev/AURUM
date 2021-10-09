@@ -137,7 +137,7 @@ $gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db);
 
             <form method="POST">
                 <div id="sendMsg">
-                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje...">
+                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje..." autocomplete="off">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
                     <input name="ciUsuario" type="hidden" value="<?php echo $ciUsuario ?>">
 

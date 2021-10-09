@@ -125,7 +125,7 @@ if (isset($_POST['mensaje'])) {
 
             <form method="POST">
                 <div id="sendMsg">
-                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje..." maxlength="500">
+                    <input id="msg" name="mensaje" type="text" placeholder="Mensaje..." maxlength="500" autocomplete="off">
                     <input name="idChat" type="hidden" value="<?php echo $idChat ?>">
 
                     <button class="bg-main">

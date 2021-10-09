@@ -130,3 +130,12 @@
     background: linear-gradient(90deg, $ligthViolet, $darkViolet);
     color: $white;
 }
+
+.animation-100 {
+    transform: translateX(10rem);
+    opacity: 0;
+}
+
+.t {
+    transition: 1s;
+}
