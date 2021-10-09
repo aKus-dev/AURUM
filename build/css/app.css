@@ -1727,9 +1727,9 @@ select[multiple] {
     position: relative;
     text-align: center;
     padding: 1.5rem;
-    width: 95%;
+    width: 90%;
     max-width: 55rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     background-image: url(../../../build/img/Chat/Sky.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -1773,7 +1773,7 @@ select[multiple] {
   height: 100%;
   width: 100%;
   inset: 0;
-  border-radius: 2rem;
+  border-radius: 1rem;
   background: linear-gradient(90deg, #531A5Db4, #b1126fb4); }
 
 /* Alumno */
@@ -1822,12 +1822,17 @@ select[multiple] {
       align-items: center; } }
 
 .alumno-logo {
+  cursor: pointer;
+  color: #FFFFFF;
   display: flex;
+  gap: .5rem;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: .35s;
   height: 3rem;
-  width: 4rem; }
+  width: 4rem;
+  font-size: 1.25rem; }
   .alumno-logo:hover {
     filter: drop-shadow(0 0 5px #FFFFFF);
     transform: scale(1.25); }

@@ -44,7 +44,7 @@ class Sistema
                         } else {
                             header('Location: /AppAlumno/index.php');
                         }
-                 
+
                         return true;
                         break;
                     case 'docente':
@@ -90,7 +90,7 @@ class Sistema
         return false;
     }
 
-    
+
     static public function revisarMail(string $email, PDO $db): bool
     {
         $sql = "SELECT * FROM usuario WHERE email = '$email'";
@@ -245,12 +245,26 @@ class Sistema
 
     public static function cargarAsignaturas($db)
     {
-        $sql = "SELECT nombre FROM asignaturas";
+        $sql = "SELECT * FROM asignaturas";
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $asignatura = $row['nombre'];
-            echo "<option value='$asignatura'>$asignatura</option>";
+            $grado = $row['grado'];
+
+            switch ($grado) {
+                case '1':
+                    $grado = 'I';
+                    break;
+                case '2':
+                    $grado = 'II';
+                    break;
+                case '3':
+                    $grado = 'III';
+                    break;
+            }
+
+            echo "<option value='$asignatura'>$asignatura $grado</option>";
         }
     }
 
@@ -267,7 +281,8 @@ class Sistema
         }
     }
 
-    public static function cargarOrientaciones($db) {
+    public static function cargarOrientaciones($db)
+    {
         $sql = "SELECT orientacion FROM orientaciones_sistema";
         $result = $db->query($sql);
 
@@ -277,7 +292,8 @@ class Sistema
         }
     }
 
-    public static function cargarGrupos($db) {
+    public static function cargarGrupos($db)
+    {
         $sql = "SELECT grupo FROM grupos_sistema";
         $result = $db->query($sql);
 
@@ -303,5 +319,4 @@ class Sistema
 
         return $gruposFormateados;
     }
-
 }

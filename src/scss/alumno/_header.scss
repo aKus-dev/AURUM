@@ -54,12 +54,17 @@
 
 .alumno-logo {
 
+    cursor: pointer;
+    color: $white;
     display: flex;
+    gap: .5rem;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: .35s;
     height: 3rem;
     width: 4rem;
+    font-size: 1.25rem;
 
     &:hover {
         filter: drop-shadow(0 0 5px $white);
