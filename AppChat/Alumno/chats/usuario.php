@@ -26,8 +26,7 @@ if (isset($_POST['idChat'])) {
 Chat::onlineUsuario($idChat, $_SESSION['CI'], $db);
 
 $ciDocente = $datosChat['ciDocente'];
-
-$grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
+$grupo = $datosChat['grupo'];
 
 
 if (isset($_POST['mensaje'])) {
@@ -115,7 +114,7 @@ $gruposAlumno = Alumno::getGrupos($_SESSION['id'], $db);
         <a href="../unirse.php">
             <i id="back" class="fas fa-arrow-left"></i>
         </a>
-        <p class="title"><?php echo $asignatura . " [" . $grupo[0] . "]" ?></p>
+        <p class="title"><?php echo $asignatura . " [" . $grupo . "]" ?></p>
         <i id="showMenu" class="fas fa-users"></i>
     </header>
 

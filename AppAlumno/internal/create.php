@@ -112,11 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Crear consulta</h1>
 
         <div class="text-center">
-            <p>Antes de crearla... ¡revisa si alguien ya preguntó lo mismo!</p>
+            <p id="subtitulo">Antes de crearla... ¡revisa si alguien ya preguntó lo mismo!</p>
         </div>
 
         <div class="todas-consultas bg-main">
-            <p>Ver todas las consultas</p>
+            <p id="btn-ver-consultas">Ver todas las consultas</p>
             <a href="./buscar.php">
                 <i class="fas fa-arrow-circle-right white"></i>
             </a>
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div>
                 <select name="profesor" class="select-profesor" required>
-                    <option selected value="null">Seleccione un profesor</option>
+                    <option selected value="null" id="select-teacher">Seleccione un profesor</option>
                     <?php Alumno::cargarProfesores($db); ?>
                 </select>
             </div>
@@ -152,6 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/alumno/create.js"></script>
+    <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

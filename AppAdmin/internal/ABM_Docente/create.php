@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" type="image/png" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
-    <title>AURUM: Alta Alumno</title>
+    <title>AURUM: Alta Docente</title>
 </head>
 <body>
 
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="create-container" class="container-crud container-crud--alumno ">
 
         <div class="text-center">
-            <h2 class="font-size22">Ingrese un alumno</h2>
+            <h2 class="font-size22">Ingrese un docente</h2>
         </div>
 
         <div class="text-center">
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="button-center">
-                <button id="submit" class="btn-submit" type="submit">Solicitar unirse</button>
+                <button id="submit" class="btn-submit" type="submit">Agregar docente</button>
             </div>
         </form>
 

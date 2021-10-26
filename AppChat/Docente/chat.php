@@ -27,7 +27,8 @@ if (isset($_POST['idChat'])) {
 // Pongo al docente como online
 Chat::onlineUsuario($idChat, $_SESSION['CI'], $db);
 
-$grupo = Sistema::formatearGrupos([$datosChat['grupo']],  $db);
+$grupos = $datosChat['grupo'];
+
 
 if (isset($_POST['mensaje'])) {
     $mensaje = $_POST['mensaje'];
@@ -114,7 +115,7 @@ $idUsuarioReal = $_SESSION['id'];
         <a href="./chats.php">
             <i id="back" class="fas fa-arrow-left"></i>
         </a>
-        <p class="title"><?php echo $asignatura . " [" . $grupo[0] . "]" ?></p>
+        <p class="title"><?php echo $asignatura . " [" . $grupos . "]" ?></p>
         <i id="showMenu" class="fas fa-users"></i>
     </header>
 

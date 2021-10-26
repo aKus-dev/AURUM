@@ -1,0 +1,10 @@
+{
+    "title": "Student registration",
+    "name": "Name",
+    "lastname": "Last name",
+    "pass": "Password",
+    "passAgain": "Password again",
+    "ci": "Identity card",
+    "grupos": "Groups (If on PC, hold CTRL / CMD to select more than one)",
+    "register": "Register student"
+}

@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
     <link rel="icon" type="image/png" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
-    <title>AURUM: Eliminar Alumno</title>
+    <title>AURUM: Eliminar Docente</title>
 </head>
 <body>
 
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
 
         <form action="" method="POST">
             <div class="text-center">
-                <h2 class="font-size22">Cédula de alumno a eliminar</h2>
+                <h2 class="font-size22">Cédula de docente a eliminar</h2>
             </div>
 
             <!-- Cedula -->
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
 
 
             <div class="button-center">
-                <button class="btn-submit" type="submit">Eliminar alumno</button>
+                <button class="btn-submit" type="submit">Eliminar docente</button>
             </div>
         </form>
     </div>

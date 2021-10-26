@@ -54,6 +54,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
     </div>
 
     <script src="/build/js/consultas.js"></script>
+    <script src="/languages/alumno/consultas.js"></script>
+    <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

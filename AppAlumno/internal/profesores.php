@@ -96,7 +96,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
                     <div class="datos-consulta-flex">
                         <div class="flex-consultas-datos">
-                            <h5>Materias</h5>
+                            <h5 id="materias">Materias</h5>
                             <div class="materias-container">
                                 <?php
                                 foreach ($materias as $materia) {
@@ -107,7 +107,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
                             </div>
 
 
-                            <h5 style="margin-top: 1.5rem">Horarios</h5>
+                            <h5 id="horarios" style="margin-top: 1.5rem">Horarios</h5>
                             <?php
                                 if($horariosDocente) {
                                     $diaMinimo = $horariosDocente['diaMinimo'];
@@ -138,7 +138,7 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
                 <?php if (!$entro) :  ?>
                     <div class="no-consultas bg-main">
-                        <p>Aún no tienes profesores en tu grupo</p>
+                        <p id="not-found">Aún no tienes profesores en tu grupo</p>
                     </div>
                 <?php endif ?>
                 </div>
@@ -148,8 +148,8 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
     </div>
 
 
-
-    <script src="/build/js/consultas.js"></script>
+    <script src="/languages/alumno/profesores.js"></script>
+    <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

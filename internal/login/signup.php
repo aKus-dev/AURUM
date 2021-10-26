@@ -26,12 +26,12 @@
 
 
         <div class="form__choose">
-            <h2>Registro</h2>
+            <h2 id="register-text">Registro</h2>
 
-            <p class="form__option">¿Como desea registrarse?</p>
+            <p class="form__option" id="option-text">¿Como desea registrarse?</p>
             <div class="width100">
                 <a href="./docente.php">
-                    <button class="btn btn-signup btn-docente" type="submit">
+                    <button class="btn btn-signup btn-docente" type="submit" id="btn-teacher">
                         Docente
                     </button>
                 </a>
@@ -41,7 +41,7 @@
             
             <div class="width100">
                 <a href="./alumno.php">
-                    <button class="btn btn-signup btn-alumno" type="submit">
+                    <button class="btn btn-signup btn-alumno" type="submit" id="btn-student">
                         Alumno
                     </button>
                 </a>
@@ -50,6 +50,8 @@
         
     </div>
 
+
+    <script src="/languages/signup.js"></script>
 </body>
 
 </html>

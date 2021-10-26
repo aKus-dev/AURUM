@@ -95,6 +95,6 @@ if (sizeof($grupos) === 1) {
 
 <?php if (!$hayResultado_realizada) : ?>
     <div class="no-consultas bg-main">
-        <p>No tienes consultas realizadas</p>
+        <p id="not-found-realizada">No tienes consultas realizadas</p>
     </div>
 <?php endif; ?>

@@ -22,7 +22,6 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
 
 $gruposCopia = $grupos;
-$gruposFormateados = Sistema::formatearGrupos($gruposCopia, $db);
 $i = 0;
 
 ?>
@@ -64,7 +63,7 @@ $i = 0;
 
                         <?php if (!$mensajeMostrado) : ?>
                             <p  class="grupos-docente-list bg-main title-grupo-chat" style="text-transform: uppercase; font-weight: bold;">
-                                Chats de <?php echo $gruposFormateados[$i]; ?>
+                                Chats de <?php echo $grupo; ?>
                                 <?php $i++ ?>
                             </p>
                         <?php

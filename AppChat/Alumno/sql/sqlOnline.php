@@ -7,6 +7,7 @@ $idChat = $_GET['idChat'];
 
 /// VERIFICO QUE EL HOST ESTE ONLINE //////////////////////////////
 $datosHost = Chat::getHost($idChat, $db);
+
 $ciHost = $datosHost['ciHost'];
 $nombreHost = $datosHost['nombre'];
 $apellidoHost = $datosHost['apellido'];

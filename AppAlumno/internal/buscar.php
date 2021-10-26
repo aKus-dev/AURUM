@@ -125,7 +125,7 @@ if (!empty($_GET)) {
 
             <?php if ($mostrarAlerta) :  ?>
                 <div class="no-consultas bg-main">
-                    <p>No se han encontrado resultados</p>
+                    <p id="not-found">No se han encontrado resultados</p>
                 </div>
             <?php endif ?>
         </div>
@@ -133,7 +133,8 @@ if (!empty($_GET)) {
 
     </div>
 
-    <script src="/build/js/consultas.js"></script>
+    <script src="/languages/alumno/buscar.js"></script>
+    <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
     <link rel="icon" type="image/png" href="/build/img/AURUM_color.svg">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/build/css/app.css"">
-    <title>AURUM: Modificar Alumno</title>
+    <title>AURUM: Modificar Docente</title>
 </head>
 <body>
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST' && isset($_POST['datos_modificados'])
 
         <form action="" method="POST">
             <div class="text-center">
-                <h2 class="font-size22">Cédula de alumno a modificar</h2>
+                <h2 class="font-size22">Cédula de docente a modificar</h2>
             </div>
 
             <!-- Cedula -->

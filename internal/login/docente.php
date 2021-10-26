@@ -79,9 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php
 
                 if ($existeCI && $existeMail) {
-                    echo '<p id="danger" class="alert-danger">La cédula y el correo ya están registrados</p>';
+                    echo '<p id="danger" class="alert-dangerl">La cédula y el correo ya están registrados</p>';
                 } else if ($existeCI) {
-                    echo '<p id="danger" class="alert-danger">La cédula ya está registrada</p>';
+                    echo '<p id="danger" class="alert-danger>La cédula ya está registrada</p>';
                 } else if ($existeMail) {
                     echo '<p id="danger" class="alert-danger">El correo ya está registrado</p>';
                 }
@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form__container-input flexColumn-nocenter m3">
                 <div class="text-center">
-                    <label for="asignaturas" class="label"><span class="bold">Asignaturas</span> (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
+                    <label  for="asignaturas" class="label"><span class="bold">Asignaturas</span> (Si está en PC, mantenga CTRL/CMD para seleccionar más de uno)</label>
                 </div>
 
                 <select id="asignaturas" name="asignaturas[]" class="form__select" multiple required>
@@ -200,6 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="/build/js/validateUsers.js"></script>
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/docente.js"></script>
     </body>
 
 </html>

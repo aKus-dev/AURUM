@@ -191,49 +191,50 @@ class Sistema
     static public function buscarConsulta($consulta, $db)
     {
         $resultados = [];
-        $sql = "SELECT * FROM consultas
-        WHERE estado = 'contestada' OR estado = 'recibida' AND titulo LIKE '%$consulta%'";
+        $sql = "SELECT * FROM consultas WHERE titulo LIKE '%$consulta%'";
+
         $result = $db->query($sql);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $idDocente = $row['idDocente'];
-            $idAlumno = $row['idAlumno'];
 
-            $nombreDocente = '';
-            $apellidoDocente = '';
-            $nombreAlumno = '';
-            $apellidoAlumno = '';
+            if ($row['respuesta']) {
+                $idDocente = $row['idDocente'];
+                $idAlumno = $row['idAlumno'];
 
-            $sqlDocente = "SELECT nombre, apellido FROM usuario WHERE id = $idDocente";
-            $resultDocente = $db->query($sqlDocente);
+                $nombreDocente = '';
+                $apellidoDocente = '';
+                $nombreAlumno = '';
+                $apellidoAlumno = '';
 
-            while ($docente = $resultDocente->fetch(PDO::FETCH_ASSOC)) {
-                $nombreDocente = $docente['nombre'];
-                $apellidoDocente = $docente['apellido'];
+                $sqlDocente = "SELECT nombre, apellido FROM usuario WHERE id = $idDocente";
+                $resultDocente = $db->query($sqlDocente);
+
+                while ($docente = $resultDocente->fetch(PDO::FETCH_ASSOC)) {
+                    $nombreDocente = $docente['nombre'];
+                    $apellidoDocente = $docente['apellido'];
+                }
+
+                $sqlAlumno = "SELECT nombre, apellido FROM usuario WHERE id = $idAlumno";
+                $resultAlumno = $db->query($sqlAlumno);
+
+                while ($alumno = $resultAlumno->fetch(PDO::FETCH_ASSOC)) {
+                    $nombreAlumno = $alumno['nombre'];
+                    $apellidoAlumno = $alumno['apellido'];
+                }
+
+
+                $resultados[] =  [
+                    'id' => $row['id'],
+                    'nombreAlumno' => $nombreAlumno,
+                    'apellidoAlumno' => $apellidoAlumno,
+                    'nombreDocente' => $nombreDocente,
+                    'apellidoDocente' => $apellidoDocente,
+                    'titulo' => $row['titulo'],
+                    'descripcion' => $row['descripcion'],
+                    'respuesta' => $row['respuesta'],
+                    'fecha' => $row['fecha'],
+                ];
             }
-
-            $sqlAlumno = "SELECT nombre, apellido FROM usuario WHERE id = $idAlumno";
-            $resultAlumno = $db->query($sqlAlumno);
-
-            while ($alumno = $resultAlumno->fetch(PDO::FETCH_ASSOC)) {
-                $nombreAlumno = $alumno['nombre'];
-                $apellidoAlumno = $alumno['apellido'];
-            }
-
-
-            $resultados[] =  [
-                'id' => $row['id'],
-                'nombreAlumno' => $nombreAlumno,
-                'apellidoAlumno' => $apellidoAlumno,
-                'nombreDocente' => $nombreDocente,
-                'apellidoDocente' => $apellidoDocente,
-                'titulo' => $row['titulo'],
-                'descripcion' => $row['descripcion'],
-                'respuesta' => $row['respuesta'],
-                'fecha' => $row['fecha'],
-
-
-            ];
         }
 
         if (!empty($resultados)) {

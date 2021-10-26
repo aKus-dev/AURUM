@@ -23,6 +23,45 @@ isAuth_admin();
 
    <?php include 'templates/header.php'; ?>
 
+   <section class="option-container">
+   <div class="option option--red option--grupo">
+            <div class="option__content">
+                <h3 class="option__heading option__heading--red">GRUPOS</h3>
+                <p class="option__text">Crea nuevos grupos y orientaciones.</p>
+
+                <a href="internal/grupos.php" class="admin-button admin-button--red">ACCEDER</a>
+            </div>
+
+            <div class="filter-option--diff"></div>
+        </div>
+
+        <div class="option option--books">
+            <div class="option__content">
+                <h3 class="option__heading option__heading--red">ASIGNATURAS</h3>
+                <p class="option__text">Agrega, modifica y elimina asginaturas</p>
+
+                <a href="internal/ABM_Asignatura/create.php" class="admin-button">ADMINISTRAR</a>
+            </div>
+
+            <div class="filter-option--diff"></div>
+        </div>
+
+     
+
+        <div class="option option--red option--pendiente">
+            <div class="option__content">
+                <h3 class="option__heading option__heading--red">PENDIENTE</h3>
+                <p class="option__text">Visualiza los alumnos pendientes de aprobación</p>
+
+                <a href="internal/pendiente.php" class="admin-button admin-button--red"">ACCEDER</a>
+            </div>
+
+            <div class="filter-option--diff"></div>
+        </div>
+
+
+    </section>
+
     <main class="option-container">
         <div class="option option--teacher">
             <div class="option__content">
@@ -46,52 +85,21 @@ isAuth_admin();
             <div class="filter-option"></div>
         </div>
 
-        <div class="option option--books">
-            <div class="option__content">
-                <h3 class="option__heading">ASIGNATURAS</h3>
-                <p class="option__text">Agrega, modifica y elimina asginaturas</p>
-
-                <a href="internal/ABM_Asignatura/create.php" class="admin-button">ADMINISTRAR</a>
-            </div>
-
-            <div class="filter-option"></div>
-        </div>
-    </main>
-
-    <section class="option-container">
         <div class="option option--red option--agenda">
             <div class="option__content">
-                <h3 class="option__heading option__heading--red">AGENDA</h3>
+                <h3 class="option__heading option__heading">AGENDA</h3>
                 <p class="option__text">Accede a la agenda de consultas realizadas</p>
 
                 <a href="internal/agenda.php" class="admin-button admin-button--red"">ACCEDER</a>
             </div>
 
-            <div class="filter-option--diff"></div>
+            <div class="filter-option"></div>
         </div>
 
-        <div class="option option--red option--pendiente">
-            <div class="option__content">
-                <h3 class="option__heading option__heading--red">PENDIENTE</h3>
-                <p class="option__text">Visualiza los alumnos pendientes de aprobación</p>
+       
+    </main>
 
-                <a href="internal/pendiente.php" class="admin-button admin-button--red"">ACCEDER</a>
-            </div>
-
-            <div class="filter-option--diff"></div>
-        </div>
-
-        <div class="option option--red option--grupo">
-            <div class="option__content">
-                <h3 class="option__heading option__heading--red">GRUPOS</h3>
-                <p class="option__text">Crea nuevos grupos y orientaciones.</p>
-
-                <a href="internal/grupos.php" class="admin-button admin-button--red">ACCEDER</a>
-            </div>
-
-            <div class="filter-option--diff"></div>
-        </div>
-    </section>
+    
 
 
    

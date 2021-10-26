@@ -101,6 +101,6 @@ if (sizeof($grupos) === 1) {
 
 <?php if (!$hayResultado_pendiente) : ?>
     <div class="no-consultas bg-main">
-        <p>No tienes consultas contestadas</p>
+        <p id="not-found-contestada">No tienes consultas contestadas</p>
     </div>
 <?php endif; ?>

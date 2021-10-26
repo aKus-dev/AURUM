@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <i class="far fa-user"></i>
                 </div>
 
-                <input name="usuario" type="text" class="form__input" placeholder="Cédula o usuario" required maxlength="8">
+                <input name="usuario" type="text" class="form__input" placeholder="Cédula" required maxlength="8">
 
             </div>
 
@@ -93,8 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 
-    <script src="/build/js/formAnimation.js"></script>
+<!--     <script src="/build/js/formAnimation.js"></script> -->
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/login.js"></script>
     </body>
 
 </html>

@@ -33,36 +33,36 @@
 
                  <!-- Desktop menu -->
                 <nav class="menu-desktop">
-                    <a class="link link--active" href="index.html">Home</a>
-                    <a class="link" href="#us">Sobre nosotros</a>
-                    <a class="link" href="#your-rol">Lo que brindamos</a>
-                    <a class="link" href="#contact">Contacto</a>
+                    <a class="link link--active" href="index.html" id="home">Inicio</a>
+                    <a class="link" href="#us" id="about">Sobre nosotros</a>
+                    <a class="link" href="#your-rol" id="provide">Lo que brindamos</a>
+                    <a class="link" href="#contact" id="contact">Contacto</a>
                 </nav>
 
             </div>
 
               <!-- Menu que se despliega en version mobile -->
-            <div class="header__menu-mobile">
+            <div class="header__menu-mobile" id="nav2">
                 <nav class="header__menu-align">
-                    <a class="header__link header__link--active" href="index.html">Home</a>
-                    <a class="header__link" href="#us">Sobre nosotros</a>
-                    <a class="header__link" href="#your-rol">Lo que brindamos</a>
-                    <a class="header__link" href="#contact">Contacto</a>
+                    <a class="header__link header__link--active" href="index.html" id="home2">Inicio</a>
+                    <a class="header__link" href="#us" id="about2">Sobre nosotros</a>
+                    <a class="header__link" href="#your-rol" id="provide2">Lo que brindamos</a>
+                    <a class="header__link" href="#contact" id="contact2">Contacto</a>
                 </nav>
             </div>
 
             <!-- Texto del hero y enlaces -->
             <div class="header__info text-center t animation-100">
-                <h1 class="header__heading">La mejor forma de aprender online</h1>
+                <h1 class="header__heading" id="title">La mejor forma de aprender online</h1>
 
-                <p class="header__text">Bienvenida/o a AURUM, somos una plataforma que esta enfocada a la comunicación 
+                <p class="header__text" id="desc">Bienvenida/o a AURUM, somos una plataforma que esta enfocada a la comunicación 
                     entre alumnos y profesores, aquí podrás chatear tanto con profesores como con alumnos, entrar en distintos servidores
                     de estudio dependiendo de tus necesidades, y mucho más!
                 </p>
 
                 <div class="button-flex">
-                    <a class="btn btn-yellow" href="internal/login/login.php">Iniciar sesión</a>
-                    <a class="btn btn-white" href="internal/login/signup.php">Registrarse</a>
+                    <a class="btn btn-yellow" href="internal/login/login.php" id="btn-login">Iniciar sesión</a>
+                    <a class="btn btn-white" href="internal/login/signup.php" id="btn-signup">Registrarse</a>
                 </div>
             </div>
         </div>  <!-- End mockup-->
@@ -70,8 +70,8 @@
 
     <!-- Contenido principal -->
     <main class="main text-center">
-        <h2 class="main__heading t animation-100">Mejores caracteristicas</h2>
-        <p class="main__p t animation-100">AURUM es una plataforma de chat online que se destaca por:</p>
+        <h2 class="main__heading t animation-100" id="features">Mejores características</h2>
+        <p class="main__p t animation-100" id="featuresTitle">AURUM es una plataforma de chat online que se destaca por:</p>
 
         <div class="article-grid">
             <!-- Articulo 1 -->
@@ -81,8 +81,8 @@
                 </div>
     
                <div>
-                   <h3 class="article__heading">Chat en tiempo real</h3>
-                   <p class="article__text">En AURUM puedes tener una comunicación en tiempo real tanto con tus alumnos,
+                   <h3 class="article__heading" id="article1">Chat en tiempo real</h3>
+                   <p class="article__text" id="article1-content">En AURUM puedes tener una comunicación en tiempo real tanto con tus alumnos,
                        como con tus profesores, lo cual asegura una comunicación fluida a la hora de estudiar.
                    </p>
                </div>
@@ -96,8 +96,8 @@
                 </div>
     
                <div>
-                   <h3 class="article__heading">Desde tu hogar</h3>
-                   <p class="article__text">Puedes estudiar desde la comodidad de tu hogar en el caso de que seas un alumno, y en el caso de
+                   <h3 class="article__heading" id="article2">Desde tu hogar</h3>
+                   <p class="article__text" id="article2-content">Puedes estudiar desde la comodidad de tu hogar en el caso de que seas un alumno, y en el caso de
                        que seas un profesor, enseña y comúnicate con tus alumnos desde tu hogar.
                    </p>
                </div>
@@ -111,8 +111,8 @@
                 </div>
     
                <div>
-                   <h3 class="article__heading">Cuando quieras</h3>
-                   <p class="article__text">
+                   <h3 class="article__heading" id="article3">Cuando quieras</h3>
+                   <p class="article__text" id="article3-content">
                        Puedes visitarnos en cualquier momento, siempre estaremos disponibles para que puedas
                        comunicarte con las personas de tu ambiente de estudios o trabajo.
                    </p>
@@ -132,12 +132,12 @@
             </div>
 
             <div class="text-center">
-                <h2>Estás a un paso</h2>
-                <p class="start__text">Sumérgete en la educación online registrandote en AURUM de manera gratuita y empieza a comunicarte con tus
+                <h2 id="one-step">Estás a un paso</h2>
+                <p class="start__text" id="one-step-content">Sumérgete en la educación online registrandote en AURUM de manera gratuita y empieza a comunicarte con tus
                     profesores o alumnos de una manera sencilla e intuitiva
                 </p>
     
-                <a class="btn btn-gradient" href="internal/login/signup.php">Empezar ahora</a>
+                <a class="btn btn-gradient" href="internal/login/signup.php" id="one-step-btn">Empezar ahora</a>
             </div>
 
         </div>
@@ -148,7 +148,7 @@
     <!--  Opiniones de usuarios -->
     <section class="opinion bg-main">
         <div class="text-center opinion__heading-container t animation-100">
-            <h2 class="opinion__heading"">Opiniones de usuarios</h2>
+            <h2 class="opinion__heading" id="review">Opiniones de usuarios</h2>
         </div> 
 
         <div class="opinion__flex">
@@ -159,14 +159,14 @@
                 </div>
     
                 <div class="opinion__text">
-                    <p>La página me facilitó la manera de comunicarme con mis alumnos durante la época de pandemia, de una forma fácil e intuitiva.</p>
+                    <p id="review1">La página me facilitó la manera de comunicarme con mis alumnos durante la época de pandemia, de una forma fácil e intuitiva.</p>
                 </div>
     
                 <div class="opinion__photo-container">
                     <img class="opinion__photo" src="build/img/image-anne.jpg" alt="">
                     <div>
                         <h3 class="opinion__name">Ana Moreno</h3>
-                        <p class="opinion__work">Profesora de Matemática</p>
+                        <p class="opinion__work" id="review1-info">Profesora de Matemática</p>
                     </div>
                 </div>
             </aritcle>
@@ -178,14 +178,14 @@
                 </div>
     
                 <div class="opinion__text">
-                    <p>Gracias a esta página pude tener una plataforma en la cual poder comunicarme con mis profesores y así poder aclarar las dudas que tenía de manera rápida.</p>
+                    <p id="review2">Gracias a esta página pude tener una plataforma en la cual poder comunicarme con mis profesores y así poder aclarar las dudas que tenía de manera rápida.</p>
                 </div>
     
                 <div class="opinion__photo-container">
                     <img class="opinion__photo" src="build/img/image-irene.png" alt="">
                     <div>
                         <h3 class="opinion__name">Irene Rossi</h3>
-                        <p class="opinion__work">Estudiante</p>
+                        <p class="opinion__work" id="review2-info">Estudiante</p>
                     </div>
                 </div>
             </aritcle>
@@ -197,14 +197,14 @@
                 </div>
     
                 <div class="opinion__text">
-                    <p>¿Que opino de esta página? La verdad es que es una pagina muy buena para contestarles a mis alumnos en los tiempos y horarios en los que estoy disponible.</p>
+                    <p id="review3">¿Que opino de esta página? La verdad es que es una pagina muy buena para contestarles a mis alumnos en los tiempos y horarios en los que estoy disponible.</p>
                 </div>
     
                 <div class="opinion__photo-container">
                     <img class="opinion__photo" src="build/img/image-colton.jpg" alt="">
                     <div>
                         <h3 class="opinion__name">Mauro Velázquez</h3>
-                        <p class="opinion__work">Profesor de Historia</p>
+                        <p class="opinion__work" id="review3-info">Profesor de Historia</p>
                     </div>
                 </div>
             </aritcle>
@@ -215,7 +215,7 @@
      <!-- Seccion del slider-->
     <section id="your-rol" class="slider text-center">
         <div class="slider__heading t animation-100">
-            <h2>Lo que brindamos</h2>
+            <h2 id="we-provide">Lo que brindamos</h2>
         </div>
 
         <div id="slider" class="slider__container t animation-100">
@@ -227,8 +227,8 @@
                     </div>
     
                     <div class="slider__text t animation-100">
-                        <h3>Como estudiante</h3>
-                        <p>Tendrás a tu disposición una plataforma que te brindará tanto una forma clásica y sencilla de hacer consultas a tus profesores
+                        <h3 id="we-provide1">Como estudiante</h3>
+                        <p id="we-provide1-content">Tendrás a tu disposición una plataforma que te brindará tanto una forma clásica y sencilla de hacer consultas a tus profesores
                             como un chat en tiempo real en el cual podrás comunicarte tanto con tus docentes como tus compañeros.
                         </p>
                     </div>
@@ -243,8 +243,8 @@
                     </div>
     
                     <div class="slider__text">
-                        <h3>Como docente</h3>
-                        <p>Te ofreceremos una plataforma que te permitira estar en comunicación con tus alumnos en el horario que a ti te convenga, de tal forma que puedas administrar tus tiempos de la manera correcta.</p>
+                        <h3 id="we-provide2">Como docente</h3>
+                        <p id="we-provide2-content">Te ofreceremos una plataforma que te permitira estar en comunicación con tus alumnos en el horario que a ti te convenga, de tal forma que puedas administrar tus tiempos de la manera correcta.</p>
                     </div>
                 </div>
             </section>
@@ -257,8 +257,8 @@
                     </div>
     
                     <div class="slider__text">
-                        <h3>Un chat en tiempo real</h3>
-                        <p>Tanto los profesores como los estudiantes tendrán una plataforma de chat la cual les permitira contactarse entre si, de tal forma que la comunicación continue aún fuera del aula.</p>
+                        <h3 id="we-provide3">Un chat en tiempo real</h3>
+                        <p id="we-provide3-content">Tanto los profesores como los estudiantes tendrán una plataforma de chat la cual les permitira contactarse entre si, de tal forma que la comunicación continue aún fuera del aula.</p>
                     </div>
                 </div>
             </section>
@@ -284,17 +284,17 @@
 
     <section id="us" class="us bg-main">
         <div class="text-center t animation-100">
-            <h2 class="us__heading">Quienes somos</h2>
+            <h2 class="us__heading" id="us-title">Quienes somos</h2>
         </div>
 
         <div class="us__text-container t animation-100">
-           <p class="us__description">Somos una pequeña empresa de desarrollo de software llamada AURUM que esta dando sus primeros pasos en la industria. Nuestros productos se caracterizan por ser intuitivos, modernos y brindar una buena atención al cliente.</p>
+           <p class="us__description" id="us-desc">Somos una pequeña empresa de desarrollo de software llamada AURUM que esta dando sus primeros pasos en la industria. Nuestros productos se caracterizan por ser intuitivos, modernos y brindar una buena atención al cliente.</p>
         </div>
     </section>
 
     <section id="contact" class="contact">
         <div class="text-center t animation-100">
-            <h2 class="contact__heading">Contacto</h2>
+            <h2 class="contact__heading" id="contact-title">Contacto</h2>
         </div>
 
         <form action="" method="POST" class="contact__form t animation-100">
@@ -317,7 +317,7 @@
                 <textarea class="contact__input" name="message" placeholder="Mensaje" required></textarea>
             
                 <div class="contact__submit">
-                    <button type="submit" class="btn btn-gradient">Enviar</button>
+                    <button id="btn-send" type="submit" class="btn btn-gradient">Enviar</button>
                 </div>
             </div>
         </form>
@@ -332,6 +332,7 @@
     <script src="build/js/menuResponsive.js"></script>
     <script src="build/js/slider.js"></script>
     <script src="build/js/animation.js"></script>
+    <script src="./languages/index.js"></script>
 </body>
 
 </html>

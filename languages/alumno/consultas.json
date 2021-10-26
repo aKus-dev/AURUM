@@ -1,0 +1,9 @@
+{
+    "title": "Inquiries",
+    "realizadas": "Made",
+    "contestadas": "Replied",
+    "recibidas": "Received",
+    "notFoundContestada": "You have no answered questions",
+    "notFoundRealizada": "You have no inquiries made",
+    "notFoundRecibida": "You have no inquiries received"
+}

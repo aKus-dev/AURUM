@@ -1,0 +1,12 @@
+{
+    "title": "Create question",
+    "subtitle": "Before creating it ... check if someone already asked the same thing!",
+    "seeAll": "See all inquiries",
+    "start": "Let's get started",
+    "labelTitle": "Title",
+    "labelMsg": "Message",
+    "questionTitle": "Question title",
+    "questionDesc": "Question description",
+    "selectTeacher": "Select a teacher",
+    "send": "Send question"
+}

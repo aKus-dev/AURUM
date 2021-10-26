@@ -40,8 +40,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
 
             <div class="consulta chat-select--create">
                 <div class="option__content">
-                    <h3 class="option__heading">Crea un chat</h3>
-                    <p class="option__text">Entra aquí para crear el chat de alguna materia</p>
+                    <h3 id="create" class="option__heading">Crea un chat</h3>
+                    <p  id="create-desc" class="option__text">Entra aquí para crear el chat de alguna materia</p>
 
                     <a href="/AppChat/Alumno/crear.php" class="admin-button">Visualizar</a>
                 </div>
@@ -51,8 +51,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
 
             <div class="consulta chat-select--join">
                 <div class="option__content">
-                    <h3 class="option__heading">Unete a un chat</h3>
-                    <p class="option__text">Entra aquí para unirte a un chat ya existente</p>
+                    <h3 id="join" class="option__heading">Únete a un chat</h3>
+                    <p  id="join-desc" class="option__text">Entra aquí para unirte a un chat ya existente</p>
 
                     <a href="/AppChat/Alumno/unirse.php"" class="admin-button">Visualizar</a>
                 </div>
@@ -75,6 +75,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
     </div>
 
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/alumno/chat/index.js"></script>
+    <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

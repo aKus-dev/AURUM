@@ -29,8 +29,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
 
             <div class="consulta consulta--consultas">
                 <div class="option__content">
-                    <h3 class="option__heading">Consultas</h3>
-                    <p class="option__text">Visualiza todas tus consultas ralizadas</p>
+                    <h3 id="consultas" class="option__heading">Consultas</h3>
+                    <p  id="consultasContent" class="option__text">Visualiza todas tus consultas ralizadas</p>
 
                     <a href="internal/consultas.php" class="admin-button">Visualizar</a>
                 </div>
@@ -40,8 +40,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
 
             <div class="consulta consulta--profesores">
                 <div class="option__content">
-                    <h3 class="option__heading">Profesores</h3>
-                    <p class="option__text">Ve una lista con todos tus profesores</p>
+                    <h3  id="profesores" class="option__heading">Profesores</h3>
+                    <p  id="profesoresContent" class="option__text">Ve una lista con todos tus profesores</p>
 
                     <a href="internal/profesores.php" class="admin-button">Visualizar</a>
                 </div>
@@ -51,8 +51,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
 
             <div class="consulta consulta--compas">
                 <div class="option__content">
-                    <h3 class="option__heading">Clase</h3>
-                    <p class="option__text">Ve una lista con todos tus compañeros</p>
+                    <h3 id="clase" class="option__heading">Clase</h3>
+                    <p id="classContent"  class="option__text">Ve una lista con todos tus compañeros</p>
 
                     <a href="internal/clase.php" class="admin-button">Visualizar</a>
                 </div>
@@ -69,6 +69,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
 
     </div>
 
+        <script src="/languages/alumno/index.js"></script>
+        <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

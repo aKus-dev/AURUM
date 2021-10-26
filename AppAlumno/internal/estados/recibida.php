@@ -78,6 +78,6 @@ $resultado = $db->query($sql);
 
 <?php if (!$hayResultado_contestada) : ?>
     <div class="no-consultas bg-main">
-        <p>No tienes consultas recibidas</p>
+        <p id="not-found-recibida">No tienes consultas recibidas</p>
     </div>
 <?php endif; ?>

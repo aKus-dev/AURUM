@@ -1,0 +1,9 @@
+{
+    "create": "Create a chat",
+    "createContent": "Enter here to create the chat of some subject",
+    "join": "Join a chat",
+    "joinContent": "Enter here to join an existing chat",
+    "host": "My chats",
+    "hostContent": "Here you can access all your created chats",
+    "visualize": "Visualize"
+}

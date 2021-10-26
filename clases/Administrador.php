@@ -59,6 +59,9 @@ class Administrador // Falta implementar la interface
             $stmt = $db->prepare($sql); // prepare() optimiza el query y evita inyecciones no validas
             $stmt->execute(); // Lo ejecuta
 
+            $sql = "INSERT INTO horarios (ciDocente, registro_horarios) VALUES ('$CI', false)";
+            $db->query($sql);
+
             // REGISTRO SUS GRUPOS
             $sql = "SELECT id FROM usuario WHERE CI = '$CI' LIMIT 1";
             $resultado = $db->query($sql);

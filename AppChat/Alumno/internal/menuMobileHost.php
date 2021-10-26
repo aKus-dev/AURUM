@@ -2,7 +2,7 @@
 
     <div class="content">
         <div class="container-btn">
-            <button id="chatsBtn">Chats</button>
+            <button id="chatsBtn">Finalizar</button>
             <button id="usuariosBtn">Usuarios</button>
         </div>
 

@@ -84,7 +84,7 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
             </div>
             <?php if (!$entro) :  ?>
                 <div class="no-consultas bg-main">
-                    <p>Aún no tienes compañeros en tu mismo grupo</p>
+                    <p id="not-found">Aún no tienes compañeros en tu mismo grupo</p>
                 </div>
             <?php endif ?>
     </main>
@@ -92,7 +92,8 @@ Chat::offlineUsuario($_SESSION['CI'], $db);
     </div>
 
 
-    <script src="/build/js/consultas.js"></script>
+    <script src="/languages/alumno/clase.js"></script>
+    <script src="/languages/alumno/header.js"></script>
     </body>
 
 </html>

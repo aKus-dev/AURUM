@@ -188,6 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="/build/js/validateUsers.js"></script>
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/alumno.js"></script>
     </body>
 
 </html>
