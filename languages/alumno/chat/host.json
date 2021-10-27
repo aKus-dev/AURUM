@@ -1,0 +1,7 @@
+{
+    "end": "End the chat",
+    "endDesc": "At the end, a summary of the messages sent will be sent to the emails of the users of this chat, make sure that all your doubts have been clarified!",
+    "btnEnd": "Finish",
+    "users": "Users",
+    "message": "Message..."
+}

@@ -102,7 +102,7 @@ $i = 0;
                 <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
 
                     <?php if (!$mensajeMostrado) : ?>
-                        <p class="grupos-docente-list bg-main title-grupo-chat" style="text-transform: uppercase; font-weight: bold;">
+                        <p id="chats-creados" class="grupos-docente-list bg-main title-grupo-chat" style="text-transform: uppercase; font-weight: bold;">
                             Tus chats creados
                         </p>
                     <?php
@@ -138,7 +138,7 @@ $i = 0;
                 <?php endwhile; ?>
                 <?php if (!$entroChat) : ?>
                     <div class="no-consultas bg-main text-center">
-                        <p>Aún no has creado un chat</p>
+                        <p id="not-found">Aún no has creado un chat</p>
                     </div>
                 <?php endif; ?>
 
@@ -149,5 +149,8 @@ $i = 0;
             </body>
 
             <script src="/build/js/removeAlert.js"></script>
+            <script src="/languages/alumno/chat/header.js"></script>
+            <script src="/languages/alumno/chat/hostchats.js"></script>
+
 
 </html>

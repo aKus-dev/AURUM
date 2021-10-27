@@ -113,7 +113,7 @@ $i = 0;
 
                 <?php if (!$entroChat) : ?>
                     <div class="no-consultas bg-main text-center">
-                        <p>Aún no hay chats creados por otros usuarios</p>
+                        <p id="not-found">Aún no hay chats creados por otros usuarios</p>
                     </div>
                 <?php endif; ?>
 
@@ -124,5 +124,8 @@ $i = 0;
             </body>
 
             <script src="/build/js/removeAlert.js"></script>
+            <script src="/languages/alumno/chat/header.js"></script>
+            <script src="/languages/alumno/chat/unirse.js"></script>
+
 
 </html>

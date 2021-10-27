@@ -121,5 +121,8 @@ $i = 0;
             </body>
 
             <script src="/build/js/removeAlert.js"></script>
+            <script src="/languages/alumno/chat/header.js"></script>
+
+
 
 </html>

@@ -1,5 +1,3 @@
-localStorage.setItem('lang', 'en');
-
 const lang = localStorage.getItem('lang');
 
 lang === 'en' && setEnglish();
@@ -37,6 +35,7 @@ const oneStepContentText = document.querySelector('#one-step-content');
 const oneStepBtnText = document.querySelector('#one-step-btn');
 
 // Opinion
+const titleReview = document.querySelector('#review');
 const review1Text = document.querySelector('#review1');
 const review1InfoText = document.querySelector('#review1-info');
 const review2Text = document.querySelector('#review2');
@@ -86,6 +85,7 @@ async function setEnglish() {
         oneStep,
         oneStepContent,
         oneStepBtn,
+        review,
         review1,
         review1Info,
         review2,
@@ -143,6 +143,7 @@ async function setEnglish() {
     oneStepBtnText.textContent = oneStepBtn;
 
     // Review
+    titleReview.textContent = review;
     review1Text.textContent = review1;
     review1InfoText.textContent = review1Info;
     review2Text.textContent = review2;

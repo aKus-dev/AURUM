@@ -103,13 +103,13 @@ if (isset($_POST['mensaje'])) {
         <div class="users display-none">
             <div class="text-center">
                 <div class="pt-3">
-                    <h3>Finaliza el chat</h3>
+                    <h3 class="finalizar">Finaliza el chat</h3>
 
                     <form action="../mail/finalizar.php" id="finalizar-chat" method="post">
-                        <p>Al dar en finalizar, se enviara un resumen de los mensajes enviados a los correos de los usuarios de este chat, ¡Asegurate de que todas tus dudas se hayan aclarado!</p>
+                        <p  class="finalizarText">Al dar en finalizar, se enviara un resumen de los mensajes enviados a los correos de los usuarios de este chat, ¡Asegurate de que todas tus dudas se hayan aclarado!</p>
                         <input type="hidden" name="idChat" value="<?php echo $idChat ?>">
 
-                        <button class="bg-main">Finalizar</button>
+                        <button class="bg-main btn-end">Finalizar</button>
                     </form>
                 </div>
 
@@ -137,7 +137,7 @@ if (isset($_POST['mensaje'])) {
 
         <div class="users display-none">
             <div class="text-center">
-                <h3>Usuarios</h3>
+                <h3 class="usuarios">Usuarios</h3>
 
                 <div id="usuarios">
 
@@ -152,6 +152,7 @@ if (isset($_POST['mensaje'])) {
 
     <script src="/build/js/chatMenuMobile.js"></script>
     <script src="/build/js/chatScroll.js"></script>
+    <script src="/languages/alumno/chat/host.js"></script>
 </body>
 
 </html>

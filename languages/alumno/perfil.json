@@ -1,0 +1,12 @@
+{
+    "name": "Your name",
+    "lastname": "Your lastname",
+    "password": "New password",
+    "passwordAgain": "Repeat the new password",
+    "changePhoto": "Change your photo",
+    "save": "Save changes",
+    "deleteAccount": "Delete account",
+    "msg": "Are you sure you want to delete your account?",
+    "cancel": "Cancel",
+    "confirmar": "Confirm"
+}

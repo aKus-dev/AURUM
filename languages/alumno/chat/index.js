@@ -23,9 +23,6 @@ async function setEnglish() {
     createDesc.textContent = createContent;
     joinText.textContent = join;
     joinDesc.textContent = joinContent;
-
-    
- 
     
 }
 

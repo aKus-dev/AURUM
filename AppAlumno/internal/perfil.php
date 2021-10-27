@@ -88,14 +88,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><?php echo $nombreAlumno . " " . $apellidoAlumno ?></p>
             </div>
 
+            <div class="idioma">
+                <img id="spanish" src="/build/img/spain.png" alt="Flag">
+                <img id="english" src="/build/img/usa.png" alt="Flag">
+            </div>
+
             <form action="" class="profile-form" method="POST">
                 <div class="profile-form-container">
-                    <input minlength="3" name="nombre" type="text" value="<?php echo $nombreAlumno ?>">
+                    <input placeholder="Tu nombre" minlength="3" name="nombre" type="text" value="<?php echo $nombreAlumno ?>">
                     <i class="far fa-edit"></i>
                 </div>
 
                 <div class="profile-form-container">
-                    <input minlength="3" name="apellido" type="text" value="<?php echo $apellidoAlumno ?>">
+                    <input placeholder="Tu apellido" minlength="3" name="apellido" type="text" value="<?php echo $apellidoAlumno ?>">
                     <i class="far fa-edit"></i>
                 </div>
 
@@ -117,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
 
                 <div class="text-center">
-                    <p class="text-violet p-profile">Cambia tu foto</p>
+                    <p id="change" class="text-violet p-profile">Cambia tu foto</p>
                 </div>
 
 
@@ -189,6 +194,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="/build/js/removeAlert.js"></script>
     <script src="/build/js/perfil.js"></script>
     <script src="/build/js/modal.js"></script>
+    <script src="/build/js/language.js"></script>
+
+    <script src="/languages/alumno/perfil.js"></script>
+    <script src="/languages/alumno/header.js"></script>
+    
     </body>
 
 </html>
