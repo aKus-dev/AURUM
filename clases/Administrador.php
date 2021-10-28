@@ -50,6 +50,12 @@ class Administrador // Falta implementar la interface
 
                     $stmt = $db->prepare($sql);
                     $stmt->execute();
+
+
+                    $sql = "INSERT INTO cedulas VALUES ($idAlumno, '$CI')";
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute();
                 }
             }
         } else {
@@ -82,6 +88,11 @@ class Administrador // Falta implementar la interface
 
                     $stmt = $db->prepare($sql);
                     $stmt->execute();
+
+                    $sql = "INSERT INTO cedulas VALUES ($idDocente, '$CI')";
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute();
                 }
             }
         }
@@ -93,9 +104,14 @@ class Administrador // Falta implementar la interface
 
     static public function eliminarUsuario(string $cedula, PDO $db)
     {
+        if($cedula === '11111111') {
+            return false;
+        }
+
         $encontrado = false;
         $sql = "SELECT * FROM usuario WHERE CI= '$cedula'";
         $resultado = $db->query($sql);
+
 
         // Iterar resultados;
         while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {

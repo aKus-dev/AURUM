@@ -93,6 +93,8 @@ class Sistema
 
     static public function revisarMail(string $email, PDO $db): bool
     {
+        if(!is_string($email)) return false;
+
         $sql = "SELECT * FROM usuario WHERE email = '$email'";
         $resultado = $db->query($sql);
 
