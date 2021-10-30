@@ -1,16 +1,24 @@
 .consultas-admin {
-    padding: 10rem 3rem;
-    height: calc(100vh - 7rem);
+    margin: 3rem 3rem;
     display: flex;
+    gap: 3.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     h2 {
-        margin-bottom: 5rem;
+        margin-bottom: 2rem;
     }
 
-    .consulta {
+    .consulta-data {
         width: 100%;
+
+        @include tablet {
+            width: 85%;
+        }
+
+        @include desktop {
+            width: 75%;
+        }
     }
 }

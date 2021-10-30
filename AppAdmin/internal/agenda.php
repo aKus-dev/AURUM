@@ -39,6 +39,7 @@ $resultado = $db->query($sql);
     <?php include '../templates/header.php'; ?>
 
     <main class="consultas-admin">
+        <h2>Consultas de alumnos</h2>
     <?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) :
 
         $idAlumno = $row['idAlumno'];
@@ -77,7 +78,7 @@ $resultado = $db->query($sql);
 
     ?>
 
-<div class="consulta">
+<div class="consulta-data">
         <div class="date-style">
             <div class="line"></div>
             <p><?php echo $row['fecha'] ?> </p>

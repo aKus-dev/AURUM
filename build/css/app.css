@@ -1717,16 +1717,22 @@ select[multiple] {
     visibility: visible; }
 
 .consultas-admin {
-  padding: 10rem 3rem;
-  height: calc(100vh - 7rem);
+  margin: 3rem 3rem;
   display: flex;
+  gap: 3.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center; }
   .consultas-admin h2 {
-    margin-bottom: 5rem; }
-  .consultas-admin .consulta {
+    margin-bottom: 2rem; }
+  .consultas-admin .consulta-data {
     width: 100%; }
+    @media (min-width: 768px) {
+      .consultas-admin .consulta-data {
+        width: 85%; } }
+    @media (min-width: 968px) {
+      .consultas-admin .consulta-data {
+        width: 75%; } }
 
 .pendiente-container {
   width: 100%;
@@ -2900,17 +2906,3 @@ select[multiple] {
 
 .solicitudes-buttons {
   display: flex; }
-
-  .idioma {
-    margin-top: 3rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  .idioma img {
-    cursor: pointer;
-    transition: .45s;
-  }
-  .idioma img:hover {
-    transform: scale(1.3);
-  }
