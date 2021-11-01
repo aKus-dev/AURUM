@@ -1,0 +1,15 @@
+{
+    "reghor":"Register your schedules ",
+    "selecDias":"Select the days on which you will attend inquiries",
+    "lu":"Monday",
+    "mar":"Tuesday",
+    "mier":"Wednesday",
+    "jue":"Thursday",
+    "vier":"Friday",
+    "sab":"Saturday",
+    "dom":"Sunday",
+    "selHor":"Select the time in which you will attend consultations",
+    "des":"From",
+    "has":"Until",
+    "envHor":"Send schedule"
+}

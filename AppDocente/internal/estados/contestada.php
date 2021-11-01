@@ -113,6 +113,6 @@ $resultado = $db->query($sql);
 
 <?php if (!$hayResultado_contestada) : ?>
     <div class="no-consultas bg-main">
-        <p>No tienes consultas contestadas</p>
+        <p id="nocontestadas">No tienes consultas contestadas</p>
     </div>
 <?php endif; ?>

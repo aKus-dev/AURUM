@@ -104,9 +104,6 @@ class Docente
 
     static public function responderConsulta($idConsulta, $respuesta, PDO $db)
     {
-        /* date_default_timezone_set("America/Montevideo");
-        $fecha = date('Y-m-d'); */
-
         // Escapo las comillas para que no tire error
         $respuesta = $db->quote($respuesta);   
 

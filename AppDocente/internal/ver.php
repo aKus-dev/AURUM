@@ -84,6 +84,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     </main>
 
     <script src="/build/js/consultas.js"></script>
+    <script src="/languages/docente/header.js"></script>
+    
     </body>
 
 </html>

@@ -46,8 +46,8 @@ if(!empty($_GET)) {
 
             <div class="consulta consulta--consultas">
                 <div class="option__content">
-                    <h3 class="option__heading">Consultas</h3>
-                    <p class="option__text">Visualiza todas las consultas de tus alumnos</p>
+                    <h3 id="consu" class="option__heading">Consultas</h3>
+                    <p id="vizuA" class="option__text">Visualiza todas las consultas de tus alumnos</p>
 
                     <a href="internal/consultas.php" class="admin-button">Visualizar</a>
                 </div>
@@ -57,8 +57,8 @@ if(!empty($_GET)) {
 
             <div class="consulta consulta--compas">
                 <div class="option__content">
-                    <h3 class="option__heading">Grupos</h3>
-                    <p class="option__text">Ve una lista con todos tus grupos</p>
+                    <h3 id="grupos" class="option__heading">Grupos</h3>
+                    <p id="listaG" class="option__text">Ve una lista con todos tus grupos</p>
 
                     <a href="internal/grupos.php" class="admin-button">Visualizar</a>
                 </div>
@@ -69,8 +69,8 @@ if(!empty($_GET)) {
 
         <div class="consulta consulta--horarios">
             <div class="option__content">
-                <h3 class="option__heading option__heading--red">Registra tus horarios</h3>
-                <p class="option__text">Registra o modifica cuando te pueden hacer consultas</p>
+                <h3 id="regsitraH"  class="option__heading option__heading--red">Registra tus horarios</h3>
+                <p id="regiMod" class="option__text">Registra o modifica cuando te pueden hacer consultas</p>
 
                 <a href="internal/horarios.php" class="admin-button admin-button--red">Registrar</a>
             </div>
@@ -81,7 +81,8 @@ if(!empty($_GET)) {
     </div>
 
     </div>
-
+    <script src="/languages/docente/index.js"></script>
+    <script src="/languages/docente/header.js"></script>
     <script src="/build/js/removeAlert.js"></script>
     </body>
 </html>

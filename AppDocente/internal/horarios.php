@@ -84,10 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include '../templates/header.html' ?>
 
     <main class="horarios-container">
-        <h2>Registra tus horarios</h2>
+        <h2 id="RegistraH">Registra tus horarios</h2>
 
         <form action="" method="POST" class="form-horarios">
-            <p class="text-violet">Selecciona los días en los cuales atenderás consultas</p>
+            <p id="selectDays" class="text-violet">Selecciona los días en los cuales atenderás consultas</p>
 
             <div class="day-container">
                 <label class="day" id="lunes">Lunes</label>
@@ -108,27 +108,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </div>
 
-            <p class="text-violet">Selecciona el horario en el cual atenderas consultas</p>
+            <p id="SeleHorario" class="text-violet">Selecciona el horario en el cual atenderas consultas</p>
             <div class="horas-container">
                 <div>
-                    <label for="desde">Desde</label>
+                    <label id="desde" for="desde">Desde</label>
                     <input name="desde" id="desde" type="time" required>
                 </div>
 
                 <div>
-                    <label for="hasta">Hasta</label>
+                    <label id="hasta" for="hasta">Hasta</label>
                     <input name="hasta" id="hasta" type="time" required>
                 </div>
             </div>
 
             <div class="btn-submit-consulta">
-                <button type="submit" class="bg-main">Enviar horario</button>
+                <button  id="envHorario" type="submit" class="bg-main">Enviar horario</button>
             </div>
         </form>
     </main>
-
+    <script src="/languages/docente/horarios.js"></script>
     <script src="/build/js/horario.js"></script>
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/docente/header.js"></script>
     </body>
 
 </html>

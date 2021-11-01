@@ -46,7 +46,7 @@ if (!empty($_GET)) {
     <?php endif; ?>
 
     <main class=" consulta-container">
-        <h2>Consultas</h2>
+        <h2 id="consulta">Consultas</h2>
 
         <div class="flexRow buttons-container">
             <div class="consulta-buttons">
@@ -64,9 +64,10 @@ if (!empty($_GET)) {
             <?php require 'estados/contestada.php' ?>
         </div>
     </main>
-
+    <script src="/languages/docente/consultas.js"></script>  
     <script src="/build/js/consultas.js"></script>
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/docente/header.js"></script>
     </body>
 
 </html>

@@ -61,8 +61,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3 class="option__heading"> <?php echo $titulo ?> </h3>
 
                 <div class="datos-alumno">
-                    <p>Enviado por: <span class="text-violet"> <?php echo $nombre . " " . $apellido  ?> </span> </p>
-                    <p>Fecha: <span class="text-violet"> <?php echo $fecha ?> </span> </p>
+                    <p id="enviadoX">Enviado por: <span class="text-violet"> <?php echo $nombre . " " . $apellido  ?> </span> </p>
+                    <p id="fechas">Fecha: <span class="text-violet"> <?php echo $fecha ?> </span> </p>
                 </div>
 
               <div class="text-center">
@@ -71,18 +71,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div>
-                <h2>Escribe tu respuesta</h2>
+                <h2 id="escribeRes">Escribe tu respuesta</h2>
             </div> 
 
             <form method="POST" class="respuesta-profe">
                 <textarea name="respuesta" required placeholder="Escribe tu respuesta"></textarea>
                 <div class="align-right contenedor-responder">
-                    <button class="bg-main">Responder</button>
+                    <button class="bg-main" id="responder">Responder</button>
                 </div>
             </form>
     </main>
-
+    <script src="/languages/docente/contestar.js"></script>
     <script src="/build/js/removeAlert.js"></script>
+    <script src="/languages/docente/header.js"></script>
     </body>
 
 </html>

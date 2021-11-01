@@ -174,3 +174,19 @@
 .hide-modal {
     display: none;
 }
+
+.idioma {
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#english, #spanish {
+    transition: .65s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.3);
+    }
+}

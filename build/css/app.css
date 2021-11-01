@@ -2315,6 +2315,18 @@ select[multiple] {
 .hide-modal {
   display: none; }
 
+.idioma {
+  margin: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem; }
+
+#english, #spanish {
+  transition: .65s;
+  cursor: pointer; }
+  #english:hover, #spanish:hover {
+    transform: scale(1.3); }
+
 .horarios-container {
   text-align: center;
   display: flex;

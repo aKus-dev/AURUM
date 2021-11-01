@@ -10,7 +10,7 @@ require './clases/Alumno.php';
 use PHPUnit\Framework\TestCase;
 
 
-class EliminarTest extends TestCase
+class Test extends TestCase
 {
 
     /** @test */
@@ -57,6 +57,20 @@ class EliminarTest extends TestCase
         // Nos debería de retornar un array asociativo iterable
         $this->assertIsIterable($datos); 
         
+     }
+
+     public function testGetHorarios() {
+         $db = conectarDb();
+
+         $ciDocente = '';
+         $resultado = Docente::getHorarios($ciDocente, $db);
+         $this->assertEquals(false, $resultado);
+
+
+         $ciDocente = '22222222';
+         $resultado = Docente::getHorarios($ciDocente, $db);
+         $this->assertIsArray($resultado);
+
      }
 
 }
