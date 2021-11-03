@@ -143,8 +143,6 @@ CREATE TABLE chat (
     grupo CHAR(4)
 );
 
-alter table chat change column grupo  grupo CHAR(4);
-
 CREATE TABLE usuarios_online (
 	idChat INT NOT NULL,
     ciUsuario INT NOT NULL,
@@ -184,7 +182,7 @@ CREATE TABLE solicitud_chat (
     apellidoHost VARCHAR(25),
 	emailHost VARCHAR(320) NOT NULL,
     asignatura VARCHAR(30),
-    grupo CHAR(3),
+    grupo CHAR(4),
     CONSTRAINT FK_solicitud FOREIGN KEY (ciDocente) 
     REFERENCES usuario(CI) ON DELETE CASCADE
 );
